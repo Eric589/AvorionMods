@@ -1,0 +1,28 @@
+# AllianceMember API Documentation
+name: AllianceMember
+type: class
+availability: both
+description: AllianceMember class
+
+constructor:
+  signature: AllianceMember()
+  returns: AllianceMember instance
+
+properties:
+  - name: coordinates
+    type: ivec2
+    access: read-only
+    description: coordinates property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: rank
+    type: string
+    access: read-only
+    description: rank property
+
+notes:
+  - Auto-converted from HTML documentation

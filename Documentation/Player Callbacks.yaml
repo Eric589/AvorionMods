@@ -1,0 +1,586 @@
+# Player  Callbacks Documentation
+name: Player  Callbacks
+type: callbacks
+description: Callback functions for Player scripts
+
+note: |
+  Callbacks have to be buffered in certain situations and won't happen immediately. When unregistering a callback during a callback, all callbacks that were buffered during the last frame may still be sent, even though they were unregistered.
+
+callbacks:
+  - name: onAllianceChanged
+    signature: onAllianceChanged(allianceIndex)
+    parameters:
+      - name: allianceIndex
+        description: The faction index of the alliance
+    description: Executed whenever the player's alliance changes
+
+  - name: onAllianceInvitationReceived
+    signature: onAllianceInvitationReceived(allianceIndex)
+    parameters:
+      - name: allianceIndex
+        description: The faction index of the alliance
+    description: Executed whenever the player receives an invitation from an alliance
+
+  - name: onAllScriptValuesChanged
+    signature: onAllScriptValuesChanged(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the player
+    description: Executed whenever all scripts values of the player have been changed at once
+
+  - name: onChatMessage
+    signature: onChatMessage(playerIndex, text, channel)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: text
+        description: The text content of the chat message
+      - name: channel
+        description: The channel the message was sent to. 0 = All, 1 = Sector, 2 = Group, 3 = Alliance
+    description: Executed whenever the player sent a chat message to the server. Only called if the chat message is valid and the player doesn't have a chat ban.
+
+  - name: onChatRestrictionTimeChanged
+    signature: onChatRestrictionTimeChanged(time)
+    parameters:
+      - name: time
+        description: The time that player is muted
+    description: Executed whenever a player's chat restriction time is changed. This usually only happens when administrators need to stop a player from using chat.
+
+  - name: onCraftChanged
+    signature: onCraftChanged(id, previousId)
+    parameters:
+      - name: id
+        description: The id of the new craft
+      - name: previousId
+        description: The id of the previous craft
+    description: Called whenever the player changes their flown craft
+
+  - name: onGalaxyMapKeyboardUp
+    signature: onGalaxyMapKeyboardUp(button)
+    parameters:
+      - name: button
+        description: The scancode of the button that was pressed
+    description: Executed whenever a keyboard-up event occurs on the galaxy map. Keyboad-Up events are transferred to all UI elements and can't be consumed.
+
+  - name: onGalaxyMapMouseUp
+    signature: onGalaxyMapMouseUp(button, mx, my, cx, cy, mapMoved)
+    parameters:
+      - name: button
+        description: The button that was released
+      - name: mx
+        description: The mouse X position
+      - name: my
+        description: The mouse Y position
+      - name: cx
+        description: The coordinates X position
+      - name: cy
+        description: The coordinates Y position
+      - name: mapMoved
+        description: True if the map was moved during the mouse pressing
+    description: Executed whenever a mouse-up event occurs on the galaxy map. Mouse-Up events are transferred to all UI elements and can't be consumed.
+
+  - name: onGroupChanged
+    signature: onGroupChanged(groupIndex)
+    parameters:
+      - name: groupIndex
+        description: The index of the group the player is in
+    description: Executed whenever the player's group index changes
+
+  - name: onGroupLeaderChanged
+    signature: onGroupLeaderChanged(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the new leader player
+    description: Executed whenever the leader of the player's group changes
+
+  - name: onGroupPlayerCraftChanged
+    signature: onGroupPlayerCraftChanged(playerIndex, id)
+    parameters:
+      - name: playerIndex
+        description: The index of the other player
+      - name: id
+        description: The id of the new craft
+    description: Executed whenever another player of the player's group changes crafts
+
+  - name: onGroupPlayerSectorChanged
+    signature: onGroupPlayerSectorChanged(playerIndex, x, y)
+    parameters:
+      - name: playerIndex
+        description: The index of the other player
+      - name: x
+        description: The x coordinate of the new sector
+      - name: y
+        description: The y coordinate of the new sector
+    description: Executed whenever another player of the player's group changes sectors
+
+  - name: onHomeSectorChanged
+    signature: onHomeSectorChanged(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the new home sector
+      - name: y
+        description: The y coordinate of the new home sector
+    description: Called whenever the home sector of the player changes
+
+  - name: onHyperspaceRestrictionTimeChanged
+    signature: onHyperspaceRestrictionTimeChanged(time)
+    parameters:
+      - name: time
+        description: The time that player is trapped
+    description: Executed whenever a player's hyperspace restriction time is changed. This usually only happens when administrators need to trap a player in a specific sector.
+
+  - name: onItemAdded
+    signature: onItemAdded(itemIndex, amount, amountBefore)
+    parameters:
+      - name: itemIndex
+        description: Index of the item
+      - name: amount
+        description: The new amount of this item
+      - name: amountBefore
+        description: The amount of this item before the change
+    description: Executed whenever the number of items in a particular item slot in the player's inventory increases or a new item was added.
+
+  - name: onItemChanged
+    signature: onItemChanged(itemIndex, amount, amountBefore)
+    parameters:
+      - name: itemIndex
+        description: Index of the item
+      - name: amount
+        description: The new amount of this item
+      - name: amountBefore
+        description: The amount of this item before the change
+    description: Executed whenever the number of items in a particular item slot in the player's inventory changes.
+
+  - name: onItemPropertiesChanged
+    signature: onItemPropertiesChanged(item, index, amount)
+    parameters:
+      - name: item
+        description: The inventory item
+      - name: index
+        description: Index of the inventory item
+      - name: amount
+        description: Amount of items in the slot
+    description: Called whenever an item in the player inventory changes properties
+
+  - name: onItemRemoved
+    signature: onItemRemoved(itemIndex, amount, amountBefore)
+    parameters:
+      - name: itemIndex
+        description: Index of the item
+      - name: amount
+        description: The new amount of this item
+      - name: amountBefore
+        description: The amount of this item before the change
+    description: Executed whenever the number of items in a particular item slot in the player's inventory decreases or the item was removed.
+
+  - name: onJumpRouteCalculationStarted
+    signature: onJumpRouteCalculationStarted(playerIndex, craftIndex, destinationX, destinationY)
+    parameters:
+      - name: playerIndex
+        description: The index of the player starting the calculation
+      - name: craftIndex
+        description: The id of the entity that does the calculation
+      - name: destinationX
+        description: The x-coordinate of the destination sector
+      - name: destinationY
+        description: The y-coordinate of the destination sector
+    description: Executed whenever a player starts a new hyperspace jump route calculation
+
+  - name: onKnownSectorAdded
+    signature: onKnownSectorAdded(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a new tracked sector is added to the player database
+
+  - name: onKnownSectorRemoved
+    signature: onKnownSectorRemoved(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a tracked sector was removed from the player database
+
+  - name: onKnownSectorUpdated
+    signature: onKnownSectorUpdated(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a tracked sector is updated in the player database
+
+  - name: onMailAdded
+    signature: onMailAdded(playerIndex, mail, mailIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: mail
+        description: The received mail
+      - name: mailIndex
+        description: Index of the received mail
+    description: Executed whenever the player receives a new mail
+
+  - name: onMailCleared
+    signature: onMailCleared(playerIndex, mailIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: mailIndex
+        description: Index of the cleared mail
+    description: Executed whenever the player takes the contents of a mail
+
+  - name: onMailDeleted
+    signature: onMailDeleted(playerIndex, mailIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: mailIndex
+        description: Index of the deleted mail
+    description: Executed whenever the player deletes a mail
+
+  - name: onMailRead
+    signature: onMailRead(playerIndex, mailIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: mailIndex
+        description: Index of the read mail
+    description: Executed whenever the player reads a mail
+
+  - name: onMaxBuildableMaterialChanged
+    signature: onMaxBuildableMaterialChanged(material)
+    parameters:
+      - name: material
+        description: The material up to which the player can now build blocks
+    description: Executed whenever a player's ship building knowledge changes.
+
+  - name: onMaxBuildableSocketsChanged
+    signature: onMaxBuildableSocketsChanged(slots)
+    parameters:
+      - name: slots
+        description: The maximum amount of slots the player can now build
+    description: Executed whenever a player's ship building knowledge changes.
+
+  - name: onMoveToReconstructionSite
+    signature: onMoveToReconstructionSite(x, y, playerIndex)
+    parameters:
+      - name: x
+        description: X coordinate of destination the player is moved to
+      - name: y
+        description: Y coordinate of destination the player is moved to
+      - name: playerIndex
+        description: Index of the player
+    description: Executed whenever a move to reconstruction or respawn site is triggered because the player was destroyed. Called even if the player is already at their reconstruction/respawn site. Coordinates can be either reconstruction site or respawn site.
+
+  - name: onPlayerArrivalConfirmed
+    signature: onPlayerArrivalConfirmed(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+    description: Executed when the client reports that it entered the target sector. Clients send a message to the server once the loading screen ended. Once you receive this callback, the client has successfully loaded the sector it went into.
+
+  - name: onPlayerEnteredGroup
+    signature: onPlayerEnteredGroup(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the player who entered
+    description: Executed whenever another player enters the player's group
+
+  - name: onPlayerLeftGroup
+    signature: onPlayerLeftGroup(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the player who left
+    description: Executed whenever another player from the player's group leaves the group
+
+  - name: onReconstructionSectorChanged
+    signature: onReconstructionSectorChanged(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the new sector
+      - name: y
+        description: The y coordinate of the new sector
+    description: Executed whenever the player's respawn sector changes
+
+  - name: onRelationChanged
+    signature: onRelationChanged(index, level, levelBefore, notify)
+    parameters:
+      - name: index
+        description: The index of the other faction
+      - name: level
+        description: The level of the relation
+      - name: levelBefore
+        description: The level of the relation before the change
+      - name: notify
+        description: A boolean indicating whether or not the player should be notified about the change
+    description: Called whenever relations of the player to another faction change
+
+  - name: onRelationLevelChanged
+    signature: onRelationLevelChanged(playerIndex, factionIndex, relations)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: factionIndex
+        description: Index of the other faction
+      - name: relations
+        description: The new relations of the player to the other faction
+    description: Executed whenever the relations of the player to another faction changes.
+
+  - name: onRelationStatusChanged
+    signature: onRelationStatusChanged(playerIndex, factionIndex, status)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: factionIndex
+        description: Index of the other faction
+      - name: status
+        description: The new relation status of the player to the other faction
+    description: Executed whenever the relation status of the player to another faction changes.
+
+  - name: onResourcesChanged
+    signature: onResourcesChanged(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+    description: Executed whenever the money or resources of the player change
+
+  - name: onScriptAdded
+    signature: onScriptAdded(playerIndex, scriptIndex, scriptPath)
+    parameters:
+      - name: playerIndex
+        description: The index of the player
+      - name: scriptIndex
+        description: The index of the script that was added
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was added to the player
+
+  - name: onScriptRemoved
+    signature: onScriptRemoved(playerIndex, oldScriptIndex, scriptPath)
+    parameters:
+      - name: playerIndex
+        description: The index of the player
+      - name: oldScriptIndex
+        description: The old index of the script that was removed
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was removed from the player
+
+  - name: onScriptValueChanged
+    signature: onScriptValueChanged(playerIndex, name, value)
+    parameters:
+      - name: playerIndex
+        description: The index of the player
+      - name: name
+        description: The name of the value
+      - name: value
+        description: The new value
+    description: Executed whenever a script value of the player was changed
+
+  - name: onSectorArrivalConfirmed
+    signature: onSectorArrivalConfirmed(playerIndex, x, y)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: x
+        description: X-Coordinate of the entered sector
+      - name: y
+        description: Y-Coordinate of the entered sector
+    description: Executed when the client reports that it entered the target sector. Clients send a message to the server once the loading screen ended. Once you receive this callback, the client has successfully loaded the sector it went into.
+
+  - name: onSectorChanged
+    signature: onSectorChanged(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the new sector
+      - name: y
+        description: The y coordinate of the new sector
+    description: Executed whenever the player changes the sector. Specifically, this callback is sent whenever the player's sector coordinates change in the database, even when they're not online.
+
+  - name: onSectorEntered
+    signature: onSectorEntered(playerIndex, x, y, sectorChangeType)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: x
+        description: The x coordinates of the sector entered
+      - name: y
+        description: The y coordinates of the sector entered
+      - name: sectorChangeType
+        description: The kind of sector change that is happening
+    description: Executed whenever the player is logged in and physically enters a new sector.
+
+  - name: onSectorLeft
+    signature: onSectorLeft(playerIndex, x, y, sectorChangeType)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: x
+        description: The x coordinates of the sector left
+      - name: y
+        description: The y coordinates of the sector left
+      - name: sectorChangeType
+        description: The kind of sector change that is happening
+    description: Executed whenever the player leaves their current sector, before entities are removed
+
+  - name: onShipAvailabilityUpdated
+    signature: onShipAvailabilityUpdated(name, availability)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: availability
+        description: The new availability status of the ship
+    description: Called whenever a ShipInfo changes availability status (ie. goes into background simulation)
+
+  - name: onShipCargoUpdated
+    signature: onShipCargoUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the cargo of a ShipInfo changes
+
+  - name: onShipChanged
+    signature: onShipChanged(playerIndex, craftId)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: craftId
+        description: The id of the new craft he is flying
+    description: Executed whenever the player changes the ship he is currently flying
+
+  - name: onShipCrewUpdated
+    signature: onShipCrewUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the crew of a ShipInfo changes
+
+  - name: onShipHyperspacePropertiesUpdated
+    signature: onShipHyperspacePropertiesUpdated(name, reach, canPassRifts)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: reach
+        description: The new reach of the ship
+      - name: canPassRifts
+        description: A boolean indicating whether the ship can jump across rifts
+    description: Called whenever the hyperspace reach of a ShipInfo changes
+
+  - name: onShipIconUpdated
+    signature: onShipIconUpdated(name, icon)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: icon
+        description: The new icon of the ship
+    description: Called whenever the icon of a ShipInfo changes
+
+  - name: onShipInfoAdded
+    signature: onShipInfoAdded(name)
+    parameters:
+      - name: name
+        description: The name of the new ship
+    description: Called whenever a ShipInfo is added to the player
+
+  - name: onShipInfoRemoved
+    signature: onShipInfoRemoved(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever a ShipInfo is removed from the player
+
+  - name: onShipInfoUpdated
+    signature: onShipInfoUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever a ShipInfo is updated in some way
+
+  - name: onShipNameUpdated
+    signature: onShipNameUpdated(name, newName)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: newName
+        description: The new name of the ship
+    description: Called whenever the name of a ShipInfo changes
+
+  - name: onShipOrderInfoUpdated
+    signature: onShipOrderInfoUpdated(name, orderInfo)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: orderInfo
+        description: The order info of the ship
+    description: Called whenever the order info of a ShipInfo changes
+
+  - name: onShipPayDayUpdated
+    signature: onShipPayDayUpdated(name, time)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: time
+        description: The payday of the ship
+    description: Called whenever the payday of a ShipInfo changes
+
+  - name: onShipPlanUpdated
+    signature: onShipPlanUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the plan of a ShipInfo changes
+
+  - name: onShipPositionUpdated
+    signature: onShipPositionUpdated(name, x, y)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: x
+        description: The new x coordinate of the ship
+      - name: y
+        description: The new y coordinate of the ship
+    description: Called whenever a ShipInfo changes sectors
+
+  - name: onShipReconstructionValueUpdated
+    signature: onShipReconstructionValueUpdated(name, value)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: value
+        description: The value of the ship
+    description: Called whenever the reconstruction value of a ShipInfo changes
+
+  - name: onShipStatusMessageUpdated
+    signature: onShipStatusMessageUpdated(name, status, args)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: status
+        description: The status info text of the ship
+      - name: args
+        description: A table holding the status info localization arguments
+    description: Called whenever the status info of a ShipInfo changes
+
+  - name: onShipTitleUpdated
+    signature: onShipTitleUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the title of a ShipInfo changes
+
+  - name: onShipTypeUpdated
+    signature: onShipTypeUpdated(name, type)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: type
+        description: The new entity type of the ship
+    description: Called whenever the entity type of a ShipInfo changes
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

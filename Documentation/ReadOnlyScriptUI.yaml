@@ -1,0 +1,28 @@
+# ReadOnlyScriptUI API Documentation
+name: ReadOnlyScriptUI
+type: class
+availability: client-only
+description: ReadOnlyScriptUI class
+
+constructor:
+  signature: ReadOnlyScriptUI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyScriptUI instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

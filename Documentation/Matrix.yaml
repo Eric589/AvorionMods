@@ -1,0 +1,144 @@
+# Matrix API Documentation
+name: Matrix
+type: class
+availability: both
+description: Matrix class
+
+constructor:
+  signature: Matrix()
+  returns: Matrix instance
+
+properties:
+  - name: look
+    type: vec3
+    access: read-write
+    description: look property
+
+  - name: pos
+    type: vec3
+    access: read-write
+    description: pos property
+
+  - name: position
+    type: vec3
+    access: read-write
+    description: position property
+
+  - name: right
+    type: vec3
+    access: read-write
+    description: right property
+
+  - name: translation
+    type: vec3
+    access: read-write
+    description: translation property
+
+  - name: up
+    type: vec3
+    access: read-write
+    description: up property
+
+methods:
+  - name: __mul
+    signature: __mul(Matrix m)
+    parameters:
+      - name: m
+        type: Matrix
+        description: m parameter
+    returns: Matrix
+    description: __mul method
+
+  - name: getInverse
+    signature: getInverse()
+    returns: Matrix
+    description: getInverse method
+
+  - name: getValue
+    signature: getValue(int row, int col)
+    parameters:
+      - name: row
+        type: int
+        description: row parameter
+      - name: col
+        type: int
+        description: col parameter
+    returns: float
+    description: getValue method
+
+  - name: invert
+    signature: invert()
+    returns: void
+    description: invert method
+
+  - name: setValue
+    signature: setValue(int row, int col, float value)
+    parameters:
+      - name: row
+        type: int
+        description: row parameter
+      - name: col
+        type: int
+        description: col parameter
+      - name: value
+        type: float
+        description: value parameter
+    returns: void
+    description: setValue method
+
+  - name: transform
+    signature: transform(vec3 in)
+    parameters:
+      - name: in
+        type: vec3
+        description: in parameter
+    returns: vec4
+    description: transform method
+
+  - name: transform_ip
+    signature: transform_ip(vec4 v)
+    parameters:
+      - name: v
+        type: vec4
+        description: v parameter
+    returns: void
+    description: transform_ip method
+
+  - name: transformCoord
+    signature: transformCoord(vec3 in)
+    parameters:
+      - name: in
+        type: vec3
+        description: in parameter
+    returns: vec3
+    description: transformCoord method
+
+  - name: transformCoord_ip
+    signature: transformCoord_ip(vec3 v)
+    parameters:
+      - name: v
+        type: vec3
+        description: v parameter
+    returns: void
+    description: transformCoord_ip method
+
+  - name: transformNormal
+    signature: transformNormal(vec3 in)
+    parameters:
+      - name: in
+        type: vec3
+        description: in parameter
+    returns: vec3
+    description: transformNormal method
+
+  - name: transformNormal_ip
+    signature: transformNormal_ip(vec3 v)
+    parameters:
+      - name: v
+        type: vec3
+        description: v parameter
+    returns: void
+    description: transformNormal_ip method
+
+notes:
+  - Auto-converted from HTML documentation

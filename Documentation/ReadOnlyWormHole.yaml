@@ -1,0 +1,72 @@
+# ReadOnlyWormHole API Documentation
+name: ReadOnlyWormHole
+type: class
+availability: both
+description: ReadOnlyWormHole class
+
+constructor:
+  signature: ReadOnlyWormHole(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyWormHole instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: enabled
+    type: bool
+    access: read-only
+    description: enabled property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: oneWay
+    type: bool
+    access: read-only
+    description: oneWay property
+
+  - name: passageSize
+    type: float
+    access: read-only
+    description: passageSize property
+
+  - name: simplifiedVisuals
+    type: bool
+    access: read-only
+    description: simplifiedVisuals property
+
+  - name: visible
+    type: bool
+    access: read-only
+    description: visible property
+
+  - name: visualSize
+    type: float
+    access: read-only
+    description: visualSize property
+
+methods:
+  - name: fitsThrough
+    signature: fitsThrough(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: bool
+    description: fitsThrough method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,28 @@
+# Planet API Documentation
+name: Planet
+type: class
+availability: client-only
+description: Planet class
+
+constructor:
+  signature: Planet(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Planet instance
+
+properties:
+  - name: position
+    type: Matrix
+    access: read-only
+    description: position property
+
+  - name: size
+    type: float
+    access: read-only
+    description: size property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

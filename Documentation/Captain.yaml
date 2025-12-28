@@ -1,0 +1,112 @@
+# Captain API Documentation
+name: Captain
+type: class
+availability: both
+description: Captain class
+
+constructor:
+  signature: Captain()
+  returns: Captain instance
+
+properties:
+  - name: displayName
+    type: string
+    access: read-only
+    description: displayName property
+
+  - name: experience
+    type: int
+    access: read-only
+    description: experience property
+
+  - name: experiencePercentage
+    type: int
+    access: read-only
+    description: experiencePercentage property
+
+  - name: factionIndex
+    type: int
+    access: read-only
+    description: factionIndex property
+
+  - name: genderId
+    type: int
+    access: read-only
+    description: genderId property
+
+  - name: hiringPrice
+    type: int
+    access: read-only
+    description: hiringPrice property
+
+  - name: level
+    type: int
+    access: read-write
+    description: level property
+
+  - name: name
+    type: string
+    access: read-write
+    description: name property
+
+  - name: nickName
+    type: string
+    access: read-write
+    description: nickName property
+
+  - name: primaryClass
+    type: int
+    access: read-write
+    description: primaryClass property
+
+  - name: requiredLevelUpExperience
+    type: int
+    access: read-write
+    description: requiredLevelUpExperience property
+
+  - name: salary
+    type: int
+    access: read-write
+    description: salary property
+
+  - name: secondaryClass
+    type: int
+    access: read-write
+    description: secondaryClass property
+
+  - name: tier
+    type: int
+    access: read-write
+    description: tier property
+
+methods:
+  - name: getPerks
+    signature: getPerks()
+    returns: int...
+    description: getPerks method
+
+  - name: hasClass
+    signature: hasClass(int captainClass)
+    parameters:
+      - name: captainClass
+        type: int
+        description: captainClass parameter
+    returns: bool
+    description: hasClass method
+
+  - name: hasPerk
+    signature: hasPerk(int perk)
+    parameters:
+      - name: perk
+        type: int
+        description: perk parameter
+    returns: bool
+    description: hasPerk method
+
+  - name: setPerks
+    signature: setPerks()
+    returns: void
+    description: setPerks method
+
+notes:
+  - Auto-converted from HTML documentation

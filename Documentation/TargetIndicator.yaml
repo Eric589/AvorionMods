@@ -1,0 +1,58 @@
+# TargetIndicator API Documentation
+name: TargetIndicator
+type: class
+availability: client-only
+description: TargetIndicator class
+
+constructor:
+  signature: TargetIndicator(var target)
+  parameters:
+    - name: target
+      type: var
+      description: target parameter
+  returns: TargetIndicator instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: onScreen
+    type: bool
+    access: read-only
+    description: onScreen property
+
+  - name: position
+    type: vec2
+    access: read-only
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: read-only
+    description: rect property
+
+  - name: relationStatus
+    type: RelationStatus
+    access: read-write
+    description: relationStatus property
+
+  - name: size
+    type: int
+    access: read-write
+    description: size property
+
+  - name: visible
+    type: bool
+    access: read-write
+    description: visible property
+
+  - name: visuals
+    type: TargetIndicator::Visuals
+    access: read-write
+    description: visuals property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

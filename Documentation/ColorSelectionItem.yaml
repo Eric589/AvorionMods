@@ -1,0 +1,33 @@
+# ColorSelectionItem API Documentation
+name: ColorSelectionItem
+type: class
+availability: client-only
+description: ColorSelectionItem class
+
+constructor:
+  signature: ColorSelectionItem(Color color)
+  parameters:
+    - name: color
+      type: Color
+      description: color parameter
+  returns: ColorSelectionItem instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: hasTooltip
+    type: bool
+    access: read-write
+    description: hasTooltip property
+
+  - name: selected
+    type: bool
+    access: read-write
+    description: selected property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

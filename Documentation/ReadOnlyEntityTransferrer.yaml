@@ -1,0 +1,43 @@
+# ReadOnlyEntityTransferrer API Documentation
+name: ReadOnlyEntityTransferrer
+type: class
+availability: server-only
+description: ReadOnlyEntityTransferrer class
+
+constructor:
+  signature: ReadOnlyEntityTransferrer(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyEntityTransferrer instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: sectorReady
+    type: bool
+    access: read-only
+    description: sectorReady property
+
+methods:
+  - name: isFactionOnWhitelist
+    signature: isFactionOnWhitelist(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: bool
+    description: isFactionOnWhitelist method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

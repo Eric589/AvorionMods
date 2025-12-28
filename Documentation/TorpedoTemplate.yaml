@@ -1,0 +1,188 @@
+# TorpedoTemplate API Documentation
+name: TorpedoTemplate
+type: class
+availability: both
+description: TorpedoTemplate class
+
+constructor:
+  signature: TorpedoTemplate()
+  returns: TorpedoTemplate instance
+
+properties:
+  - name: acceleration
+    type: float
+    access: read-write
+    description: acceleration property
+
+  - name: bodyClass
+    type: string
+    access: read-write
+    description: bodyClass property
+
+  - name: damageType
+    type: DamageType
+    access: read-write
+    description: damageType property
+
+  - name: damageVelocityFactor
+    type: float
+    access: read-write
+    description: damageVelocityFactor property
+
+  - name: durability
+    type: float
+    access: read-write
+    description: durability property
+
+  - name: energyDrain
+    type: bool
+    access: read-write
+    description: energyDrain property
+
+  - name: explosionRadius
+    type: float
+    access: read-write
+    description: explosionRadius property
+
+  - name: explosionSize
+    type: float
+    access: read-write
+    description: explosionSize property
+
+  - name: flashDuration
+    type: float
+    access: read-write
+    description: flashDuration property
+
+  - name: flashSize
+    type: float
+    access: read-write
+    description: flashSize property
+
+  - name: headColor
+    type: Color
+    access: read-write
+    description: headColor property
+
+  - name: hullDamage
+    type: float
+    access: read-write
+    description: hullDamage property
+
+  - name: icon
+    type: string
+    access: read-write
+    description: icon property
+
+  - name: maxVelocity
+    type: float
+    access: read-write
+    description: maxVelocity property
+
+  - name: name
+    type: string
+    access: read-write
+    description: name property
+
+  - name: numShockwaves
+    type: int
+    access: read-write
+    description: numShockwaves property
+
+  - name: prefix
+    type: string
+    access: read-write
+    description: prefix property
+
+  - name: rarity
+    type: Rarity
+    access: read-write
+    description: rarity property
+
+  - name: reach
+    type: float
+    access: read-write
+    description: reach property
+
+  - name: shieldAndHullDamage
+    type: bool
+    access: read-write
+    description: shieldAndHullDamage property
+
+  - name: shieldDamage
+    type: float
+    access: read-write
+    description: shieldDamage property
+
+  - name: shieldDeactivation
+    type: bool
+    access: read-write
+    description: shieldDeactivation property
+
+  - name: shieldPenetration
+    type: bool
+    access: read-write
+    description: shieldPenetration property
+
+  - name: shockwaveColor
+    type: Color
+    access: read-write
+    description: shockwaveColor property
+
+  - name: shockwaveDuration
+    type: float
+    access: read-write
+    description: shockwaveDuration property
+
+  - name: shockwaveSize
+    type: float
+    access: read-write
+    description: shockwaveSize property
+
+  - name: size
+    type: float
+    access: read-write
+    description: size property
+
+  - name: storageEnergyDrain
+    type: double
+    access: read-write
+    description: storageEnergyDrain property
+
+  - name: stripeColor
+    type: Color
+    access: read-write
+    description: stripeColor property
+
+  - name: stripes
+    type: int
+    access: read-write
+    description: stripes property
+
+  - name: tech
+    type: int
+    access: read-write
+    description: tech property
+
+  - name: turningSpeed
+    type: float
+    access: read-write
+    description: turningSpeed property
+
+  - name: type
+    type: int
+    access: read-write
+    description: type property
+
+  - name: visualSeed
+    type: int
+    access: read-write
+    description: visualSeed property
+
+  - name: warheadClass
+    type: string
+    access: read-write
+    description: warheadClass property
+
+notes:
+  - Auto-converted from HTML documentation

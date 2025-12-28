@@ -1,0 +1,84 @@
+# Achievements API Documentation
+name: Achievements
+type: class
+availability: client-only
+description: Achievements class
+
+constructor:
+  signature: Achievements()
+  returns: Achievements instance
+
+methods:
+  - name: unlockCavaliersStoryFinished
+    signature: unlockCavaliersStoryFinished()
+    returns: void
+    description: unlockCavaliersStoryFinished method
+
+  - name: unlockCommuneStoryFinished
+    signature: unlockCommuneStoryFinished()
+    returns: void
+    description: unlockCommuneStoryFinished method
+
+  - name: unlockContainerHacked
+    signature: unlockContainerHacked()
+    returns: void
+    description: unlockContainerHacked method
+
+  - name: unlockCoopRiftMission
+    signature: unlockCoopRiftMission()
+    returns: void
+    description: unlockCoopRiftMission method
+
+  - name: unlockFamilyStoryFinished
+    signature: unlockFamilyStoryFinished()
+    returns: void
+    description: unlockFamilyStoryFinished method
+
+  - name: unlockIntoTheRift
+    signature: unlockIntoTheRift()
+    returns: void
+    description: unlockIntoTheRift method
+
+  - name: unlockMeetIzzy
+    signature: unlockMeetIzzy()
+    returns: void
+    description: unlockMeetIzzy method
+
+  - name: unlockOverstayAfterTime
+    signature: unlockOverstayAfterTime()
+    returns: void
+    description: unlockOverstayAfterTime method
+
+  - name: unlockProvokedSwoks
+    signature: unlockProvokedSwoks()
+    returns: void
+    description: unlockProvokedSwoks method
+
+  - name: unlockRiftDepth75
+    signature: unlockRiftDepth75()
+    returns: void
+    description: unlockRiftDepth75 method
+
+  - name: unlockRiftDepth75SmallShip
+    signature: unlockRiftDepth75SmallShip()
+    returns: void
+    description: unlockRiftDepth75SmallShip method
+
+  - name: unlockRiftMissionMultiShips
+    signature: unlockRiftMissionMultiShips()
+    returns: void
+    description: unlockRiftMissionMultiShips method
+
+  - name: unlockRiftStoryCompleted
+    signature: unlockRiftStoryCompleted()
+    returns: void
+    description: unlockRiftStoryCompleted method
+
+  - name: unlockSaveAllScientists
+    signature: unlockSaveAllScientists()
+    returns: void
+    description: unlockSaveAllScientists method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

@@ -1,0 +1,192 @@
+# Picture API Documentation
+name: Picture
+type: class
+extends: UIElement
+availability: client-only
+description: Picture class
+
+constructor:
+  signature: Picture(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Picture instance
+
+properties:
+  - name: color
+    type: Color
+    access: write-only
+    description: color property
+
+  - name: flipped
+    type: bool
+    access: write-only
+    description: flipped property
+
+  - name: flippedX
+    type: bool
+    access: write-only
+    description: flippedX property
+
+  - name: isIcon
+    type: bool
+    access: write-only
+    description: isIcon property
+
+  - name: picture
+    type: string
+    access: write-only
+    description: picture property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: clear
+    signature: clear(Color color)
+    parameters:
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: clear method
+
+  - name: fadeTo
+    signature: fadeTo(string str, var time)
+    parameters:
+      - name: str
+        type: string
+        description: str parameter
+      - name: time
+        type: var
+        description: time parameter
+    returns: void
+    description: fadeTo method
+
+  - name: fitIntoRect
+    signature: fitIntoRect()
+    returns: void
+    description: fitIntoRect method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

@@ -1,0 +1,138 @@
+# VanillaInventoryItem API Documentation
+name: VanillaInventoryItem
+type: class
+availability: both
+description: VanillaInventoryItem class
+
+constructor:
+  signature: VanillaInventoryItem()
+  returns: VanillaInventoryItem instance
+
+properties:
+  - name: boundFaction
+    type: int
+    access: read-only
+    description: boundFaction property
+
+  - name: droppable
+    type: bool
+    access: read-only
+    description: droppable property
+
+  - name: favorite
+    type: bool
+    access: read-only
+    description: favorite property
+
+  - name: icon
+    type: string
+    access: read-only
+    description: icon property
+
+  - name: iconColor
+    type: Color
+    access: read-only
+    description: iconColor property
+
+  - name: itemType
+    type: InventoryItemType
+    access: read-only
+    description: itemType property
+
+  - name: missionRelevant
+    type: bool
+    access: read-write
+    description: missionRelevant property
+
+  - name: name
+    type: string
+    access: read-write
+    description: name property
+
+  - name: price
+    type: int
+    access: read-write
+    description: price property
+
+  - name: rarity
+    type: Rarity
+    access: read-write
+    description: rarity property
+
+  - name: recent
+    type: bool
+    access: read-write
+    description: recent property
+
+  - name: stackable
+    type: bool
+    access: read-write
+    description: stackable property
+
+  - name: tradeable
+    type: bool
+    access: read-write
+    description: tradeable property
+
+  - name: trash
+    type: bool
+    access: read-write
+    description: trash property
+
+methods:
+  - name: __eq
+    signature: __eq(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: clearValues
+    signature: clearValues()
+    returns: void
+    description: clearValues method
+
+  - name: getTooltip
+    signature: getTooltip()
+    returns: Tooltip
+    description: getTooltip method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    description: getValues method
+
+  - name: setTooltip
+    signature: setTooltip(Tooltip tooltip)
+    parameters:
+      - name: tooltip
+        type: Tooltip
+        description: tooltip parameter
+    returns: void
+    description: setTooltip method
+
+  - name: setValue
+    signature: setValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setValue method
+
+notes:
+  - Auto-converted from HTML documentation

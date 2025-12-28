@@ -1,0 +1,93 @@
+# Faction [Client] API Documentation
+name: Faction [Client]
+type: class
+availability: client-only
+description: Faction [Client] class
+
+properties:
+  - name: alwaysAtWar
+    type: bool
+    access: read-only
+    description: alwaysAtWar property
+
+  - name: homeSectorUnknown
+    type: bool
+    access: read-only
+    description: homeSectorUnknown property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: isAIFaction
+    type: bool
+    access: read-only
+    description: isAIFaction property
+
+  - name: isAlliance
+    type: bool
+    access: read-only
+    description: isAlliance property
+
+  - name: isPlayer
+    type: bool
+    access: read-only
+    description: isPlayer property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: translatedName
+    type: string
+    access: read-only
+    description: translatedName property
+
+  - name: unformattedName
+    type: Format
+    access: read-only
+    description: unformattedName property
+
+methods:
+  - name: getHomeSectorCoordinates
+    signature: getHomeSectorCoordinates()
+    returns: int, int
+    description: getHomeSectorCoordinates method
+
+  - name: getRelations
+    signature: getRelations(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: void
+    description: getRelations method
+
+  - name: getRelationStatus
+    signature: getRelationStatus(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: void
+    description: getRelationStatus method
+
+  - name: getTrait
+    signature: getTrait(string trait)
+    parameters:
+      - name: trait
+        type: string
+        description: trait parameter
+    returns: float
+    description: getTrait method
+
+  - name: getTraits
+    signature: getTraits()
+    returns: table&lt;string, float&gt;
+    description: getTraits method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

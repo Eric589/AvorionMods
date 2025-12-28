@@ -1,0 +1,62 @@
+# ReadOnlyEnergySystem API Documentation
+name: ReadOnlyEnergySystem
+type: class
+availability: both
+description: ReadOnlyEnergySystem class
+
+constructor:
+  signature: ReadOnlyEnergySystem(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyEnergySystem instance
+
+properties:
+  - name: capacity
+    type: double
+    access: read-only
+    description: capacity property
+
+  - name: consumableEnergy
+    type: double
+    access: read-only
+    description: consumableEnergy property
+
+  - name: energy
+    type: double
+    access: read-only
+    description: energy property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: productionRate
+    type: double
+    access: read-only
+    description: productionRate property
+
+  - name: rechargeRate
+    type: double
+    access: read-only
+    description: rechargeRate property
+
+  - name: requiredEnergy
+    type: double
+    access: read-only
+    description: requiredEnergy property
+
+  - name: superflousEnergy
+    type: double
+    access: read-only
+    description: superflousEnergy property
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,107 @@
+# FighterAI API Documentation
+name: FighterAI
+type: class
+availability: both
+description: FighterAI class
+
+constructor:
+  signature: FighterAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: FighterAI instance
+
+properties:
+  - name: circling
+    type: bool
+    access: read-only
+    description: circling property
+
+  - name: clearFeedbackEachTick
+    type: bool
+    access: read-only
+    description: clearFeedbackEachTick property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: evading
+    type: bool
+    access: read-only
+    description: evading property
+
+  - name: ignoreMothershipOrders
+    type: bool
+    access: read-only
+    description: ignoreMothershipOrders property
+
+  - name: mothershipId
+    type: Uuid
+    access: read-only
+    description: mothershipId property
+
+  - name: orders
+    type: FighterOrders
+    access: read-only
+    description: orders property
+
+  - name: reachedTarget
+    type: bool
+    access: read-only
+    description: reachedTarget property
+
+  - name: squad
+    type: unsigned int
+    access: read-only
+    description: squad property
+
+  - name: target
+    type: uuid
+    access: read-only
+    description: target property
+
+methods:
+  - name: clearFeedback
+    signature: clearFeedback()
+    returns: void
+    description: clearFeedback method
+
+  - name: getMothership
+    signature: getMothership()
+    returns: Entity
+    description: getMothership method
+
+  - name: setOrders
+    signature: setOrders(FighterOrders orders, Uuid target)
+    parameters:
+      - name: orders
+        type: FighterOrders
+        description: orders parameter
+      - name: target
+        type: Uuid
+        description: target parameter
+    returns: void
+    description: setOrders method
+
+  - name: setSquad
+    signature: setSquad(int squadIndex, Uuid squadId)
+    parameters:
+      - name: squadIndex
+        type: int
+        description: squadIndex parameter
+      - name: squadId
+        type: Uuid
+        description: squadId parameter
+    returns: void
+    description: setSquad method
+
+notes:
+  - Auto-converted from HTML documentation

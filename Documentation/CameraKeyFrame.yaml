@@ -1,0 +1,52 @@
+# CameraKeyFrame API Documentation
+name: CameraKeyFrame
+type: class
+availability: client-only
+description: CameraKeyFrame class
+
+constructor:
+  signature: CameraKeyFrame(vec3 eye, var at, vec3 up, float timestamp)
+  parameters:
+    - name: eye
+      type: vec3
+      description: eye parameter
+    - name: at
+      type: var
+      description: at parameter
+    - name: up
+      type: vec3
+      description: up parameter
+    - name: timestamp
+      type: float
+      description: timestamp parameter
+  returns: CameraKeyFrame instance
+
+properties:
+  - name: at
+    type: vec3
+    access: read-write
+    description: at property
+
+  - name: eye
+    type: vec3
+    access: read-write
+    description: eye property
+
+  - name: targetId
+    type: Uuid
+    access: read-write
+    description: targetId property
+
+  - name: timestamp
+    type: float
+    access: read-write
+    description: timestamp property
+
+  - name: up
+    type: vec3
+    access: read-write
+    description: up property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

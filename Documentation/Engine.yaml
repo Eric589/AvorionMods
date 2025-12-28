@@ -1,0 +1,67 @@
+# Engine API Documentation
+name: Engine
+type: class
+availability: both
+description: Engine class
+
+constructor:
+  signature: Engine(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Engine instance
+
+properties:
+  - name: acceleration
+    type: double
+    access: read-only
+    description: acceleration property
+
+  - name: boost
+    type: bool
+    access: read-only
+    description: boost property
+
+  - name: consumerIcon
+    type: string
+    access: read-only
+    description: consumerIcon property
+
+  - name: consumerName
+    type: string
+    access: read-only
+    description: consumerName property
+
+  - name: defaultPriority
+    type: int
+    access: read-only
+    description: defaultPriority property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: maxVelocity
+    type: double
+    access: read-only
+    description: maxVelocity property
+
+  - name: requiredEnergy
+    type: double
+    access: read-only
+    description: requiredEnergy property
+
+  - name: reverseThrust
+    type: double
+    access: read-only
+    description: reverseThrust property
+
+notes:
+  - Auto-converted from HTML documentation

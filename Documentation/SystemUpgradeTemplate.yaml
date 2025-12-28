@@ -1,0 +1,107 @@
+# SystemUpgradeTemplate API Documentation
+name: SystemUpgradeTemplate
+type: class
+availability: both
+description: SystemUpgradeTemplate class
+
+constructor:
+  signature: SystemUpgradeTemplate(string script, Rarity rarity, Seed seed)
+  parameters:
+    - name: script
+      type: string
+      description: script parameter
+    - name: rarity
+      type: Rarity
+      description: rarity parameter
+    - name: seed
+      type: Seed
+      description: seed parameter
+  returns: SystemUpgradeTemplate instance
+
+properties:
+  - name: favorite
+    type: bool
+    access: read-only
+    description: favorite property
+
+  - name: icon
+    type: string
+    access: read-only
+    description: icon property
+
+  - name: itemType
+    type: InventoryItemType
+    access: read-only
+    description: itemType property
+
+  - name: missionRelevant
+    type: bool
+    access: read-only
+    description: missionRelevant property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: price
+    type: int
+    access: read-only
+    description: price property
+
+  - name: rarity
+    type: Rarity
+    access: read-only
+    description: rarity property
+
+  - name: recent
+    type: bool
+    access: read-only
+    description: recent property
+
+  - name: script
+    type: string
+    access: read-only
+    description: script property
+
+  - name: seed
+    type: Seed
+    access: read-only
+    description: seed property
+
+  - name: stackable
+    type: bool
+    access: read-only
+    description: stackable property
+
+  - name: tooltip
+    type: UserObject
+    access: read-only
+    description: tooltip property
+
+  - name: trash
+    type: bool
+    access: read-write
+    description: trash property
+
+methods:
+  - name: __eq
+    signature: __eq(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: getEnergy
+    signature: getEnergy(bool permanent)
+    parameters:
+      - name: permanent
+        type: bool
+        description: permanent parameter
+    returns: double
+    description: getEnergy method
+
+notes:
+  - Auto-converted from HTML documentation

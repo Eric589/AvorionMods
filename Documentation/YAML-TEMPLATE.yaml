@@ -1,0 +1,560 @@
+# Avorion API Documentation YAML Template
+# This file shows all possible structures for converting HTML documentation to YAML
+
+# =============================================================================
+# BASIC CLASS TEMPLATE
+# =============================================================================
+basic_class_example:
+  name: ClassName
+  type: class  # or component, enum, callbacks, utility_functions
+  extends: BaseClassName  # Optional: if class inherits from another
+  availability: both  # or client-only or server-only
+  description: Brief description of what this class does
+
+  constructor:
+    signature: ClassName(type param)
+    parameters:
+      - name: param
+        type: type
+        description: What this parameter is for
+    returns: ClassName instance
+    description: Optional additional description
+
+  properties:
+    - name: propertyName
+      type: PropertyType
+      access: read-write  # or read-only or write-only
+      description: What this property represents
+      default: null  # Optional: default value
+
+    - name: inheritedProperty
+      type: PropertyType
+      access: read-only
+      inherited: BaseClassName
+      description: Property inherited from base class
+
+  methods:
+    - name: methodName
+      signature: methodName(type param1, type param2)
+      parameters:
+        - name: param1
+          type: type
+          description: Description of parameter
+        - name: param2
+          type: type
+          description: Description of parameter
+          optional: true  # If parameter is optional
+          default: defaultValue  # If parameter has default
+      returns:
+        type: returnType  # or void
+        description: What the method returns
+      description: What this method does
+
+    - name: inheritedMethod
+      signature: inheritedMethod()
+      returns: void
+      inherited: BaseClassName
+      description: Method inherited from base class
+
+  example: |
+    -- Example usage code
+    local obj = ClassName(params)
+    obj.propertyName = value
+    obj:methodName(param1, param2)
+
+  notes:
+    - Important note about usage
+    - Limitation or special case
+    - Related classes or functions
+
+  related_classes:
+    - RelatedClass1
+    - RelatedClass2
+
+# =============================================================================
+# UI ELEMENT TEMPLATE (inherits from UIElement)
+# =============================================================================
+ui_element_example:
+  name: UIElementName
+  type: class
+  extends: UIElement
+  availability: client-only
+  description: UI element description
+
+  constructor:
+    signature: UIElementName(int index)
+    parameters:
+      - name: index
+        type: int
+        description: UI element index identifier
+    returns: UIElementName instance
+
+  properties:
+    # Element-specific properties first
+    - name: specificProperty
+      type: type
+      access: write-only
+      description: Property specific to this UI element
+
+    # Then inherited UIElement properties
+    - name: visible
+      type: bool
+      access: read-write
+      inherited: UIElement
+      description: Visibility state
+
+    - name: position
+      type: vec2
+      access: read-write
+      inherited: UIElement
+      description: Screen position
+
+  methods:
+    # Inherited UIElement methods
+    - name: show
+      signature: show()
+      returns: void
+      inherited: UIElement
+      description: Shows the UI element
+
+    - name: hide
+      signature: hide()
+      returns: void
+      inherited: UIElement
+      description: Hides the UI element
+
+  example: |
+    -- Create and configure UI element
+    local element = UIElementName()
+    element.specificProperty = value
+    element.position = vec2(100, 100)
+    element:show()
+
+  notes:
+    - All UI elements are client-only
+    - Inherits all UIElement properties and methods
+
+# =============================================================================
+# COMPONENT TEMPLATE
+# =============================================================================
+component_example:
+  name: ComponentName
+  type: component
+  availability: server-only  # or client-only or both
+  component_type: ComponentType.ComponentName
+  description: What this component does when attached to an entity
+
+  constructor:
+    signature: ComponentName(int entityId)
+    parameters:
+      - name: entityId
+        type: int
+        description: ID of the entity this component is attached to
+    returns: ComponentName instance
+
+  properties:
+    - name: entity
+      type: Entity
+      access: read-only
+      description: The entity this component is attached to
+
+    - name: entityId
+      type: int
+      access: read-only
+      description: Entity ID
+
+  methods:
+    - name: componentMethod
+      signature: componentMethod()
+      returns: void
+      description: Component-specific method
+
+  usage: |
+    -- Check if entity has component
+    if entity:hasComponent(ComponentType.ComponentName) then
+        local component = ComponentName(entity.id)
+        component:componentMethod()
+    end
+
+  notes:
+    - Must check hasComponent() before accessing
+    - Component availability (server/client)
+
+# =============================================================================
+# CALLBACK DOCUMENTATION TEMPLATE
+# =============================================================================
+callback_documentation_example:
+  name: Entity Callbacks
+  type: callbacks
+  scope: entity-attached scripts
+  availability: both
+
+  required_callbacks:
+    - initialize
+    - secure
+    - restore
+
+  optional_callbacks:
+    - updateServer
+    - updateClient
+    - getUpdateInterval
+
+  callbacks:
+    - name: initialize
+      signature: initialize()
+      timing: Called when script is first added to entity
+      returns: void
+      description: Initialize script state
+      availability: both
+
+    - name: secure
+      signature: secure()
+      timing: Called before sector save
+      returns:
+        type: table
+        description: State data to persist
+      description: Save script state for persistence
+      availability: both
+      example: |
+        function secure()
+            return {
+                myValue = storedValue,
+                myTable = dataTable
+            }
+        end
+
+    - name: restore
+      signature: restore(table data)
+      timing: Called when sector loads
+      parameters:
+        - name: data
+          type: table
+          description: Persisted state from secure()
+      returns: void
+      description: Restore script state from persistence
+      availability: both
+      example: |
+        function restore(data)
+            storedValue = data.myValue
+            dataTable = data.myTable
+        end
+
+    - name: updateServer
+      signature: updateServer(float timeStep)
+      timing: Called every update interval on server
+      parameters:
+        - name: timeStep
+          type: float
+          description: Time since last update in seconds
+      returns: void
+      availability: server-only
+      description: Server-side update loop
+
+    - name: updateClient
+      signature: updateClient(float timeStep)
+      timing: Called every update interval on client
+      parameters:
+        - name: timeStep
+          type: float
+          description: Time since last update in seconds
+      returns: void
+      availability: client-only
+      description: Client-side update loop
+
+    - name: getUpdateInterval
+      signature: getUpdateInterval()
+      timing: Called to determine update frequency
+      returns:
+        type: float
+        description: Update interval in seconds (default 1.0)
+      availability: both
+      description: Control how often update callbacks are called
+
+  notes:
+    - Required callbacks must be implemented
+    - Optional callbacks only if needed
+    - Use onServer() and onClient() to check context
+
+# =============================================================================
+# ENUM TEMPLATE
+# =============================================================================
+enum_example:
+  name: EnumName
+  type: enum
+  description: What this enumeration represents
+
+  values:
+    - name: VALUE_ONE
+      value: EnumName.VALUE_ONE
+      numeric_value: 0  # Optional
+      description: What this value means
+
+    - name: VALUE_TWO
+      value: EnumName.VALUE_TWO
+      numeric_value: 1  # Optional
+      description: What this value means
+
+  usage: |
+    -- Using enum values
+    if value == EnumName.VALUE_ONE then
+        -- Do something
+    end
+
+  notes:
+    - Additional usage notes
+    - Related enums or constants
+
+# =============================================================================
+# UTILITY FUNCTIONS TEMPLATE
+# =============================================================================
+utility_functions_example:
+  name: UtilityFunctionCollection
+  type: utility_functions
+  description: Collection of utility functions for specific purpose
+
+  functions:
+    - name: utilityFunction
+      signature: utilityFunction(type param1, type param2)
+      parameters:
+        - name: param1
+          type: type
+          description: Parameter description
+        - name: param2
+          type: type
+          description: Parameter description
+          optional: true
+      returns:
+        type: returnType
+        description: Return value description
+      description: What this function does
+      availability: both  # or client-only or server-only
+      example: |
+        -- Example usage
+        local result = utilityFunction(value1, value2)
+
+  notes:
+    - When to use these functions
+    - Related function collections
+
+# =============================================================================
+# DATA STRUCTURE TEMPLATE
+# =============================================================================
+data_structure_example:
+  name: DataStructure
+  type: data_structure  # or table_structure
+  description: Data structure description
+
+  fields:
+    - name: field1
+      type: type
+      required: true  # or false
+      description: Field description
+
+    - name: field2
+      type: type
+      required: false
+      default: defaultValue
+      description: Field description
+
+  usage: |
+    -- Creating the structure
+    local data = {
+        field1 = value1,
+        field2 = value2
+    }
+
+  notes:
+    - Usage context
+    - Related structures
+
+# =============================================================================
+# VECTOR/MATH TYPE TEMPLATE
+# =============================================================================
+vector_type_example:
+  name: vec2
+  type: math_type
+  description: 2D vector with x and y components
+
+  constructor:
+    signature: vec2(float x, float y)
+    parameters:
+      - name: x
+        type: float
+        description: X component
+      - name: y
+        type: float
+        description: Y component
+    returns: vec2 instance
+
+  properties:
+    - name: x
+      type: float
+      access: read-write
+      description: X component
+
+    - name: y
+      type: float
+      access: read-write
+      description: Y component
+
+  operators:
+    - operator: "+"
+      description: Vector addition
+      example: "vec2(1,2) + vec2(3,4) = vec2(4,6)"
+
+    - operator: "-"
+      description: Vector subtraction
+      example: "vec2(5,3) - vec2(2,1) = vec2(3,2)"
+
+    - operator: "*"
+      description: Scalar multiplication
+      example: "vec2(1,2) * 3 = vec2(3,6)"
+
+  methods:
+    - name: length
+      signature: length()
+      returns:
+        type: float
+        description: Length of the vector
+      description: Calculate vector magnitude
+
+  example: |
+    -- Create and use vectors
+    local pos = vec2(100, 200)
+    local offset = vec2(10, 20)
+    local newPos = pos + offset
+
+  related_types:
+    - vec3
+    - vec4
+    - ivec2
+    - dvec2
+
+# =============================================================================
+# SERVER/CLIENT SPLIT CLASS TEMPLATE
+# =============================================================================
+split_class_example:
+  name: Player
+  variant: server  # or client
+  type: class
+  availability: server-only  # or client-only
+  description: Server-side player operations (or client-side for client variant)
+  counterpart: "Player [Client]"  # Reference to other variant
+
+  constructor:
+    signature: Player(int index)
+    parameters:
+      - name: index
+        type: int
+        description: Player index
+    returns: Player instance
+
+  properties:
+    - name: serverProperty
+      type: type
+      access: read-write
+      description: Only available on server variant
+      note: Not available in client variant
+
+  methods:
+    - name: serverMethod
+      signature: serverMethod()
+      returns: void
+      description: Server-only method
+      note: Not available in client variant
+
+  notes:
+    - This is the server variant
+    - See "Player [Client]" for client-side operations
+    - Use onServer() check before accessing
+
+# =============================================================================
+# COMPLETE EXAMPLE: ArrowLine
+# =============================================================================
+complete_example_arrowline:
+  name: ArrowLine
+  type: class
+  extends: UIElement
+  availability: client-only
+  description: UI element for drawing arrow lines between two points
+
+  constructor:
+    signature: ArrowLine(int index)
+    parameters:
+      - name: index
+        type: int
+        description: Index identifier
+    returns: ArrowLine instance
+
+  properties:
+    # ArrowLine-specific properties
+    - name: color
+      type: Color
+      access: write-only
+      description: Color of the arrow line
+
+    - name: from
+      type: vec2
+      access: write-only
+      description: Starting point of the arrow
+
+    - name: to
+      type: vec2
+      access: write-only
+      description: Ending point of the arrow
+
+    - name: width
+      type: float
+      access: write-only
+      description: Line width in pixels
+
+    # Inherited from UIElement
+    - name: visible
+      type: bool
+      access: read-write
+      inherited: UIElement
+      description: Visibility state
+
+    - name: position
+      type: vec2
+      access: read-write
+      inherited: UIElement
+      description: Screen position
+
+  methods:
+    - name: hide
+      signature: hide()
+      returns: void
+      inherited: UIElement
+      description: Hides the UI element
+
+    - name: show
+      signature: show()
+      returns: void
+      inherited: UIElement
+      description: Shows the UI element
+
+    - name: isMouseOverAndUnobscured
+      signature: isMouseOverAndUnobscured()
+      returns: bool
+      inherited: UIElement
+      description: Checks if mouse is over element and not obscured by other UI
+
+  example: |
+    -- Create an arrow line from point A to point B
+    local line = ArrowLine()
+    line.from = vec2(100, 100)
+    line.to = vec2(200, 200)
+    line.color = ColorRGB(1, 0, 0)  -- Red
+    line.width = 2.0
+    line:show()
+
+  notes:
+    - ArrowLine is client-only and cannot be used in server-side scripts
+    - Inherits all UIElement properties and methods
+    - Width property appears in both ArrowLine-specific and inherited properties
+
+  related_classes:
+    - Line
+    - MapArrowLine
+    - UIElement

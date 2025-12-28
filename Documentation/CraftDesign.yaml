@@ -1,0 +1,99 @@
+# CraftDesign API Documentation
+name: CraftDesign
+type: class
+availability: both
+description: CraftDesign class
+
+constructor:
+  signature: CraftDesign()
+  returns: CraftDesign instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: numTurrets
+    type: static Box getCoaxialTurretDesignBoundingBox(float
+    access: read-only
+    description: numTurrets property
+
+methods:
+  - name: getMovePlan
+    signature: getMovePlan()
+    returns: BlockPlan
+    description: getMovePlan method
+
+  - name: getMoveTurret
+    signature: getMoveTurret(int i)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+    returns: TurretDesign
+    description: getMoveTurret method
+
+  - name: getPlan
+    signature: getPlan()
+    returns: BlockPlan
+    description: getPlan method
+
+  - name: getTurret
+    signature: getTurret(int i)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+    returns: TurretDesign
+    description: getTurret method
+
+  - name: getTurrets
+    signature: getTurrets()
+    returns: int...
+    description: getTurrets method
+
+  - name: setMovePlan
+    signature: setMovePlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setMovePlan method
+
+  - name: setMoveTurret
+    signature: setMoveTurret(int i, TurretDesign turret)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: turret
+        type: TurretDesign
+        description: turret parameter
+    returns: void
+    description: setMoveTurret method
+
+  - name: setPlan
+    signature: setPlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setPlan method
+
+  - name: setTurret
+    signature: setTurret(int i, TurretDesign [or nil] turret)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: turret
+        type: TurretDesign [or nil]
+        description: turret parameter
+    returns: void
+    description: setTurret method
+
+notes:
+  - Auto-converted from HTML documentation

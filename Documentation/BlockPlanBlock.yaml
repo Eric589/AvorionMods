@@ -1,0 +1,169 @@
+# BlockPlanBlock API Documentation
+name: BlockPlanBlock
+type: class
+availability: both
+description: BlockPlanBlock class
+
+constructor:
+  signature: BlockPlanBlock()
+  returns: BlockPlanBlock instance
+
+properties:
+  - name: blockCategoryIndex
+    type: var
+    access: read-only
+    description: blockCategoryIndex property
+
+  - name: blockIndex
+    type: int
+    access: read-only
+    description: blockIndex property
+
+  - name: box
+    type: Box
+    access: read-only
+    description: box property
+
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: costFactor
+    type: double
+    access: read-only
+    description: costFactor property
+
+  - name: density
+    type: double
+    access: read-only
+    description: density property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: durabilityFactor
+    type: double
+    access: read-only
+    description: durabilityFactor property
+
+  - name: harvestableResources
+    type: int
+    access: read-only
+    description: harvestableResources property
+
+  - name: harvestFactor
+    type: double
+    access: read-only
+    description: harvestFactor property
+
+  - name: hasAO
+    type: bool
+    access: read-only
+    description: hasAO property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: maintenance
+    type: double
+    access: read-only
+    description: maintenance property
+
+  - name: mass
+    type: float
+    access: read-only
+    description: mass property
+
+  - name: material
+    type: Material
+    access: read-only
+    description: material property
+
+  - name: maxDurability
+    type: double
+    access: read-only
+    description: maxDurability property
+
+  - name: moneyCostFactor
+    type: double
+    access: read-only
+    description: moneyCostFactor property
+
+  - name: numChildren
+    type: int
+    access: read-only
+    description: numChildren property
+
+  - name: orientation
+    type: Matrix
+    access: read-only
+    description: orientation property
+
+  - name: parent
+    type: var
+    access: read-only
+    description: parent property
+
+  - name: processingPower
+    type: double
+    access: read-only
+    description: processingPower property
+
+  - name: resourceCostFactor
+    type: double
+    access: read-only
+    description: resourceCostFactor property
+
+  - name: secondaryColor
+    type: Color
+    access: read-only
+    description: secondaryColor property
+
+  - name: staticMoneyCostFactor
+    type: double
+    access: read-only
+    description: staticMoneyCostFactor property
+
+  - name: structure
+    type: int
+    access: read-only
+    description: structure property
+
+  - name: surfaceCostFactor
+    type: double
+    access: read-only
+    description: surfaceCostFactor property
+
+  - name: valid
+    type: bool
+    access: read-only
+    description: valid property
+
+  - name: volume
+    type: float
+    access: read-only
+    description: volume property
+
+  - name: volumeCostFactor
+    type: double
+    access: read-only
+    description: volumeCostFactor property
+
+  - name: volumeFactor
+    type: double
+    access: read-only
+    description: volumeFactor property
+
+methods:
+  - name: getChildren
+    signature: getChildren()
+    returns: int...
+    description: getChildren method
+
+notes:
+  - Auto-converted from HTML documentation

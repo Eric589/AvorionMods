@@ -1,0 +1,95 @@
+# ivec2 API Documentation
+name: ivec2
+type: class
+availability: both
+description: ivec2 class
+
+constructor:
+  signature: ivec2(var x, var y)
+  parameters:
+    - name: x
+      type: var
+      description: x parameter
+    - name: y
+      type: var
+      description: y parameter
+  returns: ivec2 instance
+
+properties:
+  - name: x
+    type: int
+    access: read-write
+    description: x property
+
+  - name: y
+    type: int
+    access: read-write
+    description: y property
+
+methods:
+  - name: __add
+    signature: __add(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: ivec2
+    description: __add method
+
+  - name: __div
+    signature: __div(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: ivec2
+    description: __div method
+
+  - name: __eq
+    signature: __eq(ivec2 other)
+    parameters:
+      - name: other
+        type: ivec2
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __lt
+    signature: __lt(ivec2 other)
+    parameters:
+      - name: other
+        type: ivec2
+        description: other parameter
+    returns: bool
+    description: __lt method
+
+  - name: __mul
+    signature: __mul(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: ivec2
+    description: __mul method
+
+  - name: __sub
+    signature: __sub(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: ivec2
+    description: __sub method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: __unm
+    signature: __unm()
+    returns: ivec2
+    description: __unm method
+
+notes:
+  - Auto-converted from HTML documentation

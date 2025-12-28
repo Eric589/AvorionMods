@@ -1,0 +1,43 @@
+# DeletionTimer API Documentation
+name: DeletionTimer
+type: class
+availability: both
+description: DeletionTimer class
+
+constructor:
+  signature: DeletionTimer(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: DeletionTimer instance
+
+properties:
+  - name: enabled
+    type: bool
+    access: read-only
+    description: enabled property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: timeLeft
+    type: float
+    access: read-write
+    description: timeLeft property
+
+methods:
+  - name: disable
+    signature: disable()
+    returns: void
+    description: disable method
+
+notes:
+  - Auto-converted from HTML documentation

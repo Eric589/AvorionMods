@@ -1,0 +1,66 @@
+# Rarity API Documentation
+name: Rarity
+type: class
+availability: both
+description: Rarity class
+
+constructor:
+  signature: Rarity(int value)
+  parameters:
+    - name: value
+      type: int
+      description: value parameter
+  returns: Rarity instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: tooltipFontColor
+    type: Color
+    access: read-only
+    description: tooltipFontColor property
+
+  - name: type
+    type: int
+    access: read-write
+    description: type property
+
+  - name: value
+    type: int
+    access: read-write
+    description: value property
+
+methods:
+  - name: __eq
+    signature: __eq(Rarity other)
+    parameters:
+      - name: other
+        type: Rarity
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __lt
+    signature: __lt(Rarity other)
+    parameters:
+      - name: other
+        type: Rarity
+        description: other parameter
+    returns: bool
+    description: __lt method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+notes:
+  - Auto-converted from HTML documentation

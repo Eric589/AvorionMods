@@ -1,0 +1,31 @@
+# StructuralIntegrity API Documentation
+name: StructuralIntegrity
+type: class
+availability: both
+description: StructuralIntegrity class
+
+constructor:
+  signature: StructuralIntegrity(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: StructuralIntegrity instance
+
+methods:
+  - name: getProtectedBlocks
+    signature: getProtectedBlocks()
+    returns: int...
+    description: getProtectedBlocks method
+
+  - name: hasProtection
+    signature: hasProtection(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: hasProtection method
+
+notes:
+  - Auto-converted from HTML documentation

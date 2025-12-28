@@ -1,0 +1,40 @@
+# Sphere API Documentation
+name: Sphere
+type: class
+availability: both
+description: Sphere class
+
+constructor:
+  signature: Sphere(vec3 center, float radius)
+  parameters:
+    - name: center
+      type: vec3
+      description: center parameter
+    - name: radius
+      type: float
+      description: radius parameter
+  returns: Sphere instance
+
+properties:
+  - name: center
+    type: vec3
+    access: read-write
+    description: center property
+
+  - name: radius
+    type: float
+    access: read-write
+    description: radius property
+
+methods:
+  - name: intersect
+    signature: intersect(Sphere other)
+    parameters:
+      - name: other
+        type: Sphere
+        description: other parameter
+    returns: bool
+    description: intersect method
+
+notes:
+  - Auto-converted from HTML documentation

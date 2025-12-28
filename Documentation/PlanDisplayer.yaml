@@ -1,0 +1,192 @@
+# PlanDisplayer API Documentation
+name: PlanDisplayer
+type: class
+extends: UIElement
+availability: client-only
+description: PlanDisplayer class
+
+constructor:
+  signature: PlanDisplayer(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: PlanDisplayer instance
+
+properties:
+  - name: autoCenter
+    type: bool
+    access: write-only
+    description: autoCenter property
+
+  - name: autoRotationSpeed
+    type: float
+    access: write-only
+    description: autoRotationSpeed property
+
+  - name: center
+    type: vec3
+    access: write-only
+    description: center property
+
+  - name: plan
+    type: BlockPlan
+    access: write-only
+    description: plan property
+
+  - name: showStats
+    type: bool
+    access: write-only
+    description: showStats property
+
+  - name: viewDir
+    type: vec3
+    access: write-only
+    description: viewDir property
+
+  - name: zoom
+    type: float
+    access: write-only
+    description: zoom property
+
+  - name: zoomable
+    type: bool
+    access: write-only
+    description: zoomable property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: setPlans
+    signature: setPlans(BlockPlan broken, BlockPlan intact)
+    parameters:
+      - name: broken
+        type: BlockPlan
+        description: broken parameter
+      - name: intact
+        type: BlockPlan
+        description: intact parameter
+    returns: void
+    description: setPlans method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

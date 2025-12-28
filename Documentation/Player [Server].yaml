@@ -1,0 +1,1191 @@
+# Player [Server] API Documentation
+name: Player [Server]
+type: class
+extends: Faction [Server]
+availability: server-only
+description: Player [Server] class
+
+properties:
+  - name: alliance
+    type: Alliance
+    access: read-only
+    description: alliance property
+
+  - name: allianceIndex
+    type: var
+    access: read-only
+    description: allianceIndex property
+
+  - name: craft
+    type: Entity
+    access: read-only
+    description: craft property
+
+  - name: craftFaction
+    type: UserObject
+    access: read-only
+    description: craftFaction property
+
+  - name: craftIndex
+    type: Uuid
+    access: read-only
+    description: craftIndex property
+
+  - name: group
+    type: Group
+    access: read-only
+    description: group property
+
+  - name: id
+    type: Uuid
+    access: read-only
+    description: id property
+
+  - name: loggingOut
+    type: bool
+    access: read-only
+    description: loggingOut property
+
+  - name: maxBuildableMaterial
+    type: Material
+    access: read-only
+    description: maxBuildableMaterial property
+
+  - name: maxBuildableSockets
+    type: int
+    access: read-only
+    description: maxBuildableSockets property
+
+  - name: maxNumMails
+    type: unsigned int
+    access: read-only
+    description: maxNumMails property
+
+  - name: maxNumShips
+    type: var
+    access: read-only
+    description: maxNumShips property
+
+  - name: maxNumStations
+    type: var
+    access: read-only
+    description: maxNumStations property
+
+  - name: numCrafts
+    type: unsigned int
+    access: read-only
+    description: numCrafts property
+
+  - name: numMails
+    type: unsigned int
+    access: read-only
+    description: numMails property
+
+  - name: numShips
+    type: int
+    access: read-only
+    description: numShips property
+
+  - name: numStations
+    type: int
+    access: read-only
+    description: numStations property
+
+  - name: ownsBehemothDLC
+    type: bool
+    access: read-only
+    description: ownsBehemothDLC property
+
+  - name: ownsBlackMarketDLC
+    type: bool
+    access: read-only
+    description: ownsBlackMarketDLC property
+
+  - name: ownsIntoTheRiftDLC
+    type: bool
+    access: read-only
+    description: ownsIntoTheRiftDLC property
+
+  - name: playtime
+    type: unsigned int
+    access: read-only
+    description: playtime property
+
+  - name: alwaysAtWar
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: alwaysAtWar property
+
+  - name: baseName
+    type: string
+    access: read-only
+    inherited: Faction [Server]
+    description: baseName property
+
+  - name: fullLogId
+    type: string
+    access: read-only
+    inherited: Faction [Server]
+    description: fullLogId property
+
+  - name: homeSectorUnknown
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: homeSectorUnknown property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: Faction [Server]
+    description: index property
+
+  - name: infiniteResources
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: infiniteResources property
+
+  - name: initialRelations
+    type: int
+    access: read-only
+    inherited: Faction [Server]
+    description: initialRelations property
+
+  - name: initialRelationsToPlayer
+    type: int
+    access: read-only
+    inherited: Faction [Server]
+    description: initialRelationsToPlayer property
+
+  - name: isAIFaction
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: isAIFaction property
+
+  - name: isAlliance
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: isAlliance property
+
+  - name: isPlayer
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: isPlayer property
+
+  - name: money
+    type: int
+    access: read-only
+    inherited: Faction [Server]
+    description: money property
+
+  - name: name
+    type: string
+    access: read-only
+    inherited: Faction [Server]
+    description: name property
+
+  - name: stateForm
+    type: string
+    access: read-only
+    inherited: Faction [Server]
+    description: stateForm property
+
+  - name: staticRelationsToAI
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: staticRelationsToAI property
+
+  - name: staticRelationsToAll
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: staticRelationsToAll property
+
+  - name: staticRelationsToPlayers
+    type: bool
+    access: read-only
+    inherited: Faction [Server]
+    description: staticRelationsToPlayers property
+
+  - name: unformattedName
+    type: Format
+    access: read-only
+    inherited: Faction [Server]
+    description: unformattedName property
+
+methods:
+  - name: activateUsableItem
+    signature: activateUsableItem(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int
+    description: activateUsableItem method
+
+  - name: addKnownSector
+    signature: addKnownSector(SectorView view)
+    parameters:
+      - name: view
+        type: SectorView
+        description: view parameter
+    returns: void
+    description: addKnownSector method
+
+  - name: addMail
+    signature: addMail(Mail mail)
+    parameters:
+      - name: mail
+        type: Mail
+        description: mail parameter
+    returns: unsigned int
+    description: addMail method
+
+  - name: addScript
+    signature: addScript()
+    returns: void
+    description: addScript method
+
+  - name: addScriptOnce
+    signature: addScriptOnce()
+    returns: void
+    description: addScriptOnce method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: clearMail
+    signature: clearMail(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: clearMail method
+
+  - name: createCraftFromShipInfo
+    signature: createCraftFromShipInfo(string name, Matrix position, var faction)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+      - name: faction
+        type: var
+        description: faction parameter
+    returns: Entity
+    description: createCraftFromShipInfo method
+
+  - name: getKnownSector
+    signature: getKnownSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: SectorView
+    description: getKnownSector method
+
+  - name: getKnownSectorCoordinates
+    signature: getKnownSectorCoordinates()
+    returns: ivec2...
+    description: getKnownSectorCoordinates method
+
+  - name: getKnownSectors
+    signature: getKnownSectors()
+    returns: SectorView...
+    description: getKnownSectors method
+
+  - name: getKnownSectorsOfFaction
+    signature: getKnownSectorsOfFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: SectorView...
+    description: getKnownSectorsOfFaction method
+
+  - name: getMail
+    signature: getMail(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: Mail
+    description: getMail method
+
+  - name: getMailsById
+    signature: getMailsById(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: Mail...
+    description: getMailsById method
+
+  - name: getNamesOfShipsInSector
+    signature: getNamesOfShipsInSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: string...
+    description: getNamesOfShipsInSector method
+
+  - name: getReconstructionSiteCoordinates
+    signature: getReconstructionSiteCoordinates()
+    returns: int, int
+    description: getReconstructionSiteCoordinates method
+
+  - name: getRespawnSiteCoordinates
+    signature: getRespawnSiteCoordinates()
+    returns: int, int
+    description: getRespawnSiteCoordinates method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getSectorCoordinates
+    signature: getSectorCoordinates()
+    returns: Coordinates
+    description: getSectorCoordinates method
+
+  - name: getShipAvailability
+    signature: getShipAvailability(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipAvailability method
+
+  - name: getShipBoundingBox
+    signature: getShipBoundingBox(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: Box
+    description: getShipBoundingBox method
+
+  - name: getShipCanPassRifts
+    signature: getShipCanPassRifts(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: getShipCanPassRifts method
+
+  - name: getShipCargo
+    signature: getShipCargo(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipCargo method
+
+  - name: getShipCargos
+    signature: getShipCargos(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;TradingGood, int&gt;
+    description: getShipCargos method
+
+  - name: getShipCrew
+    signature: getShipCrew(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: Crew
+    description: getShipCrew method
+
+  - name: getShipDestroyed
+    signature: getShipDestroyed(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipDestroyed method
+
+  - name: getShipHyperspaceReach
+    signature: getShipHyperspaceReach(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipHyperspaceReach method
+
+  - name: getShipIcon
+    signature: getShipIcon(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipIcon method
+
+  - name: getShipNames
+    signature: getShipNames()
+    returns: string...
+    description: getShipNames method
+
+  - name: getShipOrderInfo
+    signature: getShipOrderInfo(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipOrderInfo method
+
+  - name: getShipPayment
+    signature: getShipPayment(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipPayment method
+
+  - name: getShipPaymentTime
+    signature: getShipPaymentTime(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipPaymentTime method
+
+  - name: getShipPlan
+    signature: getShipPlan(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: BlockPlan
+    description: getShipPlan method
+
+  - name: getShipPosition
+    signature: getShipPosition(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: var...
+    description: getShipPosition method
+
+  - name: getShipReconstructionValue
+    signature: getShipReconstructionValue(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: double
+    description: getShipReconstructionValue method
+
+  - name: getShipStatus
+    signature: getShipStatus(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipStatus method
+
+  - name: getShipTurretDesigns
+    signature: getShipTurretDesigns(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;int, TurretDesign&gt;
+    description: getShipTurretDesigns method
+
+  - name: getShipType
+    signature: getShipType(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: int
+    description: getShipType method
+
+  - name: hasScript
+    signature: hasScript(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: hasScript method
+
+  - name: invokeFunction
+    signature: invokeFunction(var scriptName, string functionName, var... arguments)
+    parameters:
+      - name: scriptName
+        type: var
+        description: scriptName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: var...
+    description: invokeFunction method
+
+  - name: knowsSector
+    signature: knowsSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: knowsSector method
+
+  - name: ownsShip
+    signature: ownsShip(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: ownsShip method
+
+  - name: readMail
+    signature: readMail(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: readMail method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: registerCallback method
+
+  - name: removeDestroyedShipInfo
+    signature: removeDestroyedShipInfo(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: removeDestroyedShipInfo method
+
+  - name: removeKnownSector
+    signature: removeKnownSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: removeKnownSector method
+
+  - name: removeMail
+    signature: removeMail(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: removeMail method
+
+  - name: removeScript
+    signature: removeScript(var script)
+    parameters:
+      - name: script
+        type: var
+        description: script parameter
+    returns: void
+    description: removeScript method
+
+  - name: resetHyperspaceCalculation
+    signature: resetHyperspaceCalculation()
+    returns: void
+    description: resetHyperspaceCalculation method
+
+  - name: resolveScriptPath
+    signature: resolveScriptPath(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: void
+    description: resolveScriptPath method
+
+  - name: restoreCraft
+    signature: restoreCraft(string name, Matrix position, bool withMalus)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+      - name: withMalus
+        type: bool
+        description: withMalus parameter
+    returns: Entity
+    description: restoreCraft method
+
+  - name: restoreTurrets
+    signature: restoreTurrets(Entity scriptCraft)
+    parameters:
+      - name: scriptCraft
+        type: Entity
+        description: scriptCraft parameter
+    returns: void
+    description: restoreTurrets method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: sendChatMessage
+    signature: sendChatMessage(var sender, int messageType, string message, PluralForm... args)
+    parameters:
+      - name: sender
+        type: var
+        description: sender parameter
+      - name: messageType
+        type: int
+        description: messageType parameter
+      - name: message
+        type: string
+        description: message parameter
+      - name: args
+        type: PluralForm...
+        description: args parameter
+    returns: void
+    description: sendChatMessage method
+
+  - name: setReconstructionSiteCoordinates
+    signature: setReconstructionSiteCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setReconstructionSiteCoordinates method
+
+  - name: setRespawnSiteCoordinates
+    signature: setRespawnSiteCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setRespawnSiteCoordinates method
+
+  - name: setSectorCoordinates
+    signature: setSectorCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setSectorCoordinates method
+
+  - name: setShipAvailability
+    signature: setShipAvailability(string name, ShipAvailability availability)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: availability
+        type: ShipAvailability
+        description: availability parameter
+    returns: void
+    description: setShipAvailability method
+
+  - name: setShipDestroyed
+    signature: setShipDestroyed(string name, bool destroyed)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: destroyed
+        type: bool
+        description: destroyed parameter
+    returns: void
+    description: setShipDestroyed method
+
+  - name: setShipIcon
+    signature: setShipIcon(string name, string icon)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: icon
+        type: string
+        description: icon parameter
+    returns: void
+    description: setShipIcon method
+
+  - name: setShipOrderInfo
+    signature: setShipOrderInfo(string name, var value)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setShipOrderInfo method
+
+  - name: setShipReconstructionValue
+    signature: setShipReconstructionValue(string name, double value)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: value
+        type: double
+        description: value parameter
+    returns: void
+    description: setShipReconstructionValue method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: unregisterCallback method
+
+  - name: updateKnownSector
+    signature: updateKnownSector(SectorView view)
+    parameters:
+      - name: view
+        type: SectorView
+        description: view parameter
+    returns: void
+    description: updateKnownSector method
+
+  - name: updateKnownSectorPreserveNote
+    signature: updateKnownSectorPreserveNote(SectorView newView)
+    parameters:
+      - name: newView
+        type: SectorView
+        description: newView parameter
+    returns: void
+    description: updateKnownSectorPreserveNote method
+
+  - name: updateMail
+    signature: updateMail(Mail mail, unsigned int index)
+    parameters:
+      - name: mail
+        type: Mail
+        description: mail parameter
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: updateMail method
+
+  - name: addPlanStyle
+    signature: addPlanStyle(string name, PlanStyle style)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: style
+        type: PlanStyle
+        description: style parameter
+    returns: void
+    inherited: Faction [Server]
+    description: addPlanStyle method
+
+  - name: canPay
+    signature: canPay()
+    returns: bool, string, table&lt;int, string&gt;
+    inherited: Faction [Server]
+    description: canPay method
+
+  - name: canPayMoney
+    signature: canPayMoney(int money)
+    parameters:
+      - name: money
+        type: int
+        description: money parameter
+    returns: bool, string, table&lt;int, string&gt;
+    inherited: Faction [Server]
+    description: canPayMoney method
+
+  - name: canPayResource
+    signature: canPayResource(Material material, int amount)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: bool, string, table&lt;int, string&gt;
+    inherited: Faction [Server]
+    description: canPayResource method
+
+  - name: clearValues
+    signature: clearValues()
+    returns: void
+    inherited: Faction [Server]
+    description: clearValues method
+
+  - name: getAllRelations
+    signature: getAllRelations()
+    returns: Relation...
+    inherited: Faction [Server]
+    description: getAllRelations method
+
+  - name: getHomeSectorCoordinates
+    signature: getHomeSectorCoordinates()
+    returns: int, int
+    inherited: Faction [Server]
+    description: getHomeSectorCoordinates method
+
+  - name: getInventory
+    signature: getInventory()
+    returns: Inventory
+    inherited: Faction [Server]
+    description: getInventory method
+
+  - name: getLanguage
+    signature: getLanguage()
+    returns: Language
+    inherited: Faction [Server]
+    description: getLanguage method
+
+  - name: getPlanStyle
+    signature: getPlanStyle(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: PlanStyle
+    inherited: Faction [Server]
+    description: getPlanStyle method
+
+  - name: getPlanStyleNames
+    signature: getPlanStyleNames()
+    returns: string...
+    inherited: Faction [Server]
+    description: getPlanStyleNames method
+
+  - name: getRelation
+    signature: getRelation(int otherFactionIndex)
+    parameters:
+      - name: otherFactionIndex
+        type: int
+        description: otherFactionIndex parameter
+    returns: Relation
+    inherited: Faction [Server]
+    description: getRelation method
+
+  - name: getRelations
+    signature: getRelations(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    inherited: Faction [Server]
+    description: getRelations method
+
+  - name: getRelationStatus
+    signature: getRelationStatus(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    inherited: Faction [Server]
+    description: getRelationStatus method
+
+  - name: getResources
+    signature: getResources()
+    returns: int...
+    inherited: Faction [Server]
+    description: getResources method
+
+  - name: getTrait
+    signature: getTrait(string trait)
+    parameters:
+      - name: trait
+        type: string
+        description: trait parameter
+    returns: float
+    inherited: Faction [Server]
+    description: getTrait method
+
+  - name: getTraits
+    signature: getTraits()
+    returns: table&lt;string, float&gt;
+    inherited: Faction [Server]
+    description: getTraits method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    inherited: Faction [Server]
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    inherited: Faction [Server]
+    description: getValues method
+
+  - name: hasStaticRelationsToFaction
+    signature: hasStaticRelationsToFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    inherited: Faction [Server]
+    description: hasStaticRelationsToFaction method
+
+  - name: knowsFaction
+    signature: knowsFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    inherited: Faction [Server]
+    description: knowsFaction method
+
+  - name: pay
+    signature: pay(string or Format [optional] description, int money, int... resources)
+    parameters:
+      - name: description
+        type: string or Format [optional]
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: resources
+        type: int...
+        description: resources parameter
+    returns: void
+    inherited: Faction [Server]
+    description: pay method
+
+  - name: payResource
+    signature: payResource(string or Format description, Material material, int amount)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    inherited: Faction [Server]
+    description: payResource method
+
+  - name: payWithoutNotify
+    signature: payWithoutNotify(string or Format description, int money, int... args)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: args
+        type: int...
+        description: args parameter
+    returns: void
+    inherited: Faction [Server]
+    description: payWithoutNotify method
+
+  - name: receive
+    signature: receive(string or Format [optional] description, int money, int... resources)
+    parameters:
+      - name: description
+        type: string or Format [optional]
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: resources
+        type: int...
+        description: resources parameter
+    returns: void
+    inherited: Faction [Server]
+    description: receive method
+
+  - name: receiveResource
+    signature: receiveResource(string or Format description, Material material, int amount)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    inherited: Faction [Server]
+    description: receiveResource method
+
+  - name: receiveWithoutNotify
+    signature: receiveWithoutNotify(string or Format description, int money, int... args)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: args
+        type: int...
+        description: args parameter
+    returns: void
+    inherited: Faction [Server]
+    description: receiveWithoutNotify method
+
+  - name: setHomeSectorCoordinates
+    signature: setHomeSectorCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    inherited: Faction [Server]
+    description: setHomeSectorCoordinates method
+
+  - name: setLanguage
+    signature: setLanguage(Language language)
+    parameters:
+      - name: language
+        type: Language
+        description: language parameter
+    returns: void
+    inherited: Faction [Server]
+    description: setLanguage method
+
+  - name: setResources
+    signature: setResources()
+    returns: void
+    inherited: Faction [Server]
+    description: setResources method
+
+  - name: setStaticRelationsToFaction
+    signature: setStaticRelationsToFaction(int factionIndex, bool in)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: in
+        type: bool
+        description: in parameter
+    returns: void
+    inherited: Faction [Server]
+    description: setStaticRelationsToFaction method
+
+  - name: setTrait
+    signature: setTrait(string trait, float value)
+    parameters:
+      - name: trait
+        type: string
+        description: trait parameter
+      - name: value
+        type: float
+        description: value parameter
+    returns: void
+    inherited: Faction [Server]
+    description: setTrait method
+
+  - name: setValue
+    signature: setValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    inherited: Faction [Server]
+    description: setValue method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client
+  - Inherits from Faction [Server]

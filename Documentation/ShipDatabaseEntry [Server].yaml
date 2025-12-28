@@ -1,0 +1,445 @@
+# ShipDatabaseEntry [Server] API Documentation
+name: ShipDatabaseEntry [Server]
+type: class
+availability: server-only
+description: ShipDatabaseEntry [Server] class
+
+properties:
+  - name: faction
+    type: int
+    access: read-only
+    description: faction property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+  - name: numBlocksWhileMalusActive
+    type: unsigned int
+    access: read-only
+    description: numBlocksWhileMalusActive property
+
+methods:
+  - name: addScript
+    signature: addScript(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: void
+    description: addScript method
+
+  - name: addScriptOnce
+    signature: addScriptOnce(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: void
+    description: addScriptOnce method
+
+  - name: buildIdealCrew
+    signature: buildIdealCrew()
+    returns: Crew
+    description: buildIdealCrew method
+
+  - name: exists
+    signature: exists()
+    returns: bool
+    description: exists method
+
+  - name: getAvailability
+    signature: getAvailability()
+    returns: ShipAvailability
+    description: getAvailability method
+
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: getCargo
+    signature: getCargo()
+    returns: table&lt;TradingGood, float&gt;, float
+    description: getCargo method
+
+  - name: getCoordinates
+    signature: getCoordinates()
+    returns: int, int
+    description: getCoordinates method
+
+  - name: getCrew
+    signature: getCrew()
+    returns: Crew
+    description: getCrew method
+
+  - name: getCrewRequirementsFulfilled
+    signature: getCrewRequirementsFulfilled()
+    returns: bool
+    description: getCrewRequirementsFulfilled method
+
+  - name: getDocksEnabled
+    signature: getDocksEnabled()
+    returns: void
+    description: getDocksEnabled method
+
+  - name: getDPSValues
+    signature: getDPSValues()
+    returns: double, double
+    description: getDPSValues method
+
+  - name: getDurabilityProperties
+    signature: getDurabilityProperties()
+    returns: var...
+    description: getDurabilityProperties method
+
+  - name: getEnergyProperties
+    signature: getEnergyProperties()
+    returns: var...
+    description: getEnergyProperties method
+
+  - name: getEntityType
+    signature: getEntityType()
+    returns: int
+    description: getEntityType method
+
+  - name: getFighterSquadRequirementsFulfilled
+    signature: getFighterSquadRequirementsFulfilled()
+    returns: bool
+    description: getFighterSquadRequirementsFulfilled method
+
+  - name: getFighterStartRequirementsFulfilled
+    signature: getFighterStartRequirementsFulfilled()
+    returns: bool
+    description: getFighterStartRequirementsFulfilled method
+
+  - name: getFreeCargoSpace
+    signature: getFreeCargoSpace()
+    returns: float
+    description: getFreeCargoSpace method
+
+  - name: getHangar
+    signature: getHangar()
+    returns: table&lt;unsigned int, Squad&gt;, table_t
+    description: getHangar method
+
+  - name: getHyperspaceProperties
+    signature: getHyperspaceProperties()
+    returns: var...
+    description: getHyperspaceProperties method
+
+  - name: getIcon
+    signature: getIcon()
+    returns: string
+    description: getIcon method
+
+  - name: getLightweightHangar
+    signature: getLightweightHangar()
+    returns: table&lt;unsigned int, Squad&gt;, table_t
+    description: getLightweightHangar method
+
+  - name: getLocalPosition
+    signature: getLocalPosition()
+    returns: Matrix
+    description: getLocalPosition method
+
+  - name: getOrderInfo
+    signature: getOrderInfo()
+    returns: string
+    description: getOrderInfo method
+
+  - name: getPaymentTime
+    signature: getPaymentTime()
+    returns: float
+    description: getPaymentTime method
+
+  - name: getPlan
+    signature: getPlan()
+    returns: BlockPlan
+    description: getPlan method
+
+  - name: getPlanValue
+    signature: getPlanValue()
+    returns: double
+    description: getPlanValue method
+
+  - name: getPlanWithActiveMalus
+    signature: getPlanWithActiveMalus()
+    returns: BlockPlan
+    description: getPlanWithActiveMalus method
+
+  - name: getPlayerPiloted
+    signature: getPlayerPiloted()
+    returns: void
+    description: getPlayerPiloted method
+
+  - name: getReconstructionValue
+    signature: getReconstructionValue()
+    returns: double
+    description: getReconstructionValue method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getScriptValue
+    signature: getScriptValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getScriptValue method
+
+  - name: getScriptValues
+    signature: getScriptValues()
+    returns: void
+    description: getScriptValues method
+
+  - name: getSecuredScriptValues
+    signature: getSecuredScriptValues()
+    returns: void
+    description: getSecuredScriptValues method
+
+  - name: getShields
+    signature: getShields()
+    returns: float, float
+    description: getShields method
+
+  - name: getStatusMessage
+    signature: getStatusMessage()
+    returns: NamedFormat
+    description: getStatusMessage method
+
+  - name: getTitle
+    signature: getTitle()
+    returns: Format
+    description: getTitle method
+
+  - name: getTorpedoes
+    signature: getTorpedoes()
+    returns: TorpedoTemplate...
+    description: getTorpedoes method
+
+  - name: getTurretSlotRequirementsFulfilled
+    signature: getTurretSlotRequirementsFulfilled()
+    returns: bool
+    description: getTurretSlotRequirementsFulfilled method
+
+  - name: removeScript
+    signature: removeScript(var script)
+    parameters:
+      - name: script
+        type: var
+        description: script parameter
+    returns: void
+    description: removeScript method
+
+  - name: setAvailability
+    signature: setAvailability(ShipAvailability availability)
+    parameters:
+      - name: availability
+        type: ShipAvailability
+        description: availability parameter
+    returns: void
+    description: setAvailability method
+
+  - name: setBlocksDestroyedByMalus
+    signature: setBlocksDestroyedByMalus(table_t blocks)
+    parameters:
+      - name: blocks
+        type: table_t
+        description: blocks parameter
+    returns: void
+    description: setBlocksDestroyedByMalus method
+
+  - name: setCaptain
+    signature: setCaptain(Captain captain)
+    parameters:
+      - name: captain
+        type: Captain
+        description: captain parameter
+    returns: void
+    description: setCaptain method
+
+  - name: setCargo
+    signature: setCargo(table_t cargo)
+    parameters:
+      - name: cargo
+        type: table_t
+        description: cargo parameter
+    returns: void
+    description: setCargo method
+
+  - name: setCoordinates
+    signature: setCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setCoordinates method
+
+  - name: setCrew
+    signature: setCrew(Crew other)
+    parameters:
+      - name: other
+        type: Crew
+        description: other parameter
+    returns: void
+    description: setCrew method
+
+  - name: setDurabilityMalus
+    signature: setDurabilityMalus(float malusFactor, DurabilityMalusReason reason)
+    parameters:
+      - name: malusFactor
+        type: float
+        description: malusFactor parameter
+      - name: reason
+        type: DurabilityMalusReason
+        description: reason parameter
+    returns: void
+    description: setDurabilityMalus method
+
+  - name: setDurabilityPercentage
+    signature: setDurabilityPercentage(float percentage)
+    parameters:
+      - name: percentage
+        type: float
+        description: percentage parameter
+    returns: void
+    description: setDurabilityPercentage method
+
+  - name: setHangar
+    signature: setHangar(table_t squads)
+    parameters:
+      - name: squads
+        type: table_t
+        description: squads parameter
+    returns: void
+    description: setHangar method
+
+  - name: setIcon
+    signature: setIcon(string icon)
+    parameters:
+      - name: icon
+        type: string
+        description: icon parameter
+    returns: void
+    description: setIcon method
+
+  - name: setLocalPosition
+    signature: setLocalPosition(Matrix matrix)
+    parameters:
+      - name: matrix
+        type: Matrix
+        description: matrix parameter
+    returns: void
+    description: setLocalPosition method
+
+  - name: setNewName
+    signature: setNewName(string newName)
+    parameters:
+      - name: newName
+        type: string
+        description: newName parameter
+    returns: void
+    description: setNewName method
+
+  - name: setOrderInfo
+    signature: setOrderInfo(string info)
+    parameters:
+      - name: info
+        type: string
+        description: info parameter
+    returns: void
+    description: setOrderInfo method
+
+  - name: setPaymentTime
+    signature: setPaymentTime(float timeSincePayDay)
+    parameters:
+      - name: timeSincePayDay
+        type: float
+        description: timeSincePayDay parameter
+    returns: void
+    description: setPaymentTime method
+
+  - name: setPlan
+    signature: setPlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setPlan method
+
+  - name: setReconstructionValue
+    signature: setReconstructionValue(double value)
+    parameters:
+      - name: value
+        type: double
+        description: value parameter
+    returns: void
+    description: setReconstructionValue method
+
+  - name: setScriptValue
+    signature: setScriptValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setScriptValue method
+
+  - name: setShieldPercentage
+    signature: setShieldPercentage(float percentage)
+    parameters:
+      - name: percentage
+        type: float
+        description: percentage parameter
+    returns: void
+    description: setShieldPercentage method
+
+  - name: setStatusMessage
+    signature: setStatusMessage(NamedFormat status)
+    parameters:
+      - name: status
+        type: NamedFormat
+        description: status parameter
+    returns: void
+    description: setStatusMessage method
+
+  - name: setTitle
+    signature: setTitle(NamedFormat title)
+    parameters:
+      - name: title
+        type: NamedFormat
+        description: title parameter
+    returns: void
+    description: setTitle method
+
+  - name: setTorpedoes
+    signature: setTorpedoes(table_t torpedoes)
+    parameters:
+      - name: torpedoes
+        type: table_t
+        description: torpedoes parameter
+    returns: void
+    description: setTorpedoes method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

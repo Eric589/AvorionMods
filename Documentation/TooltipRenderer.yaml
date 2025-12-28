@@ -1,0 +1,34 @@
+# TooltipRenderer API Documentation
+name: TooltipRenderer
+type: class
+availability: client-only
+description: TooltipRenderer class
+
+constructor:
+  signature: TooltipRenderer(Tooltip tooltip)
+  parameters:
+    - name: tooltip
+      type: Tooltip
+      description: tooltip parameter
+  returns: TooltipRenderer instance
+
+properties:
+  - name: size
+    type: vec2
+    access: read-only
+    description: size property
+
+methods:
+  - name: draw
+    signature: draw()
+    returns: void
+    description: draw method
+
+  - name: drawMouseTooltip
+    signature: drawMouseTooltip()
+    returns: void
+    description: drawMouseTooltip method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

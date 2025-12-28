@@ -1,0 +1,44 @@
+# ReadOnlySector API Documentation
+name: ReadOnlySector
+type: class
+availability: server-only
+description: ReadOnlySector class
+
+constructor:
+  signature: ReadOnlySector()
+  returns: ReadOnlySector instance
+
+properties:
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numEntities
+    type: unsigned int
+    access: read-only
+    description: numEntities property
+
+  - name: numPlayers
+    type: unsigned int
+    access: read-only
+    description: numPlayers property
+
+  - name: persistent
+    type: bool
+    access: read-only
+    description: persistent property
+
+  - name: pvpDamage
+    type: bool
+    access: read-only
+    description: pvpDamage property
+
+  - name: seed
+    type: Seed
+    access: read-only
+    description: seed property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

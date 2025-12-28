@@ -1,0 +1,107 @@
+# Tooltip API Documentation
+name: Tooltip
+type: class
+availability: both
+description: Tooltip class
+
+constructor:
+  signature: Tooltip()
+  returns: Tooltip instance
+
+properties:
+  - name: backgroundFadeColor
+    type: Color
+    access: write-only
+    description: backgroundFadeColor property
+
+  - name: borderColor
+    type: Color
+    access: write-only
+    description: borderColor property
+
+  - name: icon
+    type: string
+    access: write-only
+    description: icon property
+
+  - name: price
+    type: double
+    access: write-only
+    description: price property
+
+  - name: rarity
+    type: Rarity
+    access: write-only
+    description: rarity property
+
+methods:
+  - name: addLine
+    signature: addLine(TooltipLine line)
+    parameters:
+      - name: line
+        type: TooltipLine
+        description: line parameter
+    returns: void
+    description: addLine method
+
+  - name: addLineFront
+    signature: addLineFront(TooltipLine line)
+    parameters:
+      - name: line
+        type: TooltipLine
+        description: line parameter
+    returns: void
+    description: addLineFront method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: getIcons
+    signature: getIcons()
+    returns: string...
+    description: getIcons method
+
+  - name: getLine
+    signature: getLine(int i)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+    returns: TooltipLine
+    description: getLine method
+
+  - name: getLines
+    signature: getLines()
+    returns: TooltipLine...
+    description: getLines method
+
+  - name: removeLine
+    signature: removeLine(int i)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+    returns: void
+    description: removeLine method
+
+  - name: setIcons
+    signature: setIcons()
+    returns: void
+    description: setIcons method
+
+  - name: setLine
+    signature: setLine(int i, TooltipLine line)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: line
+        type: TooltipLine
+        description: line parameter
+    returns: void
+    description: setLine method
+
+notes:
+  - Auto-converted from HTML documentation

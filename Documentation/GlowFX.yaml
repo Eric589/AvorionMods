@@ -1,0 +1,59 @@
+# GlowFX API Documentation
+name: GlowFX
+type: class
+availability: client-only
+description: GlowFX class
+
+constructor:
+  signature: GlowFX()
+  returns: GlowFX instance
+
+properties:
+  - name: aliveTime
+    type: float
+    access: read-write
+    description: aliveTime property
+
+  - name: color
+    type: vec4
+    access: read-write
+    description: color property
+
+  - name: entityId
+    type: Uuid
+    access: read-write
+    description: entityId property
+
+  - name: maxAliveTime
+    type: float
+    access: read-write
+    description: maxAliveTime property
+
+  - name: position
+    type: Matrix
+    access: read-write
+    description: position property
+
+  - name: uvOffset
+    type: vec2
+    access: read-write
+    description: uvOffset property
+
+  - name: uvScale
+    type: vec2
+    access: read-write
+    description: uvScale property
+
+  - name: visibilityCenter
+    type: vec3
+    access: read-write
+    description: visibilityCenter property
+
+  - name: visibilityRadius
+    type: float
+    access: read-write
+    description: visibilityRadius property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

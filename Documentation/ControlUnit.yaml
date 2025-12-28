@@ -1,0 +1,373 @@
+# ControlUnit API Documentation
+name: ControlUnit
+type: class
+availability: both
+description: ControlUnit class
+
+constructor:
+  signature: ControlUnit(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ControlUnit instance
+
+properties:
+  - name: autoPilotEnabled
+    type: bool
+    access: read-only
+    description: autoPilotEnabled property
+
+  - name: desiredVelocity
+    type: float
+    access: read-only
+    description: desiredVelocity property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: hasPilot
+    type: bool
+    access: read-only
+    description: hasPilot property
+
+  - name: isBoosting
+    type: bool
+    access: read-only
+    description: isBoosting property
+
+  - name: isDrifting
+    type: bool
+    access: read-only
+    description: isDrifting property
+
+  - name: isStrafing
+    type: bool
+    access: read-only
+    description: isStrafing property
+
+  - name: isTurning
+    type: bool
+    access: read-only
+    description: isTurning property
+
+  - name: numFreeSeats
+    type: int
+    access: read-only
+    description: numFreeSeats property
+
+  - name: numOccupiedSeats
+    type: int
+    access: read-only
+    description: numOccupiedSeats property
+
+  - name: turningSpeedFactor
+    type: vec3
+    access: read-only
+    description: turningSpeedFactor property
+
+methods:
+  - name: addSeat
+    signature: addSeat()
+    returns: void
+    description: addSeat method
+
+  - name: addSeatSquad
+    signature: addSeatSquad(int seatIndex, int fighterSquadIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+      - name: fighterSquadIndex
+        type: int
+        description: fighterSquadIndex parameter
+    returns: void
+    description: addSeatSquad method
+
+  - name: addSeatWeaponGroup
+    signature: addSeatWeaponGroup(int seatIndex, int weaponGroupIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+      - name: weaponGroupIndex
+        type: int
+        description: weaponGroupIndex parameter
+    returns: void
+    description: addSeatWeaponGroup method
+
+  - name: driftToLocation
+    signature: driftToLocation(vec3 location)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+    returns: void
+    description: driftToLocation method
+
+  - name: flyToLocation
+    signature: flyToLocation(vec3 location, float velocityAtTarget)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: velocityAtTarget
+        type: float
+        description: velocityAtTarget parameter
+    returns: void
+    description: flyToLocation method
+
+  - name: getAimedPositionBySeat
+    signature: getAimedPositionBySeat(int seatIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: vec3
+    description: getAimedPositionBySeat method
+
+  - name: getAimedPositionByWeaponGroup
+    signature: getAimedPositionByWeaponGroup(int groupIndex)
+    parameters:
+      - name: groupIndex
+        type: int
+        description: groupIndex parameter
+    returns: vec3
+    description: getAimedPositionByWeaponGroup method
+
+  - name: getAimedPositions
+    signature: getAimedPositions()
+    returns: vec3...
+    description: getAimedPositions method
+
+  - name: getAllControlActions
+    signature: getAllControlActions()
+    returns: int...
+    description: getAllControlActions method
+
+  - name: getControlActions
+    signature: getControlActions(int seatIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: int
+    description: getControlActions method
+
+  - name: getControlActionsByWeaponGroup
+    signature: getControlActionsByWeaponGroup(int groupIndex)
+    parameters:
+      - name: groupIndex
+        type: int
+        description: groupIndex parameter
+    returns: int
+    description: getControlActionsByWeaponGroup method
+
+  - name: getFlownToLocation
+    signature: getFlownToLocation()
+    returns: vec3
+    description: getFlownToLocation method
+
+  - name: getSeatByWeaponGroup
+    signature: getSeatByWeaponGroup(int groupIndex)
+    parameters:
+      - name: groupIndex
+        type: int
+        description: groupIndex parameter
+    returns: int
+    description: getSeatByWeaponGroup method
+
+  - name: getSeats
+    signature: getSeats()
+    returns: ControlUnitSeat...
+    description: getSeats method
+
+  - name: getSelectedObject
+    signature: getSelectedObject(int seatIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: Entity
+    description: getSelectedObject method
+
+  - name: getSelectedObjectId
+    signature: getSelectedObjectId(int seatIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: uuid
+    description: getSelectedObjectId method
+
+  - name: getSelectedObjectIds
+    signature: getSelectedObjectIds()
+    returns: uuid...
+    description: getSelectedObjectIds method
+
+  - name: isFiring
+    signature: isFiring(int seat)
+    parameters:
+      - name: seat
+        type: int
+        description: seat parameter
+    returns: bool
+    description: isFiring method
+
+  - name: isFiringTorpedoes
+    signature: isFiringTorpedoes(int seat)
+    parameters:
+      - name: seat
+        type: int
+        description: seat parameter
+    returns: bool
+    description: isFiringTorpedoes method
+
+  - name: isPlayerAPilot
+    signature: isPlayerAPilot(int playerIndex)
+    parameters:
+      - name: playerIndex
+        type: int
+        description: playerIndex parameter
+    returns: bool
+    description: isPlayerAPilot method
+
+  - name: mayControlSquad
+    signature: mayControlSquad(int playerIndex, int squadIndex)
+    parameters:
+      - name: playerIndex
+        type: int
+        description: playerIndex parameter
+      - name: squadIndex
+        type: int
+        description: squadIndex parameter
+    returns: bool
+    description: mayControlSquad method
+
+  - name: mayControlWeaponGroup
+    signature: mayControlWeaponGroup(int playerIndex, int groupIndex)
+    parameters:
+      - name: playerIndex
+        type: int
+        description: playerIndex parameter
+      - name: groupIndex
+        type: int
+        description: groupIndex parameter
+    returns: bool
+    description: mayControlWeaponGroup method
+
+  - name: maySteer
+    signature: maySteer(int playerIndex)
+    parameters:
+      - name: playerIndex
+        type: int
+        description: playerIndex parameter
+    returns: bool
+    description: maySteer method
+
+  - name: removeSeat
+    signature: removeSeat(int seatIndex)
+    parameters:
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: removeSeat method
+
+  - name: setAimedPosition
+    signature: setAimedPosition(vec3 location, int seatIndex)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: setAimedPosition method
+
+  - name: setControlActions
+    signature: setControlActions(int mask, int seatIndex)
+    parameters:
+      - name: mask
+        type: int
+        description: mask parameter
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: setControlActions method
+
+  - name: setDesiredVelocity
+    signature: setDesiredVelocity(float desiredVelocity)
+    parameters:
+      - name: desiredVelocity
+        type: float
+        description: desiredVelocity parameter
+    returns: void
+    description: setDesiredVelocity method
+
+  - name: setKeyDownMask
+    signature: setKeyDownMask(int mask, int seatIndex)
+    parameters:
+      - name: mask
+        type: int
+        description: mask parameter
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: setKeyDownMask method
+
+  - name: setKeyUpMask
+    signature: setKeyUpMask(int mask, int seatIndex)
+    parameters:
+      - name: mask
+        type: int
+        description: mask parameter
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: setKeyUpMask method
+
+  - name: setSelectedObjectId
+    signature: setSelectedObjectId(Uuid location, int seatIndex)
+    parameters:
+      - name: location
+        type: Uuid
+        description: location parameter
+      - name: seatIndex
+        type: int
+        description: seatIndex parameter
+    returns: void
+    description: setSelectedObjectId method
+
+  - name: setTurningSpeedFactor
+    signature: setTurningSpeedFactor(vec3 factor)
+    parameters:
+      - name: factor
+        type: vec3
+        description: factor parameter
+    returns: void
+    description: setTurningSpeedFactor method
+
+  - name: stopShip
+    signature: stopShip()
+    returns: void
+    description: stopShip method
+
+  - name: stopSteering
+    signature: stopSteering()
+    returns: void
+    description: stopSteering method
+
+notes:
+  - Auto-converted from HTML documentation

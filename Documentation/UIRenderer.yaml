@@ -1,0 +1,412 @@
+# UIRenderer API Documentation
+name: UIRenderer
+type: class
+availability: client-only
+description: UIRenderer class
+
+constructor:
+  signature: UIRenderer()
+  returns: UIRenderer instance
+
+methods:
+  - name: calculateEntityTargeter
+    signature: calculateEntityTargeter(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: vec2, int
+    description: calculateEntityTargeter method
+
+  - name: display
+    signature: display()
+    returns: void
+    description: display method
+
+  - name: getEntityTargeterColor
+    signature: getEntityTargeterColor(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: Color
+    description: getEntityTargeterColor method
+
+  - name: renderArrow
+    signature: renderArrow(vec2 pointedAt, Color color, int layer)
+    parameters:
+      - name: pointedAt
+        type: vec2
+        description: pointedAt parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: int
+        description: layer parameter
+    returns: void
+    description: renderArrow method
+
+  - name: renderBorder
+    signature: renderBorder(vec2 lower, vec2 upper, Color color, var layer)
+    parameters:
+      - name: lower
+        type: vec2
+        description: lower parameter
+      - name: upper
+        type: vec2
+        description: upper parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderBorder method
+
+  - name: renderCenteredPixelIcon
+    signature: renderCenteredPixelIcon(vec2 position, Color color, string icon, vec2 [or nil] uvScale, var layer)
+    parameters:
+      - name: position
+        type: vec2
+        description: position parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: uvScale
+        type: vec2 [or nil]
+        description: uvScale parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderCenteredPixelIcon method
+
+  - name: renderCentralArrow
+    signature: renderCentralArrow(vec2 pointedAt, float width, float length, float visibilityThreshold, Color color, int layer)
+    parameters:
+      - name: pointedAt
+        type: vec2
+        description: pointedAt parameter
+      - name: width
+        type: float
+        description: width parameter
+      - name: length
+        type: float
+        description: length parameter
+      - name: visibilityThreshold
+        type: float
+        description: visibilityThreshold parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: int
+        description: layer parameter
+    returns: void
+    description: renderCentralArrow method
+
+  - name: renderControls
+    signature: renderControls(vec2 position, int action, string text, var layer)
+    parameters:
+      - name: position
+        type: vec2
+        description: position parameter
+      - name: action
+        type: int
+        description: action parameter
+      - name: text
+        type: string
+        description: text parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderControls method
+
+  - name: renderEntityArrow
+    signature: renderEntityArrow(Entity entity, float width, float length, float visibilityThreshold, Color color, var distanceFromCenter, var layer)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: width
+        type: float
+        description: width parameter
+      - name: length
+        type: float
+        description: length parameter
+      - name: visibilityThreshold
+        type: float
+        description: visibilityThreshold parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: distanceFromCenter
+        type: var
+        description: distanceFromCenter parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderEntityArrow method
+
+  - name: renderEntityTargeter
+    signature: renderEntityTargeter(Entity entity, Color color, var size, var layer)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: size
+        type: var
+        description: size parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderEntityTargeter method
+
+  - name: renderGlow
+    signature: renderGlow(Rect rect, Color color, var layer)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderGlow method
+
+  - name: renderIcon
+    signature: renderIcon(vec2 lower, vec2 upper, Color color, string icon, vec2 [or nil] uvScale, var layer)
+    parameters:
+      - name: lower
+        type: vec2
+        description: lower parameter
+      - name: upper
+        type: vec2
+        description: upper parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: uvScale
+        type: vec2 [or nil]
+        description: uvScale parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderIcon method
+
+  - name: renderIndicatorArrow
+    signature: renderIndicatorArrow(TargetIndicator indicator, float width, float length, float visibilityThreshold, Color color, var distanceFromCenter, var layer)
+    parameters:
+      - name: indicator
+        type: TargetIndicator
+        description: indicator parameter
+      - name: width
+        type: float
+        description: width parameter
+      - name: length
+        type: float
+        description: length parameter
+      - name: visibilityThreshold
+        type: float
+        description: visibilityThreshold parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: distanceFromCenter
+        type: var
+        description: distanceFromCenter parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderIndicatorArrow method
+
+  - name: renderLine
+    signature: renderLine(vec2 a, vec2 b, Color color, var layer)
+    parameters:
+      - name: a
+        type: vec2
+        description: a parameter
+      - name: b
+        type: vec2
+        description: b parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderLine method
+
+  - name: renderLineGlow
+    signature: renderLineGlow(vec2 p1, vec2 p2, Color c1, Color c2, var layer)
+    parameters:
+      - name: p1
+        type: vec2
+        description: p1 parameter
+      - name: p2
+        type: vec2
+        description: p2 parameter
+      - name: c1
+        type: Color
+        description: c1 parameter
+      - name: c2
+        type: Color
+        description: c2 parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderLineGlow method
+
+  - name: renderOutlinedLine
+    signature: renderOutlinedLine(vec2 a, vec2 b, int d1, int d2, int d3, int d4, Color color, var layer)
+    parameters:
+      - name: a
+        type: vec2
+        description: a parameter
+      - name: b
+        type: vec2
+        description: b parameter
+      - name: d1
+        type: int
+        description: d1 parameter
+      - name: d2
+        type: int
+        description: d2 parameter
+      - name: d3
+        type: int
+        description: d3 parameter
+      - name: d4
+        type: int
+        description: d4 parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderOutlinedLine method
+
+  - name: renderPixelIcon
+    signature: renderPixelIcon(vec2 topLeft, Color color, string icon, vec2 [or nil] uvScale, var layer)
+    parameters:
+      - name: topLeft
+        type: vec2
+        description: topLeft parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: uvScale
+        type: vec2 [or nil]
+        description: uvScale parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderPixelIcon method
+
+  - name: renderRect
+    signature: renderRect(vec2 lower, vec2 upper, Color color, var layer)
+    parameters:
+      - name: lower
+        type: vec2
+        description: lower parameter
+      - name: upper
+        type: vec2
+        description: upper parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderRect method
+
+  - name: renderSelectedTargetIndicator
+    signature: renderSelectedTargetIndicator(TargetIndicator indicator, var layer)
+    parameters:
+      - name: indicator
+        type: TargetIndicator
+        description: indicator parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderSelectedTargetIndicator method
+
+  - name: renderTargeter
+    signature: renderTargeter(vec2 pos, float size, Color color, int layer)
+    parameters:
+      - name: pos
+        type: vec2
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: layer
+        type: int
+        description: layer parameter
+    returns: void
+    description: renderTargeter method
+
+  - name: renderTargetHP
+    signature: renderTargetHP(TargetIndicator indicator, float hpcoeff, Color hpColor, var layer)
+    parameters:
+      - name: indicator
+        type: TargetIndicator
+        description: indicator parameter
+      - name: hpcoeff
+        type: float
+        description: hpcoeff parameter
+      - name: hpColor
+        type: Color
+        description: hpColor parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderTargetHP method
+
+  - name: renderTargetIndicator
+    signature: renderTargetIndicator(TargetIndicator indicator, var layer)
+    parameters:
+      - name: indicator
+        type: TargetIndicator
+        description: indicator parameter
+      - name: layer
+        type: var
+        description: layer parameter
+    returns: void
+    description: renderTargetIndicator method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

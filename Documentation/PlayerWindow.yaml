@@ -1,0 +1,112 @@
+# PlayerWindow API Documentation
+name: PlayerWindow
+type: class
+availability: client-only
+description: PlayerWindow class
+
+constructor:
+  signature: PlayerWindow()
+  returns: PlayerWindow instance
+
+properties:
+  - name: onSelectedFunction
+    type: string
+    access: read-write
+    description: onSelectedFunction property
+
+methods:
+  - name: activateAllTabs
+    signature: activateAllTabs()
+    returns: void
+    description: activateAllTabs method
+
+  - name: activateTab
+    signature: activateTab(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: activateTab method
+
+  - name: createTab
+    signature: createTab(string name, string icon, string description)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: description
+        type: string
+        description: description parameter
+    returns: Tab
+    description: createTab method
+
+  - name: deactivateTab
+    signature: deactivateTab(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: deactivateTab method
+
+  - name: getActiveTab
+    signature: getActiveTab()
+    returns: Tab
+    description: getActiveTab method
+
+  - name: getTab
+    signature: getTab(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: Tab
+    description: getTab method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    description: hide method
+
+  - name: moveTabToPosition
+    signature: moveTabToPosition(Tab tab, int pos)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+      - name: pos
+        type: int
+        description: pos parameter
+    returns: void
+    description: moveTabToPosition method
+
+  - name: moveTabToTheRight
+    signature: moveTabToTheRight(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: moveTabToTheRight method
+
+  - name: selectTab
+    signature: selectTab(var val)
+    parameters:
+      - name: val
+        type: var
+        description: val parameter
+    returns: void
+    description: selectTab method
+
+  - name: show
+    signature: show()
+    returns: void
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

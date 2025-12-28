@@ -1,0 +1,22 @@
+# InventoryItemLoot API Documentation
+name: InventoryItemLoot
+type: class
+availability: both
+description: InventoryItemLoot class
+
+constructor:
+  signature: InventoryItemLoot(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: InventoryItemLoot instance
+
+properties:
+  - name: item
+    type: InventoryItem
+    access: read-write
+    description: item property
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,110 @@
+# DockingParent API Documentation
+name: DockingParent
+type: class
+availability: both
+description: DockingParent class
+
+constructor:
+  signature: DockingParent(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: DockingParent instance
+
+properties:
+  - name: dockable
+    type: bool
+    access: read-only
+    description: dockable property
+
+  - name: hasLastDockingInfo
+    type: bool
+    access: read-only
+    description: hasLastDockingInfo property
+
+  - name: id
+    type: Uuid
+    access: read-only
+    description: id property
+
+  - name: lastDockingByAIFaction
+    type: var
+    access: read-only
+    description: lastDockingByAIFaction property
+
+  - name: lastDockingByAlliance
+    type: var
+    access: read-only
+    description: lastDockingByAlliance property
+
+  - name: lastDockingByPlayer
+    type: var
+    access: read-only
+    description: lastDockingByPlayer property
+
+  - name: lastDockingFaction
+    type: var
+    access: read-only
+    description: lastDockingFaction property
+
+  - name: lastDockingParent
+    type: Uuid
+    access: read-only
+    description: lastDockingParent property
+
+  - name: localOrientation
+    type: Matrix
+    access: read-only
+    description: localOrientation property
+
+  - name: localPosition
+    type: vec3
+    access: read-only
+    description: localPosition property
+
+  - name: localWorld
+    type: Matrix
+    access: read-only
+    description: localWorld property
+
+methods:
+  - name: addAutoUndockException
+    signature: addAutoUndockException(int entityType)
+    parameters:
+      - name: entityType
+        type: int
+        description: entityType parameter
+    returns: void
+    description: addAutoUndockException method
+
+  - name: getAutoUndockExceptions
+    signature: getAutoUndockExceptions()
+    returns: int...
+    description: getAutoUndockExceptions method
+
+  - name: hasAutoUndockException
+    signature: hasAutoUndockException(int entityType)
+    parameters:
+      - name: entityType
+        type: int
+        description: entityType parameter
+    returns: bool
+    description: hasAutoUndockException method
+
+  - name: removeAutoUndockException
+    signature: removeAutoUndockException(int entityType)
+    parameters:
+      - name: entityType
+        type: int
+        description: entityType parameter
+    returns: void
+    description: removeAutoUndockException method
+
+  - name: undock
+    signature: undock()
+    returns: bool
+    description: undock method
+
+notes:
+  - Auto-converted from HTML documentation

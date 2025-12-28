@@ -1,0 +1,195 @@
+# CheckBox API Documentation
+name: CheckBox
+type: class
+extends: UIElement
+availability: client-only
+description: CheckBox class
+
+constructor:
+  signature: CheckBox(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: CheckBox instance
+
+properties:
+  - name: active
+    type: bool
+    access: write-only
+    description: active property
+
+  - name: bold
+    type: bool
+    access: write-only
+    description: bold property
+
+  - name: caption
+    type: string
+    access: write-only
+    description: caption property
+
+  - name: captionLeft
+    type: bool
+    access: write-only
+    description: captionLeft property
+
+  - name: checked
+    type: bool
+    access: write-only
+    description: checked property
+
+  - name: fontSize
+    type: int
+    access: write-only
+    description: fontSize property
+
+  - name: icon
+    type: bool
+    access: write-only
+    description: icon property
+
+  - name: italic
+    type: bool
+    access: write-only
+    description: italic property
+
+  - name: onCheckedFunction
+    type: string
+    access: write-only
+    description: onCheckedFunction property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: setCheckedNoCallback
+    signature: setCheckedNoCallback(bool in)
+    parameters:
+      - name: in
+        type: bool
+        description: in parameter
+    returns: void
+    description: setCheckedNoCallback method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

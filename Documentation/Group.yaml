@@ -1,0 +1,48 @@
+# Group API Documentation
+name: Group
+type: class
+availability: both
+description: Group class
+
+constructor:
+  signature: Group()
+  returns: Group instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: id
+    type: int
+    access: read-only
+    description: id property
+
+  - name: leader
+    type: int
+    access: read-only
+    description: leader property
+
+  - name: size
+    type: unsigned int
+    access: read-only
+    description: size property
+
+methods:
+  - name: contains
+    signature: contains(int player)
+    parameters:
+      - name: player
+        type: int
+        description: player parameter
+    returns: bool
+    description: contains method
+
+  - name: getPlayers
+    signature: getPlayers()
+    returns: int...
+    description: getPlayers method
+
+notes:
+  - Auto-converted from HTML documentation

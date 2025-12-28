@@ -1,0 +1,42 @@
+# TurretAI API Documentation
+name: TurretAI
+type: class
+availability: both
+description: TurretAI class
+
+constructor:
+  signature: TurretAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: TurretAI instance
+
+properties:
+  - name: aimedPosition
+    type: vec3
+    access: read-only
+    description: aimedPosition property
+
+  - name: independentTargetingEnabled
+    type: bool
+    access: read-only
+    description: independentTargetingEnabled property
+
+  - name: parentSaysShouldFire
+    type: bool
+    access: read-only
+    description: parentSaysShouldFire property
+
+  - name: shouldFire
+    type: bool
+    access: read-only
+    description: shouldFire property
+
+  - name: targetedEntity
+    type: Uuid
+    access: read-write
+    description: targetedEntity property
+
+notes:
+  - Auto-converted from HTML documentation

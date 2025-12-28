@@ -1,0 +1,293 @@
+# Slider API Documentation
+name: Slider
+type: class
+extends: UIElement
+availability: client-only
+description: Slider class
+
+constructor:
+  signature: Slider(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Slider instance
+
+properties:
+  - name: active
+    type: bool
+    access: write-only
+    description: active property
+
+  - name: caption
+    type: string
+    access: write-only
+    description: caption property
+
+  - name: color
+    type: var
+    access: write-only
+    description: color property
+
+  - name: description
+    type: string
+    access: write-only
+    description: description property
+
+  - name: glowColor
+    type: var
+    access: write-only
+    description: glowColor property
+
+  - name: max
+    type: float
+    access: write-only
+    description: max property
+
+  - name: min
+    type: float
+    access: write-only
+    description: min property
+
+  - name: onChangedFunction
+    type: string
+    access: write-only
+    description: onChangedFunction property
+
+  - name: onMouseUpChangedFunction
+    type: string
+    access: write-only
+    description: onMouseUpChangedFunction property
+
+  - name: segments
+    type: unsigned int
+    access: write-only
+    description: segments property
+
+  - name: showCaption
+    type: bool
+    access: write-only
+    description: showCaption property
+
+  - name: showDescription
+    type: bool
+    access: write-only
+    description: showDescription property
+
+  - name: showMaxValue
+    type: bool
+    access: write-only
+    description: showMaxValue property
+
+  - name: showScale
+    type: bool
+    access: write-only
+    description: showScale property
+
+  - name: showValue
+    type: bool
+    access: write-only
+    description: showValue property
+
+  - name: sliderPosition
+    type: float
+    access: write-only
+    description: sliderPosition property
+
+  - name: stepSize
+    type: float
+    access: write-only
+    description: stepSize property
+
+  - name: unit
+    type: string
+    access: write-only
+    description: unit property
+
+  - name: value
+    type: float
+    access: read-only
+    description: value property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: setMaxNoCallback
+    signature: setMaxNoCallback(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setMaxNoCallback method
+
+  - name: setMinNoCallback
+    signature: setMinNoCallback(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setMinNoCallback method
+
+  - name: setNumSegmentsNoCallback
+    signature: setNumSegmentsNoCallback(unsigned int in)
+    parameters:
+      - name: in
+        type: unsigned int
+        description: in parameter
+    returns: void
+    description: setNumSegmentsNoCallback method
+
+  - name: setRatio
+    signature: setRatio(float inFrom, float inTo)
+    parameters:
+      - name: inFrom
+        type: float
+        description: inFrom parameter
+      - name: inTo
+        type: float
+        description: inTo parameter
+    returns: void
+    description: setRatio method
+
+  - name: setSliderPositionNoCallback
+    signature: setSliderPositionNoCallback(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setSliderPositionNoCallback method
+
+  - name: setValueNoCallback
+    signature: setValueNoCallback(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setValueNoCallback method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

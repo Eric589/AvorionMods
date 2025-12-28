@@ -1,0 +1,73 @@
+# Music API Documentation
+name: Music
+type: class
+availability: client-only
+description: Music class
+
+constructor:
+  signature: Music()
+  returns: Music instance
+
+properties:
+  - name: autoPlay
+    type: bool
+    access: read-only
+    description: autoPlay property
+
+  - name: currentTrack
+    type: var
+    access: read-only
+    description: currentTrack property
+
+  - name: isPlaying
+    type: bool
+    access: read-only
+    description: isPlaying property
+
+methods:
+  - name: fadeOut
+    signature: fadeOut(float time)
+    parameters:
+      - name: time
+        type: float
+        description: time parameter
+    returns: void
+    description: fadeOut method
+
+  - name: playSilence
+    signature: playSilence(float time)
+    parameters:
+      - name: time
+        type: float
+        description: time parameter
+    returns: void
+    description: playSilence method
+
+  - name: playTrack
+    signature: playTrack(string path, bool loop, var volume)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+      - name: loop
+        type: bool
+        description: loop parameter
+      - name: volume
+        type: var
+        description: volume parameter
+    returns: void
+    description: playTrack method
+
+  - name: setAmbientTrackLists
+    signature: setAmbientTrackLists()
+    returns: void
+    description: setAmbientTrackLists method
+
+  - name: stop
+    signature: stop()
+    returns: void
+    description: stop method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

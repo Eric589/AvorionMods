@@ -1,0 +1,275 @@
+# GalaxyMap API Documentation
+name: GalaxyMap
+type: class
+availability: client-only
+description: GalaxyMap class
+
+constructor:
+  signature: GalaxyMap()
+  returns: GalaxyMap instance
+
+properties:
+  - name: showAllianceInfo
+    type: bool
+    access: read-only
+    description: showAllianceInfo property
+
+  - name: showBackgroundShipAreas
+    type: bool
+    access: read-only
+    description: showBackgroundShipAreas property
+
+  - name: showCustomColorLayer
+    type: bool
+    access: read-only
+    description: showCustomColorLayer property
+
+  - name: showFactionLayer
+    type: bool
+    access: read-only
+    description: showFactionLayer property
+
+  - name: showGates
+    type: bool
+    access: read-only
+    description: showGates property
+
+  - name: showNotes
+    type: bool
+    access: read-only
+    description: showNotes property
+
+  - name: showWormholes
+    type: bool
+    access: read-only
+    description: showWormholes property
+
+  - name: visible
+    type: bool
+    access: read-only
+    description: visible property
+
+methods:
+  - name: clearCustomColors
+    signature: clearCustomColors()
+    returns: void
+    description: clearCustomColors method
+
+  - name: createContainer
+    signature: createContainer()
+    returns: UIContainer
+    description: createContainer method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    description: createWindow method
+
+  - name: getCoordinatesAtScreenPosition
+    signature: getCoordinatesAtScreenPosition(vec2 coordinates)
+    parameters:
+      - name: coordinates
+        type: vec2
+        description: coordinates parameter
+    returns: int, int
+    description: getCoordinatesAtScreenPosition method
+
+  - name: getCoordinatesScreenPosition
+    signature: getCoordinatesScreenPosition(ivec2 coordinates)
+    parameters:
+      - name: coordinates
+        type: ivec2
+        description: coordinates parameter
+    returns: float, float
+    description: getCoordinatesScreenPosition method
+
+  - name: getHoveredCoordinates
+    signature: getHoveredCoordinates()
+    returns: int, int
+    description: getHoveredCoordinates method
+
+  - name: getSelectedCoordinates
+    signature: getSelectedCoordinates()
+    returns: int, int
+    description: getSelectedCoordinates method
+
+  - name: getSelectedCoordinatesScreenPosition
+    signature: getSelectedCoordinatesScreenPosition()
+    returns: float, float
+    description: getSelectedCoordinatesScreenPosition method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    description: hide method
+
+  - name: lookAt
+    signature: lookAt(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: lookAt method
+
+  - name: lookAtSmooth
+    signature: lookAtSmooth(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: lookAtSmooth method
+
+  - name: removeHighlightedArea
+    signature: removeHighlightedArea(var key)
+    parameters:
+      - name: key
+        type: var
+        description: key parameter
+    returns: void
+    description: removeHighlightedArea method
+
+  - name: resetHighlightedAreas
+    signature: resetHighlightedAreas()
+    returns: void
+    description: resetHighlightedAreas method
+
+  - name: resetJumpRangeArea
+    signature: resetJumpRangeArea(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: resetJumpRangeArea method
+
+  - name: setCustomColors
+    signature: setCustomColors()
+    returns: void
+    description: setCustomColors method
+
+  - name: setHighlightedArea
+    signature: setHighlightedArea(vec2 lower, vec2 upper, var color, var key)
+    parameters:
+      - name: lower
+        type: vec2
+        description: lower parameter
+      - name: upper
+        type: vec2
+        description: upper parameter
+      - name: color
+        type: var
+        description: color parameter
+      - name: key
+        type: var
+        description: key parameter
+    returns: void
+    description: setHighlightedArea method
+
+  - name: setHighlightedSectors
+    signature: setHighlightedSectors(table_t areaIn, var key)
+    parameters:
+      - name: areaIn
+        type: table_t
+        description: areaIn parameter
+      - name: key
+        type: var
+        description: key parameter
+    returns: void
+    description: setHighlightedSectors method
+
+  - name: setJumpRangeArea
+    signature: setJumpRangeArea(string name, ivec2 center, float radius, bool canPassBlocked, var includeGateConnections, var color, bool dotted)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: center
+        type: ivec2
+        description: center parameter
+      - name: radius
+        type: float
+        description: radius parameter
+      - name: canPassBlocked
+        type: bool
+        description: canPassBlocked parameter
+      - name: includeGateConnections
+        type: var
+        description: includeGateConnections parameter
+      - name: color
+        type: var
+        description: color parameter
+      - name: dotted
+        type: bool
+        description: dotted parameter
+    returns: void
+    description: setJumpRangeArea method
+
+  - name: setSelectedCoordinates
+    signature: setSelectedCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setSelectedCoordinates method
+
+  - name: show
+    signature: show(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: show method
+
+  - name: switchToCraft
+    signature: switchToCraft(int x, int y, int factionIndex, string shipName)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: shipName
+        type: string
+        description: shipName parameter
+    returns: void
+    description: switchToCraft method
+
+  - name: switchToSector
+    signature: switchToSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: switchToSector method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

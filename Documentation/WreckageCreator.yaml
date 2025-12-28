@@ -1,0 +1,33 @@
+# WreckageCreator API Documentation
+name: WreckageCreator
+type: class
+availability: server-only
+description: WreckageCreator class
+
+constructor:
+  signature: WreckageCreator(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: WreckageCreator instance
+
+properties:
+  - name: active
+    type: bool
+    access: write-only
+    description: active property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

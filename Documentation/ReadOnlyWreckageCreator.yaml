@@ -1,0 +1,28 @@
+# ReadOnlyWreckageCreator API Documentation
+name: ReadOnlyWreckageCreator
+type: class
+availability: server-only
+description: ReadOnlyWreckageCreator class
+
+constructor:
+  signature: ReadOnlyWreckageCreator(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyWreckageCreator instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

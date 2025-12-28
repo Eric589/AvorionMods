@@ -1,0 +1,29 @@
+# AllianceRank API Documentation
+name: AllianceRank
+type: class
+availability: both
+description: AllianceRank class
+
+constructor:
+  signature: AllianceRank()
+  returns: AllianceRank instance
+
+properties:
+  - name: level
+    type: int
+    access: read-only
+    description: level property
+
+  - name: name
+    type: char
+    access: read-only
+    description: name property
+
+methods:
+  - name: getPrivileges
+    signature: getPrivileges()
+    returns: int...
+    description: getPrivileges method
+
+notes:
+  - Auto-converted from HTML documentation

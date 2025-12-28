@@ -1,0 +1,124 @@
+# ReadOnlyShipAI API Documentation
+name: ReadOnlyShipAI
+type: class
+availability: both
+description: ReadOnlyShipAI class
+
+constructor:
+  signature: ReadOnlyShipAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyShipAI instance
+
+properties:
+  - name: attackedEntity
+    type: uuid
+    access: read-only
+    description: attackedEntity property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: flyTarget
+    type: vec3
+    access: read-only
+    description: flyTarget property
+
+  - name: isAttackingSomething
+    type: bool
+    access: read-only
+    description: isAttackingSomething property
+
+  - name: isBusy
+    type: bool
+    access: read-only
+    description: isBusy property
+
+  - name: isStuck
+    type: bool
+    access: read-only
+    description: isStuck property
+
+  - name: state
+    type: int
+    access: read-only
+    description: state property
+
+methods:
+  - name: enemyFightersPresent
+    signature: enemyFightersPresent()
+    returns: bool
+    description: enemyFightersPresent method
+
+  - name: enemyShipsPresent
+    signature: enemyShipsPresent(var countCivilEnemies)
+    parameters:
+      - name: countCivilEnemies
+        type: var
+        description: countCivilEnemies parameter
+    returns: bool
+    description: enemyShipsPresent method
+
+  - name: getEnemies
+    signature: getEnemies()
+    returns: Entity...
+    description: getEnemies method
+
+  - name: getRegisteredEnemyEntities
+    signature: getRegisteredEnemyEntities()
+    returns: uuid...
+    description: getRegisteredEnemyEntities method
+
+  - name: getRegisteredEnemyFactions
+    signature: getRegisteredEnemyFactions()
+    returns: int...
+    description: getRegisteredEnemyFactions method
+
+  - name: getRegisteredFriendEntities
+    signature: getRegisteredFriendEntities()
+    returns: uuid...
+    description: getRegisteredFriendEntities method
+
+  - name: getRegisteredFriendFactions
+    signature: getRegisteredFriendFactions()
+    returns: int...
+    description: getRegisteredFriendFactions method
+
+  - name: isEnemy
+    signature: isEnemy(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isEnemy method
+
+  - name: isRegisteredEnemy
+    signature: isRegisteredEnemy(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isRegisteredEnemy method
+
+  - name: isRegisteredFriend
+    signature: isRegisteredFriend(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isRegisteredFriend method
+
+notes:
+  - Auto-converted from HTML documentation

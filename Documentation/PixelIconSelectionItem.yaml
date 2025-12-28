@@ -1,0 +1,23 @@
+# PixelIconSelectionItem API Documentation
+name: PixelIconSelectionItem
+type: class
+availability: client-only
+description: PixelIconSelectionItem class
+
+constructor:
+  signature: PixelIconSelectionItem(string other)
+  parameters:
+    - name: other
+      type: string
+      description: other parameter
+  returns: PixelIconSelectionItem instance
+
+properties:
+  - name: icon
+    type: string
+    access: read-write
+    description: icon property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

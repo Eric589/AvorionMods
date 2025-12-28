@@ -1,0 +1,47 @@
+# StrategyState API Documentation
+name: StrategyState
+type: class
+availability: client-only
+description: StrategyState class
+
+constructor:
+  signature: StrategyState()
+  returns: StrategyState instance
+
+methods:
+  - name: addToSelection
+    signature: addToSelection(var entity)
+    parameters:
+      - name: entity
+        type: var
+        description: entity parameter
+    returns: void
+    description: addToSelection method
+
+  - name: centerCameraOnSelection
+    signature: centerCameraOnSelection()
+    returns: void
+    description: centerCameraOnSelection method
+
+  - name: clearSelection
+    signature: clearSelection()
+    returns: void
+    description: clearSelection method
+
+  - name: getSelection
+    signature: getSelection()
+    returns: Uuid...
+    description: getSelection method
+
+  - name: toggleSelect
+    signature: toggleSelect(var entity)
+    parameters:
+      - name: entity
+        type: var
+        description: entity parameter
+    returns: void
+    description: toggleSelect method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

@@ -1,0 +1,50 @@
+# TurretController API Documentation
+name: TurretController
+type: class
+availability: server-only
+description: TurretController class
+
+constructor:
+  signature: TurretController(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: TurretController instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: getGroupOrders
+    signature: getGroupOrders(int group)
+    parameters:
+      - name: group
+        type: int
+        description: group parameter
+    returns: int
+    description: getGroupOrders method
+
+  - name: setGroupFireMode
+    signature: setGroupFireMode(int group, int autoFireMode)
+    parameters:
+      - name: group
+        type: int
+        description: group parameter
+      - name: autoFireMode
+        type: int
+        description: autoFireMode parameter
+    returns: void
+    description: setGroupFireMode method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

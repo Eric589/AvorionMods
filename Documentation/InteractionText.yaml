@@ -1,0 +1,32 @@
+# InteractionText API Documentation
+name: InteractionText
+type: class
+availability: both
+description: InteractionText class
+
+constructor:
+  signature: InteractionText(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: InteractionText instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: text
+    type: string
+    access: read-write
+    description: text property
+
+notes:
+  - Auto-converted from HTML documentation

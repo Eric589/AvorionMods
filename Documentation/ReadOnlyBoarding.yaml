@@ -1,0 +1,67 @@
+# ReadOnlyBoarding API Documentation
+name: ReadOnlyBoarding
+type: class
+availability: both
+description: ReadOnlyBoarding class
+
+constructor:
+  signature: ReadOnlyBoarding(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyBoarding instance
+
+properties:
+  - name: boardable
+    type: bool
+    access: read-only
+    description: boardable property
+
+  - name: boardingFaction
+    type: int
+    access: read-only
+    description: boardingFaction property
+
+  - name: defenseLevel
+    type: double
+    access: read-only
+    description: defenseLevel property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: foughtRounds
+    type: int
+    access: read-only
+    description: foughtRounds property
+
+  - name: numDefenseWeaponsCurrentAttack
+    type: int
+    access: read-only
+    description: numDefenseWeaponsCurrentAttack property
+
+  - name: simultaneousFighters
+    type: int
+    access: read-only
+    description: simultaneousFighters property
+
+  - name: undealtDamageBoarders
+    type: float
+    access: read-only
+    description: undealtDamageBoarders property
+
+  - name: undealtDamageDefenders
+    type: float
+    access: read-only
+    description: undealtDamageDefenders property
+
+notes:
+  - Auto-converted from HTML documentation

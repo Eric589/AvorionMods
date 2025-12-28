@@ -1,0 +1,525 @@
+# Galaxy [Server] API Documentation
+name: Galaxy [Server]
+type: class
+availability: server-only
+description: Galaxy [Server] class
+
+methods:
+  - name: addScript
+    signature: addScript()
+    returns: void
+    description: addScript method
+
+  - name: addScriptOnce
+    signature: addScriptOnce()
+    returns: void
+    description: addScriptOnce method
+
+  - name: aiFactionExists
+    signature: aiFactionExists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: aiFactionExists method
+
+  - name: allianceFactionExists
+    signature: allianceFactionExists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: allianceFactionExists method
+
+  - name: areAllies
+    signature: areAllies(int factionA, int factionB)
+    parameters:
+      - name: factionA
+        type: int
+        description: factionA parameter
+      - name: factionB
+        type: int
+        description: factionB parameter
+    returns: bool
+    description: areAllies method
+
+  - name: areEnemies
+    signature: areEnemies(int factionA, int factionB)
+    parameters:
+      - name: factionA
+        type: int
+        description: factionA parameter
+      - name: factionB
+        type: int
+        description: factionB parameter
+    returns: bool
+    description: areEnemies method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: changeFactionRelations
+    signature: changeFactionRelations(Faction a, Faction b, int delta, var notifyA, var notifyB)
+    parameters:
+      - name: a
+        type: Faction
+        description: a parameter
+      - name: b
+        type: Faction
+        description: b parameter
+      - name: delta
+        type: int
+        description: delta parameter
+      - name: notifyA
+        type: var
+        description: notifyA parameter
+      - name: notifyB
+        type: var
+        description: notifyB parameter
+    returns: void
+    description: changeFactionRelations method
+
+  - name: createFaction
+    signature: createFaction(string name, int x, int y)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: Faction
+    description: createFaction method
+
+  - name: createRandomFaction
+    signature: createRandomFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: Faction
+    description: createRandomFaction method
+
+  - name: findFaction
+    signature: findFaction(var identifier)
+    parameters:
+      - name: identifier
+        type: var
+        description: identifier parameter
+    returns: UserObject
+    description: findFaction method
+
+  - name: findPlayer
+    signature: findPlayer(string identifier)
+    parameters:
+      - name: identifier
+        type: string
+        description: identifier parameter
+    returns: Player
+    description: findPlayer method
+
+  - name: getControllingFaction
+    signature: getControllingFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: Faction
+    description: getControllingFaction method
+
+  - name: getFactionRelations
+    signature: getFactionRelations(Faction a, Faction b)
+    parameters:
+      - name: a
+        type: Faction
+        description: a parameter
+      - name: b
+        type: Faction
+        description: b parameter
+    returns: int
+    description: getFactionRelations method
+
+  - name: getFactionRelationStatus
+    signature: getFactionRelationStatus(Faction a, Faction b)
+    parameters:
+      - name: a
+        type: Faction
+        description: a parameter
+      - name: b
+        type: Faction
+        description: b parameter
+    returns: RelationStatus
+    description: getFactionRelationStatus method
+
+  - name: getLoadedSectors
+    signature: getLoadedSectors()
+    returns: table_t
+    description: getLoadedSectors method
+
+  - name: getLocalFaction
+    signature: getLocalFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: Faction
+    description: getLocalFaction method
+
+  - name: getMapHomeSectors
+    signature: getMapHomeSectors(int x, int y, float radius)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: radius
+        type: float
+        description: radius parameter
+    returns: table&lt;int, vec2&gt;
+    description: getMapHomeSectors method
+
+  - name: getNearestFaction
+    signature: getNearestFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: Faction
+    description: getNearestFaction method
+
+  - name: getOnlinePlayerNames
+    signature: getOnlinePlayerNames()
+    returns: string...
+    description: getOnlinePlayerNames method
+
+  - name: getPirateFaction
+    signature: getPirateFaction(int level)
+    parameters:
+      - name: level
+        type: int
+        description: level parameter
+    returns: Faction
+    description: getPirateFaction method
+
+  - name: getPlayerNames
+    signature: getPlayerNames()
+    returns: string...
+    description: getPlayerNames method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getSectorView
+    signature: getSectorView(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: SectorView
+    description: getSectorView method
+
+  - name: hasScript
+    signature: hasScript(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: hasScript method
+
+  - name: invokeFunction
+    signature: invokeFunction(var scriptName, string functionName, var... arguments)
+    parameters:
+      - name: scriptName
+        type: var
+        description: scriptName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: var...
+    description: invokeFunction method
+
+  - name: isCentralFactionArea
+    signature: isCentralFactionArea(int x, int y, var factionIndex)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: factionIndex
+        type: var
+        description: factionIndex parameter
+    returns: bool
+    description: isCentralFactionArea method
+
+  - name: isFactionLoaded
+    signature: isFactionLoaded(var identifier)
+    parameters:
+      - name: identifier
+        type: var
+        description: identifier parameter
+    returns: bool
+    description: isFactionLoaded method
+
+  - name: isMapFaction
+    signature: isMapFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: isMapFaction method
+
+  - name: jumpRouteUnobstructed
+    signature: jumpRouteUnobstructed(int fromX, int fromY, int toX, int toY)
+    parameters:
+      - name: fromX
+        type: int
+        description: fromX parameter
+      - name: fromY
+        type: int
+        description: fromY parameter
+      - name: toX
+        type: int
+        description: toX parameter
+      - name: toY
+        type: int
+        description: toY parameter
+    returns: bool
+    description: jumpRouteUnobstructed method
+
+  - name: keepOrGetSector
+    signature: keepOrGetSector(int x, int y, float time, var code, var... arguments)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: time
+        type: float
+        description: time parameter
+      - name: code
+        type: var
+        description: code parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: bool
+    description: keepOrGetSector method
+
+  - name: keepSector
+    signature: keepSector(int x, int y, float time)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: time
+        type: float
+        description: time parameter
+    returns: bool
+    description: keepSector method
+
+  - name: loadSector
+    signature: loadSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: loadSector method
+
+  - name: playerFactionExists
+    signature: playerFactionExists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: playerFactionExists method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: registerCallback method
+
+  - name: removeScript
+    signature: removeScript(var script)
+    parameters:
+      - name: script
+        type: var
+        description: script parameter
+    returns: void
+    description: removeScript method
+
+  - name: resolveScriptPath
+    signature: resolveScriptPath(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: void
+    description: resolveScriptPath method
+
+  - name: sectorExists
+    signature: sectorExists(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: sectorExists method
+
+  - name: sectorInRift
+    signature: sectorInRift(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: sectorInRift method
+
+  - name: sectorLoaded
+    signature: sectorLoaded(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: sectorLoaded method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: setFactionRelations
+    signature: setFactionRelations(Faction a, Faction b, int level, var notifyA, var notifyB)
+    parameters:
+      - name: a
+        type: Faction
+        description: a parameter
+      - name: b
+        type: Faction
+        description: b parameter
+      - name: level
+        type: int
+        description: level parameter
+      - name: notifyA
+        type: var
+        description: notifyA parameter
+      - name: notifyB
+        type: var
+        description: notifyB parameter
+    returns: void
+    description: setFactionRelations method
+
+  - name: setFactionRelationStatus
+    signature: setFactionRelationStatus(Faction a, Faction b, RelationStatus status, var notifyA, var notifyB)
+    parameters:
+      - name: a
+        type: Faction
+        description: a parameter
+      - name: b
+        type: Faction
+        description: b parameter
+      - name: status
+        type: RelationStatus
+        description: status parameter
+      - name: notifyA
+        type: var
+        description: notifyA parameter
+      - name: notifyB
+        type: var
+        description: notifyB parameter
+    returns: void
+    description: setFactionRelationStatus method
+
+  - name: tryUnloadSector
+    signature: tryUnloadSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: tryUnloadSector method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: unregisterCallback method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

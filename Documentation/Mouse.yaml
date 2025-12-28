@@ -1,0 +1,47 @@
+# Mouse API Documentation
+name: Mouse
+type: class
+availability: client-only
+description: Mouse class
+
+constructor:
+  signature: Mouse()
+  returns: Mouse instance
+
+properties:
+  - name: position
+    type: vec2
+    access: read-write
+    description: position property
+
+methods:
+  - name: mouseDown
+    signature: mouseDown(int button)
+    parameters:
+      - name: button
+        type: int
+        description: button parameter
+    returns: bool
+    description: mouseDown method
+
+  - name: mousePressed
+    signature: mousePressed(int button)
+    parameters:
+      - name: button
+        type: int
+        description: button parameter
+    returns: bool
+    description: mousePressed method
+
+  - name: mouseUp
+    signature: mouseUp(int button)
+    parameters:
+      - name: button
+        type: int
+        description: button parameter
+    returns: bool
+    description: mouseUp method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

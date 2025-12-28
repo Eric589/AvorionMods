@@ -1,0 +1,200 @@
+# Shield API Documentation
+name: Shield
+type: class
+availability: both
+description: Shield class
+
+constructor:
+  signature: Shield(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Shield instance
+
+properties:
+  - name: creationDurabilityFactor
+    type: float
+    access: write-only
+    description: creationDurabilityFactor property
+
+  - name: damageFactor
+    type: double
+    access: read-only
+    description: damageFactor property
+
+  - name: deactivationFactor
+    type: float
+    access: read-only
+    description: deactivationFactor property
+
+  - name: deactivationTime
+    type: float
+    access: read-only
+    description: deactivationTime property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: filledPercentage
+    type: float
+    access: read-only
+    description: filledPercentage property
+
+  - name: immuneToDeactivation
+    type: bool
+    access: read-only
+    description: immuneToDeactivation property
+
+  - name: impenetrable
+    type: bool
+    access: read-only
+    description: impenetrable property
+
+  - name: invincible
+    type: bool
+    access: read-only
+    description: invincible property
+
+  - name: maxDurabilityFactor
+    type: double
+    access: read-only
+    description: maxDurabilityFactor property
+
+  - name: maximum
+    type: double
+    access: read-only
+    description: maximum property
+
+  - name: rechargeTime
+    type: float
+    access: read-only
+    description: rechargeTime property
+
+  - name: timeUntilRechargeAfterDepletion
+    type: float
+    access: read-only
+    description: timeUntilRechargeAfterDepletion property
+
+  - name: timeUntilRechargeAfterHit
+    type: float
+    access: read-only
+    description: timeUntilRechargeAfterHit property
+
+methods:
+  - name: changeDurability
+    signature: changeDurability(double amount)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+    returns: void
+    description: changeDurability method
+
+  - name: getMaxDurability
+    signature: getMaxDurability(bool withUpgrades)
+    parameters:
+      - name: withUpgrades
+        type: bool
+        description: withUpgrades parameter
+    returns: double
+    description: getMaxDurability method
+
+  - name: getResistance
+    signature: getResistance()
+    returns: var, var
+    description: getResistance method
+
+  - name: healDamage
+    signature: healDamage(double amount)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+    returns: void
+    description: healDamage method
+
+  - name: inflictDamage
+    signature: inflictDamage(double amount, var damageSource, var damageType, vec3 location, Uuid inflictorId)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+      - name: damageSource
+        type: var
+        description: damageSource parameter
+      - name: damageType
+        type: var
+        description: damageType parameter
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: inflictorId
+        type: Uuid
+        description: inflictorId parameter
+    returns: void
+    description: inflictDamage method
+
+  - name: intersectGlobalSphere
+    signature: intersectGlobalSphere(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: bool
+    description: intersectGlobalSphere method
+
+  - name: intersectLocalSphere
+    signature: intersectLocalSphere(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: bool
+    description: intersectLocalSphere method
+
+  - name: isActive
+    signature: isActive()
+    returns: bool
+    description: isActive method
+
+  - name: isInside
+    signature: isInside(vec3 point)
+    parameters:
+      - name: point
+        type: vec3
+        description: point parameter
+    returns: bool
+    description: isInside method
+
+  - name: resetResistance
+    signature: resetResistance()
+    returns: void
+    description: resetResistance method
+
+  - name: setResistance
+    signature: setResistance(var damageType, float factor)
+    parameters:
+      - name: damageType
+        type: var
+        description: damageType parameter
+      - name: factor
+        type: float
+        description: factor parameter
+    returns: void
+    description: setResistance method
+
+notes:
+  - Auto-converted from HTML documentation

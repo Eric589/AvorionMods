@@ -1,0 +1,57 @@
+# Torpedo API Documentation
+name: Torpedo
+type: class
+availability: both
+description: Torpedo class
+
+constructor:
+  signature: Torpedo(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Torpedo instance
+
+properties:
+  - name: collisionWithParentEnabled
+    type: bool
+    access: read-write
+    description: collisionWithParentEnabled property
+
+  - name: firedByAIControlledPlayerShip
+    type: bool
+    access: read-write
+    description: firedByAIControlledPlayerShip property
+
+  - name: intendedTargetFaction
+    type: int
+    access: read-write
+    description: intendedTargetFaction property
+
+  - name: shootingCraft
+    type: Uuid
+    access: read-write
+    description: shootingCraft property
+
+methods:
+  - name: getTemplate
+    signature: getTemplate()
+    returns: TorpedoTemplate
+    description: getTemplate method
+
+  - name: setTemplate
+    signature: setTemplate(TorpedoTemplate torpedo)
+    parameters:
+      - name: torpedo
+        type: TorpedoTemplate
+        description: torpedo parameter
+    returns: void
+    description: setTemplate method
+
+  - name: startDetonation
+    signature: startDetonation()
+    returns: void
+    description: startDetonation method
+
+notes:
+  - Auto-converted from HTML documentation

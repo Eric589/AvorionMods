@@ -1,0 +1,164 @@
+# LaserFX API Documentation
+name: LaserFX
+type: class
+availability: client-only
+description: LaserFX class
+
+constructor:
+  signature: LaserFX()
+  returns: LaserFX instance
+
+properties:
+  - name: aliveTime
+    type: float
+    access: read-write
+    description: aliveTime property
+
+  - name: animation
+    type: float
+    access: read-write
+    description: animation property
+
+  - name: animationAcceleration
+    type: float
+    access: read-write
+    description: animationAcceleration property
+
+  - name: animationSpeed
+    type: float
+    access: read-write
+    description: animationSpeed property
+
+  - name: auraWidth
+    type: float
+    access: read-write
+    description: auraWidth property
+
+  - name: collision
+    type: bool
+    access: read-write
+    description: collision property
+
+  - name: collisionException
+    type: Uuid
+    access: read-write
+    description: collisionException property
+
+  - name: direction
+    type: vec3
+    access: read-write
+    description: direction property
+
+  - name: ending
+    type: vec3
+    access: read-write
+    description: ending property
+
+  - name: fadeOutTime
+    type: float
+    access: read-write
+    description: fadeOutTime property
+
+  - name: flicker
+    type: bool
+    access: read-write
+    description: flicker property
+
+  - name: from
+    type: vec3
+    access: read-write
+    description: from property
+
+  - name: innerColor
+    type: Color
+    access: read-write
+    description: innerColor property
+
+  - name: length
+    type: float
+    access: read-write
+    description: length property
+
+  - name: maxAliveTime
+    type: float
+    access: read-write
+    description: maxAliveTime property
+
+  - name: offset
+    type: int
+    access: read-write
+    description: offset property
+
+  - name: origin
+    type: vec3
+    access: read-write
+    description: origin property
+
+  - name: outerColor
+    type: Color
+    access: read-write
+    description: outerColor property
+
+  - name: randomNumber
+    type: int
+    access: read-write
+    description: randomNumber property
+
+  - name: shape
+    type: int
+    access: read-write
+    description: shape property
+
+  - name: shapeSize
+    type: float
+    access: read-write
+    description: shapeSize property
+
+  - name: shieldCollisionException
+    type: Uuid
+    access: read-write
+    description: shieldCollisionException property
+
+  - name: sound
+    type: string
+    access: read-write
+    description: sound property
+
+  - name: soundMaxRadius
+    type: float
+    access: read-write
+    description: soundMaxRadius property
+
+  - name: soundMinRadius
+    type: float
+    access: read-write
+    description: soundMinRadius property
+
+  - name: soundVolume
+    type: float
+    access: read-write
+    description: soundVolume property
+
+  - name: to
+    type: vec3
+    access: read-write
+    description: to property
+
+  - name: weaknessFactor
+    type: float
+    access: read-write
+    description: weaknessFactor property
+
+  - name: width
+    type: float
+    access: read-write
+    description: width property
+
+  - name: withGlow
+    type: bool
+    access: read-write
+    description: withGlow property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

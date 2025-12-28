@@ -1,0 +1,773 @@
+# Avorion Script API Documentation - Master Index
+# Version: 2.5.11 9e50c49dc2f1
+# This index helps locate classes, components, and functionality across the API
+
+metadata:
+  version: 2.5.11
+  build: 9e50c49dc2f1
+  status: Work in Progress
+  note: Auto-generated documentation may be incomplete
+
+# =============================================================================
+# QUICK REFERENCE - Common Tasks
+# =============================================================================
+quick_reference:
+  fighter_control:
+    classes:
+      - FighterController      # Server: Manage fighter deployment
+      - FighterAI              # Both: Control individual fighter behavior
+      - ReadOnlyFighterController  # Read-only version
+      - ReadOnlyFighterAI      # Read-only version
+    key_methods:
+      - FighterController.getDeployedFighters()
+      - FighterController.launchFighter()
+      - FighterAI.setOrders()
+      - FighterAI.clearFeedback()
+    properties:
+      - FighterAI.ignoreMothershipOrders
+      - FighterController.entity
+
+  ui_creation:
+    classes:
+      - ScriptUI               # Main UI container
+      - Window                 # Windows
+      - Button                 # Buttons
+      - Label                  # Text labels
+      - TextBox                # Text input
+      - CheckBox               # Checkboxes
+      - ComboBox               # Dropdown menus
+      - Slider                 # Sliders
+      - Frame                  # Containers
+      - Picture                # Images
+    base_class: UIElement
+    note: All UI classes inherit from UIElement
+
+  entity_management:
+    classes:
+      - Entity                 # Main entity class
+      - ReadOnlyEntity         # Read-only version
+      - EntityDescriptor       # Entity description
+    callbacks: "Entity Callbacks.html"
+    key_methods:
+      - Entity.addScriptOnce()
+      - Entity.removeScript()
+      - Entity.getValue()
+      - Entity.setValue()
+      - Entity.hasComponent()
+
+  sector_operations:
+    server_class: "Sector [Server]"
+    client_class: "Sector [Client]"
+    callbacks: "Sector Callbacks.html"
+    functions: SectorFunctions
+    key_methods:
+      - Sector.getEntitiesByType()
+      - Sector.getEntitiesByComponent()
+      - Sector.getEntitiesByScriptValue()
+
+  player_operations:
+    server_class: "Player [Server]"
+    client_class: "Player [Client]"
+    callbacks: "Player Callbacks.html"
+    client_callbacks: "Player [Client] Callbacks.html"
+    functions: PlayerFunctions
+
+# =============================================================================
+# CATEGORIES
+# =============================================================================
+categories:
+  callbacks:
+    description: Event-driven callback functions
+    files:
+      - Callbacks.html
+      - "Alliance [Client] Callbacks.html"
+      - "Alliance [Server] Callbacks.html"
+      - "Alliance [Server]  Callbacks.html"
+      - "Entity Callbacks.html"
+      - "Galaxy Callbacks.html"
+      - "Player Callbacks.html"
+      - "Player [Client] Callbacks.html"
+      - "Sector Callbacks.html"
+      - "Server Callbacks.html"
+
+  predefined_functions:
+    description: Pre-built utility functions and example scripts
+    files:
+      - CommandFunctions.html
+      - EntityFunctions.html
+      - FactionDatabaseFunctions.html
+      - PlanGeneratorFunctions.html
+      - PlayerFunctions.html
+      - SectorFunctions.html
+      - ServerFunctions.html
+      - UsableInventoryItemFunctions.html
+
+  common_components:
+    description: Components that can be attached to entities
+    availability: Both server and client
+    files:
+      - Boarding.html
+      - BspTree.html
+      - CargoBay.html
+      - CargoLoot.html
+      - ControlUnit.html
+      - CrewComponent.html
+      - DeletionTimer.html
+      - DirectFlightPhysics.html
+      - DockingClamps.html
+      - DockingParent.html
+      - DockingPositions.html
+      - Durability.html
+      - EnergySystem.html
+      - Engine.html
+      - FighterAI.html
+      - Hangar.html
+      - HyperspaceEngine.html
+      - InteractionText.html
+      - InventoryItemLoot.html
+      - Owner.html
+      - Physics.html
+      - Plan.html
+      - ReadOnlyBoarding.html
+      - ReadOnlyBspTree.html
+      - ReadOnlyCargoBay.html
+      - ReadOnlyControlUnit.html
+      - ReadOnlyCrew.html
+      - ReadOnlyDeletionTimer.html
+      - ReadOnlyEnergySystem.html
+      - ReadOnlyEngine.html
+      - ReadOnlyFighterAI.html
+      - ReadOnlyHangar.html
+      - ReadOnlyHyperspaceEngine.html
+      - ReadOnlyInteractionText.html
+      - ReadOnlyOwner.html
+      - ReadOnlyPhysics.html
+      - ReadOnlyPlan.html
+      - ReadOnlyShipAI.html
+      - ReadOnlyShipSystem.html
+      - "ReadOnlyTorpedoAI [Server] [Client] [Server] [Client].html"
+      - ReadOnlyTorpedoLauncher.html
+      - ReadOnlyTurretBases.html
+      - ReadOnlyVelocity.html
+      - ReadOnlyWeapons.html
+      - ReadOnlyWormHole.html
+      - Shield.html
+      - ShipAI.html
+      - ShipSystem.html
+      - StructuralIntegrity.html
+      - SystemUpgradeLoot.html
+      - Thrusters.html
+      - Torpedo.html
+      - TorpedoAI.html
+      - TorpedoLauncher.html
+      - Turret.html
+      - TurretAI.html
+      - TurretBases.html
+      - Velocity.html
+      - Weapons.html
+      - WormHole.html
+
+  common_objects:
+    description: Common data structures and utility objects
+    files:
+      - AllianceMember.html
+      - AllianceRank.html
+      - BlockPlan.html
+      - BlockPlanBlock.html
+      - BlockStatistics.html
+      - Box.html
+      - Captain.html
+      - Color.html
+      - ControlUnitSeat.html
+      - CraftDesign.html
+      - CraftStatsOverview.html
+      - Crew.html
+      - CrewMan.html
+      - CrewProfession.html
+      - DebugInfo.html
+      - dvec2.html
+      - dvec3.html
+      - dvec4.html
+      - Entity.html
+      - EntityDescriptor.html
+      - FighterTemplate.html
+      - Format.html
+      - GameSettings.html
+      - Group.html
+      - HighResolutionTimer.html
+      - Inventory.html
+      - InventoryTurret.html
+      - ivec2.html
+      - ivec3.html
+      - ivec4.html
+      - Language.html
+      - Mail.html
+      - Material.html
+      - Matrix.html
+      - ModManager.html
+      - NamedFormat.html
+      - PlanBspTree.html
+      - PlanetSpecifics.html
+      - PlanGenerationStage.html
+      - PlanPart.html
+      - PlanStyle.html
+      - PlayerId.html
+      - PluralForm.html
+      - Profiler.html
+      - QuadTree.html
+      - Random.html
+      - Rarity.html
+      - Ray.html
+      - ReadOnlyEntity.html
+      - Rect.html
+      - Relation.html
+      - Scenario.html
+      - SectorView.html
+      - Seed.html
+      - Sphere.html
+      - Squad.html
+      - SystemUpgradeTemplate.html
+      - Timer.html
+      - Tooltip.html
+      - TooltipLine.html
+      - TorpedoShaft.html
+      - TorpedoTemplate.html
+      - TradingGood.html
+      - TurretDesign.html
+      - TurretDesignPart.html
+      - TurretTemplate.html
+      - UsableInventoryItem.html
+      - Uuid.html
+      - VanillaInventoryItem.html
+      - vec2.html
+      - vec3.html
+      - vec4.html
+      - Version.html
+      - Weapon.html
+
+  client_components:
+    description: Client-side only components
+    availability: Client only
+    files:
+      - EntityIcon.html
+      - EntityTooltip.html
+      - PlanMesh.html
+      - ReadOnlyIcon.html
+      - ReadOnlyPlanMesh.html
+      - ReadOnlyScriptUI.html
+      - ReadOnlyTooltip.html
+      - ScriptUI.html
+
+  client_objects:
+    description: Client-side only objects
+    availability: Client only
+    files:
+      - Achievements.html
+      - "Alliance [Client].html"
+      - CameraKeyFrame.html
+      - CaptainSelectionItem.html
+      - Client.html
+      - ClientSettings.html
+      - ColorSelectionItem.html
+      - CraftDesignSelectionItem.html
+      - "Faction [Client].html"
+      - "Galaxy [Client].html"
+      - GalaxyMap.html
+      - GameInput.html
+      - GlowFX.html
+      - IconSelectionItem.html
+      - InputWindow.html
+      - InventoryReferenceSelectionItem.html
+      - InventorySelectionItem.html
+      - Keyboard.html
+      - LaserFX.html
+      - Mouse.html
+      - Music.html
+      - PixelIconSelectionItem.html
+      - Planet.html
+      - "Player [Client].html"
+      - PlayerWindow.html
+      - RefractionFX.html
+      - "Sector [Client].html"
+      - SelectionItem.html
+      - "ShipDatabaseEntry [Client].html"
+      - SoundSource.html
+      - StrategyState.html
+      - TargetIndicator.html
+      - TooltipRenderer.html
+      - TurretDesignSelectionItem.html
+
+  client_ui_objects:
+    description: Client-side UI elements
+    availability: Client only
+    base_class: UIElement
+    files:
+      - AllianceEmblem.html
+      - AllianceTab.html
+      - ArrowLine.html
+      - "Button [Client] [Client].html"
+      - CaptainIcon.html
+      - CaptainProfile.html
+      - CheckBox.html
+      - ComboBox.html
+      - ContextMenu.html
+      - CraftPortrait.html
+      - CrewBar.html
+      - Frame.html
+      - Hud.html
+      - InventorySelection.html
+      - Label.html
+      - Line.html
+      - ListBox.html
+      - ListBoxEx.html
+      - MapArrowLine.html
+      - MapIcon.html
+      - MultiLineTextBox.html
+      - NumbersBar.html
+      - Picture.html
+      - PlanDisplayer.html
+      - ProgressBar.html
+      - SavedDesignsSelection.html
+      - ScrollFrame.html
+      - Selection.html
+      - ShipWindow.html
+      - Slider.html
+      - StatisticsBar.html
+      - Tab.html
+      - TabbedWindow.html
+      - TextBox.html
+      - TextField.html
+      - TooltipDisplayer.html
+      - Tree.html
+      - UIArbitraryHorizontalSplitter.html
+      - UIArbitraryVerticalSplitter.html
+      - UIContainer.html
+      - UIElement.html
+      - UIGridSplitter.html
+      - UIHorizontalLister.html
+      - UIHorizontalMultiSplitter.html
+      - UIHorizontalSplitter.html
+      - UIOrganizer.html
+      - UIRect.html
+      - UIRenderer.html
+      - UIVerticalLister.html
+      - UIVerticalMultiSplitter.html
+      - UIVerticalSplitter.html
+      - ValueComboBox.html
+      - Window.html
+
+  server_components:
+    description: Server-side only components
+    availability: Server only
+    files:
+      - EntityTransferrer.html
+      - FighterController.html
+      - Loot.html
+      - ReadOnlyEntityTransferrer.html
+      - ReadOnlyFighterController.html
+      - ReadOnlyLoot.html
+      - ReadOnlyTurretController.html
+      - ReadOnlyWreckageCreator.html
+      - TurretController.html
+      - WreckageCreator.html
+
+  server_objects:
+    description: Server-side only objects
+    availability: Server only
+    files:
+      - "Alliance [Server].html"
+      - "Faction [Server].html"
+      - "Galaxy [Server].html"
+      - "Player [Server].html"
+      - ReadOnlySector.html
+      - "Sector [Server].html"
+      - Server.html
+      - "ShipDatabaseEntry [Server].html"
+
+  enums:
+    description: Enumeration types
+    file: Enums.html
+    types:
+      - AIState
+      - AlliancePrivilege
+      - BeamShape
+      - BlockShading
+      - BlockStructure
+      - BlockType
+      - BlockType2
+      - BoxType
+      - BuildError
+      - CaptainGenderId
+      - ChatChannel
+      - ChatMessageType
+      - ComponentType
+      - ControlAction
+      - ControlActionBit
+      - ControlStyle
+      - CoolingType
+      - CraftStatsOverviewStat
+      - CrewProfessionType
+      - CrewRank
+      - DamageSource
+      - DamageType
+      - DeletionType
+      - Difficulty
+      - EntityArrivalType
+      - EntityType
+      - FighterOrders
+      - FighterStartError
+      - FighterType
+      - FontType
+      - ImpactParticles
+      - InventoryItemType
+      - JumpError
+      - KeyboardKey
+      - ListBoxEntryType
+      - MalusReason
+      - MaterialType
+      - MoonType
+      - MouseButton
+      - PlanetType
+      - PlanTypeFilter
+      - PlayerStateType
+      - ProjectileShape
+      - RarityType
+      - RelationStatus
+      - SavedDesignType
+      - ScenarioType
+      - SectorChangeType
+      - ShipAvailability
+      - SoundType
+      - StatsBonuses
+      - TargetIndicatorVisuals
+      - TransformationFeature
+      - TurretAutoFireMode
+      - TurretSlotType
+      - WeaponAppearance
+      - WeaponCategory
+
+# =============================================================================
+# INHERITANCE HIERARCHY
+# =============================================================================
+inheritance:
+  UIElement:
+    description: Base class for all UI elements
+    direct_children:
+      - AllianceEmblem
+      - AllianceTab
+      - ArrowLine
+      - Button
+      - CaptainIcon
+      - CaptainProfile
+      - CheckBox
+      - ComboBox
+      - ContextMenu
+      - CraftPortrait
+      - CrewBar
+      - Frame
+      - Hud
+      - InventorySelection
+      - Label
+      - Line
+      - ListBox
+      - ListBoxEx
+      - MapArrowLine
+      - MapIcon
+      - MultiLineTextBox
+      - NumbersBar
+      - Picture
+      - PlanDisplayer
+      - ProgressBar
+      - SavedDesignsSelection
+      - ScrollFrame
+      - Selection
+      - ShipWindow
+      - Slider
+      - StatisticsBar
+      - Tab
+      - TabbedWindow
+      - TextBox
+      - TextField
+      - TooltipDisplayer
+      - Tree
+      - UIArbitraryHorizontalSplitter
+      - UIArbitraryVerticalSplitter
+      - UIContainer
+      - UIGridSplitter
+      - UIHorizontalLister
+      - UIHorizontalMultiSplitter
+      - UIHorizontalSplitter
+      - UIOrganizer
+      - UIRect
+      - UIRenderer
+      - UIVerticalLister
+      - UIVerticalMultiSplitter
+      - UIVerticalSplitter
+      - ValueComboBox
+      - Window
+
+# =============================================================================
+# FEATURE INDEX - Find classes by what they do
+# =============================================================================
+feature_index:
+  resource_collection:
+    mining:
+      - FighterController    # Deploy mining fighters
+      - FighterAI           # Control mining behavior
+      - CargoBay            # Store collected resources
+    salvaging:
+      - FighterController    # Deploy salvaging fighters
+      - FighterAI           # Control salvaging behavior
+
+  combat:
+    weapons:
+      - Weapons              # Weapon management
+      - TurretController     # Turret control
+      - TurretAI            # Turret AI
+      - Turret              # Individual turrets
+    torpedoes:
+      - TorpedoLauncher     # Launch torpedoes
+      - TorpedoAI           # Torpedo behavior
+      - Torpedo             # Torpedo objects
+
+  ship_building:
+    planning:
+      - Plan                # Ship plans
+      - PlanMesh           # Plan rendering
+      - BlockPlan          # Block-level planning
+      - PlanGenerator      # Procedural generation
+    blocks:
+      - BlockStatistics    # Block stats
+      - BlockPlanBlock     # Individual blocks
+
+  navigation:
+    movement:
+      - Physics            # Physics simulation
+      - Velocity           # Velocity management
+      - Engine             # Engine control
+      - Thrusters          # Thruster control
+    hyperspace:
+      - HyperspaceEngine   # Hyperspace jumps
+      - WormHole          # Wormhole travel
+
+  crew_management:
+    - Crew                # Crew data
+    - CrewComponent       # Crew component
+    - CrewMan            # Individual crew members
+    - CrewProfession     # Crew professions
+    - Captain            # Captain data
+
+  alliance_faction:
+    alliance:
+      server: "Alliance [Server]"
+      client: "Alliance [Client]"
+      members: AllianceMember
+      ranks: AllianceRank
+    faction:
+      server: "Faction [Server]"
+      client: "Faction [Client]"
+    relations:
+      - Relation
+      - Owner
+
+  persistence:
+    - Entity.getValue()      # Get persistent values
+    - Entity.setValue()      # Set persistent values
+    - secure()              # Save state callback
+    - restore()             # Restore state callback
+
+  ui_layout:
+    containers:
+      - Frame              # Basic container
+      - Window             # Window container
+      - ScrollFrame        # Scrollable container
+      - TabbedWindow       # Tabbed window
+    splitters:
+      - UIHorizontalSplitter
+      - UIVerticalSplitter
+      - UIArbitraryHorizontalSplitter
+      - UIArbitraryVerticalSplitter
+      - UIGridSplitter
+    listers:
+      - UIHorizontalLister
+      - UIVerticalLister
+      - UIHorizontalMultiSplitter
+      - UIVerticalMultiSplitter
+
+  input_controls:
+    text:
+      - TextBox            # Single-line text input
+      - TextField          # Text field
+      - MultiLineTextBox   # Multi-line text input
+    selection:
+      - CheckBox           # Checkbox
+      - ComboBox           # Dropdown
+      - ValueComboBox      # Value dropdown
+      - Slider             # Slider
+    buttons:
+      - Button             # Standard button
+    mouse_keyboard:
+      - Mouse              # Mouse input
+      - Keyboard           # Keyboard input
+      - GameInput          # Game input
+
+  visual_effects:
+    - GlowFX              # Glow effects
+    - LaserFX             # Laser effects
+    - RefractionFX        # Refraction effects
+
+  math_geometry:
+    vectors:
+      - vec2, vec3, vec4   # Float vectors
+      - ivec2, ivec3, ivec4  # Integer vectors
+      - dvec2, dvec3, dvec4  # Double vectors
+    shapes:
+      - Box                # 3D box
+      - Sphere             # Sphere
+      - Ray                # Ray
+      - Rect               # 2D rectangle
+    transforms:
+      - Matrix             # Transformation matrix
+
+  utilities:
+    randomization:
+      - Random             # Random number generation
+      - Seed               # Seed management
+    timing:
+      - Timer              # Timer utility
+      - HighResolutionTimer  # High-precision timer
+    formatting:
+      - Format             # String formatting
+      - NamedFormat        # Named string formatting
+      - Language           # Localization
+      - PluralForm         # Plural forms
+
+# =============================================================================
+# COMPONENT TYPES
+# =============================================================================
+component_types:
+  description: Use these with Entity:hasComponent() and Entity:getComponent()
+  reference: See ComponentType enum in Enums.html
+  common_components:
+    - name: FighterController
+      enum: ComponentType.FighterController
+      availability: Server
+    - name: FighterAI
+      enum: ComponentType.FighterAI
+      availability: Both
+    - name: ShipAI
+      enum: ComponentType.ShipAI
+      availability: Both
+    - name: TurretController
+      enum: ComponentType.TurretController
+      availability: Server
+    - name: CargoBay
+      enum: ComponentType.Cargo
+      availability: Both
+    - name: Hangar
+      enum: ComponentType.Hangar
+      availability: Both
+    - name: Engine
+      enum: ComponentType.Engine
+      availability: Both
+    - name: Shield
+      enum: ComponentType.Shield
+      availability: Both
+
+# =============================================================================
+# NAMING CONVENTIONS
+# =============================================================================
+naming_conventions:
+  readonly_classes:
+    pattern: "ReadOnly*"
+    description: Read-only versions of mutable classes
+    usage: Used when you need to read but not modify
+    examples:
+      - ReadOnlyEntity
+      - ReadOnlyFighterController
+      - ReadOnlyFighterAI
+
+  server_client_split:
+    pattern: "ClassName [Server]" or "ClassName [Client]"
+    description: Separate server and client implementations
+    examples:
+      - "Player [Server]" vs "Player [Client]"
+      - "Sector [Server]" vs "Sector [Client]"
+      - "Alliance [Server]" vs "Alliance [Client]"
+
+  callbacks:
+    pattern: "* Callbacks"
+    description: Callback function documentation
+    examples:
+      - "Entity Callbacks"
+      - "Player Callbacks"
+      - "Sector Callbacks"
+
+# =============================================================================
+# CROSS-REFERENCES
+# =============================================================================
+cross_references:
+  find_entities:
+    methods:
+      - "Sector.getEntitiesByType(EntityType)"
+      - "Sector.getEntitiesByComponent(ComponentType)"
+      - "Sector.getEntitiesByScriptValue(key, value)"
+      - "Sector.getEntitiesByFaction(factionIndex)"
+    related: Entity, EntityDescriptor
+
+  script_attachment:
+    methods:
+      - "Entity.addScript(path)"
+      - "Entity.addScriptOnce(path)"
+      - "Entity.removeScript(path)"
+      - "Entity.getScripts()"
+    callbacks:
+      - initialize()
+      - secure()
+      - restore(data)
+      - updateServer(timeStep)
+      - updateClient(timeStep)
+
+  persistent_values:
+    methods:
+      - "Entity.getValue(key)"
+      - "Entity.setValue(key, value)"
+    note: Values persist across sector saves/loads
+
+  rpc_communication:
+    functions:
+      - invokeServerFunction(functionName, ...)
+      - broadcastInvokeClientFunction(functionName, ...)
+      - invokeClientFunction(player, functionName, ...)
+    requirement: Must mark functions with callable()
+
+  ui_creation:
+    main_class: ScriptUI
+    methods:
+      - "ScriptUI.createWindow(rect)"
+      - "ScriptUI.createButton(rect, text, callback)"
+      - "ScriptUI.createLabel(rect, text)"
+      - "ScriptUI.createTextBox(rect, callback)"
+    note: Only available on client
+
+# =============================================================================
+# IMPORTANT NOTES
+# =============================================================================
+important_notes:
+  - All UI classes are client-only
+  - FighterController is server-only, FighterAI is available on both
+  - Use onServer() and onClient() to check execution context
+  - Use valid(entity) to check if entity still exists
+  - Component access requires hasComponent() check first
+  - RPC functions must be marked with callable()
+  - Entity persistent values survive sector transitions
+  - ReadOnly classes are immutable versions for safe access
+
+# =============================================================================
+# CONVERSION STATUS
+# =============================================================================
+conversion_status:
+  yaml_files:
+    - ArrowLine.yaml
+  pending_conversion:
+    note: All other HTML files need conversion to YAML format

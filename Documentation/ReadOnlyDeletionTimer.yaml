@@ -1,0 +1,37 @@
+# ReadOnlyDeletionTimer API Documentation
+name: ReadOnlyDeletionTimer
+type: class
+availability: both
+description: ReadOnlyDeletionTimer class
+
+constructor:
+  signature: ReadOnlyDeletionTimer(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyDeletionTimer instance
+
+properties:
+  - name: enabled
+    type: bool
+    access: read-only
+    description: enabled property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: timeLeft
+    type: float
+    access: read-only
+    description: timeLeft property
+
+notes:
+  - Auto-converted from HTML documentation

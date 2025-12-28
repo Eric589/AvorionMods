@@ -1,0 +1,121 @@
+# ReadOnlyHyperspaceEngine API Documentation
+name: ReadOnlyHyperspaceEngine
+type: class
+availability: both
+description: ReadOnlyHyperspaceEngine class
+
+constructor:
+  signature: ReadOnlyHyperspaceEngine(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyHyperspaceEngine instance
+
+properties:
+  - name: blocked
+    type: bool
+    access: read-only
+    description: blocked property
+
+  - name: clearSpace
+    type: bool
+    access: read-only
+    description: clearSpace property
+
+  - name: consumerIcon
+    type: string
+    access: read-only
+    description: consumerIcon property
+
+  - name: consumerName
+    type: string
+    access: read-only
+    description: consumerName property
+
+  - name: cooldown
+    type: float
+    access: read-only
+    description: cooldown property
+
+  - name: cooldownSpeed
+    type: float
+    access: read-only
+    description: cooldownSpeed property
+
+  - name: currentCooldown
+    type: float
+    access: read-only
+    description: currentCooldown property
+
+  - name: defaultPriority
+    type: int
+    access: read-only
+    description: defaultPriority property
+
+  - name: displayedCooldown
+    type: bool
+    access: read-only
+    description: displayedCooldown property
+
+  - name: distorted
+    type: bool
+    access: read-only
+    description: distorted property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: isSceneEmpty
+    type: bool
+    access: read-only
+    description: isSceneEmpty property
+
+  - name: passBlocked
+    type: bool
+    access: read-only
+    description: passBlocked property
+
+  - name: range
+    type: float
+    access: read-only
+    description: range property
+
+  - name: requiredEnergy
+    type: double
+    access: read-only
+    description: requiredEnergy property
+
+  - name: requiredEnergyForJump
+    type: float
+    access: read-only
+    description: requiredEnergyForJump property
+
+methods:
+  - name: isJumpRouteValid
+    signature: isJumpRouteValid(int fromX, int fromY, int toX, int toY)
+    parameters:
+      - name: fromX
+        type: int
+        description: fromX parameter
+      - name: fromY
+        type: int
+        description: fromY parameter
+      - name: toX
+        type: int
+        description: toX parameter
+      - name: toY
+        type: int
+        description: toY parameter
+    returns: bool, var
+    description: isJumpRouteValid method
+
+notes:
+  - Auto-converted from HTML documentation

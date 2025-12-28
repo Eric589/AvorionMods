@@ -1,0 +1,13 @@
+# Alliance [Server]   Callbacks Documentation
+name: Alliance [Server]   Callbacks
+type: callbacks
+description: Callback functions for Alliance [Server] scripts
+
+callbacks:
+  - name: onEmblemChanged
+    signature: onEmblemChanged()
+    description: Called whenever the message of the day was changed
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

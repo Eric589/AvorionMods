@@ -1,0 +1,53 @@
+# PlanetSpecifics API Documentation
+name: PlanetSpecifics
+type: class
+availability: both
+description: PlanetSpecifics class
+
+constructor:
+  signature: PlanetSpecifics()
+  returns: PlanetSpecifics instance
+
+properties:
+  - name: atmosphere
+    type: bool
+    access: read-write
+    description: atmosphere property
+
+  - name: clouds
+    type: bool
+    access: read-write
+    description: clouds property
+
+  - name: habitated
+    type: bool
+    access: read-write
+    description: habitated property
+
+  - name: isPrimary
+    type: bool
+    access: read-write
+    description: isPrimary property
+
+  - name: position
+    type: vec3
+    access: read-write
+    description: position property
+
+  - name: ring
+    type: bool
+    access: read-write
+    description: ring property
+
+  - name: size
+    type: float
+    access: read-write
+    description: size property
+
+  - name: type
+    type: int
+    access: read-write
+    description: type property
+
+notes:
+  - Auto-converted from HTML documentation

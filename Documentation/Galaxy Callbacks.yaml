@@ -1,0 +1,81 @@
+# Galaxy  Callbacks Documentation
+name: Galaxy  Callbacks
+type: callbacks
+description: Callback functions for Galaxy scripts
+
+note: |
+  Callbacks have to be buffered in certain situations and won't happen immediately. When unregistering a callback during a callback, all callbacks that were buffered during the last frame may still be sent, even though they were unregistered.
+
+callbacks:
+  - name: onAllianceCreated
+    signature: onAllianceCreated(index)
+    parameters:
+      - name: index
+        description: Index of the alliance that was created
+    description: Executed whenever a new alliance is created on the server
+
+  - name: onAllScriptValuesChanged
+    signature: onAllScriptValuesChanged()
+    description: Executed whenever all scripts values of the galaxy have been changed at once
+
+  - name: onFactionCreated
+    signature: onFactionCreated(index)
+    parameters:
+      - name: index
+        description: Index of the faction that was created
+    description: Executed whenever a new faction is created on the server
+
+  - name: onPlayerCreated
+    signature: onPlayerCreated(index)
+    parameters:
+      - name: index
+        description: Index of the player that was created
+    description: Executed whenever a new player is created on the server
+
+  - name: onRelationsChanged
+    signature: onRelationsChanged(indexA, indexB, relations, status, relationsBefore, statusBefore)
+    parameters:
+      - name: indexA
+        description: Index of the one faction
+      - name: indexB
+        description: Index of the other faction
+      - name: relations
+        description: The new relations between the factions
+      - name: status
+        description: The new relation status between the factions
+      - name: relationsBefore
+        description: The relations between the factions before the change, nil if none
+      - name: statusBefore
+        description: The relation status between the factions before the change, nil if none
+    description: Executed whenever a the relations between two factions change
+
+  - name: onScriptAdded
+    signature: onScriptAdded(scriptIndex, scriptPath)
+    parameters:
+      - name: scriptIndex
+        description: The index of the script that was added
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was added to the galaxy
+
+  - name: onScriptRemoved
+    signature: onScriptRemoved(oldScriptIndex, scriptPath)
+    parameters:
+      - name: oldScriptIndex
+        description: The old index of the script that was removed
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was removed from the galaxy
+
+  - name: onScriptValueChanged
+    signature: onScriptValueChanged(name, value)
+    parameters:
+      - name: name
+        description: The name of the value
+      - name: value
+        description: The new value
+    description: Executed whenever a script value of the galaxy was changed
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

@@ -1,0 +1,830 @@
+# ReadOnlyEntity API Documentation
+name: ReadOnlyEntity
+type: class
+availability: both
+description: ReadOnlyEntity class
+
+constructor:
+  signature: ReadOnlyEntity(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyEntity instance
+
+properties:
+  - name: aiOwned
+    type: bool
+    access: read-only
+    description: aiOwned property
+
+  - name: allianceOwned
+    type: bool
+    access: read-only
+    description: allianceOwned property
+
+  - name: canPassRifts
+    type: bool
+    access: read-only
+    description: canPassRifts property
+
+  - name: controlActions
+    type: int
+    access: read-only
+    description: controlActions property
+
+  - name: crew
+    type: Crew
+    access: read-only
+    description: crew property
+
+  - name: crewSize
+    type: var
+    access: read-only
+    description: crewSize property
+
+  - name: damageMultiplier
+    type: float
+    access: read-only
+    description: damageMultiplier property
+
+  - name: desiredVelocity
+    type: float
+    access: read-only
+    description: desiredVelocity property
+
+  - name: dockable
+    type: bool
+    access: read-only
+    description: dockable property
+
+  - name: dockingParent
+    type: Uuid
+    access: read-only
+    description: dockingParent property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: excludedPlayer
+    type: int
+    access: read-only
+    description: excludedPlayer property
+
+  - name: exclusionTime
+    type: int
+    access: read-only
+    description: exclusionTime property
+
+  - name: factionIndex
+    type: int
+    access: read-only
+    description: factionIndex property
+
+  - name: fighterCargoPickup
+    type: bool
+    access: read-only
+    description: fighterCargoPickup property
+
+  - name: firePower
+    type: double
+    access: read-only
+    description: firePower property
+
+  - name: freeCargoSpace
+    type: var
+    access: read-only
+    description: freeCargoSpace property
+
+  - name: hasPilot
+    type: bool
+    access: read-only
+    description: hasPilot property
+
+  - name: hyperspaceCooldown
+    type: float
+    access: read-only
+    description: hyperspaceCooldown property
+
+  - name: hyperspaceJumpReach
+    type: float
+    access: read-only
+    description: hyperspaceJumpReach property
+
+  - name: id
+    type: Uuid
+    access: read-only
+    description: id property
+
+  - name: idealCrew
+    type: Crew
+    access: read-only
+    description: idealCrew property
+
+  - name: index
+    type: Uuid
+    access: read-only
+    description: index property
+
+  - name: invincible
+    type: bool
+    access: read-only
+    description: invincible property
+
+  - name: isAnomaly
+    type: bool
+    access: read-only
+    description: isAnomaly property
+
+  - name: isArmedTurret
+    type: var
+    access: read-only
+    description: isArmedTurret property
+
+  - name: isAsteroid
+    type: bool
+    access: read-only
+    description: isAsteroid property
+
+  - name: isContainer
+    type: bool
+    access: read-only
+    description: isContainer property
+
+  - name: isDrone
+    type: bool
+    access: read-only
+    description: isDrone property
+
+  - name: isFighter
+    type: bool
+    access: read-only
+    description: isFighter property
+
+  - name: isFlyable
+    type: bool
+    access: read-only
+    description: isFlyable property
+
+  - name: isLoot
+    type: bool
+    access: read-only
+    description: isLoot property
+
+  - name: isObviouslyMineable
+    type: bool
+    access: read-only
+    description: isObviouslyMineable property
+
+  - name: isOther
+    type: bool
+    access: read-only
+    description: isOther property
+
+  - name: isShieldActive
+    type: var
+    access: read-only
+    description: isShieldActive property
+
+  - name: isShip
+    type: bool
+    access: read-only
+    description: isShip property
+
+  - name: isStation
+    type: bool
+    access: read-only
+    description: isStation property
+
+  - name: isTurning
+    type: var
+    access: read-only
+    description: isTurning property
+
+  - name: isTurret
+    type: bool
+    access: read-only
+    description: isTurret property
+
+  - name: isUnarmedTurret
+    type: var
+    access: read-only
+    description: isUnarmedTurret property
+
+  - name: isUnknown
+    type: bool
+    access: read-only
+    description: isUnknown property
+
+  - name: isWormHole
+    type: bool
+    access: read-only
+    description: isWormHole property
+
+  - name: isWreckage
+    type: bool
+    access: read-only
+    description: isWreckage property
+
+  - name: look
+    type: vec3
+    access: read-only
+    description: look property
+
+  - name: mass
+    type: var
+    access: read-only
+    description: mass property
+
+  - name: maxCargoSpace
+    type: var
+    access: read-only
+    description: maxCargoSpace property
+
+  - name: maxCrewSize
+    type: var
+    access: read-only
+    description: maxCrewSize property
+
+  - name: maxDurability
+    type: var
+    access: read-only
+    description: maxDurability property
+
+  - name: minCrew
+    type: Crew
+    access: read-only
+    description: minCrew property
+
+  - name: mothership
+    type: Entity
+    access: read-only
+    description: mothership property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numCargos
+    type: int
+    access: read-only
+    description: numCargos property
+
+  - name: numDefenseWeapons
+    type: int
+    access: read-only
+    description: numDefenseWeapons property
+
+  - name: numDefenseWeaponsCurrentAttack
+    type: int
+    access: read-only
+    description: numDefenseWeaponsCurrentAttack property
+
+  - name: numDockingPositions
+    type: var
+    access: read-only
+    description: numDockingPositions property
+
+  - name: numTurrets
+    type: var
+    access: read-only
+    description: numTurrets property
+
+  - name: occupiedCargoSpace
+    type: var
+    access: read-only
+    description: occupiedCargoSpace property
+
+  - name: orientation
+    type: Matrix
+    access: read-only
+    description: orientation property
+
+  - name: playerOrAllianceOwned
+    type: bool
+    access: read-only
+    description: playerOrAllianceOwned property
+
+  - name: playerOwned
+    type: bool
+    access: read-only
+    description: playerOwned property
+
+  - name: position
+    type: Matrix
+    access: read-only
+    description: position property
+
+  - name: radius
+    type: var
+    access: read-only
+    description: radius property
+
+  - name: reservationTime
+    type: float
+    access: read-only
+    description: reservationTime property
+
+  - name: reservedPlayer
+    type: int
+    access: read-only
+    description: reservedPlayer property
+
+  - name: right
+    type: vec3
+    access: read-only
+    description: right property
+
+  - name: selectedObject
+    type: var
+    access: read-only
+    description: selectedObject property
+
+  - name: shieldDurability
+    type: double
+    access: read-only
+    description: shieldDurability property
+
+  - name: shieldMaxDurability
+    type: double
+    access: read-only
+    description: shieldMaxDurability property
+
+  - name: shieldMeshIntensity
+    type: float
+    access: read-only
+    description: shieldMeshIntensity property
+
+  - name: size
+    type: vec3
+    access: read-only
+    description: size property
+
+  - name: timeAlive
+    type: var
+    access: read-only
+    description: timeAlive property
+
+  - name: title
+    type: string
+    access: read-only
+    description: title property
+
+  - name: translatedTitle
+    type: var
+    access: read-only
+    description: translatedTitle property
+
+  - name: translation
+    type: dvec3
+    access: read-only
+    description: translation property
+
+  - name: translationf
+    type: vec3
+    access: read-only
+    description: translationf property
+
+  - name: transporterRange
+    type: double
+    access: read-only
+    description: transporterRange property
+
+  - name: type
+    type: int
+    access: read-only
+    description: type property
+
+  - name: typename
+    type: string
+    access: read-only
+    description: typename property
+
+  - name: up
+    type: vec3
+    access: read-only
+    description: up property
+
+  - name: volume
+    type: var
+    access: read-only
+    description: volume property
+
+methods:
+  - name: canAddCrew
+    signature: canAddCrew(int number, int profession, bool change)
+    parameters:
+      - name: number
+        type: int
+        description: number parameter
+      - name: profession
+        type: int
+        description: profession parameter
+      - name: change
+        type: bool
+        description: change parameter
+    returns: var, var, table&lt;int, string&gt;
+    description: canAddCrew method
+
+  - name: findCargos
+    signature: findCargos(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;TradingGood, int&gt;
+    description: findCargos method
+
+  - name: getAimedPositionBySeat
+    signature: getAimedPositionBySeat(int seat)
+    parameters:
+      - name: seat
+        type: int
+        description: seat parameter
+    returns: vec3
+    description: getAimedPositionBySeat method
+
+  - name: getAimedPositions
+    signature: getAimedPositions()
+    returns: vec3...
+    description: getAimedPositions method
+
+  - name: getAllowedArbitraryTurrets
+    signature: getAllowedArbitraryTurrets()
+    returns: void
+    description: getAllowedArbitraryTurrets method
+
+  - name: getAllowedArmedTurrets
+    signature: getAllowedArmedTurrets()
+    returns: void
+    description: getAllowedArmedTurrets method
+
+  - name: getAllowedUnarmedTurrets
+    signature: getAllowedUnarmedTurrets()
+    returns: void
+    description: getAllowedUnarmedTurrets method
+
+  - name: getAttachedBlockIndex
+    signature: getAttachedBlockIndex()
+    returns: void
+    description: getAttachedBlockIndex method
+
+  - name: getBoostedValue
+    signature: getBoostedValue(int type, float value)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+      - name: value
+        type: float
+        description: value parameter
+    returns: void
+    description: getBoostedValue method
+
+  - name: getBoundingBox
+    signature: getBoundingBox()
+    returns: Box
+    description: getBoundingBox method
+
+  - name: getBoundingSphere
+    signature: getBoundingSphere()
+    returns: Sphere
+    description: getBoundingSphere method
+
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: getCargo
+    signature: getCargo(unsigned int n)
+    parameters:
+      - name: n
+        type: unsigned int
+        description: n parameter
+    returns: TradingGood, int...
+    description: getCargo method
+
+  - name: getCargoAmount
+    signature: getCargoAmount(var name)
+    parameters:
+      - name: name
+        type: var
+        description: name parameter
+    returns: int
+    description: getCargoAmount method
+
+  - name: getCargos
+    signature: getCargos()
+    returns: table&lt;TradingGood, int&gt;
+    description: getCargos method
+
+  - name: getCrewMembers
+    signature: getCrewMembers(int profession)
+    parameters:
+      - name: profession
+        type: int
+        description: profession parameter
+    returns: void
+    description: getCrewMembers method
+
+  - name: getDamageContributorPlayerFactions
+    signature: getDamageContributorPlayerFactions()
+    returns: int...
+    description: getDamageContributorPlayerFactions method
+
+  - name: getDamageContributorPlayers
+    signature: getDamageContributorPlayers()
+    returns: int...
+    description: getDamageContributorPlayers method
+
+  - name: getDamageContributors
+    signature: getDamageContributors()
+    returns: int...
+    description: getDamageContributors method
+
+  - name: getDockedGroupBoundingBox
+    signature: getDockedGroupBoundingBox()
+    returns: Box
+    description: getDockedGroupBoundingBox method
+
+  - name: getDockedGroupBoundingSphere
+    signature: getDockedGroupBoundingSphere()
+    returns: Sphere
+    description: getDockedGroupBoundingSphere method
+
+  - name: getDockingPositions
+    signature: getDockingPositions()
+    returns: void
+    description: getDockingPositions method
+
+  - name: getFreeArbitraryTurrets
+    signature: getFreeArbitraryTurrets()
+    returns: void
+    description: getFreeArbitraryTurrets method
+
+  - name: getFreeArmedTurrets
+    signature: getFreeArmedTurrets()
+    returns: void
+    description: getFreeArmedTurrets method
+
+  - name: getFreeUnarmedTurrets
+    signature: getFreeUnarmedTurrets()
+    returns: void
+    description: getFreeUnarmedTurrets method
+
+  - name: getFullPlanCopy
+    signature: getFullPlanCopy()
+    returns: BlockPlan
+    description: getFullPlanCopy method
+
+  - name: getLowestMineableMaterial
+    signature: getLowestMineableMaterial()
+    returns: Material
+    description: getLowestMineableMaterial method
+
+  - name: getMalusFactor
+    signature: getMalusFactor()
+    returns: var, var
+    description: getMalusFactor method
+
+  - name: getMineableMaterial
+    signature: getMineableMaterial()
+    returns: Material
+    description: getMineableMaterial method
+
+  - name: getMineableResources
+    signature: getMineableResources()
+    returns: int...
+    description: getMineableResources method
+
+  - name: getMoneyLootAmount
+    signature: getMoneyLootAmount()
+    returns: int
+    description: getMoneyLootAmount method
+
+  - name: getNearestDistance
+    signature: getNearestDistance(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: void
+    description: getNearestDistance method
+
+  - name: getNumArmedTurrets
+    signature: getNumArmedTurrets()
+    returns: void
+    description: getNumArmedTurrets method
+
+  - name: getNumMiningTurrets
+    signature: getNumMiningTurrets()
+    returns: void
+    description: getNumMiningTurrets method
+
+  - name: getNumSalvagingTurrets
+    signature: getNumSalvagingTurrets()
+    returns: void
+    description: getNumSalvagingTurrets method
+
+  - name: getNumUnarmedTurrets
+    signature: getNumUnarmedTurrets()
+    returns: void
+    description: getNumUnarmedTurrets method
+
+  - name: getPilotIndices
+    signature: getPilotIndices()
+    returns: int...
+    description: getPilotIndices method
+
+  - name: getPlanMoneyValue
+    signature: getPlanMoneyValue()
+    returns: void
+    description: getPlanMoneyValue method
+
+  - name: getPlanResourceValue
+    signature: getPlanResourceValue()
+    returns: double...
+    description: getPlanResourceValue method
+
+  - name: getResourceLootAmount
+    signature: getResourceLootAmount()
+    returns: int
+    description: getResourceLootAmount method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getTitleArguments
+    signature: getTitleArguments()
+    returns: table&lt;string, string&gt;
+    description: getTitleArguments method
+
+  - name: getTitleFormat
+    signature: getTitleFormat()
+    returns: NamedFormat
+    description: getTitleFormat method
+
+  - name: getTurret
+    signature: getTurret(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: Entity
+    description: getTurret method
+
+  - name: getTurrets
+    signature: getTurrets()
+    returns: Entity...
+    description: getTurrets method
+
+  - name: getTurretSize
+    signature: getTurretSize()
+    returns: void
+    description: getTurretSize method
+
+  - name: getTurretTemplateSize
+    signature: getTurretTemplateSize()
+    returns: void
+    description: getTurretTemplateSize method
+
+  - name: getTurretTurningSpeed
+    signature: getTurretTurningSpeed()
+    returns: void
+    description: getTurretTurningSpeed method
+
+  - name: getUndamagedPlanMoneyValue
+    signature: getUndamagedPlanMoneyValue()
+    returns: void
+    description: getUndamagedPlanMoneyValue method
+
+  - name: getUndamagedPlanResourceValue
+    signature: getUndamagedPlanResourceValue()
+    returns: double...
+    description: getUndamagedPlanResourceValue method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    description: getValues method
+
+  - name: hasComponent
+    signature: hasComponent(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: bool
+    description: hasComponent method
+
+  - name: hasScript
+    signature: hasScript(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: hasScript method
+
+  - name: hyperspaceBlocked
+    signature: hyperspaceBlocked()
+    returns: void
+    description: hyperspaceBlocked method
+
+  - name: isCollectable
+    signature: isCollectable(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: isCollectable method
+
+  - name: isInDockingArea
+    signature: isInDockingArea(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: bool
+    description: isInDockingArea method
+
+  - name: isInsideShield
+    signature: isInsideShield(vec3 point)
+    parameters:
+      - name: point
+        type: vec3
+        description: point parameter
+    returns: void
+    description: isInsideShield method
+
+  - name: isJumpRouteValid
+    signature: isJumpRouteValid(int fromX, int fromY, int toX, int toY)
+    parameters:
+      - name: fromX
+        type: int
+        description: fromX parameter
+      - name: fromY
+        type: int
+        description: fromY parameter
+      - name: toX
+        type: int
+        description: toX parameter
+      - name: toY
+        type: int
+        description: toY parameter
+    returns: bool, var
+    description: isJumpRouteValid method
+
+  - name: isManned
+    signature: isManned()
+    returns: void
+    description: isManned method
+
+  - name: isTurretAllowed
+    signature: isTurretAllowed(TurretTemplate ScriptTurretTemplate)
+    parameters:
+      - name: ScriptTurretTemplate
+        type: TurretTemplate
+        description: ScriptTurretTemplate parameter
+    returns: void
+    description: isTurretAllowed method
+
+  - name: jumpPossible
+    signature: jumpPossible(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: int
+    description: jumpPossible method
+
+  - name: resolveScriptPath
+    signature: resolveScriptPath(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: void
+    description: resolveScriptPath method
+
+notes:
+  - Auto-converted from HTML documentation

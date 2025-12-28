@@ -1,0 +1,80 @@
+# Uuid API Documentation
+name: Uuid
+type: class
+availability: both
+description: Uuid class
+
+constructor:
+  signature: Uuid(var uuid)
+  parameters:
+    - name: uuid
+      type: var
+      description: uuid parameter
+  returns: Uuid instance
+
+properties:
+  - name: isNil
+    type: bool
+    access: read-only
+    description: isNil property
+
+  - name: number
+    type: int
+    access: read-only
+    description: number property
+
+  - name: string
+    type: string
+    access: read-only
+    description: string property
+
+  - name: value
+    type: string
+    access: read-only
+    description: value property
+
+methods:
+  - name: __eq
+    signature: __eq(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __le
+    signature: __le(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: bool
+    description: __le method
+
+  - name: __lt
+    signature: __lt(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: bool
+    description: __lt method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: reset
+    signature: reset()
+    returns: void
+    description: reset method
+
+  - name: toRandom
+    signature: toRandom()
+    returns: void
+    description: toRandom method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,42 @@
+# Client API Documentation
+name: Client
+type: class
+availability: client-only
+description: Client class
+
+constructor:
+  signature: Client()
+  returns: Client instance
+
+properties:
+  - name: runtime
+    type: double
+    access: read-only
+    description: runtime property
+
+  - name: sessionId
+    type: uuid
+    access: read-only
+    description: sessionId property
+
+  - name: unpausedRuntime
+    type: double
+    access: read-only
+    description: unpausedRuntime property
+
+methods:
+  - name: sendAnalytics
+    signature: sendAnalytics(string identifier, var scriptData)
+    parameters:
+      - name: identifier
+        type: string
+        description: identifier parameter
+      - name: scriptData
+        type: var
+        description: scriptData parameter
+    returns: void
+    description: sendAnalytics method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

@@ -1,0 +1,78 @@
+# Ray API Documentation
+name: Ray
+type: class
+availability: both
+description: Ray class
+
+constructor:
+  signature: Ray(vec3 pos, vec3 size)
+  parameters:
+    - name: pos
+      type: vec3
+      description: pos parameter
+    - name: size
+      type: vec3
+      description: size parameter
+  returns: Ray instance
+
+properties:
+  - name: direction
+    type: vec3
+    access: read-write
+    description: direction property
+
+  - name: origin
+    type: vec3
+    access: read-write
+    description: origin property
+
+  - name: planeIntersectionThickness
+    type: float
+    access: read-write
+    description: planeIntersectionThickness property
+
+methods:
+  - name: distanceToPoint
+    signature: distanceToPoint(vec3 point)
+    parameters:
+      - name: point
+        type: vec3
+        description: point parameter
+    returns: float
+    description: distanceToPoint method
+
+  - name: distanceToPoint2
+    signature: distanceToPoint2(vec3 point)
+    parameters:
+      - name: point
+        type: vec3
+        description: point parameter
+    returns: float
+    description: distanceToPoint2 method
+
+  - name: findClosestPoints
+    signature: findClosestPoints(Ray other, vec3 onSelf, vec3 onOther)
+    parameters:
+      - name: other
+        type: Ray
+        description: other parameter
+      - name: onSelf
+        type: vec3
+        description: onSelf parameter
+      - name: onOther
+        type: vec3
+        description: onOther parameter
+    returns: void
+    description: findClosestPoints method
+
+  - name: projectPoint
+    signature: projectPoint(vec3 point)
+    parameters:
+      - name: point
+        type: vec3
+        description: point parameter
+    returns: vec3, float
+    description: projectPoint method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,72 @@
+# ReadOnlyFighterAI API Documentation
+name: ReadOnlyFighterAI
+type: class
+availability: both
+description: ReadOnlyFighterAI class
+
+constructor:
+  signature: ReadOnlyFighterAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyFighterAI instance
+
+properties:
+  - name: circling
+    type: bool
+    access: read-only
+    description: circling property
+
+  - name: clearFeedbackEachTick
+    type: bool
+    access: read-only
+    description: clearFeedbackEachTick property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: evading
+    type: bool
+    access: read-only
+    description: evading property
+
+  - name: ignoreMothershipOrders
+    type: bool
+    access: read-only
+    description: ignoreMothershipOrders property
+
+  - name: mothershipId
+    type: Uuid
+    access: read-only
+    description: mothershipId property
+
+  - name: orders
+    type: FighterOrders
+    access: read-only
+    description: orders property
+
+  - name: reachedTarget
+    type: bool
+    access: read-only
+    description: reachedTarget property
+
+  - name: squad
+    type: unsigned int
+    access: read-only
+    description: squad property
+
+  - name: target
+    type: uuid
+    access: read-only
+    description: target property
+
+notes:
+  - Auto-converted from HTML documentation

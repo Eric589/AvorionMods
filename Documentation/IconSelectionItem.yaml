@@ -1,0 +1,38 @@
+# IconSelectionItem API Documentation
+name: IconSelectionItem
+type: class
+availability: client-only
+description: IconSelectionItem class
+
+constructor:
+  signature: IconSelectionItem(string other)
+  parameters:
+    - name: other
+      type: string
+      description: other parameter
+  returns: IconSelectionItem instance
+
+properties:
+  - name: borderColor
+    type: Color
+    access: read-write
+    description: borderColor property
+
+  - name: color
+    type: Color
+    access: read-write
+    description: color property
+
+  - name: icon
+    type: string
+    access: read-write
+    description: icon property
+
+  - name: vignette
+    type: bool
+    access: read-write
+    description: vignette property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

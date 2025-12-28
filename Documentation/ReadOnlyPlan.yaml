@@ -1,0 +1,211 @@
+# ReadOnlyPlan API Documentation
+name: ReadOnlyPlan
+type: class
+availability: both
+description: ReadOnlyPlan class
+
+constructor:
+  signature: ReadOnlyPlan(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyPlan instance
+
+properties:
+  - name: accumulatingHealth
+    type: bool
+    access: read-only
+    description: accumulatingHealth property
+
+  - name: boundingBox
+    type: Box
+    access: read-only
+    description: boundingBox property
+
+  - name: boundingSphere
+    type: Sphere
+    access: read-only
+    description: boundingSphere property
+
+  - name: centerOfMass
+    type: vec3
+    access: read-only
+    description: centerOfMass property
+
+  - name: collisionDamage
+    type: bool
+    access: read-only
+    description: collisionDamage property
+
+  - name: convex
+    type: bool
+    access: read-only
+    description: convex property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: mass
+    type: double
+    access: read-only
+    description: mass property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+  - name: processingPower
+    type: double
+    access: read-only
+    description: processingPower property
+
+  - name: radius
+    type: float
+    access: read-only
+    description: radius property
+
+  - name: root
+    type: BlockPlanBlock
+    access: read-only
+    description: root property
+
+  - name: rootIndex
+    type: var
+    access: read-only
+    description: rootIndex property
+
+  - name: singleBlockDestructionEnabled
+    type: bool
+    access: read-only
+    description: singleBlockDestructionEnabled property
+
+  - name: size
+    type: int
+    access: read-only
+    description: size property
+
+  - name: volume
+    type: float
+    access: read-only
+    description: volume property
+
+methods:
+  - name: empty
+    signature: empty()
+    returns: bool
+    description: empty method
+
+  - name: exists
+    signature: exists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: exists method
+
+  - name: get
+    signature: get()
+    returns: BlockPlan
+    description: get method
+
+  - name: getBlock
+    signature: getBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: BlockPlanBlock
+    description: getBlock method
+
+  - name: getBlockIndices
+    signature: getBlockIndices()
+    returns: int...
+    description: getBlockIndices method
+
+  - name: getBlocksByType
+    signature: getBlocksByType(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int...
+    description: getBlocksByType method
+
+  - name: getMoneyValue
+    signature: getMoneyValue()
+    returns: double
+    description: getMoneyValue method
+
+  - name: getNthBlock
+    signature: getNthBlock(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: BlockPlanBlock
+    description: getNthBlock method
+
+  - name: getNthIndex
+    signature: getNthIndex(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: void
+    description: getNthIndex method
+
+  - name: getNumBlocks
+    signature: getNumBlocks(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: int
+    description: getNumBlocks method
+
+  - name: getRemoved
+    signature: getRemoved(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int...
+    description: getRemoved method
+
+  - name: getResourceValue
+    signature: getResourceValue()
+    returns: double...
+    description: getResourceValue method
+
+  - name: getStats
+    signature: getStats()
+    returns: BlockStatistics
+    description: getStats method
+
+  - name: getUndamagedMoneyValue
+    signature: getUndamagedMoneyValue()
+    returns: double
+    description: getUndamagedMoneyValue method
+
+  - name: getUndamagedResourceValue
+    signature: getUndamagedResourceValue()
+    returns: double...
+    description: getUndamagedResourceValue method
+
+notes:
+  - Auto-converted from HTML documentation

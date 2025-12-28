@@ -1,0 +1,144 @@
+# ReadOnlyCrew API Documentation
+name: ReadOnlyCrew
+type: class
+availability: both
+description: ReadOnlyCrew class
+
+constructor:
+  signature: ReadOnlyCrew(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyCrew instance
+
+properties:
+  - name: attackers
+    type: int
+    access: read-only
+    description: attackers property
+
+  - name: autoAssignCrew
+    type: int
+    access: read-only
+    description: autoAssignCrew property
+
+  - name: engineers
+    type: int
+    access: read-only
+    description: engineers property
+
+  - name: gunners
+    type: int
+    access: read-only
+    description: gunners property
+
+  - name: maxSize
+    type: int
+    access: read-only
+    description: maxSize property
+
+  - name: mechanics
+    type: int
+    access: read-only
+    description: mechanics property
+
+  - name: miners
+    type: int
+    access: read-only
+    description: miners property
+
+  - name: pilots
+    type: int
+    access: read-only
+    description: pilots property
+
+  - name: security
+    type: int
+    access: read-only
+    description: security property
+
+  - name: size
+    type: int
+    access: read-only
+    description: size property
+
+  - name: unemployed
+    type: int
+    access: read-only
+    description: unemployed property
+
+methods:
+  - name: canAddCrew
+    signature: canAddCrew(int number, int profession, int change)
+    parameters:
+      - name: number
+        type: int
+        description: number parameter
+      - name: profession
+        type: int
+        description: profession parameter
+      - name: change
+        type: int
+        description: change parameter
+    returns: var, var, table&lt;int, string&gt;
+    description: canAddCrew method
+
+  - name: canAddPassenger
+    signature: canAddPassenger(var passenger)
+    parameters:
+      - name: passenger
+        type: var
+        description: passenger parameter
+    returns: var, var, table&lt;int, string&gt;
+    description: canAddPassenger method
+
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: getMembers
+    signature: getMembers()
+    returns: table&lt;CrewMan, unsigned int&gt;
+    description: getMembers method
+
+  - name: getMembersByProfession
+    signature: getMembersByProfession(int profession)
+    parameters:
+      - name: profession
+        type: int
+        description: profession parameter
+    returns: int
+    description: getMembersByProfession method
+
+  - name: getNumMembers
+    signature: getNumMembers(CrewMan crewman)
+    parameters:
+      - name: crewman
+        type: CrewMan
+        description: crewman parameter
+    returns: int
+    description: getNumMembers method
+
+  - name: getPassengers
+    signature: getPassengers()
+    returns: Captain...
+    description: getPassengers method
+
+  - name: getWorkforce
+    signature: getWorkforce()
+    returns: table&lt;CrewProfession, float&gt;
+    description: getWorkforce method
+
+  - name: hasCaptain
+    signature: hasCaptain(var captainClass)
+    parameters:
+      - name: captainClass
+        type: var
+        description: captainClass parameter
+    returns: bool
+    description: hasCaptain method
+
+notes:
+  - Auto-converted from HTML documentation

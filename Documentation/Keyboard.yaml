@@ -1,0 +1,62 @@
+# Keyboard API Documentation
+name: Keyboard
+type: class
+availability: client-only
+description: Keyboard class
+
+constructor:
+  signature: Keyboard()
+  returns: Keyboard instance
+
+properties:
+  - name: altPressed
+    type: bool
+    access: read-only
+    description: altPressed property
+
+  - name: controlPressed
+    type: bool
+    access: read-only
+    description: controlPressed property
+
+  - name: modifierKeyPressed
+    type: bool
+    access: read-only
+    description: modifierKeyPressed property
+
+  - name: shiftPressed
+    type: bool
+    access: read-only
+    description: shiftPressed property
+
+methods:
+  - name: keyDown
+    signature: keyDown(var value)
+    parameters:
+      - name: value
+        type: var
+        description: value parameter
+    returns: bool
+    description: keyDown method
+
+  - name: keyPressed
+    signature: keyPressed(var value)
+    parameters:
+      - name: value
+        type: var
+        description: value parameter
+    returns: bool
+    description: keyPressed method
+
+  - name: keyUp
+    signature: keyUp(var value)
+    parameters:
+      - name: value
+        type: var
+        description: value parameter
+    returns: bool
+    description: keyUp method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

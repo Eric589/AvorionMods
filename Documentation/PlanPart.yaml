@@ -1,0 +1,229 @@
+# PlanPart API Documentation
+name: PlanPart
+type: class
+availability: both
+description: PlanPart class
+
+constructor:
+  signature: PlanPart()
+  returns: PlanPart instance
+
+properties:
+  - name: allrounders
+    type: int...
+    access: read-only
+    description: allrounders property
+
+  - name: features
+    type: int...
+    access: read-only
+    description: features property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+  - name: othersPaddingBox
+    type: Box
+    access: write-only
+    description: othersPaddingBox property
+
+  - name: paddingBox
+    type: Box
+    access: write-only
+    description: paddingBox property
+
+  - name: selfPaddingBox
+    type: Box
+    access: read-write
+    description: selfPaddingBox property
+
+  - name: symmetries
+    type: var...
+    access: read-write
+    description: symmetries property
+
+  - name: transformationFeatures
+    type: TransformationFeature...
+    access: read-write
+    description: transformationFeatures property
+
+methods:
+  - name: block
+    signature: block(int parentIndex, var directionOrPosition, int blockType, vec3 [or nil] size, var color, Matrix [or nil] orientation, var secondaryColor)
+    parameters:
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: directionOrPosition
+        type: var
+        description: directionOrPosition parameter
+      - name: blockType
+        type: int
+        description: blockType parameter
+      - name: size
+        type: vec3 [or nil]
+        description: size parameter
+      - name: color
+        type: var
+        description: color parameter
+      - name: orientation
+        type: Matrix [or nil]
+        description: orientation parameter
+      - name: secondaryColor
+        type: var
+        description: secondaryColor parameter
+    returns: int
+    description: block method
+
+  - name: connector
+    signature: connector(int blockIndex, var direction, table_t flags)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: direction
+        type: var
+        description: direction parameter
+      - name: flags
+        type: table_t
+        description: flags parameter
+    returns: void
+    description: connector method
+
+  - name: erase
+    signature: erase(int blockIndex, var direction)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: direction
+        type: var
+        description: direction parameter
+    returns: void
+    description: erase method
+
+  - name: getBlock
+    signature: getBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: BlockPlanBlock
+    description: getBlock method
+
+  - name: getBlocks
+    signature: getBlocks(int... types)
+    parameters:
+      - name: types
+        type: int...
+        description: types parameter
+    returns: int...
+    description: getBlocks method
+
+  - name: getConnectors
+    signature: getConnectors()
+    returns: table_t...
+    description: getConnectors method
+
+  - name: getPlan
+    signature: getPlan()
+    returns: BlockPlan
+    description: getPlan method
+
+  - name: merge
+    signature: merge(int... blocks)
+    parameters:
+      - name: blocks
+        type: int...
+        description: blocks parameter
+    returns: int...
+    description: merge method
+
+  - name: mirror
+    signature: mirror(var axis)
+    parameters:
+      - name: axis
+        type: var
+        description: axis parameter
+    returns: void
+    description: mirror method
+
+  - name: resize
+    signature: resize(int blockIndex, var x, var y, var z)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: x
+        type: var
+        description: x parameter
+      - name: y
+        type: var
+        description: y parameter
+      - name: z
+        type: var
+        description: z parameter
+    returns: void
+    description: resize method
+
+  - name: rotate
+    signature: rotate(var axis, int times)
+    parameters:
+      - name: axis
+        type: var
+        description: axis parameter
+      - name: times
+        type: int
+        description: times parameter
+    returns: void
+    description: rotate method
+
+  - name: scale
+    signature: scale(vec3 factor)
+    parameters:
+      - name: factor
+        type: vec3
+        description: factor parameter
+    returns: void
+    description: scale method
+
+  - name: setConnectorFlags
+    signature: setConnectorFlags(int blockIndex, var direction, table_t flags)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: direction
+        type: var
+        description: direction parameter
+      - name: flags
+        type: table_t
+        description: flags parameter
+    returns: void
+    description: setConnectorFlags method
+
+  - name: setPlan
+    signature: setPlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setPlan method
+
+  - name: transform
+    signature: transform(int blockIndex, table_t flags)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: flags
+        type: table_t
+        description: flags parameter
+    returns: void
+    description: transform method
+
+notes:
+  - Auto-converted from HTML documentation

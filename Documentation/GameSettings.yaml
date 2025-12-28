@@ -1,0 +1,264 @@
+# GameSettings API Documentation
+name: GameSettings
+type: class
+availability: both
+description: GameSettings class
+
+constructor:
+  signature: GameSettings()
+  returns: GameSettings instance
+
+properties:
+  - name: barrier
+    type: bool
+    access: read-only
+    description: barrier property
+
+  - name: behemothEvents
+    type: bool
+    access: read-only
+    description: behemothEvents property
+
+  - name: bigWreckageDespawnTime
+    type: float
+    access: read-only
+    description: bigWreckageDespawnTime property
+
+  - name: buildModeExtraBlockTypes
+    type: bool
+    access: read-only
+    description: buildModeExtraBlockTypes property
+
+  - name: buildModeFreeTurrets
+    type: bool
+    access: read-only
+    description: buildModeFreeTurrets property
+
+  - name: collisionDamage
+    type: float
+    access: read-only
+    description: collisionDamage property
+
+  - name: creativeModeCommandCenter
+    type: bool
+    access: read-only
+    description: creativeModeCommandCenter property
+
+  - name: damageMultiplier
+    type: float
+    access: read-only
+    description: damageMultiplier property
+
+  - name: devMode
+    type: bool
+    access: read-only
+    description: devMode property
+
+  - name: difficulty
+    type: Difficulty
+    access: read-only
+    description: difficulty property
+
+  - name: dockingRestrictions
+    type: bool
+    access: read-only
+    description: dockingRestrictions property
+
+  - name: eventsFactor
+    type: float
+    access: read-only
+    description: eventsFactor property
+
+  - name: fullBuildingUnlocked
+    type: bool
+    access: read-only
+    description: fullBuildingUnlocked property
+
+  - name: infiniteResources
+    type: bool
+    access: read-only
+    description: infiniteResources property
+
+  - name: initialRelations
+    type: int
+    access: read-only
+    description: initialRelations property
+
+  - name: instantShipyardBuilding
+    type: bool
+    access: read-only
+    description: instantShipyardBuilding property
+
+  - name: mapFactions
+    type: int
+    access: read-only
+    description: mapFactions property
+
+  - name: maximumAllianceShips
+    type: int
+    access: read-only
+    description: maximumAllianceShips property
+
+  - name: maximumAllianceShipsPerMember
+    type: int
+    access: read-only
+    description: maximumAllianceShipsPerMember property
+
+  - name: maximumAllianceStations
+    type: int
+    access: read-only
+    description: maximumAllianceStations property
+
+  - name: maximumAllianceStationsPerMember
+    type: int
+    access: read-only
+    description: maximumAllianceStationsPerMember property
+
+  - name: maximumBlocksPerCraft
+    type: int
+    access: read-only
+    description: maximumBlocksPerCraft property
+
+  - name: maximumFightersPerSectorAndPlayer
+    type: int
+    access: read-only
+    description: maximumFightersPerSectorAndPlayer property
+
+  - name: maximumPlayerShips
+    type: int
+    access: read-only
+    description: maximumPlayerShips property
+
+  - name: maximumPlayerStations
+    type: int
+    access: read-only
+    description: maximumPlayerStations property
+
+  - name: maximumStationsPerSector
+    type: int
+    access: read-only
+    description: maximumStationsPerSector property
+
+  - name: maximumVolumePerShip
+    type: double
+    access: read-only
+    description: maximumVolumePerShip property
+
+  - name: maximumVolumePerStation
+    type: double
+    access: read-only
+    description: maximumVolumePerStation property
+
+  - name: permaDestruction
+    type: bool
+    access: read-only
+    description: permaDestruction property
+
+  - name: playTutorial
+    type: bool
+    access: read-only
+    description: playTutorial property
+
+  - name: preciseAIAim
+    type: bool
+    access: read-only
+    description: preciseAIAim property
+
+  - name: pvpDamage
+    type: bool
+    access: read-only
+    description: pvpDamage property
+
+  - name: reconstructionAllowed
+    type: bool
+    access: read-only
+    description: reconstructionAllowed property
+
+  - name: relationGainFactor
+    type: float
+    access: read-only
+    description: relationGainFactor property
+
+  - name: relationLossFactor
+    type: float
+    access: read-only
+    description: relationLossFactor property
+
+  - name: repairingAlwaysAllowed
+    type: bool
+    access: read-only
+    description: repairingAlwaysAllowed property
+
+  - name: resourceAsteroidFactor
+    type: float
+    access: read-only
+    description: resourceAsteroidFactor property
+
+  - name: resourceWreckageFactor
+    type: float
+    access: read-only
+    description: resourceWreckageFactor property
+
+  - name: riftDamageFactor
+    type: float
+    access: read-only
+    description: riftDamageFactor property
+
+  - name: riftMassFactor
+    type: float
+    access: read-only
+    description: riftMassFactor property
+
+  - name: rifts
+    type: int
+    access: read-only
+    description: rifts property
+
+  - name: safePlayerInput
+    type: bool
+    access: read-write
+    description: safePlayerInput property
+
+  - name: seed
+    type: string
+    access: read-write
+    description: seed property
+
+  - name: shipyardBoundBuilding
+    type: bool
+    access: read-write
+    description: shipyardBoundBuilding property
+
+  - name: smallWreckageDespawnTime
+    type: float
+    access: read-write
+    description: smallWreckageDespawnTime property
+
+  - name: startingResources
+    type: int
+    access: read-write
+    description: startingResources property
+
+  - name: storyline
+    type: bool
+    access: read-write
+    description: storyline property
+
+  - name: unlimitedProcessingPower
+    type: bool
+    access: read-write
+    description: unlimitedProcessingPower property
+
+  - name: unlimitedShipSize
+    type: bool
+    access: read-write
+    description: unlimitedShipSize property
+
+methods:
+  - name: activate
+    signature: activate()
+    returns: void
+    description: activate method
+
+notes:
+  - Auto-converted from HTML documentation

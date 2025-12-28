@@ -1,0 +1,568 @@
+# UIContainer API Documentation
+name: UIContainer
+type: class
+extends: UIElement
+availability: client-only
+description: UIContainer class
+
+constructor:
+  signature: UIContainer(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: UIContainer instance
+
+properties:
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: createAllianceEmblem
+    signature: createAllianceEmblem(Rect rect, int allianceIndex)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: allianceIndex
+        type: int
+        description: allianceIndex parameter
+    returns: AllianceEmblem
+    description: createAllianceEmblem method
+
+  - name: createArrowLine
+    signature: createArrowLine()
+    returns: ArrowLine
+    description: createArrowLine method
+
+  - name: createButton
+    signature: createButton(Rect rect, string caption, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    description: createButton method
+
+  - name: createCaptainIcon
+    signature: createCaptainIcon(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainIcon
+    description: createCaptainIcon method
+
+  - name: createCaptainProfile
+    signature: createCaptainProfile(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainProfile
+    description: createCaptainProfile method
+
+  - name: createCheckBox
+    signature: createCheckBox(Rect rect, string caption, string onCheckedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onCheckedFunction
+        type: string
+        description: onCheckedFunction parameter
+    returns: CheckBox
+    description: createCheckBox method
+
+  - name: createComboBox
+    signature: createComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ComboBox
+    description: createComboBox method
+
+  - name: createContainer
+    signature: createContainer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: UIContainer
+    description: createContainer method
+
+  - name: createContextMenu
+    signature: createContextMenu()
+    returns: ContextMenu
+    description: createContextMenu method
+
+  - name: createCraftPortrait
+    signature: createCraftPortrait(Rect rect, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: CraftPortrait
+    description: createCraftPortrait method
+
+  - name: createCrewBar
+    signature: createCrewBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CrewBar
+    description: createCrewBar method
+
+  - name: createFrame
+    signature: createFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Frame
+    description: createFrame method
+
+  - name: createInputWindow
+    signature: createInputWindow()
+    returns: InputWindow
+    description: createInputWindow method
+
+  - name: createInventorySelection
+    signature: createInventorySelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: InventorySelection
+    description: createInventorySelection method
+
+  - name: createLabel
+    signature: createLabel(var position, string caption, int fontSize)
+    parameters:
+      - name: position
+        type: var
+        description: position parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: fontSize
+        type: int
+        description: fontSize parameter
+    returns: Label
+    description: createLabel method
+
+  - name: createLine
+    signature: createLine(vec2 a, vec2 b)
+    parameters:
+      - name: a
+        type: vec2
+        description: a parameter
+      - name: b
+        type: vec2
+        description: b parameter
+    returns: Line
+    description: createLine method
+
+  - name: createListBox
+    signature: createListBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBox
+    description: createListBox method
+
+  - name: createListBoxEx
+    signature: createListBoxEx(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBoxEx
+    description: createListBoxEx method
+
+  - name: createMapArrowLine
+    signature: createMapArrowLine()
+    returns: MapArrowLine
+    description: createMapArrowLine method
+
+  - name: createMapIcon
+    signature: createMapIcon(string texture, ivec2 coordinates, Color [or nil] color)
+    parameters:
+      - name: texture
+        type: string
+        description: texture parameter
+      - name: coordinates
+        type: ivec2
+        description: coordinates parameter
+      - name: color
+        type: Color [or nil]
+        description: color parameter
+    returns: MapIcon
+    description: createMapIcon method
+
+  - name: createMultiLineTextBox
+    signature: createMultiLineTextBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: MultiLineTextBox
+    description: createMultiLineTextBox method
+
+  - name: createNumbersBar
+    signature: createNumbersBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: NumbersBar
+    description: createNumbersBar method
+
+  - name: createPicture
+    signature: createPicture(Rect rect, string path)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: path
+        type: string
+        description: path parameter
+    returns: Picture
+    description: createPicture method
+
+  - name: createPlanDisplayer
+    signature: createPlanDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: PlanDisplayer
+    description: createPlanDisplayer method
+
+  - name: createProgressBar
+    signature: createProgressBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: ProgressBar
+    description: createProgressBar method
+
+  - name: createRect
+    signature: createRect(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: UIRect
+    description: createRect method
+
+  - name: createRoundButton
+    signature: createRoundButton(Rect rect, string icon, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    description: createRoundButton method
+
+  - name: createSavedDesignsSelection
+    signature: createSavedDesignsSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: SavedDesignsSelection
+    description: createSavedDesignsSelection method
+
+  - name: createScrollFrame
+    signature: createScrollFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ScrollFrame
+    description: createScrollFrame method
+
+  - name: createSelection
+    signature: createSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: Selection
+    description: createSelection method
+
+  - name: createSlider
+    signature: createSlider(Rect rect, int min, int max, int steps, string caption, string onValueChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: min
+        type: int
+        description: min parameter
+      - name: max
+        type: int
+        description: max parameter
+      - name: steps
+        type: int
+        description: steps parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onValueChangedFunction
+        type: string
+        description: onValueChangedFunction parameter
+    returns: Slider
+    description: createSlider method
+
+  - name: createStatisticsBar
+    signature: createStatisticsBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: StatisticsBar
+    description: createStatisticsBar method
+
+  - name: createTabbedWindow
+    signature: createTabbedWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TabbedWindow
+    description: createTabbedWindow method
+
+  - name: createTextBox
+    signature: createTextBox(Rect rect, string onTextChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onTextChangedFunction
+        type: string
+        description: onTextChangedFunction parameter
+    returns: TextBox
+    description: createTextBox method
+
+  - name: createTextField
+    signature: createTextField(Rect rect, string text)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: text
+        type: string
+        description: text parameter
+    returns: TextField
+    description: createTextField method
+
+  - name: createTooltipDisplayer
+    signature: createTooltipDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TooltipDisplayer
+    description: createTooltipDisplayer method
+
+  - name: createTree
+    signature: createTree(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Tree
+    description: createTree method
+
+  - name: createValueComboBox
+    signature: createValueComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ValueComboBox
+    description: createValueComboBox method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    description: createWindow method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

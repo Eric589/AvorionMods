@@ -1,0 +1,102 @@
+# ReadOnlyTorpedoLauncher API Documentation
+name: ReadOnlyTorpedoLauncher
+type: class
+availability: both
+description: ReadOnlyTorpedoLauncher class
+
+constructor:
+  signature: ReadOnlyTorpedoLauncher(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyTorpedoLauncher instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: freeStorage
+    type: float
+    access: read-only
+    description: freeStorage property
+
+  - name: maximumStorage
+    type: float
+    access: read-only
+    description: maximumStorage property
+
+  - name: maxShafts
+    type: int
+    access: read-only
+    description: maxShafts property
+
+  - name: numShafts
+    type: unsigned int
+    access: read-only
+    description: numShafts property
+
+  - name: numTorpedoes
+    type: unsigned int
+    access: read-only
+    description: numTorpedoes property
+
+  - name: occupiedStorage
+    type: float
+    access: read-only
+    description: occupiedStorage property
+
+methods:
+  - name: getFreeSlots
+    signature: getFreeSlots(var shaftIndex)
+    parameters:
+      - name: shaftIndex
+        type: var
+        description: shaftIndex parameter
+    returns: unsigned int
+    description: getFreeSlots method
+
+  - name: getMaxTorpedoes
+    signature: getMaxTorpedoes(var shaftIndex)
+    parameters:
+      - name: shaftIndex
+        type: var
+        description: shaftIndex parameter
+    returns: unsigned int
+    description: getMaxTorpedoes method
+
+  - name: getNumTorpedoes
+    signature: getNumTorpedoes(int shaftIndex)
+    parameters:
+      - name: shaftIndex
+        type: int
+        description: shaftIndex parameter
+    returns: unsigned int
+    description: getNumTorpedoes method
+
+  - name: getShafts
+    signature: getShafts()
+    returns: unsigned int...
+    description: getShafts method
+
+  - name: getTorpedo
+    signature: getTorpedo(int torpedoIndex, int shaftIndex)
+    parameters:
+      - name: torpedoIndex
+        type: int
+        description: torpedoIndex parameter
+      - name: shaftIndex
+        type: int
+        description: shaftIndex parameter
+    returns: TorpedoTemplate
+    description: getTorpedo method
+
+notes:
+  - Auto-converted from HTML documentation

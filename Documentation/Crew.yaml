@@ -1,0 +1,229 @@
+# Crew API Documentation
+name: Crew
+type: class
+availability: both
+description: Crew class
+
+constructor:
+  signature: Crew()
+  returns: Crew instance
+
+properties:
+  - name: attackers
+    type: int
+    access: read-only
+    description: attackers property
+
+  - name: autoAssignCrew
+    type: int
+    access: read-only
+    description: autoAssignCrew property
+
+  - name: engineers
+    type: int
+    access: read-only
+    description: engineers property
+
+  - name: gunners
+    type: int
+    access: read-only
+    description: gunners property
+
+  - name: maxSize
+    type: unsigned int
+    access: read-only
+    description: maxSize property
+
+  - name: mechanics
+    type: int
+    access: read-only
+    description: mechanics property
+
+  - name: miners
+    type: int
+    access: read-only
+    description: miners property
+
+  - name: pilots
+    type: int
+    access: read-only
+    description: pilots property
+
+  - name: security
+    type: int
+    access: read-only
+    description: security property
+
+  - name: size
+    type: unsigned int
+    access: read-only
+    description: size property
+
+  - name: unemployed
+    type: int
+    access: read-only
+    description: unemployed property
+
+methods:
+  - name: add
+    signature: add(int amount, CrewMan crewman)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+      - name: crewman
+        type: CrewMan
+        description: crewman parameter
+    returns: void
+    description: add method
+
+  - name: addPassenger
+    signature: addPassenger(Captain captain)
+    parameters:
+      - name: captain
+        type: Captain
+        description: captain parameter
+    returns: void
+    description: addPassenger method
+
+  - name: buildIdealCrew
+    signature: buildIdealCrew(BlockPlan [or nil] plan)
+    parameters:
+      - name: plan
+        type: BlockPlan [or nil]
+        description: plan parameter
+    returns: Crew
+    description: buildIdealCrew method
+
+  - name: buildMinimumCrew
+    signature: buildMinimumCrew(BlockPlan [or nil] plan)
+    parameters:
+      - name: plan
+        type: BlockPlan [or nil]
+        description: plan parameter
+    returns: Crew
+    description: buildMinimumCrew method
+
+  - name: changeEmployment
+    signature: changeEmployment(int amount, int profession)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+      - name: profession
+        type: int
+        description: profession parameter
+    returns: void
+    description: changeEmployment method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: clearPassengers
+    signature: clearPassengers()
+    returns: void
+    description: clearPassengers method
+
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: getMembers
+    signature: getMembers()
+    returns: table&lt;CrewMan, unsigned int&gt;
+    description: getMembers method
+
+  - name: getMembersByProfession
+    signature: getMembersByProfession(int profession)
+    parameters:
+      - name: profession
+        type: int
+        description: profession parameter
+    returns: int
+    description: getMembersByProfession method
+
+  - name: getNumMembers
+    signature: getNumMembers(CrewMan crewman)
+    parameters:
+      - name: crewman
+        type: CrewMan
+        description: crewman parameter
+    returns: int
+    description: getNumMembers method
+
+  - name: getNumMembersByProfession
+    signature: getNumMembersByProfession()
+    returns: table&lt;CrewProfession, unsigned int&gt;
+    description: getNumMembersByProfession method
+
+  - name: getPassengers
+    signature: getPassengers()
+    returns: Captain...
+    description: getPassengers method
+
+  - name: getWorkforce
+    signature: getWorkforce()
+    returns: table&lt;CrewProfession, float&gt;
+    description: getWorkforce method
+
+  - name: hasCaptain
+    signature: hasCaptain()
+    returns: bool
+    description: hasCaptain method
+
+  - name: kill
+    signature: kill(int num)
+    parameters:
+      - name: num
+        type: int
+        description: num parameter
+    returns: void
+    description: kill method
+
+  - name: remove
+    signature: remove(int amount, CrewMan crewman)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+      - name: crewman
+        type: CrewMan
+        description: crewman parameter
+    returns: void
+    description: remove method
+
+  - name: removeByProfession
+    signature: removeByProfession(int amount, int crewProfessionType)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+      - name: crewProfessionType
+        type: int
+        description: crewProfessionType parameter
+    returns: void
+    description: removeByProfession method
+
+  - name: removePassenger
+    signature: removePassenger(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: removePassenger method
+
+  - name: setCaptain
+    signature: setCaptain(Captain [or nil] captain)
+    parameters:
+      - name: captain
+        type: Captain [or nil]
+        description: captain parameter
+    returns: void
+    description: setCaptain method
+
+notes:
+  - Auto-converted from HTML documentation

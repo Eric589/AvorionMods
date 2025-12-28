@@ -1,0 +1,103 @@
+# TurretDesign API Documentation
+name: TurretDesign
+type: class
+availability: both
+description: TurretDesign class
+
+constructor:
+  signature: TurretDesign()
+  returns: TurretDesign instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+methods:
+  - name: getBarrels
+    signature: getBarrels()
+    returns: TurretDesignPart
+    description: getBarrels method
+
+  - name: getBase
+    signature: getBase()
+    returns: TurretDesignPart
+    description: getBase method
+
+  - name: getBody
+    signature: getBody()
+    returns: TurretDesignPart
+    description: getBody method
+
+  - name: getMoveBarrels
+    signature: getMoveBarrels()
+    returns: TurretDesignPart
+    description: getMoveBarrels method
+
+  - name: getMoveBase
+    signature: getMoveBase()
+    returns: TurretDesignPart
+    description: getMoveBase method
+
+  - name: getMoveBody
+    signature: getMoveBody()
+    returns: TurretDesignPart
+    description: getMoveBody method
+
+  - name: setBarrels
+    signature: setBarrels(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setBarrels method
+
+  - name: setBase
+    signature: setBase(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setBase method
+
+  - name: setBody
+    signature: setBody(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setBody method
+
+  - name: setMoveBarrels
+    signature: setMoveBarrels(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setMoveBarrels method
+
+  - name: setMoveBase
+    signature: setMoveBase(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setMoveBase method
+
+  - name: setMoveBody
+    signature: setMoveBody(TurretDesignPart part)
+    parameters:
+      - name: part
+        type: TurretDesignPart
+        description: part parameter
+    returns: void
+    description: setMoveBody method
+
+notes:
+  - Auto-converted from HTML documentation

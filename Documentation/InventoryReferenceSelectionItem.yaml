@@ -1,0 +1,69 @@
+# InventoryReferenceSelectionItem API Documentation
+name: InventoryReferenceSelectionItem
+type: class
+availability: client-only
+description: InventoryReferenceSelectionItem class
+
+constructor:
+  signature: InventoryReferenceSelectionItem()
+  returns: InventoryReferenceSelectionItem instance
+
+properties:
+  - name: amount
+    type: var
+    access: read-only
+    description: amount property
+
+  - name: border
+    type: IconBorderMode
+    access: read-only
+    description: border property
+
+  - name: deleteable
+    type: bool
+    access: read-only
+    description: deleteable property
+
+  - name: favorite
+    type: bool
+    access: read-only
+    description: favorite property
+
+  - name: highlighted
+    type: bool
+    access: read-only
+    description: highlighted property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: item
+    type: InventoryItem
+    access: read-only
+    description: item property
+
+  - name: readyForDeletion
+    type: bool
+    access: read-only
+    description: readyForDeletion property
+
+  - name: recent
+    type: bool
+    access: read-only
+    description: recent property
+
+  - name: trash
+    type: bool
+    access: read-only
+    description: trash property
+
+  - name: uvalue
+    type: var
+    access: read-write
+    description: uvalue property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

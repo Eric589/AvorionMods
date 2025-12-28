@@ -1,0 +1,602 @@
+# Sector [Client] API Documentation
+name: Sector [Client]
+type: class
+availability: client-only
+description: Sector [Client] class
+
+properties:
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: seed
+    type: Seed
+    access: read-only
+    description: seed property
+
+methods:
+  - name: addInertiaFieldGlow
+    signature: addInertiaFieldGlow(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: void
+    description: addInertiaFieldGlow method
+
+  - name: addStaticHyperspaceGlow
+    signature: addStaticHyperspaceGlow(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: void
+    description: addStaticHyperspaceGlow method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: createDust
+    signature: createDust(vec3 pos, float size, Color color, float lifeSpan)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: lifeSpan
+        type: float
+        description: lifeSpan parameter
+    returns: void
+    description: createDust method
+
+  - name: createDustExplosion
+    signature: createDustExplosion(vec3 pos, float size, Color color)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: createDustExplosion method
+
+  - name: createExplosion
+    signature: createExplosion(vec3 pos, float size, bool silent)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: silent
+        type: bool
+        description: silent parameter
+    returns: void
+    description: createExplosion method
+
+  - name: createGlow
+    signature: createGlow(vec3 pos, float size, Color color)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: createGlow method
+
+  - name: createGlowBox
+    signature: createGlowBox(Box box)
+    parameters:
+      - name: box
+        type: Box
+        description: box parameter
+    returns: GlowFX
+    description: createGlowBox method
+
+  - name: createGlows
+    signature: createGlows(vec3... positions, float size, Color color)
+    parameters:
+      - name: positions
+        type: vec3...
+        description: positions parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: createGlows method
+
+  - name: createGlowSphere
+    signature: createGlowSphere(float radius, ivec2 resolution)
+    parameters:
+      - name: radius
+        type: float
+        description: radius parameter
+      - name: resolution
+        type: ivec2
+        description: resolution parameter
+    returns: GlowFX
+    description: createGlowSphere method
+
+  - name: createHyperspaceEnteringGlowAnimation
+    signature: createHyperspaceEnteringGlowAnimation(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: createHyperspaceEnteringGlowAnimation method
+
+  - name: createHyperspaceJumpAnimation
+    signature: createHyperspaceJumpAnimation(Entity entity, vec3 [or nil] direction, Color [or nil] color, var intensity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: direction
+        type: vec3 [or nil]
+        description: direction parameter
+      - name: color
+        type: Color [or nil]
+        description: color parameter
+      - name: intensity
+        type: var
+        description: intensity parameter
+    returns: void
+    description: createHyperspaceJumpAnimation method
+
+  - name: createLaser
+    signature: createLaser(vec3 from, vec3 to, Color color, float width)
+    parameters:
+      - name: from
+        type: vec3
+        description: from parameter
+      - name: to
+        type: vec3
+        description: to parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: width
+        type: float
+        description: width parameter
+    returns: LaserFX
+    description: createLaser method
+
+  - name: createRefractionBox
+    signature: createRefractionBox(Box box)
+    parameters:
+      - name: box
+        type: Box
+        description: box parameter
+    returns: RefractionFX
+    description: createRefractionBox method
+
+  - name: createRefractionSphere
+    signature: createRefractionSphere(float radius, ivec2 resolution)
+    parameters:
+      - name: radius
+        type: float
+        description: radius parameter
+      - name: resolution
+        type: ivec2
+        description: resolution parameter
+    returns: RefractionFX
+    description: createRefractionSphere method
+
+  - name: createShockwave
+    signature: createShockwave(vec3 pos, float size, float duration, vec3 color)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: duration
+        type: float
+        description: duration parameter
+      - name: color
+        type: vec3
+        description: color parameter
+    returns: void
+    description: createShockwave method
+
+  - name: createSpark
+    signature: createSpark(vec3 pos, vec3 v, float size, float aliveTime, Color color, float slowDownFactor, Entity [or nil] entity, var texture)
+    parameters:
+      - name: pos
+        type: vec3
+        description: pos parameter
+      - name: v
+        type: vec3
+        description: v parameter
+      - name: size
+        type: float
+        description: size parameter
+      - name: aliveTime
+        type: float
+        description: aliveTime parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: slowDownFactor
+        type: float
+        description: slowDownFactor parameter
+      - name: entity
+        type: Entity [or nil]
+        description: entity parameter
+      - name: texture
+        type: var
+        description: texture parameter
+    returns: void
+    description: createSpark method
+
+  - name: getAllies
+    signature: getAllies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getAllies method
+
+  - name: getCoordinates
+    signature: getCoordinates()
+    returns: int, int
+    description: getCoordinates method
+
+  - name: getEnemies
+    signature: getEnemies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getEnemies method
+
+  - name: getEntities
+    signature: getEntities()
+    returns: Entity...
+    description: getEntities method
+
+  - name: getEntitiesByComponent
+    signature: getEntitiesByComponent(int component)
+    parameters:
+      - name: component
+        type: int
+        description: component parameter
+    returns: Entity...
+    description: getEntitiesByComponent method
+
+  - name: getEntitiesByComponents
+    signature: getEntitiesByComponents(Type... types)
+    parameters:
+      - name: types
+        type: Type...
+        description: types parameter
+    returns: Entity...
+    description: getEntitiesByComponents method
+
+  - name: getEntitiesByFaction
+    signature: getEntitiesByFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getEntitiesByFaction method
+
+  - name: getEntitiesByLocation
+    signature: getEntitiesByLocation(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: Entity...
+    description: getEntitiesByLocation method
+
+  - name: getEntitiesByScript
+    signature: getEntitiesByScript(string scriptName)
+    parameters:
+      - name: scriptName
+        type: string
+        description: scriptName parameter
+    returns: Entity...
+    description: getEntitiesByScript method
+
+  - name: getEntitiesByScriptValue
+    signature: getEntitiesByScriptValue(string name, var value)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: Entity...
+    description: getEntitiesByScriptValue method
+
+  - name: getEntitiesByType
+    signature: getEntitiesByType(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: Entity...
+    description: getEntitiesByType method
+
+  - name: getEntity
+    signature: getEntity(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: Entity
+    description: getEntity method
+
+  - name: getEntityByFactionAndName
+    signature: getEntityByFactionAndName(int factionIndex, string name)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: name
+        type: string
+        description: name parameter
+    returns: Entity
+    description: getEntityByFactionAndName method
+
+  - name: getNumAllies
+    signature: getNumAllies(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: unsigned int
+    description: getNumAllies method
+
+  - name: getNumEnemies
+    signature: getNumEnemies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: unsigned int
+    description: getNumEnemies method
+
+  - name: getNumEntities
+    signature: getNumEntities()
+    returns: unsigned int
+    description: getNumEntities method
+
+  - name: getNumEntitiesByComponent
+    signature: getNumEntitiesByComponent(int component)
+    parameters:
+      - name: component
+        type: int
+        description: component parameter
+    returns: unsigned int
+    description: getNumEntitiesByComponent method
+
+  - name: getNumEntitiesByComponents
+    signature: getNumEntitiesByComponents()
+    returns: unsigned int
+    description: getNumEntitiesByComponents method
+
+  - name: getNumEntitiesByFaction
+    signature: getNumEntitiesByFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: unsigned int
+    description: getNumEntitiesByFaction method
+
+  - name: getNumEntitiesByLocation
+    signature: getNumEntitiesByLocation(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: unsigned int
+    description: getNumEntitiesByLocation method
+
+  - name: getNumEntitiesByScript
+    signature: getNumEntitiesByScript(string scriptName)
+    parameters:
+      - name: scriptName
+        type: string
+        description: scriptName parameter
+    returns: unsigned int
+    description: getNumEntitiesByScript method
+
+  - name: getNumEntitiesByType
+    signature: getNumEntitiesByType(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: unsigned int
+    description: getNumEntitiesByType method
+
+  - name: getPresentFactions
+    signature: getPresentFactions()
+    returns: int...
+    description: getPresentFactions method
+
+  - name: getValue
+    signature: getValue(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getValue method
+
+  - name: intersectBeamRay
+    signature: intersectBeamRay(Ray ray, Uuid [or nil] ignoredEntity, Uuid [or nil] ignoredEntityShields)
+    parameters:
+      - name: ray
+        type: Ray
+        description: ray parameter
+      - name: ignoredEntity
+        type: Uuid [or nil]
+        description: ignoredEntity parameter
+      - name: ignoredEntityShields
+        type: Uuid [or nil]
+        description: ignoredEntityShields parameter
+    returns: UserObject...
+    description: intersectBeamRay method
+
+  - name: invokeFunction
+    signature: invokeFunction(var scriptName, string functionName, var... arguments)
+    parameters:
+      - name: scriptName
+        type: var
+        description: scriptName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: var...
+    description: invokeFunction method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: registerCallback method
+
+  - name: removeGlowObject
+    signature: removeGlowObject(GlowFX object)
+    parameters:
+      - name: object
+        type: GlowFX
+        description: object parameter
+    returns: void
+    description: removeGlowObject method
+
+  - name: removeInertiaFieldGlow
+    signature: removeInertiaFieldGlow(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: void
+    description: removeInertiaFieldGlow method
+
+  - name: removeLaser
+    signature: removeLaser(LaserFX laser)
+    parameters:
+      - name: laser
+        type: LaserFX
+        description: laser parameter
+    returns: void
+    description: removeLaser method
+
+  - name: removeRefractionObject
+    signature: removeRefractionObject(RefractionFX object)
+    parameters:
+      - name: object
+        type: RefractionFX
+        description: object parameter
+    returns: void
+    description: removeRefractionObject method
+
+  - name: removeStaticHyperspaceGlow
+    signature: removeStaticHyperspaceGlow(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: void
+    description: removeStaticHyperspaceGlow method
+
+  - name: resetFog
+    signature: resetFog()
+    returns: void
+    description: resetFog method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: setFogColor
+    signature: setFogColor(Color color)
+    parameters:
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: setFogColor method
+
+  - name: setFogColorFactor
+    signature: setFogColorFactor(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setFogColorFactor method
+
+  - name: setFogDensity
+    signature: setFogDensity(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setFogDensity method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: void
+    description: unregisterCallback method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

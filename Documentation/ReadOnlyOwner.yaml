@@ -1,0 +1,62 @@
+# ReadOnlyOwner API Documentation
+name: ReadOnlyOwner
+type: class
+availability: both
+description: ReadOnlyOwner class
+
+constructor:
+  signature: ReadOnlyOwner(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyOwner instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: factionIndex
+    type: int
+    access: read-only
+    description: factionIndex property
+
+  - name: isAIFaction
+    type: bool
+    access: read-only
+    description: isAIFaction property
+
+  - name: isAlliance
+    type: bool
+    access: read-only
+    description: isAlliance property
+
+  - name: isPlayer
+    type: bool
+    access: read-only
+    description: isPlayer property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+methods:
+  - name: getRelationValue
+    signature: getRelationValue(int otherFactionIndex)
+    parameters:
+      - name: otherFactionIndex
+        type: int
+        description: otherFactionIndex parameter
+    returns: int
+    description: getRelationValue method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,195 @@
+# Turret API Documentation
+name: Turret
+type: class
+availability: both
+description: Turret class
+
+constructor:
+  signature: Turret(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Turret instance
+
+properties:
+  - name: activated
+    type: bool
+    access: read-only
+    description: activated property
+
+  - name: attachedBlock
+    type: int
+    access: read-only
+    description: attachedBlock property
+
+  - name: automatic
+    type: bool
+    access: read-only
+    description: automatic property
+
+  - name: coaxial
+    type: bool
+    access: read-only
+    description: coaxial property
+
+  - name: craftPlayerPiloted
+    type: bool
+    access: read-only
+    description: craftPlayerPiloted property
+
+  - name: damageMultiplier
+    type: float
+    access: read-only
+    description: damageMultiplier property
+
+  - name: enabledByAI
+    type: bool
+    access: read-only
+    description: enabledByAI property
+
+  - name: favorite
+    type: bool
+    access: read-only
+    description: favorite property
+
+  - name: group
+    type: int
+    access: read-only
+    description: group property
+
+  - name: horizontalRotation
+    type: bool
+    access: read-only
+    description: horizontalRotation property
+
+  - name: localPosition
+    type: Matrix
+    access: read-only
+    description: localPosition property
+
+  - name: lookingAtTarget
+    type: bool
+    access: read-only
+    description: lookingAtTarget property
+
+  - name: rigin
+    type: bool
+    access: read-only
+    description: rigin property
+
+  - name: selected
+    type: bool
+    access: read-only
+    description: selected property
+
+  - name: shootingCraft
+    type: uuid
+    access: read-only
+    description: shootingCraft property
+
+  - name: shootingFaction
+    type: int
+    access: read-only
+    description: shootingFaction property
+
+  - name: shotCollisionException
+    type: uuid
+    access: read-only
+    description: shotCollisionException property
+
+  - name: size
+    type: float
+    access: read-only
+    description: size property
+
+  - name: targetedObject
+    type: uuid
+    access: read-only
+    description: targetedObject property
+
+  - name: templateSize
+    type: float
+    access: read-only
+    description: templateSize property
+
+  - name: trash
+    type: bool
+    access: read-only
+    description: trash property
+
+  - name: turningSpeed
+    type: float
+    access: read-only
+    description: turningSpeed property
+
+  - name: usedSlots
+    type: int
+    access: read-only
+    description: usedSlots property
+
+  - name: verticalRotation
+    type: bool
+    access: read-only
+    description: verticalRotation property
+
+  - name: weaponsPlayerControlled
+    type: bool
+    access: read-only
+    description: weaponsPlayerControlled property
+
+methods:
+  - name: consumeEnergyForShot
+    signature: consumeEnergyForShot(double amount)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+    returns: void
+    description: consumeEnergyForShot method
+
+  - name: getCurrentVelocity
+    signature: getCurrentVelocity()
+    returns: vec3
+    description: getCurrentVelocity method
+
+  - name: getLookingPosition
+    signature: getLookingPosition()
+    returns: Matrix
+    description: getLookingPosition method
+
+  - name: hasEnergyForShot
+    signature: hasEnergyForShot(double amount)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+    returns: bool
+    description: hasEnergyForShot method
+
+  - name: setOrientation
+    signature: setOrientation(float rotationVertical, float rotationHorizontal, bool lookingAtTarget)
+    parameters:
+      - name: rotationVertical
+        type: float
+        description: rotationVertical parameter
+      - name: rotationHorizontal
+        type: float
+        description: rotationHorizontal parameter
+      - name: lookingAtTarget
+        type: bool
+        description: lookingAtTarget parameter
+    returns: void
+    description: setOrientation method
+
+  - name: shootingVectorOk
+    signature: shootingVectorOk(var ray)
+    parameters:
+      - name: ray
+        type: var
+        description: ray parameter
+    returns: bool
+    description: shootingVectorOk method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,61 @@
+# EntityTransferrer API Documentation
+name: EntityTransferrer
+type: class
+availability: server-only
+description: EntityTransferrer class
+
+constructor:
+  signature: EntityTransferrer(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: EntityTransferrer instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: sectorReady
+    type: bool
+    access: read-only
+    description: sectorReady property
+
+methods:
+  - name: addWhitelistedFaction
+    signature: addWhitelistedFaction(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: void
+    description: addWhitelistedFaction method
+
+  - name: isFactionOnWhitelist
+    signature: isFactionOnWhitelist(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: bool
+    description: isFactionOnWhitelist method
+
+  - name: removeWhitelistedFaction
+    signature: removeWhitelistedFaction(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: void
+    description: removeWhitelistedFaction method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

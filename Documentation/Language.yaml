@@ -1,0 +1,121 @@
+# Language API Documentation
+name: Language
+type: class
+availability: both
+description: Language class
+
+constructor:
+  signature: Language(Seed seed)
+  parameters:
+    - name: seed
+      type: Seed
+      description: seed parameter
+  returns: Language instance
+
+properties:
+  - name: apostrophes
+    type: bool
+    access: write-only
+    description: apostrophes property
+
+  - name: seed
+    type: Seed
+    access: write-only
+    description: seed property
+
+methods:
+  - name: getConsonantSound
+    signature: getConsonantSound()
+    returns: string
+    description: getConsonantSound method
+
+  - name: getConsonantSounds
+    signature: getConsonantSounds(bool end)
+    parameters:
+      - name: end
+        type: bool
+        description: end parameter
+    returns: string...
+    description: getConsonantSounds method
+
+  - name: getGeneratedWords
+    signature: getGeneratedWords()
+    returns: string...
+    description: getGeneratedWords method
+
+  - name: getName
+    signature: getName()
+    returns: string
+    description: getName method
+
+  - name: getSyllable
+    signature: getSyllable(bool startingWithVowel, bool first, bool last)
+    parameters:
+      - name: startingWithVowel
+        type: bool
+        description: startingWithVowel parameter
+      - name: first
+        type: bool
+        description: first parameter
+      - name: last
+        type: bool
+        description: last parameter
+    returns: string
+    description: getSyllable method
+
+  - name: getSyllableCombination
+    signature: getSyllableCombination(int numSyllables)
+    parameters:
+      - name: numSyllables
+        type: int
+        description: numSyllables parameter
+    returns: string
+    description: getSyllableCombination method
+
+  - name: getTypicalSyllable
+    signature: getTypicalSyllable(bool startingWithVowel, bool first, bool last)
+    parameters:
+      - name: startingWithVowel
+        type: bool
+        description: startingWithVowel parameter
+      - name: first
+        type: bool
+        description: first parameter
+      - name: last
+        type: bool
+        description: last parameter
+    returns: string
+    description: getTypicalSyllable method
+
+  - name: getVowelSound
+    signature: getVowelSound()
+    returns: string
+    description: getVowelSound method
+
+  - name: getVowelSounds
+    signature: getVowelSounds()
+    returns: string...
+    description: getVowelSounds method
+
+  - name: getWord
+    signature: getWord()
+    returns: string
+    description: getWord method
+
+  - name: setConsonantSounds
+    signature: setConsonantSounds()
+    returns: void
+    description: setConsonantSounds method
+
+  - name: setGeneratedWords
+    signature: setGeneratedWords()
+    returns: void
+    description: setGeneratedWords method
+
+  - name: setVowelSounds
+    signature: setVowelSounds()
+    returns: void
+    description: setVowelSounds method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,70 @@
+# ReadOnlyShipSystem API Documentation
+name: ReadOnlyShipSystem
+type: class
+availability: both
+description: ReadOnlyShipSystem class
+
+constructor:
+  signature: ReadOnlyShipSystem(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyShipSystem instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: maxSockets
+    type: static unsigned int
+    access: read-only
+    description: maxSockets property
+
+  - name: numSockets
+    type: static int
+    access: read-only
+    description: numSockets property
+
+  - name: numUpgrades
+    type: unsigned int
+    access: read-only
+    description: numUpgrades property
+
+methods:
+  - name: getProcessingPowerForSocket
+    signature: getProcessingPowerForSocket(unsigned int socket)
+    parameters:
+      - name: socket
+        type: unsigned int
+        description: socket parameter
+    returns: double
+    description: getProcessingPowerForSocket method
+
+  - name: getUpgrade
+    signature: getUpgrade(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: SystemUpgradeTemplate
+    description: getUpgrade method
+
+  - name: isPermanent
+    signature: isPermanent(unsigned int socket)
+    parameters:
+      - name: socket
+        type: unsigned int
+        description: socket parameter
+    returns: bool
+    description: isPermanent method
+
+notes:
+  - Auto-converted from HTML documentation

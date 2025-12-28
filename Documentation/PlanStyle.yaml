@@ -1,0 +1,85 @@
+# PlanStyle API Documentation
+name: PlanStyle
+type: class
+availability: both
+description: PlanStyle class
+
+constructor:
+  signature: PlanStyle()
+  returns: PlanStyle instance
+
+properties:
+  - name: additionalFeatures
+    type: int...
+    access: read-write
+    description: additionalFeatures property
+
+  - name: balanceForShip
+    type: bool
+    access: read-write
+    description: balanceForShip property
+
+  - name: forbiddenFeatures
+    type: int...
+    access: read-write
+    description: forbiddenFeatures property
+
+  - name: name
+    type: string
+    access: read-write
+    description: name property
+
+  - name: requiredFeatures
+    type: int...
+    access: read-write
+    description: requiredFeatures property
+
+  - name: scaleRecommendation
+    type: bool
+    access: read-write
+    description: scaleRecommendation property
+
+  - name: seed
+    type: string
+    access: read-write
+    description: seed property
+
+  - name: settings
+    type: var
+    access: read-write
+    description: settings property
+
+methods:
+  - name: addStage
+    signature: addStage(PlanGenerationStage stage)
+    parameters:
+      - name: stage
+        type: PlanGenerationStage
+        description: stage parameter
+    returns: void
+    description: addStage method
+
+  - name: clearStages
+    signature: clearStages()
+    returns: void
+    description: clearStages method
+
+  - name: initialize
+    signature: initialize()
+    returns: void
+    description: initialize method
+
+  - name: setStage
+    signature: setStage(int index, PlanGenerationStage stage)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: stage
+        type: PlanGenerationStage
+        description: stage parameter
+    returns: void
+    description: setStage method
+
+notes:
+  - Auto-converted from HTML documentation

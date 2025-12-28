@@ -1,0 +1,349 @@
+# ListBox API Documentation
+name: ListBox
+type: class
+extends: UIElement
+availability: client-only
+description: ListBox class
+
+constructor:
+  signature: ListBox(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: ListBox instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: entriesSelectable
+    type: bool
+    access: write-only
+    description: entriesSelectable property
+
+  - name: font
+    type: int
+    access: write-only
+    description: font property
+
+  - name: fontSize
+    type: int
+    access: write-only
+    description: fontSize property
+
+  - name: headline
+    type: bool
+    access: write-only
+    description: headline property
+
+  - name: onAddedFunction
+    type: string
+    access: read-only
+    description: onAddedFunction property
+
+  - name: onChangedFunction
+    type: string
+    access: read-only
+    description: onChangedFunction property
+
+  - name: onClearFunction
+    type: string
+    access: read-only
+    description: onClearFunction property
+
+  - name: onRemoveFunction
+    type: string
+    access: read-only
+    description: onRemoveFunction property
+
+  - name: onSelectFunction
+    type: string
+    access: read-only
+    description: onSelectFunction property
+
+  - name: rowHeight
+    type: int
+    access: read-only
+    description: rowHeight property
+
+  - name: rows
+    type: int
+    access: read-only
+    description: rows property
+
+  - name: scrollPosition
+    type: int
+    access: read-only
+    description: scrollPosition property
+
+  - name: selected
+    type: int
+    access: read-only
+    description: selected property
+
+  - name: selectedValue
+    type: var
+    access: read-only
+    description: selectedValue property
+
+  - name: size
+    type: int
+    access: read-only
+    description: size property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: addEntry
+    signature: addEntry(string str, var value)
+    parameters:
+      - name: str
+        type: string
+        description: str parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: addEntry method
+
+  - name: clampScrollPosition
+    signature: clampScrollPosition()
+    returns: void
+    description: clampScrollPosition method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: deselect
+    signature: deselect()
+    returns: void
+    description: deselect method
+
+  - name: getEntry
+    signature: getEntry(unsigned int row)
+    parameters:
+      - name: row
+        type: unsigned int
+        description: row parameter
+    returns: string, bool, bool, Color
+    description: getEntry method
+
+  - name: getSelectedEntry
+    signature: getSelectedEntry()
+    returns: string, bool, bool, Color...
+    description: getSelectedEntry method
+
+  - name: removeEntry
+    signature: removeEntry(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: removeEntry method
+
+  - name: select
+    signature: select(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: select method
+
+  - name: selectNoCallback
+    signature: selectNoCallback(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: selectNoCallback method
+
+  - name: selectValue
+    signature: selectValue(var value)
+    parameters:
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: selectValue method
+
+  - name: selectValueNoCallback
+    signature: selectValueNoCallback(var value)
+    parameters:
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: selectValueNoCallback method
+
+  - name: setEntry
+    signature: setEntry(unsigned int row, string text, bool bold, bool italic, Color color, var entryWidth)
+    parameters:
+      - name: row
+        type: unsigned int
+        description: row parameter
+      - name: text
+        type: string
+        description: text parameter
+      - name: bold
+        type: bool
+        description: bold parameter
+      - name: italic
+        type: bool
+        description: italic parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: entryWidth
+        type: var
+        description: entryWidth parameter
+    returns: void
+    description: setEntry method
+
+  - name: setEntryType
+    signature: setEntryType(unsigned int row, int type)
+    parameters:
+      - name: row
+        type: unsigned int
+        description: row parameter
+      - name: type
+        type: int
+        description: type parameter
+    returns: void
+    description: setEntryType method
+
+  - name: setEntryValue
+    signature: setEntryValue(unsigned int row, var value)
+    parameters:
+      - name: row
+        type: unsigned int
+        description: row parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setEntryValue method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

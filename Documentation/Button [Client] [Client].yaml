@@ -1,0 +1,223 @@
+# Button [Client] [Client] API Documentation
+name: Button [Client] [Client]
+type: class
+extends: UIElement
+availability: client-only
+description: Button [Client] [Client] class
+
+properties:
+  - name: active
+    type: bool
+    access: write-only
+    description: active property
+
+  - name: alignment
+    type: int
+    access: write-only
+    description: alignment property
+
+  - name: bold
+    type: bool
+    access: write-only
+    description: bold property
+
+  - name: caption
+    type: string
+    access: write-only
+    description: caption property
+
+  - name: captionColor
+    type: Color
+    access: write-only
+    description: captionColor property
+
+  - name: fontType
+    type: int
+    access: write-only
+    description: fontType property
+
+  - name: hasFrame
+    type: bool
+    access: write-only
+    description: hasFrame property
+
+  - name: icon
+    type: string
+    access: write-only
+    description: icon property
+
+  - name: iconColor
+    type: Color
+    access: write-only
+    description: iconColor property
+
+  - name: maxTextSize
+    type: int
+    access: write-only
+    description: maxTextSize property
+
+  - name: onPressedFunction
+    type: string
+    access: write-only
+    description: onPressedFunction property
+
+  - name: overlayIcon
+    type: string
+    access: write-only
+    description: overlayIcon property
+
+  - name: overlayIconAlignment
+    type: int
+    access: write-only
+    description: overlayIconAlignment property
+
+  - name: overlayIconColor
+    type: Color
+    access: write-only
+    description: overlayIconColor property
+
+  - name: overlayIconPadding
+    type: int
+    access: write-only
+    description: overlayIconPadding property
+
+  - name: overlayIconSizeFactor
+    type: float
+    access: write-only
+    description: overlayIconSizeFactor property
+
+  - name: textSize
+    type: int
+    access: read-only
+    description: textSize property
+
+  - name: uppercase
+    type: bool
+    access: read-only
+    description: uppercase property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

@@ -1,0 +1,119 @@
+# Mail API Documentation
+name: Mail
+type: class
+availability: both
+description: Mail class
+
+constructor:
+  signature: Mail()
+  returns: Mail instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: header
+    type: Format
+    access: read-only
+    description: header property
+
+  - name: id
+    type: string
+    access: read-only
+    description: id property
+
+  - name: money
+    type: int
+    access: read-only
+    description: money property
+
+  - name: numItems
+    type: unsigned int
+    access: read-only
+    description: numItems property
+
+  - name: read
+    type: bool
+    access: write-only
+    description: read property
+
+  - name: receiver
+    type: PlayerId
+    access: write-only
+    description: receiver property
+
+  - name: sender
+    type: Format
+    access: read-write
+    description: sender property
+
+  - name: text
+    type: Format
+    access: read-write
+    description: text property
+
+methods:
+  - name: addItem
+    signature: addItem(InventoryItem item)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+    returns: void
+    description: addItem method
+
+  - name: addTurret
+    signature: addTurret(TurretTemplate turret)
+    parameters:
+      - name: turret
+        type: TurretTemplate
+        description: turret parameter
+    returns: void
+    description: addTurret method
+
+  - name: addTurretBlueprint
+    signature: addTurretBlueprint(TurretTemplate turret)
+    parameters:
+      - name: turret
+        type: TurretTemplate
+        description: turret parameter
+    returns: void
+    description: addTurretBlueprint method
+
+  - name: getItem
+    signature: getItem(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: InventoryItem
+    description: getItem method
+
+  - name: getResources
+    signature: getResources()
+    returns: unsigned int...
+    description: getResources method
+
+  - name: hasAttachments
+    signature: hasAttachments()
+    returns: bool
+    description: hasAttachments method
+
+  - name: removeItem
+    signature: removeItem(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: removeItem method
+
+  - name: setResources
+    signature: setResources()
+    returns: void
+    description: setResources method
+
+notes:
+  - Auto-converted from HTML documentation

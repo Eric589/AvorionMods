@@ -1,0 +1,58 @@
+# PlanMesh API Documentation
+name: PlanMesh
+type: class
+availability: client-only
+description: PlanMesh class
+
+constructor:
+  signature: PlanMesh(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: PlanMesh instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: disableMesh
+    signature: disableMesh(int shading, int material)
+    parameters:
+      - name: shading
+        type: int
+        description: shading parameter
+      - name: material
+        type: int
+        description: material parameter
+    returns: void
+    description: disableMesh method
+
+  - name: enableAll
+    signature: enableAll()
+    returns: void
+    description: enableAll method
+
+  - name: enableMesh
+    signature: enableMesh(int shading, int material)
+    parameters:
+      - name: shading
+        type: int
+        description: shading parameter
+      - name: material
+        type: int
+        description: material parameter
+    returns: void
+    description: enableMesh method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

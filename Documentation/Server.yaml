@@ -1,0 +1,322 @@
+# Server API Documentation
+name: Server
+type: class
+availability: server-only
+description: Server class
+
+constructor:
+  signature: Server()
+  returns: Server instance
+
+properties:
+  - name: accessMode
+    type: int
+    access: read-only
+    description: accessMode property
+
+  - name: collisionDamage
+    type: float
+    access: read-only
+    description: collisionDamage property
+
+  - name: description
+    type: string
+    access: read-only
+    description: description property
+
+  - name: difficulty
+    type: int
+    access: read-only
+    description: difficulty property
+
+  - name: folder
+    type: string
+    access: read-only
+    description: folder property
+
+  - name: gamePort
+    type: int
+    access: read-only
+    description: gamePort property
+
+  - name: generatorThreads
+    type: int
+    access: read-only
+    description: generatorThreads property
+
+  - name: infiniteResources
+    type: bool
+    access: read-only
+    description: infiniteResources property
+
+  - name: maxPlayers
+    type: int
+    access: read-only
+    description: maxPlayers property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numAdministrators
+    type: const
+    access: read-only
+    description: numAdministrators property
+
+  - name: paused
+    type: double
+    access: read-only
+    description: paused property
+
+  - name: players
+    type: int
+    access: read-only
+    description: players property
+
+  - name: playerToPlayerDamage
+    type: bool
+    access: read-only
+    description: playerToPlayerDamage property
+
+  - name: rconPort
+    type: int
+    access: read-only
+    description: rconPort property
+
+  - name: runtime
+    type: double
+    access: read-only
+    description: runtime property
+
+  - name: sameStartSector
+    type: bool
+    access: read-only
+    description: sameStartSector property
+
+  - name: scriptThreads
+    type: int
+    access: read-only
+    description: scriptThreads property
+
+  - name: seed
+    type: Seed
+    access: read-only
+    description: seed property
+
+  - name: sessionId
+    type: var
+    access: read-only
+    description: sessionId property
+
+  - name: steamMasterPort
+    type: int
+    access: read-only
+    description: steamMasterPort property
+
+  - name: steamQueryPort
+    type: int
+    access: read-only
+    description: steamQueryPort property
+
+  - name: udpPollingPort
+    type: int
+    access: read-only
+    description: udpPollingPort property
+
+  - name: unpausedRuntime
+    type: double
+    access: read-only
+    description: unpausedRuntime property
+
+  - name: workerThreads
+    type: int
+    access: read-only
+    description: workerThreads property
+
+  - name: xsotanInvasionSectors
+    type: int
+    access: read-only
+    description: xsotanInvasionSectors property
+
+methods:
+  - name: addChatCommand
+    signature: addChatCommand(Player sender, string command)
+    parameters:
+      - name: sender
+        type: Player
+        description: sender parameter
+      - name: command
+        type: string
+        description: command parameter
+    returns: void
+    description: addChatCommand method
+
+  - name: broadcastChatMessage
+    signature: broadcastChatMessage(var sender, int messageType, string message, PluralForm... args)
+    parameters:
+      - name: sender
+        type: var
+        description: sender parameter
+      - name: messageType
+        type: int
+        description: messageType parameter
+      - name: message
+        type: string
+        description: message parameter
+      - name: args
+        type: PluralForm...
+        description: args parameter
+    returns: void
+    description: broadcastChatMessage method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: getBlackList
+    signature: getBlackList()
+    returns: string...
+    description: getBlackList method
+
+  - name: getIpBlackList
+    signature: getIpBlackList()
+    returns: string...
+    description: getIpBlackList method
+
+  - name: getOnlinePlayers
+    signature: getOnlinePlayers()
+    returns: Player...
+    description: getOnlinePlayers method
+
+  - name: getPlayers
+    signature: getPlayers()
+    returns: Player...
+    description: getPlayers method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    description: getValues method
+
+  - name: getWhiteList
+    signature: getWhiteList()
+    returns: string...
+    description: getWhiteList method
+
+  - name: hasAdminPrivileges
+    signature: hasAdminPrivileges(Player player)
+    parameters:
+      - name: player
+        type: Player
+        description: player parameter
+    returns: bool
+    description: hasAdminPrivileges method
+
+  - name: isOnline
+    signature: isOnline(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: isOnline method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: registerCallback method
+
+  - name: removeBlacklistedIp
+    signature: removeBlacklistedIp(string ip)
+    parameters:
+      - name: ip
+        type: string
+        description: ip parameter
+    returns: void
+    description: removeBlacklistedIp method
+
+  - name: removeBlacklistedName
+    signature: removeBlacklistedName(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: removeBlacklistedName method
+
+  - name: removeWhitelistedName
+    signature: removeWhitelistedName(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: removeWhitelistedName method
+
+  - name: save
+    signature: save()
+    returns: void
+    description: save method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: setValue
+    signature: setValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setValue method
+
+  - name: stop
+    signature: stop()
+    returns: void
+    description: stop method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: unregisterCallback method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

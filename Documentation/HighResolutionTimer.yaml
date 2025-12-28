@@ -1,0 +1,59 @@
+# HighResolutionTimer API Documentation
+name: HighResolutionTimer
+type: class
+availability: both
+description: HighResolutionTimer class
+
+constructor:
+  signature: HighResolutionTimer()
+  returns: HighResolutionTimer instance
+
+properties:
+  - name: microseconds
+    type: int
+    access: read-only
+    description: microseconds property
+
+  - name: milliseconds
+    type: int
+    access: read-only
+    description: milliseconds property
+
+  - name: running
+    type: bool
+    access: read-only
+    description: running property
+
+  - name: seconds
+    type: double
+    access: read-only
+    description: seconds property
+
+  - name: secondsStr
+    type: string
+    access: read-only
+    description: secondsStr property
+
+methods:
+  - name: reset
+    signature: reset()
+    returns: void
+    description: reset method
+
+  - name: restart
+    signature: restart()
+    returns: void
+    description: restart method
+
+  - name: start
+    signature: start()
+    returns: void
+    description: start method
+
+  - name: stop
+    signature: stop()
+    returns: void
+    description: stop method
+
+notes:
+  - Auto-converted from HTML documentation

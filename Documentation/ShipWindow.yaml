@@ -1,0 +1,219 @@
+# ShipWindow API Documentation
+name: ShipWindow
+type: class
+extends: UIElement
+availability: client-only
+description: ShipWindow class
+
+constructor:
+  signature: ShipWindow()
+  returns: ShipWindow instance
+
+properties:
+  - name: craftId
+    type: Uuid
+    access: read-only
+    description: craftId property
+
+  - name: onSelectedFunction
+    type: string
+    access: read-only
+    description: onSelectedFunction property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: activateAllTabs
+    signature: activateAllTabs()
+    returns: void
+    description: activateAllTabs method
+
+  - name: activateTab
+    signature: activateTab(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: activateTab method
+
+  - name: createTab
+    signature: createTab(string name, string icon, string description)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: description
+        type: string
+        description: description parameter
+    returns: Tab
+    description: createTab method
+
+  - name: deactivateTab
+    signature: deactivateTab(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: deactivateTab method
+
+  - name: getActiveTab
+    signature: getActiveTab()
+    returns: Tab
+    description: getActiveTab method
+
+  - name: getTab
+    signature: getTab(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: Tab
+    description: getTab method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    description: hide method
+
+  - name: moveTabToTheRight
+    signature: moveTabToTheRight(Tab tab)
+    parameters:
+      - name: tab
+        type: Tab
+        description: tab parameter
+    returns: void
+    description: moveTabToTheRight method
+
+  - name: selectTab
+    signature: selectTab(var val)
+    parameters:
+      - name: val
+        type: var
+        description: val parameter
+    returns: void
+    description: selectTab method
+
+  - name: show
+    signature: show(Uuid id)
+    parameters:
+      - name: id
+        type: Uuid
+        description: id parameter
+    returns: void
+    description: show method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

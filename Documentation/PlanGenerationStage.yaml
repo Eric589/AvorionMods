@@ -1,0 +1,123 @@
+# PlanGenerationStage API Documentation
+name: PlanGenerationStage
+type: class
+availability: both
+description: PlanGenerationStage class
+
+constructor:
+  signature: PlanGenerationStage()
+  returns: PlanGenerationStage instance
+
+properties:
+  - name: additionalFeatures
+    type: int...
+    access: read-write
+    description: additionalFeatures property
+
+  - name: allrounderBlockIndex
+    type: var
+    access: read-write
+    description: allrounderBlockIndex property
+
+  - name: arrangementSeed
+    type: string
+    access: read-write
+    description: arrangementSeed property
+
+  - name: fixedParts
+    type: float
+    access: read-write
+    description: fixedParts property
+
+  - name: fixedPartSeed
+    type: string
+    access: read-write
+    description: fixedPartSeed property
+
+  - name: forbiddenFeatures
+    type: int...
+    access: read-write
+    description: forbiddenFeatures property
+
+  - name: ignoreSelfSymmetry
+    type: bool
+    access: read-write
+    description: ignoreSelfSymmetry property
+
+  - name: maxAmount
+    type: int
+    access: read-write
+    description: maxAmount property
+
+  - name: maxRepetitions
+    type: int
+    access: read-write
+    description: maxRepetitions property
+
+  - name: minAmount
+    type: int
+    access: read-write
+    description: minAmount property
+
+  - name: minRepetitions
+    type: int
+    access: read-write
+    description: minRepetitions property
+
+  - name: mirrorBreakChance
+    type: float
+    access: read-write
+    description: mirrorBreakChance property
+
+  - name: onlyFeatures
+    type: int...
+    access: read-write
+    description: onlyFeatures property
+
+  - name: repetitionFavorChance
+    type: float
+    access: read-write
+    description: repetitionFavorChance property
+
+  - name: requiredFeatures
+    type: int...
+    access: read-write
+    description: requiredFeatures property
+
+  - name: settings
+    type: var
+    access: read-write
+    description: settings property
+
+  - name: subdivideChance
+    type: float
+    access: read-write
+    description: subdivideChance property
+
+  - name: upscaleThreshold
+    type: var
+    access: read-write
+    description: upscaleThreshold property
+
+  - name: variations
+    type: int
+    access: read-write
+    description: variations property
+
+  - name: volumeWeight
+    type: float
+    access: read-write
+    description: volumeWeight property
+
+methods:
+  - name: setAttachmentWeights
+    signature: setAttachmentWeights(table[dir -> value] weights)
+    parameters:
+      - name: weights
+        type: table[dir -> value]
+        description: weights parameter
+    returns: void
+    description: setAttachmentWeights method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,274 @@
+# ClientSettings API Documentation
+name: ClientSettings
+type: class
+availability: client-only
+description: ClientSettings class
+
+constructor:
+  signature: ClientSettings()
+  returns: ClientSettings instance
+
+properties:
+  - name: ambientOcclusion
+    type: bool
+    access: read-only
+    description: ambientOcclusion property
+
+  - name: autoPayCrews
+    type: bool
+    access: read-only
+    description: autoPayCrews property
+
+  - name: autosaveInBuildMode
+    type: bool
+    access: read-only
+    description: autosaveInBuildMode property
+
+  - name: backgroundResolutionFactor
+    type: float
+    access: read-only
+    description: backgroundResolutionFactor property
+
+  - name: bloom
+    type: bool
+    access: read-only
+    description: bloom property
+
+  - name: complexSelfShadows
+    type: bool
+    access: read-only
+    description: complexSelfShadows property
+
+  - name: consoleFontSize
+    type: int
+    access: read-only
+    description: consoleFontSize property
+
+  - name: consoleHeight
+    type: float
+    access: read-only
+    description: consoleHeight property
+
+  - name: damageParticleSize
+    type: float
+    access: read-only
+    description: damageParticleSize property
+
+  - name: detailedTurretTooltips
+    type: bool
+    access: read-only
+    description: detailedTurretTooltips property
+
+  - name: display
+    type: int
+    access: read-only
+    description: display property
+
+  - name: drawFps
+    type: bool
+    access: read-only
+    description: drawFps property
+
+  - name: drawFrameGraphs
+    type: bool
+    access: read-only
+    description: drawFrameGraphs property
+
+  - name: effectVolume
+    type: float
+    access: read-only
+    description: effectVolume property
+
+  - name: encyclopediaPopUp
+    type: bool
+    access: read-only
+    description: encyclopediaPopUp property
+
+  - name: fogIntensity
+    type: float
+    access: read-only
+    description: fogIntensity property
+
+  - name: fogQuality
+    type: float
+    access: read-only
+    description: fogQuality property
+
+  - name: fpsLimit
+    type: int
+    access: read-only
+    description: fpsLimit property
+
+  - name: gamma
+    type: float
+    access: read-only
+    description: gamma property
+
+  - name: globalShadowMapSize
+    type: int
+    access: read-only
+    description: globalShadowMapSize property
+
+  - name: instancedShadows
+    type: bool
+    access: read-only
+    description: instancedShadows property
+
+  - name: invertY
+    type: bool
+    access: read-only
+    description: invertY property
+
+  - name: language
+    type: string
+    access: read-only
+    description: language property
+
+  - name: largeObjectShadows
+    type: bool
+    access: read-only
+    description: largeObjectShadows property
+
+  - name: mapEdgeScrollingEnabled
+    type: bool
+    access: read-only
+    description: mapEdgeScrollingEnabled property
+
+  - name: masterVolume
+    type: float
+    access: read-only
+    description: masterVolume property
+
+  - name: mouseSensitivity
+    type: float
+    access: read-only
+    description: mouseSensitivity property
+
+  - name: musicVolume
+    type: float
+    access: read-only
+    description: musicVolume property
+
+  - name: ownShadowMapSize
+    type: int
+    access: read-only
+    description: ownShadowMapSize property
+
+  - name: particlesQuality
+    type: int
+    access: read-only
+    description: particlesQuality property
+
+  - name: pauseInBuildMode
+    type: bool
+    access: read-only
+    description: pauseInBuildMode property
+
+  - name: planetResolutionFactor
+    type: float
+    access: read-only
+    description: planetResolutionFactor property
+
+  - name: playedTutorial
+    type: bool
+    access: read-only
+    description: playedTutorial property
+
+  - name: playerName
+    type: string
+    access: read-only
+    description: playerName property
+
+  - name: playerShadows
+    type: bool
+    access: read-only
+    description: playerShadows property
+
+  - name: pressSpaceInLoadingScreen
+    type: bool
+    access: read-only
+    description: pressSpaceInLoadingScreen property
+
+  - name: resolution
+    type: ivec2
+    access: read-only
+    description: resolution property
+
+  - name: retinaMode
+    type: bool
+    access: read-only
+    description: retinaMode property
+
+  - name: shadowRange
+    type: float
+    access: read-only
+    description: shadowRange property
+
+  - name: showDriverWarning
+    type: bool
+    access: read-only
+    description: showDriverWarning property
+
+  - name: showProgradeMarker
+    type: bool
+    access: read-only
+    description: showProgradeMarker property
+
+  - name: showRetrogradeMarker
+    type: bool
+    access: read-only
+    description: showRetrogradeMarker property
+
+  - name: silenceDuration
+    type: double
+    access: read-only
+    description: silenceDuration property
+
+  - name: softShadows
+    type: bool
+    access: read-only
+    description: softShadows property
+
+  - name: strategyStateEdgeScrollingEnabled
+    type: bool
+    access: read-only
+    description: strategyStateEdgeScrollingEnabled property
+
+  - name: streamerMode
+    type: bool
+    access: read-only
+    description: streamerMode property
+
+  - name: superSampling
+    type: float
+    access: read-only
+    description: superSampling property
+
+  - name: uiColor
+    type: Color
+    access: read-only
+    description: uiColor property
+
+  - name: uiScale
+    type: float
+    access: read-only
+    description: uiScale property
+
+  - name: uiVolume
+    type: float
+    access: read-only
+    description: uiVolume property
+
+  - name: vsync
+    type: int
+    access: read-only
+    description: vsync property
+
+  - name: weaponVolume
+    type: float
+    access: read-only
+    description: weaponVolume property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

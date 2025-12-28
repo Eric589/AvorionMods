@@ -1,0 +1,446 @@
+# Plan API Documentation
+name: Plan
+type: class
+availability: both
+description: Plan class
+
+constructor:
+  signature: Plan(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Plan instance
+
+properties:
+  - name: accumulatingHealth
+    type: bool
+    access: read-only
+    description: accumulatingHealth property
+
+  - name: boundingBox
+    type: Box
+    access: read-only
+    description: boundingBox property
+
+  - name: boundingSphere
+    type: Sphere
+    access: read-only
+    description: boundingSphere property
+
+  - name: centerOfMass
+    type: vec3
+    access: read-only
+    description: centerOfMass property
+
+  - name: collisionDamage
+    type: bool
+    access: read-only
+    description: collisionDamage property
+
+  - name: convex
+    type: bool
+    access: read-only
+    description: convex property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: mass
+    type: double
+    access: read-only
+    description: mass property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+  - name: processingPower
+    type: double
+    access: read-only
+    description: processingPower property
+
+  - name: radius
+    type: float
+    access: read-only
+    description: radius property
+
+  - name: root
+    type: BlockPlanBlock
+    access: read-only
+    description: root property
+
+  - name: rootIndex
+    type: var
+    access: read-only
+    description: rootIndex property
+
+  - name: singleBlockDestructionEnabled
+    type: bool
+    access: read-only
+    description: singleBlockDestructionEnabled property
+
+  - name: size
+    type: int
+    access: read-only
+    description: size property
+
+  - name: volume
+    type: float
+    access: read-only
+    description: volume property
+
+methods:
+  - name: addBlock
+    signature: addBlock(vec3 position, vec3 size, int parentIndex, int index, Color color, Material material, Matrix orientation, int blockIndex, var secondaryColor)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: size
+        type: vec3
+        description: size parameter
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: orientation
+        type: Matrix
+        description: orientation parameter
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: secondaryColor
+        type: var
+        description: secondaryColor parameter
+    returns: int
+    description: addBlock method
+
+  - name: addPlan
+    signature: addPlan(int parentIndex, BlockPlan other, int otherBlock)
+    parameters:
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: other
+        type: BlockPlan
+        description: other parameter
+      - name: otherBlock
+        type: int
+        description: otherBlock parameter
+    returns: int
+    description: addPlan method
+
+  - name: addPlanDisplaced
+    signature: addPlanDisplaced(int parentIndex, BlockPlan other, int otherBlock, vec3 delta)
+    parameters:
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: other
+        type: BlockPlan
+        description: other parameter
+      - name: otherBlock
+        type: int
+        description: otherBlock parameter
+      - name: delta
+        type: vec3
+        description: delta parameter
+    returns: int
+    description: addPlanDisplaced method
+
+  - name: damage
+    signature: damage(float damage, int block, vec3 location, Uuid inflictingEntity, var damageSource, var damageType)
+    parameters:
+      - name: damage
+        type: float
+        description: damage parameter
+      - name: block
+        type: int
+        description: block parameter
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: inflictingEntity
+        type: Uuid
+        description: inflictingEntity parameter
+      - name: damageSource
+        type: var
+        description: damageSource parameter
+      - name: damageType
+        type: var
+        description: damageType parameter
+    returns: void
+    description: damage method
+
+  - name: deleteSubTree
+    signature: deleteSubTree(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: deleteSubTree method
+
+  - name: destroy
+    signature: destroy()
+    returns: void
+    description: destroy method
+
+  - name: empty
+    signature: empty()
+    returns: bool
+    description: empty method
+
+  - name: exists
+    signature: exists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: exists method
+
+  - name: get
+    signature: get()
+    returns: BlockPlan
+    description: get method
+
+  - name: getBlock
+    signature: getBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: BlockPlanBlock
+    description: getBlock method
+
+  - name: getBlockIndices
+    signature: getBlockIndices()
+    returns: int...
+    description: getBlockIndices method
+
+  - name: getBlocksByType
+    signature: getBlocksByType(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int...
+    description: getBlocksByType method
+
+  - name: getMoneyValue
+    signature: getMoneyValue()
+    returns: double
+    description: getMoneyValue method
+
+  - name: getMove
+    signature: getMove()
+    returns: BlockPlan
+    description: getMove method
+
+  - name: getNthBlock
+    signature: getNthBlock(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: BlockPlanBlock
+    description: getNthBlock method
+
+  - name: getNthIndex
+    signature: getNthIndex(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: void
+    description: getNthIndex method
+
+  - name: getNumBlocks
+    signature: getNumBlocks(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: int
+    description: getNumBlocks method
+
+  - name: getRemoved
+    signature: getRemoved(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int...
+    description: getRemoved method
+
+  - name: getResourceValue
+    signature: getResourceValue()
+    returns: double...
+    description: getResourceValue method
+
+  - name: getStats
+    signature: getStats()
+    returns: BlockStatistics
+    description: getStats method
+
+  - name: getUndamagedMoneyValue
+    signature: getUndamagedMoneyValue()
+    returns: double
+    description: getUndamagedMoneyValue method
+
+  - name: getUndamagedResourceValue
+    signature: getUndamagedResourceValue()
+    returns: double...
+    description: getUndamagedResourceValue method
+
+  - name: heal
+    signature: heal(float damage, int block, vec3 location, Uuid inflictingEntity)
+    parameters:
+      - name: damage
+        type: float
+        description: damage parameter
+      - name: block
+        type: int
+        description: block parameter
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: inflictingEntity
+        type: Uuid
+        description: inflictingEntity parameter
+    returns: void
+    description: heal method
+
+  - name: move
+    signature: move(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: move method
+
+  - name: removeBlock
+    signature: removeBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: removeBlock method
+
+  - name: set
+    signature: set(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: set method
+
+  - name: setBlockColor
+    signature: setBlockColor(int index, Color color)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: setBlockColor method
+
+  - name: setBlockDamageFactor
+    signature: setBlockDamageFactor(int blockIndex, float factor)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: factor
+        type: float
+        description: factor parameter
+    returns: void
+    description: setBlockDamageFactor method
+
+  - name: setBlockType
+    signature: setBlockType(int index, int type)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: type
+        type: int
+        description: type parameter
+    returns: void
+    description: setBlockType method
+
+  - name: setBlockTypeDamageFactor
+    signature: setBlockTypeDamageFactor(int blockType, float factor)
+    parameters:
+      - name: blockType
+        type: int
+        description: blockType parameter
+      - name: factor
+        type: float
+        description: factor parameter
+    returns: void
+    description: setBlockTypeDamageFactor method
+
+  - name: setColor
+    signature: setColor(Color color, var secondaryColor)
+    parameters:
+      - name: color
+        type: Color
+        description: color parameter
+      - name: secondaryColor
+        type: var
+        description: secondaryColor parameter
+    returns: void
+    description: setColor method
+
+  - name: setMaterial
+    signature: setMaterial(Material material)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+    returns: void
+    description: setMaterial method
+
+  - name: setSecondaryBlockColor
+    signature: setSecondaryBlockColor(int index, Color color)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: setSecondaryBlockColor method
+
+notes:
+  - Auto-converted from HTML documentation

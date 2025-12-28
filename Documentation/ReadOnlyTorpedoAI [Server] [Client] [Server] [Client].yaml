@@ -1,0 +1,34 @@
+# ReadOnlyTorpedoAI [Server] [Client] [Server] [Client] API Documentation
+name: ReadOnlyTorpedoAI [Server] [Client] [Server] [Client]
+type: class
+availability: both
+description: ReadOnlyTorpedoAI [Server] [Client] [Server] [Client] class
+
+properties:
+  - name: drifting
+    type: bool
+    access: read-only
+    description: drifting property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: maxVelocity
+    type: float
+    access: read-only
+    description: maxVelocity property
+
+  - name: turningSpeed
+    type: float
+    access: read-only
+    description: turningSpeed property
+
+notes:
+  - Auto-converted from HTML documentation

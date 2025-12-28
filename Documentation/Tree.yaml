@@ -1,0 +1,211 @@
+# Tree API Documentation
+name: Tree
+type: class
+extends: UIElement
+availability: client-only
+description: Tree class
+
+constructor:
+  signature: Tree(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Tree instance
+
+properties:
+  - name: onSelectedFunction
+    type: string
+    access: read-only
+    description: onSelectedFunction property
+
+  - name: selectedIndex
+    type: int
+    access: read-only
+    description: selectedIndex property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: add
+    signature: add(var parent, string caption, var onSelected, var hasContent, var id)
+    parameters:
+      - name: parent
+        type: var
+        description: parent parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onSelected
+        type: var
+        description: onSelected parameter
+      - name: hasContent
+        type: var
+        description: hasContent parameter
+      - name: id
+        type: var
+        description: id parameter
+    returns: int
+    description: add method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: selectById
+    signature: selectById(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: selectById method
+
+  - name: selectNext
+    signature: selectNext()
+    returns: int
+    description: selectNext method
+
+  - name: selectPrevious
+    signature: selectPrevious()
+    returns: int
+    description: selectPrevious method
+
+  - name: setLevelStyle
+    signature: setLevelStyle(int level, int height, int fontSize)
+    parameters:
+      - name: level
+        type: int
+        description: level parameter
+      - name: height
+        type: int
+        description: height parameter
+      - name: fontSize
+        type: int
+        description: fontSize parameter
+    returns: void
+    description: setLevelStyle method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

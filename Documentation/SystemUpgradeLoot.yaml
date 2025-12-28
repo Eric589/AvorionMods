@@ -1,0 +1,22 @@
+# SystemUpgradeLoot API Documentation
+name: SystemUpgradeLoot
+type: class
+availability: both
+description: SystemUpgradeLoot class
+
+constructor:
+  signature: SystemUpgradeLoot(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: SystemUpgradeLoot instance
+
+properties:
+  - name: upgrade
+    type: SystemUpgradeTemplate
+    access: read-write
+    description: upgrade property
+
+notes:
+  - Auto-converted from HTML documentation

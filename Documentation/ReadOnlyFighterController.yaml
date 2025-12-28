@@ -1,0 +1,38 @@
+# ReadOnlyFighterController API Documentation
+name: ReadOnlyFighterController
+type: class
+availability: server-only
+description: ReadOnlyFighterController class
+
+constructor:
+  signature: ReadOnlyFighterController(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyFighterController instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: getDeployedFighters
+    signature: getDeployedFighters(var squad)
+    parameters:
+      - name: squad
+        type: var
+        description: squad parameter
+    returns: Entity...
+    description: getDeployedFighters method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

@@ -1,0 +1,86 @@
+# Rect API Documentation
+name: Rect
+type: class
+availability: both
+description: Rect class
+
+constructor:
+  signature: Rect(var a, var b, var c, var d)
+  parameters:
+    - name: a
+      type: var
+      description: a parameter
+    - name: b
+      type: var
+      description: b parameter
+    - name: c
+      type: var
+      description: c parameter
+    - name: d
+      type: var
+      description: d parameter
+  returns: Rect instance
+
+properties:
+  - name: area
+    type: float
+    access: read-only
+    description: area property
+
+  - name: bottomLeft
+    type: vec2
+    access: read-only
+    description: bottomLeft property
+
+  - name: bottomRight
+    type: vec2
+    access: read-only
+    description: bottomRight property
+
+  - name: center
+    type: vec2
+    access: read-only
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    description: height property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    description: lower property
+
+  - name: position
+    type: vec2
+    access: read-only
+    description: position property
+
+  - name: size
+    type: vec2
+    access: read-only
+    description: size property
+
+  - name: topLeft
+    type: vec2
+    access: read-only
+    description: topLeft property
+
+  - name: topRight
+    type: vec2
+    access: read-only
+    description: topRight property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    description: upper property
+
+  - name: width
+    type: float
+    access: read-write
+    description: width property
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,57 @@
+# Squad API Documentation
+name: Squad
+type: class
+availability: both
+description: Squad class
+
+constructor:
+  signature: Squad()
+  returns: Squad instance
+
+properties:
+  - name: index
+    type: unsigned int
+    access: read-only
+    description: index property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numFighters
+    type: var
+    access: read-only
+    description: numFighters property
+
+methods:
+  - name: addFighter
+    signature: addFighter(FighterTemplate fighter)
+    parameters:
+      - name: fighter
+        type: FighterTemplate
+        description: fighter parameter
+    returns: void
+    description: addFighter method
+
+  - name: getBlueprint
+    signature: getBlueprint()
+    returns: FighterTemplate
+    description: getBlueprint method
+
+  - name: getFighter
+    signature: getFighter(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: FighterTemplate
+    description: getFighter method
+
+  - name: getFighters
+    signature: getFighters()
+    returns: FighterTemplate...
+    description: getFighters method
+
+notes:
+  - Auto-converted from HTML documentation

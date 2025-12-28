@@ -1,0 +1,163 @@
+# DockingPositions API Documentation
+name: DockingPositions
+type: class
+availability: both
+description: DockingPositions class
+
+constructor:
+  signature: DockingPositions(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: DockingPositions instance
+
+properties:
+  - name: alwaysDocked
+    type: bool
+    access: read-only
+    description: alwaysDocked property
+
+  - name: docksEnabled
+    type: bool
+    access: read-only
+    description: docksEnabled property
+
+  - name: numDockingPositions
+    type: int
+    access: read-only
+    description: numDockingPositions property
+
+methods:
+  - name: deleteRemovableObstacles
+    signature: deleteRemovableObstacles()
+    returns: void
+    description: deleteRemovableObstacles method
+
+  - name: getDockingPosition
+    signature: getDockingPosition(int i)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+    returns: void
+    description: getDockingPosition method
+
+  - name: getDockingPositions
+    signature: getDockingPositions()
+    returns: table_t
+    description: getDockingPositions method
+
+  - name: getFreeDock
+    signature: getFreeDock(Entity [or nil] exception)
+    parameters:
+      - name: exception
+        type: Entity [or nil]
+        description: exception parameter
+    returns: void
+    description: getFreeDock method
+
+  - name: inLightArea
+    signature: inLightArea(Entity other, var dockIndex)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+      - name: dockIndex
+        type: var
+        description: dockIndex parameter
+    returns: bool
+    description: inLightArea method
+
+  - name: isInDockingArea
+    signature: isInDockingArea(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: bool
+    description: isInDockingArea method
+
+  - name: isLightLineFree
+    signature: isLightLineFree(int i, Entity [or nil] exception)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: exception
+        type: Entity [or nil]
+        description: exception parameter
+    returns: bool
+    description: isLightLineFree method
+
+  - name: isPulling
+    signature: isPulling(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: bool
+    description: isPulling method
+
+  - name: isPushing
+    signature: isPushing(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: bool
+    description: isPushing method
+
+  - name: isTractoring
+    signature: isTractoring(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: bool
+    description: isTractoring method
+
+  - name: startPulling
+    signature: startPulling(Entity other, var dockIndex)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+      - name: dockIndex
+        type: var
+        description: dockIndex parameter
+    returns: bool
+    description: startPulling method
+
+  - name: startPushing
+    signature: startPushing(Entity other, var dockIndex)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+      - name: dockIndex
+        type: var
+        description: dockIndex parameter
+    returns: bool
+    description: startPushing method
+
+  - name: stopPulling
+    signature: stopPulling(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: void
+    description: stopPulling method
+
+  - name: stopPushing
+    signature: stopPushing(Entity other)
+    parameters:
+      - name: other
+        type: Entity
+        description: other parameter
+    returns: void
+    description: stopPushing method
+
+notes:
+  - Auto-converted from HTML documentation

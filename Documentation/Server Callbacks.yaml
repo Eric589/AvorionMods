@@ -1,0 +1,37 @@
+# Server  Callbacks Documentation
+name: Server  Callbacks
+type: callbacks
+description: Callback functions for Server scripts
+
+note: |
+  Callbacks have to be buffered in certain situations and won't happen immediately. When unregistering a callback during a callback, all callbacks that were buffered during the last tick may still be sent, even though they were unregistered.
+
+callbacks:
+  - name: onChatMessage
+    signature: onChatMessage(playerIndex, text, channel)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: text
+        description: The text content of the chat message
+      - name: channel
+        description: The channel the message was sent to. 0 = All, 1 = Sector, 2 = Group, 3 = Alliance
+    description: Executed whenever the player sent a chat message to the server. Only called if the chat message is valid and the player doesn't have a chat ban.
+
+  - name: onPlayerLogIn
+    signature: onPlayerLogIn(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the player who logged in
+    description: Executed whenever a player was logged in
+
+  - name: onPlayerLogOff
+    signature: onPlayerLogOff(playerIndex)
+    parameters:
+      - name: playerIndex
+        description: The index of the player who logged off
+    description: Executed whenever a player was logged off
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

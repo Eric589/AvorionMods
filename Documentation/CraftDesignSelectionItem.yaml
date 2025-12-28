@@ -1,0 +1,78 @@
+# CraftDesignSelectionItem API Documentation
+name: CraftDesignSelectionItem
+type: class
+availability: client-only
+description: CraftDesignSelectionItem class
+
+constructor:
+  signature: CraftDesignSelectionItem(string path)
+  parameters:
+    - name: path
+      type: string
+      description: path parameter
+  returns: CraftDesignSelectionItem instance
+
+properties:
+  - name: deleteable
+    type: bool
+    access: read-only
+    description: deleteable property
+
+  - name: design
+    type: CraftDesign
+    access: read-only
+    description: design property
+
+  - name: hasWorkshopIcon
+    type: bool
+    access: read-only
+    description: hasWorkshopIcon property
+
+  - name: highlighted
+    type: bool
+    access: read-only
+    description: highlighted property
+
+  - name: isLocalProject
+    type: bool
+    access: read-only
+    description: isLocalProject property
+
+  - name: isOwnSubmission
+    type: bool
+    access: read-only
+    description: isOwnSubmission property
+
+  - name: isSubscribedDesign
+    type: bool
+    access: read-only
+    description: isSubscribedDesign property
+
+  - name: path
+    type: string
+    access: read-only
+    description: path property
+
+  - name: plan
+    type: BlockPlan
+    access: read-only
+    description: plan property
+
+  - name: readyForDeletion
+    type: bool
+    access: read-only
+    description: readyForDeletion property
+
+  - name: type
+    type: SavedDesignType
+    access: read-only
+    description: type property
+
+  - name: workshopUrl
+    type: string
+    access: read-only
+    description: workshopUrl property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

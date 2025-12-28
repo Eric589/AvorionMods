@@ -1,0 +1,62 @@
+# TorpedoAI API Documentation
+name: TorpedoAI
+type: class
+availability: both
+description: TorpedoAI class
+
+constructor:
+  signature: TorpedoAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: TorpedoAI instance
+
+properties:
+  - name: desiredVelocity
+    type: float
+    access: read-only
+    description: desiredVelocity property
+
+  - name: dotLastFrame
+    type: float
+    access: read-only
+    description: dotLastFrame property
+
+  - name: driftTime
+    type: float
+    access: read-only
+    description: driftTime property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: flightTime
+    type: float
+    access: read-write
+    description: flightTime property
+
+  - name: missedTargetCounter
+    type: float
+    access: read-write
+    description: missedTargetCounter property
+
+  - name: originalDriftTime
+    type: float
+    access: read-write
+    description: originalDriftTime property
+
+  - name: target
+    type: Uuid
+    access: read-write
+    description: target property
+
+notes:
+  - Auto-converted from HTML documentation

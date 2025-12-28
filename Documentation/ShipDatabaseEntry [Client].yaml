@@ -1,0 +1,210 @@
+# ShipDatabaseEntry [Client] API Documentation
+name: ShipDatabaseEntry [Client]
+type: class
+availability: client-only
+description: ShipDatabaseEntry [Client] class
+
+properties:
+  - name: faction
+    type: int
+    access: read-only
+    description: faction property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+methods:
+  - name: buildIdealCrew
+    signature: buildIdealCrew()
+    returns: Crew
+    description: buildIdealCrew method
+
+  - name: exists
+    signature: exists()
+    returns: bool
+    description: exists method
+
+  - name: getAvailability
+    signature: getAvailability()
+    returns: ShipAvailability
+    description: getAvailability method
+
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: getCargo
+    signature: getCargo()
+    returns: table&lt;TradingGood, float&gt;, float
+    description: getCargo method
+
+  - name: getCoordinates
+    signature: getCoordinates()
+    returns: int, int
+    description: getCoordinates method
+
+  - name: getCrew
+    signature: getCrew()
+    returns: Crew
+    description: getCrew method
+
+  - name: getCrewRequirementsFulfilled
+    signature: getCrewRequirementsFulfilled()
+    returns: bool
+    description: getCrewRequirementsFulfilled method
+
+  - name: getDocksEnabled
+    signature: getDocksEnabled()
+    returns: void
+    description: getDocksEnabled method
+
+  - name: getDPSValues
+    signature: getDPSValues()
+    returns: double, double
+    description: getDPSValues method
+
+  - name: getDurabilityProperties
+    signature: getDurabilityProperties()
+    returns: var...
+    description: getDurabilityProperties method
+
+  - name: getEnergyProperties
+    signature: getEnergyProperties()
+    returns: var...
+    description: getEnergyProperties method
+
+  - name: getEntityType
+    signature: getEntityType()
+    returns: int
+    description: getEntityType method
+
+  - name: getFighterSquadRequirementsFulfilled
+    signature: getFighterSquadRequirementsFulfilled()
+    returns: bool
+    description: getFighterSquadRequirementsFulfilled method
+
+  - name: getFighterStartRequirementsFulfilled
+    signature: getFighterStartRequirementsFulfilled()
+    returns: bool
+    description: getFighterStartRequirementsFulfilled method
+
+  - name: getFreeCargoSpace
+    signature: getFreeCargoSpace()
+    returns: float
+    description: getFreeCargoSpace method
+
+  - name: getHangar
+    signature: getHangar()
+    returns: table&lt;unsigned int, Squad&gt;, table_t
+    description: getHangar method
+
+  - name: getHyperspaceProperties
+    signature: getHyperspaceProperties()
+    returns: var...
+    description: getHyperspaceProperties method
+
+  - name: getIcon
+    signature: getIcon()
+    returns: string
+    description: getIcon method
+
+  - name: getLightweightHangar
+    signature: getLightweightHangar()
+    returns: table&lt;unsigned int, Squad&gt;, table_t
+    description: getLightweightHangar method
+
+  - name: getLocalPosition
+    signature: getLocalPosition()
+    returns: Matrix
+    description: getLocalPosition method
+
+  - name: getOrderInfo
+    signature: getOrderInfo()
+    returns: string
+    description: getOrderInfo method
+
+  - name: getPaymentTime
+    signature: getPaymentTime()
+    returns: float
+    description: getPaymentTime method
+
+  - name: getPlan
+    signature: getPlan()
+    returns: BlockPlan
+    description: getPlan method
+
+  - name: getPlanValue
+    signature: getPlanValue()
+    returns: double
+    description: getPlanValue method
+
+  - name: getPlayerPiloted
+    signature: getPlayerPiloted()
+    returns: void
+    description: getPlayerPiloted method
+
+  - name: getReconstructionValue
+    signature: getReconstructionValue()
+    returns: double
+    description: getReconstructionValue method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getScriptValue
+    signature: getScriptValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getScriptValue method
+
+  - name: getScriptValues
+    signature: getScriptValues()
+    returns: void
+    description: getScriptValues method
+
+  - name: getSecuredScriptValues
+    signature: getSecuredScriptValues()
+    returns: void
+    description: getSecuredScriptValues method
+
+  - name: getShields
+    signature: getShields()
+    returns: float, float
+    description: getShields method
+
+  - name: getStatusMessage
+    signature: getStatusMessage()
+    returns: NamedFormat
+    description: getStatusMessage method
+
+  - name: getTitle
+    signature: getTitle()
+    returns: Format
+    description: getTitle method
+
+  - name: getTorpedoes
+    signature: getTorpedoes()
+    returns: TorpedoTemplate...
+    description: getTorpedoes method
+
+  - name: getTurretSlotRequirementsFulfilled
+    signature: getTurretSlotRequirementsFulfilled()
+    returns: bool
+    description: getTurretSlotRequirementsFulfilled method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

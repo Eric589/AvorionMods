@@ -1,0 +1,261 @@
+# Label API Documentation
+name: Label
+type: class
+extends: UIElement
+availability: client-only
+description: Label class
+
+constructor:
+  signature: Label(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Label instance
+
+properties:
+  - name: active
+    type: bool
+    access: write-only
+    description: active property
+
+  - name: bold
+    type: bool
+    access: write-only
+    description: bold property
+
+  - name: caption
+    type: string
+    access: write-only
+    description: caption property
+
+  - name: centered
+    type: bool
+    access: write-only
+    description: centered property
+
+  - name: color
+    type: Color
+    access: write-only
+    description: color property
+
+  - name: font
+    type: int
+    access: write-only
+    description: font property
+
+  - name: fontSize
+    type: int
+    access: write-only
+    description: fontSize property
+
+  - name: italic
+    type: bool
+    access: write-only
+    description: italic property
+
+  - name: mouseDownFunction
+    type: string
+    access: write-only
+    description: mouseDownFunction property
+
+  - name: outline
+    type: bool
+    access: write-only
+    description: outline property
+
+  - name: shortenText
+    type: bool
+    access: write-only
+    description: shortenText property
+
+  - name: strikethrough
+    type: bool
+    access: write-only
+    description: strikethrough property
+
+  - name: textWidth
+    type: int
+    access: read-only
+    description: textWidth property
+
+  - name: underlined
+    type: bool
+    access: write-only
+    description: underlined property
+
+  - name: wordBreak
+    type: bool
+    access: write-only
+    description: wordBreak property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: setBottomAligned
+    signature: setBottomAligned()
+    returns: void
+    description: setBottomAligned method
+
+  - name: setBottomLeftAligned
+    signature: setBottomLeftAligned()
+    returns: void
+    description: setBottomLeftAligned method
+
+  - name: setBottomRightAligned
+    signature: setBottomRightAligned()
+    returns: void
+    description: setBottomRightAligned method
+
+  - name: setCenterAligned
+    signature: setCenterAligned()
+    returns: void
+    description: setCenterAligned method
+
+  - name: setLeftAligned
+    signature: setLeftAligned()
+    returns: void
+    description: setLeftAligned method
+
+  - name: setRightAligned
+    signature: setRightAligned()
+    returns: void
+    description: setRightAligned method
+
+  - name: setTopAligned
+    signature: setTopAligned()
+    returns: void
+    description: setTopAligned method
+
+  - name: setTopLeftAligned
+    signature: setTopLeftAligned()
+    returns: void
+    description: setTopLeftAligned method
+
+  - name: setTopRightAligned
+    signature: setTopRightAligned()
+    returns: void
+    description: setTopRightAligned method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

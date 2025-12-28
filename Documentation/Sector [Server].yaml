@@ -1,0 +1,828 @@
+# Sector [Server] API Documentation
+name: Sector [Server]
+type: class
+availability: server-only
+description: Sector [Server] class
+
+properties:
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: numEntities
+    type: unsigned int
+    access: read-only
+    description: numEntities property
+
+  - name: numPlayers
+    type: unsigned int
+    access: read-only
+    description: numPlayers property
+
+  - name: persistent
+    type: bool
+    access: read-only
+    description: persistent property
+
+  - name: pvpDamage
+    type: bool
+    access: read-only
+    description: pvpDamage property
+
+  - name: seed
+    type: Seed
+    access: read-only
+    description: seed property
+
+methods:
+  - name: addScript
+    signature: addScript()
+    returns: int
+    description: addScript method
+
+  - name: addScriptOnce
+    signature: addScriptOnce()
+    returns: void
+    description: addScriptOnce method
+
+  - name: belongsToFaction
+    signature: belongsToFaction(int factionIndex, var id)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: id
+        type: var
+        description: id parameter
+    returns: bool
+    description: belongsToFaction method
+
+  - name: broadcastChatMessage
+    signature: broadcastChatMessage(var sender, int messageType, string message, PluralForm... args)
+    parameters:
+      - name: sender
+        type: var
+        description: sender parameter
+      - name: messageType
+        type: int
+        description: messageType parameter
+      - name: message
+        type: string
+        description: message parameter
+      - name: args
+        type: PluralForm...
+        description: args parameter
+    returns: void
+    description: broadcastChatMessage method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: clearTickLengthAnalysisQueue
+    signature: clearTickLengthAnalysisQueue()
+    returns: void
+    description: clearTickLengthAnalysisQueue method
+
+  - name: clearValues
+    signature: clearValues()
+    returns: void
+    description: clearValues method
+
+  - name: collectGarbage
+    signature: collectGarbage(var entity)
+    parameters:
+      - name: entity
+        type: var
+        description: entity parameter
+    returns: void
+    description: collectGarbage method
+
+  - name: copyEntity
+    signature: copyEntity(Entity entity, Matrix positoin)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: positoin
+        type: Matrix
+        description: positoin parameter
+    returns: // see
+    description: copyEntity method
+
+  - name: createAsteroid
+    signature: createAsteroid(BlockPlan plan, bool resources, Matrix position)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+      - name: resources
+        type: bool
+        description: resources parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+    returns: Entity
+    description: createAsteroid method
+
+  - name: createEntity
+    signature: createEntity(EntityDescriptor descriptor, var arrivalType)
+    parameters:
+      - name: descriptor
+        type: EntityDescriptor
+        description: descriptor parameter
+      - name: arrivalType
+        type: var
+        description: arrivalType parameter
+    returns: Entity
+    description: createEntity method
+
+  - name: createObject
+    signature: createObject(BlockPlan plan, Matrix position, var arrivalType)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+      - name: arrivalType
+        type: var
+        description: arrivalType parameter
+    returns: Entity
+    description: createObject method
+
+  - name: createShip
+    signature: createShip(Faction faction, string name, BlockPlan plan, Matrix position, var arrivalType)
+    parameters:
+      - name: faction
+        type: Faction
+        description: faction parameter
+      - name: name
+        type: string
+        description: name parameter
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+      - name: arrivalType
+        type: var
+        description: arrivalType parameter
+    returns: Entity
+    description: createShip method
+
+  - name: createStation
+    signature: createStation(Faction faction, BlockPlan plan, Matrix position, var script, var... args)
+    parameters:
+      - name: faction
+        type: Faction
+        description: faction parameter
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+      - name: script
+        type: var
+        description: script parameter
+      - name: args
+        type: var...
+        description: args parameter
+    returns: Entity
+    description: createStation method
+
+  - name: createWormHole
+    signature: createWormHole(int x, int y, Color color, float visualSize, var passageSize)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: visualSize
+        type: float
+        description: visualSize parameter
+      - name: passageSize
+        type: var
+        description: passageSize parameter
+    returns: Entity
+    description: createWormHole method
+
+  - name: createWreckage
+    signature: createWreckage(BlockPlan plan, Matrix position)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+      - name: position
+        type: Matrix
+        description: position parameter
+    returns: Entity
+    description: createWreckage method
+
+  - name: deleteEntity
+    signature: deleteEntity(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: deleteEntity method
+
+  - name: deleteEntityJumped
+    signature: deleteEntityJumped(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: deleteEntityJumped method
+
+  - name: dropBundle
+    signature: dropBundle()
+    returns: void
+    description: dropBundle method
+
+  - name: dropCargo
+    signature: dropCargo(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, TradingGood good, int owner, int amount)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: good
+        type: TradingGood
+        description: good parameter
+      - name: owner
+        type: int
+        description: owner parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: Entity
+    description: dropCargo method
+
+  - name: dropMoney
+    signature: dropMoney(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, int amount)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: Entity
+    description: dropMoney method
+
+  - name: dropResources
+    signature: dropResources(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, Material material, int amount)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: Entity
+    description: dropResources method
+
+  - name: dropSectorTurret
+    signature: dropSectorTurret(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+    returns: Entity
+    description: dropSectorTurret method
+
+  - name: dropTorpedo
+    signature: dropTorpedo(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, TorpedoTemplate desc)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: desc
+        type: TorpedoTemplate
+        description: desc parameter
+    returns: Entity
+    description: dropTorpedo method
+
+  - name: dropTurret
+    signature: dropTurret(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, TurretTemplate desc)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: desc
+        type: TurretTemplate
+        description: desc parameter
+    returns: Entity
+    description: dropTurret method
+
+  - name: dropUpgrade
+    signature: dropUpgrade(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, SystemUpgradeTemplate upgrade)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: upgrade
+        type: SystemUpgradeTemplate
+        description: upgrade parameter
+    returns: Entity
+    description: dropUpgrade method
+
+  - name: dropUsableItem
+    signature: dropUsableItem(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, UsableInventoryItem item)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: item
+        type: UsableInventoryItem
+        description: item parameter
+    returns: Entity
+    description: dropUsableItem method
+
+  - name: dropVanillaItem
+    signature: dropVanillaItem(vec3 position, Faction [or nil] reservedFor, Faction [or nil] deniedFor, VanillaInventoryItem item)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: reservedFor
+        type: Faction [or nil]
+        description: reservedFor parameter
+      - name: deniedFor
+        type: Faction [or nil]
+        description: deniedFor parameter
+      - name: item
+        type: VanillaInventoryItem
+        description: item parameter
+    returns: Entity
+    description: dropVanillaItem method
+
+  - name: exists
+    signature: exists(var id)
+    parameters:
+      - name: id
+        type: var
+        description: id parameter
+    returns: bool
+    description: exists method
+
+  - name: getAllies
+    signature: getAllies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getAllies method
+
+  - name: getCoordinates
+    signature: getCoordinates()
+    returns: int, int
+    description: getCoordinates method
+
+  - name: getEnemies
+    signature: getEnemies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getEnemies method
+
+  - name: getEntities
+    signature: getEntities()
+    returns: Entity...
+    description: getEntities method
+
+  - name: getEntitiesByComponent
+    signature: getEntitiesByComponent(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: Entity...
+    description: getEntitiesByComponent method
+
+  - name: getEntitiesByComponents
+    signature: getEntitiesByComponents(Type... types)
+    parameters:
+      - name: types
+        type: Type...
+        description: types parameter
+    returns: Entity...
+    description: getEntitiesByComponents method
+
+  - name: getEntitiesByFaction
+    signature: getEntitiesByFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Entity...
+    description: getEntitiesByFaction method
+
+  - name: getEntitiesByLocation
+    signature: getEntitiesByLocation(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: Entity...
+    description: getEntitiesByLocation method
+
+  - name: getEntitiesByScript
+    signature: getEntitiesByScript(string script)
+    parameters:
+      - name: script
+        type: string
+        description: script parameter
+    returns: Entity...
+    description: getEntitiesByScript method
+
+  - name: getEntitiesByScriptValue
+    signature: getEntitiesByScriptValue(string name, var value)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: Entity...
+    description: getEntitiesByScriptValue method
+
+  - name: getEntitiesByType
+    signature: getEntitiesByType(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: Entity...
+    description: getEntitiesByType method
+
+  - name: getEntity
+    signature: getEntity(var index)
+    parameters:
+      - name: index
+        type: var
+        description: index parameter
+    returns: Entity
+    description: getEntity method
+
+  - name: getEntityByFactionAndName
+    signature: getEntityByFactionAndName(int factionIndex, string name)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: name
+        type: string
+        description: name parameter
+    returns: Entity
+    description: getEntityByFactionAndName method
+
+  - name: getNumAllies
+    signature: getNumAllies(int faction)
+    parameters:
+      - name: faction
+        type: int
+        description: faction parameter
+    returns: unsigned int
+    description: getNumAllies method
+
+  - name: getNumEnemies
+    signature: getNumEnemies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: unsigned int
+    description: getNumEnemies method
+
+  - name: getNumEntities
+    signature: getNumEntities()
+    returns: unsigned int
+    description: getNumEntities method
+
+  - name: getNumEntitiesByComponent
+    signature: getNumEntitiesByComponent(int component)
+    parameters:
+      - name: component
+        type: int
+        description: component parameter
+    returns: unsigned int
+    description: getNumEntitiesByComponent method
+
+  - name: getNumEntitiesByComponents
+    signature: getNumEntitiesByComponents()
+    returns: unsigned int
+    description: getNumEntitiesByComponents method
+
+  - name: getNumEntitiesByFaction
+    signature: getNumEntitiesByFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: unsigned int
+    description: getNumEntitiesByFaction method
+
+  - name: getNumEntitiesByLocation
+    signature: getNumEntitiesByLocation(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: unsigned int
+    description: getNumEntitiesByLocation method
+
+  - name: getNumEntitiesByScript
+    signature: getNumEntitiesByScript(string scriptName)
+    parameters:
+      - name: scriptName
+        type: string
+        description: scriptName parameter
+    returns: unsigned int
+    description: getNumEntitiesByScript method
+
+  - name: getNumEntitiesByScriptValue
+    signature: getNumEntitiesByScriptValue(string valueName, var value)
+    parameters:
+      - name: valueName
+        type: string
+        description: valueName parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: unsigned int
+    description: getNumEntitiesByScriptValue method
+
+  - name: getNumEntitiesByType
+    signature: getNumEntitiesByType(int type)
+    parameters:
+      - name: type
+        type: int
+        description: type parameter
+    returns: unsigned int
+    description: getNumEntitiesByType method
+
+  - name: getPlayers
+    signature: getPlayers()
+    returns: Player...
+    description: getPlayers method
+
+  - name: getPresentFactions
+    signature: getPresentFactions()
+    returns: int...
+    description: getPresentFactions method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    description: getValues method
+
+  - name: hasEnemies
+    signature: hasEnemies(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    description: hasEnemies method
+
+  - name: hasScript
+    signature: hasScript(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: hasScript method
+
+  - name: intersectBeamRay
+    signature: intersectBeamRay(Ray ray, Uuid [or nil] ignoredEntity, Uuid [or nil] ignoredEntityShields)
+    parameters:
+      - name: ray
+        type: Ray
+        description: ray parameter
+      - name: ignoredEntity
+        type: Uuid [or nil]
+        description: ignoredEntity parameter
+      - name: ignoredEntityShields
+        type: Uuid [or nil]
+        description: ignoredEntityShields parameter
+    returns: UserObject...
+    description: intersectBeamRay method
+
+  - name: invokeFunction
+    signature: invokeFunction(var scriptName, string functionName, var... arguments)
+    parameters:
+      - name: scriptName
+        type: var
+        description: scriptName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: var...
+    description: invokeFunction method
+
+  - name: isEntitySetForDeletion
+    signature: isEntitySetForDeletion(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: bool
+    description: isEntitySetForDeletion method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: int
+    description: registerCallback method
+
+  - name: removeScript
+    signature: removeScript(var script)
+    parameters:
+      - name: script
+        type: var
+        description: script parameter
+    returns: void
+    description: removeScript method
+
+  - name: replaceEntity
+    signature: replaceEntity(var toReplace, EntityDescriptor descriptor, var arrivalType)
+    parameters:
+      - name: toReplace
+        type: var
+        description: toReplace parameter
+      - name: descriptor
+        type: EntityDescriptor
+        description: descriptor parameter
+      - name: arrivalType
+        type: var
+        description: arrivalType parameter
+    returns: Entity
+    description: replaceEntity method
+
+  - name: resendEntity
+    signature: resendEntity(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: resendEntity method
+
+  - name: resolveScriptPath
+    signature: resolveScriptPath(string path)
+    parameters:
+      - name: path
+        type: string
+        description: path parameter
+    returns: string
+    description: resolveScriptPath method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: setValue
+    signature: setValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setValue method
+
+  - name: transferEntity
+    signature: transferEntity(Entity entity, int x, int y, int type)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: type
+        type: int
+        description: type parameter
+    returns: void
+    description: transferEntity method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: void
+    description: unregisterCallback method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

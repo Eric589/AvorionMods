@@ -1,0 +1,57 @@
+# Thrusters API Documentation
+name: Thrusters
+type: class
+availability: both
+description: Thrusters class
+
+constructor:
+  signature: Thrusters(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Thrusters instance
+
+properties:
+  - name: basePitch
+    type: double
+    access: read-only
+    description: basePitch property
+
+  - name: baseRoll
+    type: double
+    access: read-only
+    description: baseRoll property
+
+  - name: baseYaw
+    type: double
+    access: read-only
+    description: baseYaw property
+
+  - name: currentPitch
+    type: double
+    access: read-only
+    description: currentPitch property
+
+  - name: currentRoll
+    type: double
+    access: read-only
+    description: currentRoll property
+
+  - name: currentYaw
+    type: double
+    access: read-only
+    description: currentYaw property
+
+  - name: fixedStats
+    type: bool
+    access: read-write
+    description: fixedStats property
+
+  - name: thrust
+    type: vec3
+    access: read-write
+    description: thrust property
+
+notes:
+  - Auto-converted from HTML documentation

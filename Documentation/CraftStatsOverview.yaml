@@ -1,0 +1,111 @@
+# CraftStatsOverview API Documentation
+name: CraftStatsOverview
+type: class
+availability: both
+description: CraftStatsOverview class
+
+constructor:
+  signature: CraftStatsOverview(Entity [or nil] entity)
+  parameters:
+    - name: entity
+      type: Entity [or nil]
+      description: entity parameter
+  returns: CraftStatsOverview instance
+
+properties:
+  - name: includeCrew
+    type: bool
+    access: read-write
+    description: includeCrew property
+
+  - name: includeEnergy
+    type: bool
+    access: read-write
+    description: includeEnergy property
+
+  - name: includeUpgrades
+    type: bool
+    access: read-write
+    description: includeUpgrades property
+
+methods:
+  - name: getEfficiency
+    signature: getEfficiency(CraftStatsOverview::Stat stat)
+    parameters:
+      - name: stat
+        type: CraftStatsOverview::Stat
+        description: stat parameter
+    returns: float
+    description: getEfficiency method
+
+  - name: getUnit
+    signature: getUnit(CraftStatsOverview::Stat stat)
+    parameters:
+      - name: stat
+        type: CraftStatsOverview::Stat
+        description: stat parameter
+    returns: string
+    description: getUnit method
+
+  - name: getValue
+    signature: getValue(CraftStatsOverview::Stat key)
+    parameters:
+      - name: key
+        type: CraftStatsOverview::Stat
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: isBadValue
+    signature: isBadValue(CraftStatsOverview::Stat stat)
+    parameters:
+      - name: stat
+        type: CraftStatsOverview::Stat
+        description: stat parameter
+    returns: bool
+    description: isBadValue method
+
+  - name: isDangerousValue
+    signature: isDangerousValue(CraftStatsOverview::Stat stat)
+    parameters:
+      - name: stat
+        type: CraftStatsOverview::Stat
+        description: stat parameter
+    returns: bool
+    description: isDangerousValue method
+
+  - name: isRelevant
+    signature: isRelevant(CraftStatsOverview::Stat stat)
+    parameters:
+      - name: stat
+        type: CraftStatsOverview::Stat
+        description: stat parameter
+    returns: bool
+    description: isRelevant method
+
+  - name: setIncludeImpact
+    signature: setIncludeImpact(bool crew, bool energy, bool upgrades)
+    parameters:
+      - name: crew
+        type: bool
+        description: crew parameter
+      - name: energy
+        type: bool
+        description: energy parameter
+      - name: upgrades
+        type: bool
+        description: upgrades parameter
+    returns: void
+    description: setIncludeImpact method
+
+  - name: update
+    signature: update(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: update method
+
+notes:
+  - Auto-converted from HTML documentation

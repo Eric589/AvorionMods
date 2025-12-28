@@ -1,0 +1,848 @@
+# InventorySelection API Documentation
+name: InventorySelection
+type: class
+extends: UIContainer
+availability: client-only
+description: InventorySelection class
+
+constructor:
+  signature: InventorySelection(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: InventorySelection instance
+
+properties:
+  - name: contextMenuAllowed
+    type: bool
+    access: write-only
+    description: contextMenuAllowed property
+
+  - name: dragFromEnabled
+    type: bool
+    access: write-only
+    description: dragFromEnabled property
+
+  - name: dropIntoEnabled
+    type: bool
+    access: write-only
+    description: dropIntoEnabled property
+
+  - name: dropIntoSelfEnabled
+    type: bool
+    access: write-only
+    description: dropIntoSelfEnabled property
+
+  - name: entriesHighlightable
+    type: bool
+    access: write-only
+    description: entriesHighlightable property
+
+  - name: entriesSelectable
+    type: bool
+    access: write-only
+    description: entriesSelectable property
+
+  - name: filterTextBox
+    type: TextBox
+    access: read-only
+    description: filterTextBox property
+
+  - name: isRenderingDraggedItem
+    type: bool
+    access: read-only
+    description: isRenderingDraggedItem property
+
+  - name: label
+    type: Label
+    access: read-only
+    description: label property
+
+  - name: maxHorizontalEntries
+    type: unsigned int
+    access: read-only
+    description: maxHorizontalEntries property
+
+  - name: numEntries
+    type: int
+    access: read-only
+    description: numEntries property
+
+  - name: onClickedFunction
+    type: string
+    access: write-only
+    description: onClickedFunction property
+
+  - name: onDeselectedFunction
+    type: string
+    access: write-only
+    description: onDeselectedFunction property
+
+  - name: onDroppedFunction
+    type: string
+    access: write-only
+    description: onDroppedFunction property
+
+  - name: onEntriesSortedFunction
+    type: string
+    access: write-only
+    description: onEntriesSortedFunction property
+
+  - name: onInsertedFunction
+    type: string
+    access: write-only
+    description: onInsertedFunction property
+
+  - name: onReceivedFunction
+    type: string
+    access: write-only
+    description: onReceivedFunction property
+
+  - name: onSelectedFunction
+    type: string
+    access: write-only
+    description: onSelectedFunction property
+
+  - name: padding
+    type: float
+    access: write-only
+    description: padding property
+
+  - name: selected
+    type: UserObject
+    access: read-only
+    description: selected property
+
+  - name: selectedKey
+    type: ivec2
+    access: read-only
+    description: selectedKey property
+
+  - name: selection
+    type: Selection
+    access: read-only
+    description: selection property
+
+  - name: sortCombo
+    type: ComboBox
+    access: read-only
+    description: sortCombo property
+
+  - name: sortMode
+    type: int
+    access: read-only
+    description: sortMode property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIContainer
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIContainer
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIContainer
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIContainer
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIContainer
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIContainer
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIContainer
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIContainer
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIContainer
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIContainer
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIContainer
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIContainer
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIContainer
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIContainer
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIContainer
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIContainer
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIContainer
+    description: width property
+
+methods:
+  - name: add
+    signature: add(var item, var pos)
+    parameters:
+      - name: item
+        type: var
+        description: item parameter
+      - name: pos
+        type: var
+        description: pos parameter
+    returns: void
+    description: add method
+
+  - name: addEmpty
+    signature: addEmpty(var pos)
+    parameters:
+      - name: pos
+        type: var
+        description: pos parameter
+    returns: void
+    description: addEmpty method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: fill
+    signature: fill()
+    returns: void
+    description: fill method
+
+  - name: getItem
+    signature: getItem(ivec2 key)
+    parameters:
+      - name: key
+        type: ivec2
+        description: key parameter
+    returns: UserObject
+    description: getItem method
+
+  - name: getItems
+    signature: getItems()
+    returns: table&lt;ivec2, UserObject&gt;
+    description: getItems method
+
+  - name: getMouseOveredKey
+    signature: getMouseOveredKey()
+    returns: ivec2
+    description: getMouseOveredKey method
+
+  - name: getRect
+    signature: getRect(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: int, Rect
+    description: getRect method
+
+  - name: remove
+    signature: remove(ivec2 key)
+    parameters:
+      - name: key
+        type: ivec2
+        description: key parameter
+    returns: void
+    description: remove method
+
+  - name: select
+    signature: select(ivec2 pos)
+    parameters:
+      - name: pos
+        type: ivec2
+        description: pos parameter
+    returns: void
+    description: select method
+
+  - name: selectNoCallback
+    signature: selectNoCallback(ivec2 pos)
+    parameters:
+      - name: pos
+        type: ivec2
+        description: pos parameter
+    returns: void
+    description: selectNoCallback method
+
+  - name: setAdditionalHints
+    signature: setAdditionalHints()
+    returns: void
+    description: setAdditionalHints method
+
+  - name: setShowScrollArrows
+    signature: setShowScrollArrows(bool showTop, bool showBottom, float width)
+    parameters:
+      - name: showTop
+        type: bool
+        description: showTop parameter
+      - name: showBottom
+        type: bool
+        description: showBottom parameter
+      - name: width
+        type: float
+        description: width parameter
+    returns: void
+    description: setShowScrollArrows method
+
+  - name: unselect
+    signature: unselect()
+    returns: void
+    description: unselect method
+
+  - name: update
+    signature: update(int factionIndex, unsigned int index)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: update method
+
+  - name: createAllianceEmblem
+    signature: createAllianceEmblem(Rect rect, int allianceIndex)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: allianceIndex
+        type: int
+        description: allianceIndex parameter
+    returns: AllianceEmblem
+    inherited: UIContainer
+    description: createAllianceEmblem method
+
+  - name: createArrowLine
+    signature: createArrowLine()
+    returns: ArrowLine
+    inherited: UIContainer
+    description: createArrowLine method
+
+  - name: createButton
+    signature: createButton(Rect rect, string caption, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    inherited: UIContainer
+    description: createButton method
+
+  - name: createCaptainIcon
+    signature: createCaptainIcon(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainIcon
+    inherited: UIContainer
+    description: createCaptainIcon method
+
+  - name: createCaptainProfile
+    signature: createCaptainProfile(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainProfile
+    inherited: UIContainer
+    description: createCaptainProfile method
+
+  - name: createCheckBox
+    signature: createCheckBox(Rect rect, string caption, string onCheckedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onCheckedFunction
+        type: string
+        description: onCheckedFunction parameter
+    returns: CheckBox
+    inherited: UIContainer
+    description: createCheckBox method
+
+  - name: createComboBox
+    signature: createComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ComboBox
+    inherited: UIContainer
+    description: createComboBox method
+
+  - name: createContainer
+    signature: createContainer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: UIContainer
+    inherited: UIContainer
+    description: createContainer method
+
+  - name: createContextMenu
+    signature: createContextMenu()
+    returns: ContextMenu
+    inherited: UIContainer
+    description: createContextMenu method
+
+  - name: createCraftPortrait
+    signature: createCraftPortrait(Rect rect, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: CraftPortrait
+    inherited: UIContainer
+    description: createCraftPortrait method
+
+  - name: createCrewBar
+    signature: createCrewBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CrewBar
+    inherited: UIContainer
+    description: createCrewBar method
+
+  - name: createFrame
+    signature: createFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Frame
+    inherited: UIContainer
+    description: createFrame method
+
+  - name: createInputWindow
+    signature: createInputWindow()
+    returns: InputWindow
+    inherited: UIContainer
+    description: createInputWindow method
+
+  - name: createInventorySelection
+    signature: createInventorySelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: InventorySelection
+    inherited: UIContainer
+    description: createInventorySelection method
+
+  - name: createLabel
+    signature: createLabel(var position, string caption, int fontSize)
+    parameters:
+      - name: position
+        type: var
+        description: position parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: fontSize
+        type: int
+        description: fontSize parameter
+    returns: Label
+    inherited: UIContainer
+    description: createLabel method
+
+  - name: createLine
+    signature: createLine(vec2 a, vec2 b)
+    parameters:
+      - name: a
+        type: vec2
+        description: a parameter
+      - name: b
+        type: vec2
+        description: b parameter
+    returns: Line
+    inherited: UIContainer
+    description: createLine method
+
+  - name: createListBox
+    signature: createListBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBox
+    inherited: UIContainer
+    description: createListBox method
+
+  - name: createListBoxEx
+    signature: createListBoxEx(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBoxEx
+    inherited: UIContainer
+    description: createListBoxEx method
+
+  - name: createMapArrowLine
+    signature: createMapArrowLine()
+    returns: MapArrowLine
+    inherited: UIContainer
+    description: createMapArrowLine method
+
+  - name: createMapIcon
+    signature: createMapIcon(string texture, ivec2 coordinates, Color [or nil] color)
+    parameters:
+      - name: texture
+        type: string
+        description: texture parameter
+      - name: coordinates
+        type: ivec2
+        description: coordinates parameter
+      - name: color
+        type: Color [or nil]
+        description: color parameter
+    returns: MapIcon
+    inherited: UIContainer
+    description: createMapIcon method
+
+  - name: createMultiLineTextBox
+    signature: createMultiLineTextBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: MultiLineTextBox
+    inherited: UIContainer
+    description: createMultiLineTextBox method
+
+  - name: createNumbersBar
+    signature: createNumbersBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: NumbersBar
+    inherited: UIContainer
+    description: createNumbersBar method
+
+  - name: createPicture
+    signature: createPicture(Rect rect, string path)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: path
+        type: string
+        description: path parameter
+    returns: Picture
+    inherited: UIContainer
+    description: createPicture method
+
+  - name: createPlanDisplayer
+    signature: createPlanDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: PlanDisplayer
+    inherited: UIContainer
+    description: createPlanDisplayer method
+
+  - name: createProgressBar
+    signature: createProgressBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: ProgressBar
+    inherited: UIContainer
+    description: createProgressBar method
+
+  - name: createRect
+    signature: createRect(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: UIRect
+    inherited: UIContainer
+    description: createRect method
+
+  - name: createRoundButton
+    signature: createRoundButton(Rect rect, string icon, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    inherited: UIContainer
+    description: createRoundButton method
+
+  - name: createSavedDesignsSelection
+    signature: createSavedDesignsSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: SavedDesignsSelection
+    inherited: UIContainer
+    description: createSavedDesignsSelection method
+
+  - name: createScrollFrame
+    signature: createScrollFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ScrollFrame
+    inherited: UIContainer
+    description: createScrollFrame method
+
+  - name: createSelection
+    signature: createSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: Selection
+    inherited: UIContainer
+    description: createSelection method
+
+  - name: createSlider
+    signature: createSlider(Rect rect, int min, int max, int steps, string caption, string onValueChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: min
+        type: int
+        description: min parameter
+      - name: max
+        type: int
+        description: max parameter
+      - name: steps
+        type: int
+        description: steps parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onValueChangedFunction
+        type: string
+        description: onValueChangedFunction parameter
+    returns: Slider
+    inherited: UIContainer
+    description: createSlider method
+
+  - name: createStatisticsBar
+    signature: createStatisticsBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: StatisticsBar
+    inherited: UIContainer
+    description: createStatisticsBar method
+
+  - name: createTabbedWindow
+    signature: createTabbedWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TabbedWindow
+    inherited: UIContainer
+    description: createTabbedWindow method
+
+  - name: createTextBox
+    signature: createTextBox(Rect rect, string onTextChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onTextChangedFunction
+        type: string
+        description: onTextChangedFunction parameter
+    returns: TextBox
+    inherited: UIContainer
+    description: createTextBox method
+
+  - name: createTextField
+    signature: createTextField(Rect rect, string text)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: text
+        type: string
+        description: text parameter
+    returns: TextField
+    inherited: UIContainer
+    description: createTextField method
+
+  - name: createTooltipDisplayer
+    signature: createTooltipDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TooltipDisplayer
+    inherited: UIContainer
+    description: createTooltipDisplayer method
+
+  - name: createTree
+    signature: createTree(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Tree
+    inherited: UIContainer
+    description: createTree method
+
+  - name: createValueComboBox
+    signature: createValueComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ValueComboBox
+    inherited: UIContainer
+    description: createValueComboBox method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    inherited: UIContainer
+    description: createWindow method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIContainer
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIContainer
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIContainer
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIContainer

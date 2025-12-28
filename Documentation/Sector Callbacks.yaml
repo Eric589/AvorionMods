@@ -1,0 +1,797 @@
+# Sector  Callbacks Documentation
+name: Sector  Callbacks
+type: callbacks
+description: Callback functions for Sector scripts
+
+note: |
+  Callbacks have to be buffered in certain situations and won't happen immediately. When unregistering a callback during a callback, all callbacks that were buffered during the last frame may still be sent, even though they were unregistered.
+
+callbacks:
+  - name: onAIStateChanged
+    signature: onAIStateChanged(entityId, state)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: state
+        description: The id of the new state
+    description: Executed whenever the AI state of an entity changes
+
+  - name: onAllScriptValuesChanged
+    signature: onAllScriptValuesChanged(entityId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+    description: Executed whenever all scripts values of an entity in the sector have been changed at once
+
+  - name: onBlockChanged
+    signature: onBlockChanged(objectIndex, blockIndex, changeFlags)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: blockIndex
+        description: The index of the block
+      - name: changeFlags
+        description: The flags of the block changes
+    description: Executed whenever a plan of an entity is changed in the sector.
+
+  - name: onBlockDamaged
+    signature: onBlockDamaged(objectIndex, blockIndex, inflictorId, damage, damageType)
+    parameters:
+      - name: objectIndex
+        description: The index of the damaged object
+      - name: blockIndex
+        description: The index of the damaged block
+      - name: inflictorId
+        description: The id of the entity that inflicted the damage
+      - name: damage
+        description: The damage that was inflicted to the entity
+      - name: damageType
+        description: The type of damage
+    description: Executed whenever a block object is damaged in the sector. This callback is executed after the damage is dealt to the block. Don't remove the block in this callback, this will lead to a crash.
+
+  - name: onBlockDestroyed
+    signature: onBlockDestroyed(objectIndex, index, block, lastDamageInflictor, damageSource)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: index
+        description: Index of the block
+      - name: block
+        description: The block (as removed from the plan)
+      - name: lastDamageInflictor
+        description: The index of the last entity that inflicted damage to the destroyed block
+      - name: damageSource
+        description: The source of damage
+    description: Executed whenever a block of a block object got destroyed This callback is executed *after* the block was destroyed
+
+  - name: onBlockHealed
+    signature: onBlockHealed(objectIndex, blockIndex, damage)
+    parameters:
+      - name: objectIndex
+        description: The index of the healed object
+      - name: blockIndex
+        description: The index of the healed block
+      - name: damage
+        description: The damage the entity was healed for
+    description: Executed whenever a block of an object is healed in the sector. Don't remove the block in this callback, this will lead to a crash.
+
+  - name: onBlockPlanChanged
+    signature: onBlockPlanChanged(objectIndex, allBlocksChanged)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: allBlocksChanged
+        description: A boolean that indicates whether all the blocks in the block plan have potentially changed
+    description: Executed whenever a plan of an entity is changed in the sector.
+
+  - name: onBlocksAdded
+    signature: onBlocksAdded(objectIndex, wasRepaired, blockIndices)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: wasRepaired
+        description: true if the callback was fired because of a repair operation, false otherwise
+      - name: blockIndices
+        description: The indices of the added blocks, as variable arguments list
+    description: Executed whenever new blocks are added to the entity. This callback is executed after the block was added.
+
+  - name: onBlocksRemove
+    signature: onBlocksRemove(objectIndex, blockIndices)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: blockIndices
+        description: The indices of the removed blocks, as variable arguments list
+    description: Executed whenever a block will be removed from the plan by building (instead of combat). This callback is executed before the block is removed. IMPORTANT! This only fires on blocks that the player directly chose to be removed. Blocks that get removed because they don't have a connection to the root block any more get signalled after removal by 'onBlocksRemoved'.
+
+  - name: onBlocksRemoved
+    signature: onBlocksRemoved(objectIndex, blockIndices)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: blockIndices
+        description: The indices of the removed blocks, as variable arguments list
+    description: Executed whenever a block is removed from the plan by building (instead of combat). This callback is executed after the block is removed.
+
+  - name: onBoardersDefeated
+    signature: onBoardersDefeated(entityId, attackingFaction)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: attackingFaction
+        description: The index of the attacking faction
+    description: Executed whenever all boarders were defeated
+
+  - name: onBoardersLand
+    signature: onBoardersLand(entityId, attackingFaction, firstLanding)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: attackingFaction
+        description: The index of the attacking faction
+      - name: firstLanding
+        description: True if these are the first boarders, false otherwise
+    description: Executed when boarders land on an entity
+
+  - name: onBoardingFight
+    signature: onBoardingFight(entityId, attackingFaction)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: attackingFaction
+        description: The index of the attacking faction
+    description: Executed on every round of fighting with boarders
+
+  - name: onBoardingSuccessful
+    signature: onBoardingSuccessful(entityId, oldFactionIndex, newFactionIndex)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: oldFactionIndex
+        description: The index of the faction that owned the entity before boarding
+      - name: newFactionIndex
+        description: The index of the attacking faction that now owns the entity
+    description: Executed whenever an entity was boarded successfully
+
+  - name: onCargoChanged
+    signature: onCargoChanged(objectIndex, delta, good)
+    parameters:
+      - name: objectIndex
+        description: The id of the entity
+      - name: delta
+        description: The amount of cargo that changed
+      - name: good
+        description: The good that changed
+    description: Executed whenever the cargo of an entity in the sector changes. This callback is executed *after* the cargo was changed on the entity.
+
+  - name: onCargoLootCollected
+    signature: onCargoLootCollected(collector, lootIndex, amount, good, owner)
+    parameters:
+      - name: collector
+        description: The id of the entity that collected loot
+      - name: lootIndex
+        description: The index of the collected loot
+      - name: amount
+        description: The amount of goods that were collected
+      - name: good
+        description: The good that was inside the loot entity
+      - name: owner
+        description: The original owner of the cargo
+    description: Executed whenever trading good loot gets collected by a player
+
+  - name: onCollision
+    signature: onCollision(objectIndexA, objectIndexB, damageA, damageB, steererA, steererB)
+    parameters:
+      - name: objectIndexA
+        description: The index of the one colliding object
+      - name: objectIndexB
+        description: The index of the other colliding object
+      - name: damageA
+        description: The damage that is inflicted to object A
+      - name: damageB
+        description: The damage that is inflicted to object B
+      - name: steererA
+        description: The steerer ID of objectA. When an object is docked, not the object itself but the steerer is the one responsible for collisions
+      - name: steererB
+        description: The steerer ID of objectB. When an object is docked, not the object itself but the steerer is the one responsible for collisions
+    description: Executed whenever two block objects collided in the sector
+
+  - name: onCraftSeatEntered
+    signature: onCraftSeatEntered(entityId, seat, playerIndex, firstPlayer)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: seat
+        description: The seat index
+      - name: playerIndex
+        description: The index of the player that entered the seat
+      - name: firstPlayer
+        description: A bool indicating whether the craft's seats were empty before
+    description: Executed whenever a player enters a craft
+
+  - name: onCraftSeatLeft
+    signature: onCraftSeatLeft(entityId, seat, playerIndex, playersRemaining)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: seat
+        description: The seat index that was previously occupied
+      - name: playerIndex
+        description: The index of the player that left the seat
+      - name: playersRemaining
+        description: A bool indicating whether there are still players on the craft
+    description: Executed whenever a player leaves a craft
+
+  - name: onCrewChanged
+    signature: onCrewChanged(index)
+    parameters:
+      - name: index
+        description: The id of the entity
+    description: Executed whenever the crew of a entity in the sector changes. This callback is executed *after* the crew was changed on the entity.
+
+  - name: onCrewChanged
+    signature: onCrewChanged(index, delta, profession)
+    parameters:
+      - name: index
+        description: The id of the entity
+      - name: delta
+        description: delta parameter
+      - name: profession
+        description: profession parameter
+    description: Executed whenever the crew of a entity in the sector changes. This callback is executed *after* the crew was changed on the entity.
+
+  - name: onCrewLootCollected
+    signature: onCrewLootCollected(collector, lootIndex)
+    parameters:
+      - name: collector
+        description: The id of the entity that collected loot
+      - name: lootIndex
+        description: The index of the collected loot
+    description: Executed whenever trading good loot gets collected by a player
+
+  - name: onDamaged
+    signature: onDamaged(objectIndex, amount, inflictor, damageSource, damageType)
+    parameters:
+      - name: objectIndex
+        description: The index of the damaged object
+      - name: amount
+        description: The amount of damage that was dealt
+      - name: inflictor
+        description: The id of the entity that dealt the damage
+      - name: damageSource
+        description: The source of damage
+      - name: damageType
+        description: The type of damage
+    description: Executed whenever an entity is damaged in the sector.
+
+  - name: onDestroyed
+    signature: onDestroyed(index, lastDamageInflictor)
+    parameters:
+      - name: index
+        description: The id of the entity that was destroyed
+      - name: lastDamageInflictor
+        description: The index of the last entity that inflicted damage to the destroyed entity
+    description: Executed whenever an entity with durability was destroyed in the sector
+
+  - name: onDockedByEntity
+    signature: onDockedByEntity(dockeeId, dockerId)
+    parameters:
+      - name: dockeeId
+        description: The id of the entity that was docked (child)
+      - name: dockerId
+        description: The id of the docking entity (parent)
+    description: Executed whenever an entity was docked to another entity
+
+  - name: onEntityCreated
+    signature: onEntityCreated(entityId)
+    parameters:
+      - name: entityId
+        description: The index of the new entity
+    description: Executed whenever a new entity is created in the sector
+
+  - name: onEntityDocked
+    signature: onEntityDocked(dockerId, dockeeId)
+    parameters:
+      - name: dockerId
+        description: The id of the docking entity (parent)
+      - name: dockeeId
+        description: The id of the entity that was docked (child)
+    description: Executed whenever an entity docks to another entity
+
+  - name: onEntityEntered
+    signature: onEntityEntered(shipIndex)
+    parameters:
+      - name: shipIndex
+        description: The index of the entity that entered the sector
+    description: Executed whenever a entity enters the sector.
+
+  - name: onEntityJump
+    signature: onEntityJump(shipId, x, y, sectorChangeType)
+    parameters:
+      - name: shipId
+        description: The id of the entity that will jump out of the sector
+      - name: x
+        description: The x coordinate of the target sector
+      - name: y
+        description: The y coordinate of the target sector
+      - name: sectorChangeType
+        description: SectorChangeType enum what kind of sector change it is
+    description: Executed whenever a entity jumps into another sector.
+
+  - name: onEntityRemoved
+    signature: onEntityRemoved(entityId)
+    parameters:
+      - name: entityId
+        description: The index of the entity that was removed
+    description: Executed whenever an entity was removed from the sector
+
+  - name: onEntityUndocked
+    signature: onEntityUndocked(dockerId, dockeeId)
+    parameters:
+      - name: dockerId
+        description: The id of the docking entity (parent)
+      - name: dockeeId
+        description: The id of the entity that was docked (child)
+    description: Executed whenever an entity undocks from another entity
+
+  - name: onFighterAdded
+    signature: onFighterAdded(entityId, squadIndex, fighterIndex, landed)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: squadIndex
+        description: The index of the squad
+      - name: fighterIndex
+        description: The index of the fighter in the squad
+      - name: landed
+        description: A boolean whether the fighter landed or got added otherwise
+    description: Executed whenever a fighter is added to an entity in the sector
+
+  - name: onFighterLanded
+    signature: onFighterLanded(entityId, squadIndex, fighterId)
+    parameters:
+      - name: entityId
+        description: The id of the entity the fighter landed on
+      - name: squadIndex
+        description: The index of the squad
+      - name: fighterId
+        description: The id of the fighter that landed
+    description: Executed whenever a fighter lands in a hangar in the sector
+
+  - name: onFighterRemove
+    signature: onFighterRemove(entityId, squadIndex, fighterIndex, started)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: squadIndex
+        description: The index of the squad
+      - name: fighterIndex
+        description: The index of the fighter in the squad
+      - name: started
+        description: A boolean whether the fighter started or got removed otherwise
+    description: Executed whenever a fighter is removed from an entity in the sector, before it gets removed
+
+  - name: onFighterRemoved
+    signature: onFighterRemoved(entityId, squadIndex, fighterIndex, started)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: squadIndex
+        description: The index of the squad
+      - name: fighterIndex
+        description: The index of the fighter in the squad
+      - name: started
+        description: A boolean whether the fighter started or got removed otherwise
+    description: Executed whenever a fighter is removed from an entity in the sector, after it got removed
+
+  - name: onFighterStarted
+    signature: onFighterStarted(entityId, squadIndex, fighterId)
+    parameters:
+      - name: entityId
+        description: The id of the entity the fighter started from
+      - name: squadIndex
+        description: The index of the squad
+      - name: fighterId
+        description: The id of the fighter that started
+    description: Executed whenever a fighter starts from a hangar in the sector
+
+  - name: onHealed
+    signature: onHealed(objectIndex, amount, inflictor)
+    parameters:
+      - name: objectIndex
+        description: The index of the damaged entity
+      - name: amount
+        description: The amount of damage that was healed
+      - name: inflictor
+        description: The id of the entity that dealt the damage
+    description: Executed whenever an entity is healed in the sector.
+
+  - name: onHullHit
+    signature: onHullHit(objectIndex, blockIndex, shooterIndex, damage, location)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: blockIndex
+        description: The index of the block that was hit by the shot
+      - name: shooterIndex
+        description: The index of the craft that fired the shot
+      - name: damage
+        description: The damage the shot dealt to the object
+      - name: location
+        description: The impact location
+    description: Executed whenever a block object is hit by a shot in the sector. Don't delete the block that is hit by the shot, this will lead to a crash.
+
+  - name: onInventoryItemLootCollected
+    signature: onInventoryItemLootCollected(collector, lootIndex)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the loot that was collected
+    description: Executed whenever inventory item loot gets collected by an entity
+
+  - name: onLootCollected
+    signature: onLootCollected(collector, lootIndex)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the collected loot
+    description: Executed whenever loot gets collected by anyone, be it player or AI faction
+
+  - name: onMaterialLootCollected
+    signature: onMaterialLootCollected(collector, lootIndex, materialType, value)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the loot that was collected
+      - name: materialType
+        description: The type of material contained in the loot
+      - name: value
+        description: The amount of material the loot contained
+    description: Executed whenever material loot gets collected by an entity
+
+  - name: onMoneyLootCollected
+    signature: onMoneyLootCollected(collector, lootIndex, value)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the collected loot
+      - name: value
+        description: The amount of credits the loot contained
+    description: Executed whenever money loot gets collected by an entity
+
+  - name: onPlanModifiedByBuilding
+    signature: onPlanModifiedByBuilding(shipIndex)
+    parameters:
+      - name: shipIndex
+        description: The index of the ship
+    description: Executed whenever the plan of an entity was modified by building, meaning adding or removing blocks.
+
+  - name: onPlayerEntered
+    signature: onPlayerEntered(playerIndex, sectorChangeType)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: sectorChangeType
+        description: The kind of sector change that is happening
+    description: Executed whenever a player enters the sector. This callback is executed immediately before the contents of the sector are sent to the player
+
+  - name: onPlayerLeft
+    signature: onPlayerLeft(playerIndex, sectorChangeType)
+    parameters:
+      - name: playerIndex
+        description: Index of the player
+      - name: sectorChangeType
+        description: The kind of sector change that is happening
+    description: Executed whenever a player leaves the sector. Executed after the player left.
+
+  - name: onRestoredFromDisk
+    signature: onRestoredFromDisk(time)
+    parameters:
+      - name: time
+        description: The time since the sector has been last updated. This value can be 0 or too small after database corruptions.
+    description: Executed when a sector is loaded/restored from disk. This callback is called after the "restore" callback, for both entity and sector scripts.
+
+  - name: onScriptAdded
+    signature: onScriptAdded(entityId, scriptIndex, scriptPath)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: scriptIndex
+        description: The index of the new script
+      - name: scriptPath
+        description: The path of the new script
+    description: Executed after a script was added to an entity in the sector
+
+  - name: onScriptRemoved
+    signature: onScriptRemoved(entityId, oldScriptIndex, scriptPath)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: oldScriptIndex
+        description: The old index of the script that was removed
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was removed from an entity in the sector
+
+  - name: onScriptValueChanged
+    signature: onScriptValueChanged(entityId, name, value)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: name
+        description: The name of the value
+      - name: value
+        description: The new value
+    description: Executed whenever a script value of an entity in the sector was changed
+
+  - name: onSectorGenerated
+    signature: onSectorGenerated(time)
+    parameters:
+      - name: time
+        description: The time the game has been running already. This value can be 0 or too small after database corruptions.
+    description: Executed when a sector is generated/created for the first time for both entity and sector scripts.
+
+  - name: onSetForDeletion
+    signature: onSetForDeletion(entityId, deletionType)
+    parameters:
+      - name: entityId
+        description: The index of the entity that is to be deleted
+      - name: deletionType
+        description: The deletion type
+    description: Executed whenever an entity is to be deleted.
+
+  - name: onShieldActivate
+    signature: onShieldActivate(entityId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+    description: Executed whenever a shield activates in the sector
+
+  - name: onShieldDamaged
+    signature: onShieldDamaged(entityId, amount, damageType, inflictorId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: amount
+        description: The amount of damage inflicted
+      - name: damageType
+        description: The type of damage dealt
+      - name: inflictorId
+        description: The id of the entity that inflicted the damage
+    description: Executed whenever a shield is damaged in the sector
+
+  - name: onShieldDeactivate
+    signature: onShieldDeactivate(entityId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+    description: Executed whenever a shield deactivates in the sector
+
+  - name: onShieldHealed
+    signature: onShieldHealed(entityId, amount)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: amount
+        description: The amount of damage healed
+    description: Executed whenever a shield is healed in the sector
+
+  - name: onShieldHit
+    signature: onShieldHit(objectIndex, shooterIndex, damage, location)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: shooterIndex
+        description: The index of the craft that fired the shot
+      - name: damage
+        description: The damage the shot dealt to the object
+      - name: location
+        description: The impact location
+    description: Executed whenever an object's shield is hit by a shot in the sector.
+
+  - name: onShotCreated
+    signature: onShotCreated(shotIndex)
+    parameters:
+      - name: shotIndex
+        description: The index of the new shot
+    description: Executed whenever a new shot is created in the sector
+
+  - name: onShotFired
+    signature: onShotFired(entityId)
+    parameters:
+      - name: entityId
+        description: The index of the firing entity (weapon)
+    description: Executed whenever a shot is fired in the sector
+
+  - name: onShotHit
+    signature: onShotHit(objectIndex, shooterIndex, location)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: shooterIndex
+        description: The index of the craft that fired the shot
+      - name: location
+        description: The impact location
+    description: Executed whenever a block object is hit by a shot in the sector.
+
+  - name: onSquadAdded
+    signature: onSquadAdded(entityId, index)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: index
+        description: The index of the squad
+    description: Executed whenever a squad is added to an entity in the sector
+
+  - name: onSquadOrdersChanged
+    signature: onSquadOrdersChanged(entityId, squadIndex, orders, targetId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: squadIndex
+        description: The index of the squad
+      - name: orders
+        description: The orders of the squad
+      - name: targetId
+        description: The target assigned to the fighters
+    description: Executed whenever the orders of a squad change in the sector
+
+  - name: onSquadRemove
+    signature: onSquadRemove(entityId, index)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: index
+        description: The index of the squad
+    description: Executed whenever a squad is removed from an entity in the sector, before the squad gets removed
+
+  - name: onSquadRemoved
+    signature: onSquadRemoved(entityId, index)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: index
+        description: The index of the squad
+    description: Executed whenever a squad is removed from an entity in the sector, after the squad got removed
+
+  - name: onStartFiring
+    signature: onStartFiring(entityId)
+    parameters:
+      - name: entityId
+        description: The index of the firing entity (weapon)
+    description: Executed whenever an entity starts firing in the sector
+
+  - name: onStopFiring
+    signature: onStopFiring(entityId)
+    parameters:
+      - name: entityId
+        description: The index of the firing entity (weapon)
+    description: Executed whenever an entity stops firing in the sector
+
+  - name: onSystemsChanged
+    signature: onSystemsChanged(shipIndex)
+    parameters:
+      - name: shipIndex
+        description: The index of the ship
+    description: Executed whenever the systems of a ship in the sector changed. This callback is executed *after* the system was changed on the entity.
+
+  - name: onSystemUpgradeLootCollected
+    signature: onSystemUpgradeLootCollected(collector, lootIndex)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the loot that was collected
+    description: Executed whenever system upgrade loot gets collected by an entity
+
+  - name: onTorpedoHit
+    signature: onTorpedoHit(objectIndex, shooterIndex, torpedoIndex)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: shooterIndex
+        description: The index of the craft that fired the torpedo
+      - name: torpedoIndex
+        description: The index of the torpedo that hit the object
+    description: Executed whenever a block object is hit by a torpedo in the sector.
+
+  - name: onTorpedoHullHit
+    signature: onTorpedoHullHit(objectIndex, blockIndex, shooterIndex, damage, torpedoIndex)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: blockIndex
+        description: The index of the block that was hit by the torpedo
+      - name: shooterIndex
+        description: The index of the craft that fired the torpedo
+      - name: damage
+        description: The damage the torpedo dealt to the object
+      - name: torpedoIndex
+        description: The index of the torpedo that hit the object
+    description: Executed whenever a block object is hit by a torpedo in the sector. Don't delete the block that is hit by the torpedo, this will lead to a crash.
+
+  - name: onTorpedoLaunched
+    signature: onTorpedoLaunched(entityId, torpedoId)
+    parameters:
+      - name: entityId
+        description: The id of the entity
+      - name: torpedoId
+        description: The id of the launched torpedo
+    description: Executed whenever a torpedo was launched from an entity
+
+  - name: onTorpedoShieldHit
+    signature: onTorpedoShieldHit(objectIndex, shooterIndex, damage, torpedoIndex)
+    parameters:
+      - name: objectIndex
+        description: The index of the object that got shot at
+      - name: shooterIndex
+        description: The index of the craft that fired the torpedo
+      - name: damage
+        description: The damage the torpedo dealt to the object
+      - name: torpedoIndex
+        description: The index of the torpedo that hit the object
+    description: Executed whenever an object's shield is hit by a torpedo in the sector.
+
+  - name: onTurretAdded
+    signature: onTurretAdded(shipIndex, turretIndex)
+    parameters:
+      - name: shipIndex
+        description: The id of the entity that turret was attached to
+      - name: turretIndex
+        description: The index of the turret
+    description: Executed whenever a turret was added to a ship in the sector
+
+  - name: onTurretDestroyed
+    signature: onTurretDestroyed(turretIndex, shipIndex, lastDamageInflictor)
+    parameters:
+      - name: turretIndex
+        description: The index of the turret that was destroyed
+      - name: shipIndex
+        description: The id of the entity that turret was attached to
+      - name: lastDamageInflictor
+        description: The index of the last entity that inflicted damage to the destroyed entity
+    description: Executed whenever a turret was destroyed in the sector
+
+  - name: onTurretLootCollected
+    signature: onTurretLootCollected(collector, lootIndex)
+    parameters:
+      - name: collector
+        description: The id of the entity which collected the loot
+      - name: lootIndex
+        description: The index of the collected loot
+    description: Executed whenever turret loot gets collected by an entity controlled by AI
+
+  - name: onTurretRemoved
+    signature: onTurretRemoved(shipIndex, turretIndex)
+    parameters:
+      - name: shipIndex
+        description: The id of the entity that turret was attached to
+      - name: turretIndex
+        description: The index of the turret
+    description: Executed whenever a turret was removed in the sector
+
+  - name: onTurretRemovedByPlayer
+    signature: onTurretRemovedByPlayer(shipIndex, turretIndex)
+    parameters:
+      - name: shipIndex
+        description: The id of the entity that turret was attached to
+      - name: turretIndex
+        description: The index of the turret
+    description: Executed whenever a turret was removed from a ship by the player in the sector
+
+  - name: onUndockedFromEntity
+    signature: onUndockedFromEntity(dockeeId, dockerId)
+    parameters:
+      - name: dockeeId
+        description: The id of the entity that was docked (child)
+      - name: dockerId
+        description: The id of the docking entity (parent)
+    description: Executed whenever an entity was undocked from another entity
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

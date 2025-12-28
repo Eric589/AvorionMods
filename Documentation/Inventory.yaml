@@ -1,0 +1,185 @@
+# Inventory API Documentation
+name: Inventory
+type: class
+availability: both
+description: Inventory class
+
+constructor:
+  signature: Inventory()
+  returns: Inventory instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: items
+    type: unsigned int
+    access: read-only
+    description: items property
+
+  - name: maxSlots
+    type: unsigned int
+    access: read-only
+    description: maxSlots property
+
+  - name: occupiedSlots
+    type: unsigned int
+    access: read-only
+    description: occupiedSlots property
+
+methods:
+  - name: add
+    signature: add(InventoryItem item, var recent)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+      - name: recent
+        type: var
+        description: recent parameter
+    returns: unsigned int
+    description: add method
+
+  - name: addAt
+    signature: addAt(InventoryItem item, unsigned int index, unsigned int amount, var recent)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+      - name: index
+        type: unsigned int
+        description: index parameter
+      - name: amount
+        type: unsigned int
+        description: amount parameter
+      - name: recent
+        type: var
+        description: recent parameter
+    returns: unsigned int
+    description: addAt method
+
+  - name: addOrDrop
+    signature: addOrDrop(InventoryItem item, var recent)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+      - name: recent
+        type: var
+        description: recent parameter
+    returns: void
+    description: addOrDrop method
+
+  - name: amount
+    signature: amount(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: unsigned int
+    description: amount method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: find
+    signature: find(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: InventoryItem
+    description: find method
+
+  - name: getItems
+    signature: getItems()
+    returns: table&lt;int, table&ltunsigned int, InventoryItem&gt&gt;
+    description: getItems method
+
+  - name: getItemsByType
+    signature: getItemsByType(InventoryItemType type)
+    parameters:
+      - name: type
+        type: InventoryItemType
+        description: type parameter
+    returns: table&lt;int, table&ltunsigned int, InventoryItem&gt&gt;
+    description: getItemsByType method
+
+  - name: hasSlot
+    signature: hasSlot(InventoryItem item)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+    returns: bool
+    description: hasSlot method
+
+  - name: remove
+    signature: remove(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: remove method
+
+  - name: removeAll
+    signature: removeAll(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: void
+    description: removeAll method
+
+  - name: setAmount
+    signature: setAmount(unsigned int index, unsigned int amount)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+      - name: amount
+        type: unsigned int
+        description: amount parameter
+    returns: void
+    description: setAmount method
+
+  - name: setItemTags
+    signature: setItemTags(unsigned int index, bool favorite, bool trash)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+      - name: favorite
+        type: bool
+        description: favorite parameter
+      - name: trash
+        type: bool
+        description: trash parameter
+    returns: void
+    description: setItemTags method
+
+  - name: slotEmpty
+    signature: slotEmpty(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: bool
+    description: slotEmpty method
+
+  - name: take
+    signature: take(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: InventoryItem
+    description: take method
+
+notes:
+  - Auto-converted from HTML documentation

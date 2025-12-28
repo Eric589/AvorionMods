@@ -1,0 +1,74 @@
+# RefractionFX API Documentation
+name: RefractionFX
+type: class
+availability: client-only
+description: RefractionFX class
+
+constructor:
+  signature: RefractionFX()
+  returns: RefractionFX instance
+
+properties:
+  - name: aliveTime
+    type: float
+    access: read-write
+    description: aliveTime property
+
+  - name: color
+    type: vec3
+    access: read-write
+    description: color property
+
+  - name: entityId
+    type: Uuid
+    access: read-write
+    description: entityId property
+
+  - name: intensity
+    type: float
+    access: read-write
+    description: intensity property
+
+  - name: maxAliveTime
+    type: float
+    access: read-write
+    description: maxAliveTime property
+
+  - name: offset
+    type: vec2
+    access: read-write
+    description: offset property
+
+  - name: offsetSpeed
+    type: vec2
+    access: read-write
+    description: offsetSpeed property
+
+  - name: position
+    type: Matrix
+    access: read-write
+    description: position property
+
+  - name: reflectivity
+    type: float
+    access: read-write
+    description: reflectivity property
+
+  - name: reflectivityColor
+    type: vec3
+    access: read-write
+    description: reflectivityColor property
+
+  - name: separation
+    type: vec2
+    access: read-write
+    description: separation property
+
+  - name: uvScale
+    type: vec2
+    access: read-write
+    description: uvScale property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

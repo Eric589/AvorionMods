@@ -1,0 +1,183 @@
+# Durability API Documentation
+name: Durability
+type: class
+availability: both
+description: Durability class
+
+constructor:
+  signature: Durability(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Durability instance
+
+properties:
+  - name: damageFactor
+    type: double
+    access: read-only
+    description: damageFactor property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: filledPercentage
+    type: float
+    access: read-only
+    description: filledPercentage property
+
+  - name: invincibility
+    type: float
+    access: read-only
+    description: invincibility property
+
+  - name: invincible
+    type: bool
+    access: read-only
+    description: invincible property
+
+  - name: logoutInvincible
+    type: bool
+    access: read-only
+    description: logoutInvincible property
+
+  - name: maxDurabilityFactor
+    type: float
+    access: read-only
+    description: maxDurabilityFactor property
+
+  - name: maximum
+    type: double
+    access: read-only
+    description: maximum property
+
+  - name: respawnInvincibilityTime
+    type: float
+    access: read-only
+    description: respawnInvincibilityTime property
+
+  - name: respawnInvincible
+    type: bool
+    access: read-only
+    description: respawnInvincible property
+
+methods:
+  - name: addFactionImmunity
+    signature: addFactionImmunity(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: addFactionImmunity method
+
+  - name: getWeakness
+    signature: getWeakness()
+    returns: var, var
+    description: getWeakness method
+
+  - name: healDamage
+    signature: healDamage(double amount, Uuid inflictorId)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+      - name: inflictorId
+        type: Uuid
+        description: inflictorId parameter
+    returns: void
+    description: healDamage method
+
+  - name: inflictDamage
+    signature: inflictDamage(double amount, DamageSource damageSource, DamageType damageType, Uuid inflictorId)
+    parameters:
+      - name: amount
+        type: double
+        description: amount parameter
+      - name: damageSource
+        type: DamageSource
+        description: damageSource parameter
+      - name: damageType
+        type: DamageType
+        description: damageType parameter
+      - name: inflictorId
+        type: Uuid
+        description: inflictorId parameter
+    returns: void
+    description: inflictDamage method
+
+  - name: isImmuneToEntity
+    signature: isImmuneToEntity(Uuid index)
+    parameters:
+      - name: index
+        type: Uuid
+        description: index parameter
+    returns: bool
+    description: isImmuneToEntity method
+
+  - name: isImmuneToFaction
+    signature: isImmuneToFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: isImmuneToFaction method
+
+  - name: removeFactionImmunity
+    signature: removeFactionImmunity(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: removeFactionImmunity method
+
+  - name: resetMalus
+    signature: resetMalus()
+    returns: void
+    description: resetMalus method
+
+  - name: resetWeakness
+    signature: resetWeakness()
+    returns: void
+    description: resetWeakness method
+
+  - name: setMalusFactor
+    signature: setMalusFactor(float in, DurabilityMalusReason reason)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+      - name: reason
+        type: DurabilityMalusReason
+        description: reason parameter
+    returns: void
+    description: setMalusFactor method
+
+  - name: setWeakness
+    signature: setWeakness(DamageType damageType, float factor)
+    parameters:
+      - name: damageType
+        type: DamageType
+        description: damageType parameter
+      - name: factor
+        type: float
+        description: factor parameter
+    returns: void
+    description: setWeakness method
+
+notes:
+  - Auto-converted from HTML documentation

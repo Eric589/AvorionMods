@@ -1,0 +1,109 @@
+# SelectionItem API Documentation
+name: SelectionItem
+type: class
+availability: client-only
+description: SelectionItem class
+
+constructor:
+  signature: SelectionItem()
+  returns: SelectionItem instance
+
+properties:
+  - name: amount
+    type: var
+    access: write-only
+    description: amount property
+
+  - name: backdrop
+    type: bool
+    access: write-only
+    description: backdrop property
+
+  - name: backgroundColor
+    type: Color
+    access: write-only
+    description: backgroundColor property
+
+  - name: borderColor
+    type: Color
+    access: write-only
+    description: borderColor property
+
+  - name: borderGlow
+    type: bool
+    access: write-only
+    description: borderGlow property
+
+  - name: color
+    type: Color
+    access: write-only
+    description: color property
+
+  - name: icon
+    type: bool
+    access: write-only
+    description: icon property
+
+  - name: texture
+    type: string
+    access: write-only
+    description: texture property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    description: tooltip property
+
+  - name: value0
+    type: var
+    access: read-write
+    description: value0 property
+
+  - name: value1
+    type: var
+    access: read-write
+    description: value1 property
+
+  - name: value2
+    type: var
+    access: read-write
+    description: value2 property
+
+  - name: value3
+    type: var
+    access: read-write
+    description: value3 property
+
+  - name: value4
+    type: var
+    access: read-write
+    description: value4 property
+
+  - name: value5
+    type: var
+    access: read-write
+    description: value5 property
+
+  - name: value6
+    type: var
+    access: read-write
+    description: value6 property
+
+  - name: value7
+    type: var
+    access: read-write
+    description: value7 property
+
+  - name: value8
+    type: var
+    access: read-write
+    description: value8 property
+
+  - name: value9
+    type: var
+    access: read-write
+    description: value9 property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

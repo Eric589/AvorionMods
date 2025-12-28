@@ -1,0 +1,59 @@
+# TorpedoShaft API Documentation
+name: TorpedoShaft
+type: class
+availability: both
+description: TorpedoShaft class
+
+constructor:
+  signature: TorpedoShaft()
+  returns: TorpedoShaft instance
+
+properties:
+  - name: automaticLoadingType
+    type: int
+    access: read-only
+    description: automaticLoadingType property
+
+  - name: enabled
+    type: bool
+    access: read-only
+    description: enabled property
+
+  - name: freeSpace
+    type: var
+    access: read-only
+    description: freeSpace property
+
+  - name: index
+    type: unsigned int
+    access: read-only
+    description: index property
+
+  - name: obstructed
+    type: bool
+    access: read-only
+    description: obstructed property
+
+  - name: occupiedSpace
+    type: double
+    access: read-only
+    description: occupiedSpace property
+
+  - name: space
+    type: double
+    access: read-only
+    description: space property
+
+methods:
+  - name: getTorpedoes
+    signature: getTorpedoes()
+    returns: TorpedoTemplate...
+    description: getTorpedoes method
+
+  - name: setTorpedoes
+    signature: setTorpedoes()
+    returns: void
+    description: setTorpedoes method
+
+notes:
+  - Auto-converted from HTML documentation

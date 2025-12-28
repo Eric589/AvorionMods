@@ -1,0 +1,113 @@
+# GameInput API Documentation
+name: GameInput
+type: class
+availability: client-only
+description: GameInput class
+
+constructor:
+  signature: GameInput()
+  returns: GameInput instance
+
+properties:
+  - name: isMouseSteeringEnabled
+    type: bool
+    access: read-only
+    description: isMouseSteeringEnabled property
+
+  - name: isSteeringEnabled
+    type: bool
+    access: read-only
+    description: isSteeringEnabled property
+
+methods:
+  - name: getActionName
+    signature: getActionName(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: string
+    description: getActionName method
+
+  - name: getKeyName
+    signature: getKeyName(GameInput::Action action, var primary, var controlStyle)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+      - name: primary
+        type: var
+        description: primary parameter
+      - name: controlStyle
+        type: var
+        description: controlStyle parameter
+    returns: string
+    description: getKeyName method
+
+  - name: getMouseSteeringEnabled
+    signature: getMouseSteeringEnabled()
+    returns: bool
+    description: getMouseSteeringEnabled method
+
+  - name: getShowMouse
+    signature: getShowMouse()
+    returns: bool
+    description: getShowMouse method
+
+  - name: keyDown
+    signature: keyDown(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyDown method
+
+  - name: keyHeld
+    signature: keyHeld(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyHeld method
+
+  - name: keyPressed
+    signature: keyPressed(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyPressed method
+
+  - name: keyUp
+    signature: keyUp(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyUp method
+
+  - name: keyUpHeld
+    signature: keyUpHeld(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyUpHeld method
+
+  - name: keyUpNotHeld
+    signature: keyUpNotHeld(GameInput::Action action)
+    parameters:
+      - name: action
+        type: GameInput::Action
+        description: action parameter
+    returns: bool
+    description: keyUpNotHeld method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

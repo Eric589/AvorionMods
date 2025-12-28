@@ -1,0 +1,694 @@
+# Player [Client] API Documentation
+name: Player [Client]
+type: class
+availability: client-only
+description: Player [Client] class
+
+properties:
+  - name: alliance
+    type: Alliance
+    access: read-only
+    description: alliance property
+
+  - name: allianceIndex
+    type: var
+    access: read-only
+    description: allianceIndex property
+
+  - name: cameraAt
+    type: vec3
+    access: read-only
+    description: cameraAt property
+
+  - name: cameraEye
+    type: vec3
+    access: read-only
+    description: cameraEye property
+
+  - name: cameraPosition
+    type: Matrix
+    access: read-only
+    description: cameraPosition property
+
+  - name: cameraUp
+    type: vec3
+    access: read-only
+    description: cameraUp property
+
+  - name: craft
+    type: Entity
+    access: read-only
+    description: craft property
+
+  - name: craftFaction
+    type: UserObject
+    access: read-only
+    description: craftFaction property
+
+  - name: craftId
+    type: Uuid
+    access: read-only
+    description: craftId property
+
+  - name: craftIndex
+    type: Uuid
+    access: read-only
+    description: craftIndex property
+
+  - name: fullLogId
+    type: string
+    access: read-only
+    description: fullLogId property
+
+  - name: group
+    type: Group
+    access: read-only
+    description: group property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: infiniteResources
+    type: bool
+    access: read-only
+    description: infiniteResources property
+
+  - name: isAIFaction
+    type: bool
+    access: read-only
+    description: isAIFaction property
+
+  - name: isAlliance
+    type: bool
+    access: read-only
+    description: isAlliance property
+
+  - name: isBehemothDLCInstalled
+    type: bool
+    access: read-only
+    description: isBehemothDLCInstalled property
+
+  - name: isBlackMarketDLCInstalled
+    type: bool
+    access: read-only
+    description: isBlackMarketDLCInstalled property
+
+  - name: isInteracting
+    type: bool
+    access: read-only
+    description: isInteracting property
+
+  - name: isIntoTheRiftDLCInstalled
+    type: bool
+    access: read-only
+    description: isIntoTheRiftDLCInstalled property
+
+  - name: isPlayer
+    type: bool
+    access: read-only
+    description: isPlayer property
+
+  - name: maxBuildableMaterial
+    type: Material
+    access: read-only
+    description: maxBuildableMaterial property
+
+  - name: maxBuildableSockets
+    type: int
+    access: read-only
+    description: maxBuildableSockets property
+
+  - name: maxNumMails
+    type: unsigned int
+    access: read-only
+    description: maxNumMails property
+
+  - name: maxNumShips
+    type: var
+    access: read-only
+    description: maxNumShips property
+
+  - name: maxNumStations
+    type: var
+    access: read-only
+    description: maxNumStations property
+
+  - name: money
+    type: int
+    access: read-only
+    description: money property
+
+  - name: name
+    type: var
+    access: read-only
+    description: name property
+
+  - name: numMails
+    type: unsigned int
+    access: read-only
+    description: numMails property
+
+  - name: numShips
+    type: unsigned int
+    access: read-only
+    description: numShips property
+
+  - name: ownsBehemothDLC
+    type: bool
+    access: read-only
+    description: ownsBehemothDLC property
+
+  - name: ownsBlackMarketDLC
+    type: bool
+    access: read-only
+    description: ownsBlackMarketDLC property
+
+  - name: ownsIntoTheRiftDLC
+    type: bool
+    access: read-only
+    description: ownsIntoTheRiftDLC property
+
+  - name: selectedObject
+    type: Entity
+    access: read-only
+    description: selectedObject property
+
+  - name: state
+    type: PlayerStateType
+    access: read-only
+    description: state property
+
+methods:
+  - name: addComparisonItem
+    signature: addComparisonItem(var item)
+    parameters:
+      - name: item
+        type: var
+        description: item parameter
+    returns: void
+    description: addComparisonItem method
+
+  - name: buildingAllowed
+    signature: buildingAllowed(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: bool, string
+    description: buildingAllowed method
+
+  - name: callbacksRegistered
+    signature: callbacksRegistered(string callbackName, var functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: var
+        description: functionName parameter
+    returns: int
+    description: callbacksRegistered method
+
+  - name: canPay
+    signature: canPay()
+    returns: bool, string, table&lt;int, string&gt;
+    description: canPay method
+
+  - name: getAllRelations
+    signature: getAllRelations()
+    returns: Relation...
+    description: getAllRelations method
+
+  - name: getHomeSectorCoordinates
+    signature: getHomeSectorCoordinates()
+    returns: int, int
+    description: getHomeSectorCoordinates method
+
+  - name: getInteractedEntity
+    signature: getInteractedEntity()
+    returns: Entity
+    description: getInteractedEntity method
+
+  - name: getInventory
+    signature: getInventory()
+    returns: Inventory
+    description: getInventory method
+
+  - name: getKnownSector
+    signature: getKnownSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: SectorView
+    description: getKnownSector method
+
+  - name: getKnownSectorCoordinates
+    signature: getKnownSectorCoordinates()
+    returns: ivec2...
+    description: getKnownSectorCoordinates method
+
+  - name: getKnownSectors
+    signature: getKnownSectors()
+    returns: SectorView...
+    description: getKnownSectors method
+
+  - name: getKnownSectorsOfFaction
+    signature: getKnownSectorsOfFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: SectorView...
+    description: getKnownSectorsOfFaction method
+
+  - name: getKnownSectorsWithFaction
+    signature: getKnownSectorsWithFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: SectorView...
+    description: getKnownSectorsWithFaction method
+
+  - name: getMail
+    signature: getMail(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: Mail
+    description: getMail method
+
+  - name: getNamesOfShipsInSector
+    signature: getNamesOfShipsInSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: string...
+    description: getNamesOfShipsInSector method
+
+  - name: getPlanStyle
+    signature: getPlanStyle(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: PlanStyle
+    description: getPlanStyle method
+
+  - name: getPlanStyleNames
+    signature: getPlanStyleNames()
+    returns: string...
+    description: getPlanStyleNames method
+
+  - name: getReconstructionSiteCoordinates
+    signature: getReconstructionSiteCoordinates()
+    returns: int, int
+    description: getReconstructionSiteCoordinates method
+
+  - name: getRelation
+    signature: getRelation(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: Relation
+    description: getRelation method
+
+  - name: getRelations
+    signature: getRelations(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    description: getRelations method
+
+  - name: getRelationStatus
+    signature: getRelationStatus(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    description: getRelationStatus method
+
+  - name: getResources
+    signature: getResources()
+    returns: unsigned int...
+    description: getResources method
+
+  - name: getScripts
+    signature: getScripts()
+    returns: table&lt;int, string&gt;
+    description: getScripts method
+
+  - name: getSelectionGroup
+    signature: getSelectionGroup(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: getSelectionGroup method
+
+  - name: getSelectionGroups
+    signature: getSelectionGroups()
+    returns: void
+    description: getSelectionGroups method
+
+  - name: getShipAvailability
+    signature: getShipAvailability(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipAvailability method
+
+  - name: getShipBoundingBox
+    signature: getShipBoundingBox(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: Box
+    description: getShipBoundingBox method
+
+  - name: getShipCanPassRifts
+    signature: getShipCanPassRifts(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: getShipCanPassRifts method
+
+  - name: getShipCargo
+    signature: getShipCargo(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipCargo method
+
+  - name: getShipCargos
+    signature: getShipCargos(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;TradingGood, int&gt;
+    description: getShipCargos method
+
+  - name: getShipDestroyed
+    signature: getShipDestroyed(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipDestroyed method
+
+  - name: getShipHyperspaceReach
+    signature: getShipHyperspaceReach(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipHyperspaceReach method
+
+  - name: getShipIcon
+    signature: getShipIcon(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipIcon method
+
+  - name: getShipNames
+    signature: getShipNames()
+    returns: string...
+    description: getShipNames method
+
+  - name: getShipOrderInfo
+    signature: getShipOrderInfo(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getShipOrderInfo method
+
+  - name: getShipPayment
+    signature: getShipPayment(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipPayment method
+
+  - name: getShipPaymentTime
+    signature: getShipPaymentTime(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: float
+    description: getShipPaymentTime method
+
+  - name: getShipPlan
+    signature: getShipPlan(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: BlockPlan
+    description: getShipPlan method
+
+  - name: getShipPosition
+    signature: getShipPosition(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: var...
+    description: getShipPosition method
+
+  - name: getShipReconstructionValue
+    signature: getShipReconstructionValue(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: double
+    description: getShipReconstructionValue method
+
+  - name: getShipStatus
+    signature: getShipStatus(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: string
+    description: getShipStatus method
+
+  - name: getShipTurretDesigns
+    signature: getShipTurretDesigns(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;int, TurretDesign&gt;
+    description: getShipTurretDesigns method
+
+  - name: getShipType
+    signature: getShipType(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: int
+    description: getShipType method
+
+  - name: getValue
+    signature: getValue(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: getValue method
+
+  - name: hasScript
+    signature: hasScript(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: hasScript method
+
+  - name: invokeFunction
+    signature: invokeFunction(var scriptName, string functionName, var... arguments)
+    parameters:
+      - name: scriptName
+        type: var
+        description: scriptName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+      - name: arguments
+        type: var...
+        description: arguments parameter
+    returns: var...
+    description: invokeFunction method
+
+  - name: knowsFaction
+    signature: knowsFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    description: knowsFaction method
+
+  - name: knowsSector
+    signature: knowsSector(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: knowsSector method
+
+  - name: ownsShip
+    signature: ownsShip(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: ownsShip method
+
+  - name: registerCallback
+    signature: registerCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: void
+    description: registerCallback method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: sendChatMessage
+    signature: sendChatMessage(var content, var channel)
+    parameters:
+      - name: content
+        type: var
+        description: content parameter
+      - name: channel
+        type: var
+        description: channel parameter
+    returns: void
+    description: sendChatMessage method
+
+  - name: setCameraKeyFrames
+    signature: setCameraKeyFrames()
+    returns: void
+    description: setCameraKeyFrames method
+
+  - name: setCameraLookToPlayerLook
+    signature: setCameraLookToPlayerLook()
+    returns: void
+    description: setCameraLookToPlayerLook method
+
+  - name: setFollowCamera
+    signature: setFollowCamera(var entity)
+    parameters:
+      - name: entity
+        type: var
+        description: entity parameter
+    returns: void
+    description: setFollowCamera method
+
+  - name: setSelectionGroup
+    signature: setSelectionGroup(int index, var group_in)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: group_in
+        type: var
+        description: group_in parameter
+    returns: void
+    description: setSelectionGroup method
+
+  - name: startBuilding
+    signature: startBuilding(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: void
+    description: startBuilding method
+
+  - name: startInteracting
+    signature: startInteracting(Entity entity, string scriptName, int optionIndex)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+      - name: scriptName
+        type: string
+        description: scriptName parameter
+      - name: optionIndex
+        type: int
+        description: optionIndex parameter
+    returns: void
+    description: startInteracting method
+
+  - name: stopInteracting
+    signature: stopInteracting()
+    returns: void
+    description: stopInteracting method
+
+  - name: unregisterCallback
+    signature: unregisterCallback(string callbackName, string functionName)
+    parameters:
+      - name: callbackName
+        type: string
+        description: callbackName parameter
+      - name: functionName
+        type: string
+        description: functionName parameter
+    returns: void
+    description: unregisterCallback method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

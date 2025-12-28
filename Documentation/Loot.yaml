@@ -1,0 +1,38 @@
+# Loot API Documentation
+name: Loot
+type: class
+availability: server-only
+description: Loot class
+
+constructor:
+  signature: Loot(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: Loot instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: insert
+    signature: insert(InventoryItem item)
+    parameters:
+      - name: item
+        type: InventoryItem
+        description: item parameter
+    returns: void
+    description: insert method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

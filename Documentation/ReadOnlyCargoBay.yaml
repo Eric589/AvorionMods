@@ -1,0 +1,134 @@
+# ReadOnlyCargoBay API Documentation
+name: ReadOnlyCargoBay
+type: class
+availability: both
+description: ReadOnlyCargoBay class
+
+constructor:
+  signature: ReadOnlyCargoBay(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyCargoBay instance
+
+properties:
+  - name: alwaysStoreAtLeastOne
+    type: bool
+    access: read-only
+    description: alwaysStoreAtLeastOne property
+
+  - name: cargoHold
+    type: float
+    access: read-only
+    description: cargoHold property
+
+  - name: cargoVolume
+    type: float
+    access: read-only
+    description: cargoVolume property
+
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: fixedSize
+    type: bool
+    access: read-only
+    description: fixedSize property
+
+  - name: freeSpace
+    type: float
+    access: read-only
+    description: freeSpace property
+
+  - name: numCargos
+    type: int
+    access: read-only
+    description: numCargos property
+
+  - name: pickUpDangerous
+    type: bool
+    access: read-only
+    description: pickUpDangerous property
+
+  - name: pickUpDefaults
+    type: bool
+    access: read-only
+    description: pickUpDefaults property
+
+  - name: pickUpIllegal
+    type: bool
+    access: read-only
+    description: pickUpIllegal property
+
+  - name: pickUpOres
+    type: bool
+    access: read-only
+    description: pickUpOres property
+
+  - name: pickUpScrap
+    type: bool
+    access: read-only
+    description: pickUpScrap property
+
+  - name: pickUpStolen
+    type: bool
+    access: read-only
+    description: pickUpStolen property
+
+methods:
+  - name: findCargos
+    signature: findCargos(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;TradingGood, int&gt;
+    description: findCargos method
+
+  - name: getCargo
+    signature: getCargo(unsigned int n)
+    parameters:
+      - name: n
+        type: unsigned int
+        description: n parameter
+    returns: TradingGood, int...
+    description: getCargo method
+
+  - name: getCargos
+    signature: getCargos()
+    returns: table&lt;TradingGood, int&gt;
+    description: getCargos method
+
+  - name: getNumCargos
+    signature: getNumCargos(var name)
+    parameters:
+      - name: name
+        type: var
+        description: name parameter
+    returns: int
+    description: getNumCargos method
+
+  - name: getSummary
+    signature: getSummary(var goods)
+    parameters:
+      - name: goods
+        type: var
+        description: goods parameter
+    returns: string
+    description: getSummary method
+
+notes:
+  - Auto-converted from HTML documentation

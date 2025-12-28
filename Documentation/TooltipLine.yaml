@@ -1,0 +1,120 @@
+# TooltipLine API Documentation
+name: TooltipLine
+type: class
+availability: both
+description: TooltipLine class
+
+constructor:
+  signature: TooltipLine(int height, int fontSize)
+  parameters:
+    - name: height
+      type: int
+      description: height parameter
+    - name: fontSize
+      type: int
+      description: fontSize parameter
+  returns: TooltipLine instance
+
+properties:
+  - name: backgroundColor
+    type: Color
+    access: read-write
+    description: backgroundColor property
+
+  - name: cbold
+    type: bool
+    access: read-write
+    description: cbold property
+
+  - name: ccolor
+    type: Color
+    access: read-write
+    description: ccolor property
+
+  - name: citalic
+    type: bool
+    access: read-write
+    description: citalic property
+
+  - name: ctext
+    type: string
+    access: read-write
+    description: ctext property
+
+  - name: fontSize
+    type: int
+    access: read-write
+    description: fontSize property
+
+  - name: fontType
+    type: int
+    access: read-write
+    description: fontType property
+
+  - name: height
+    type: int
+    access: read-write
+    description: height property
+
+  - name: icon
+    type: string
+    access: read-write
+    description: icon property
+
+  - name: iconColor
+    type: Color
+    access: read-write
+    description: iconColor property
+
+  - name: iconRight
+    type: string
+    access: read-write
+    description: iconRight property
+
+  - name: iconRightColor
+    type: Color
+    access: read-write
+    description: iconRightColor property
+
+  - name: lbold
+    type: bool
+    access: read-write
+    description: lbold property
+
+  - name: lcolor
+    type: Color
+    access: read-write
+    description: lcolor property
+
+  - name: litalic
+    type: bool
+    access: read-write
+    description: litalic property
+
+  - name: ltext
+    type: string
+    access: read-write
+    description: ltext property
+
+  - name: rbold
+    type: bool
+    access: read-write
+    description: rbold property
+
+  - name: rcolor
+    type: Color
+    access: read-write
+    description: rcolor property
+
+  - name: ritalic
+    type: bool
+    access: read-write
+    description: ritalic property
+
+  - name: rtext
+    type: string
+    access: read-write
+    description: rtext property
+
+notes:
+  - Auto-converted from HTML documentation

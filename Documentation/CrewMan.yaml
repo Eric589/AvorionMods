@@ -1,0 +1,48 @@
+# CrewMan API Documentation
+name: CrewMan
+type: class
+availability: both
+description: CrewMan class
+
+constructor:
+  signature: CrewMan(var profession, var specialist, var level)
+  parameters:
+    - name: profession
+      type: var
+      description: profession parameter
+    - name: specialist
+      type: var
+      description: specialist parameter
+    - name: level
+      type: var
+      description: level parameter
+  returns: CrewMan instance
+
+properties:
+  - name: level
+    type: int
+    access: read-only
+    description: level property
+
+  - name: profession
+    type: CrewProfession
+    access: read-only
+    description: profession property
+
+  - name: rank
+    type: CrewRank
+    access: read-only
+    description: rank property
+
+  - name: specialist
+    type: int
+    access: read-only
+    description: specialist property
+
+  - name: workforce
+    type: table&lt;CrewProfession, float&gt;
+    access: read-only
+    description: workforce property
+
+notes:
+  - Auto-converted from HTML documentation

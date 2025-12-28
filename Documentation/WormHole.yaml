@@ -1,0 +1,89 @@
+# WormHole API Documentation
+name: WormHole
+type: class
+availability: both
+description: WormHole class
+
+constructor:
+  signature: WormHole(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: WormHole instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: enabled
+    type: bool
+    access: read-only
+    description: enabled property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: oneWay
+    type: bool
+    access: read-write
+    description: oneWay property
+
+  - name: passageSize
+    type: float
+    access: read-write
+    description: passageSize property
+
+  - name: simplifiedVisuals
+    type: bool
+    access: read-write
+    description: simplifiedVisuals property
+
+  - name: visible
+    type: bool
+    access: read-write
+    description: visible property
+
+  - name: visualSize
+    type: float
+    access: read-write
+    description: visualSize property
+
+methods:
+  - name: fitsThrough
+    signature: fitsThrough(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: bool
+    description: fitsThrough method
+
+  - name: getTargetCoordinates
+    signature: getTargetCoordinates()
+    returns: int, int
+    description: getTargetCoordinates method
+
+  - name: setTargetCoordinates
+    signature: setTargetCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setTargetCoordinates method
+
+notes:
+  - Auto-converted from HTML documentation

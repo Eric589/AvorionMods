@@ -1,0 +1,316 @@
+# UIGridSplitter API Documentation
+name: UIGridSplitter
+type: class
+availability: client-only
+description: UIGridSplitter class
+
+constructor:
+  signature: UIGridSplitter(Rect rect, int padding, int margin, int horizontalTiles, int verticalTiles)
+  parameters:
+    - name: rect
+      type: Rect
+      description: rect parameter
+    - name: padding
+      type: int
+      description: padding parameter
+    - name: margin
+      type: int
+      description: margin parameter
+    - name: horizontalTiles
+      type: int
+      description: horizontalTiles parameter
+    - name: verticalTiles
+      type: int
+      description: verticalTiles parameter
+  returns: UIGridSplitter instance
+
+properties:
+  - name: horizontalTiles
+    type: int
+    access: read-only
+    description: horizontalTiles property
+
+  - name: inner
+    type: Rect
+    access: read-only
+    description: inner property
+
+  - name: margin
+    type: int
+    access: write-only
+    description: margin property
+
+  - name: marginBottom
+    type: int
+    access: write-only
+    description: marginBottom property
+
+  - name: marginLeft
+    type: int
+    access: write-only
+    description: marginLeft property
+
+  - name: marginRight
+    type: int
+    access: write-only
+    description: marginRight property
+
+  - name: marginTop
+    type: int
+    access: write-only
+    description: marginTop property
+
+  - name: padding
+    type: int
+    access: write-only
+    description: padding property
+
+  - name: paddingBottom
+    type: int
+    access: read-write
+    description: paddingBottom property
+
+  - name: paddingInside
+    type: int
+    access: read-write
+    description: paddingInside property
+
+  - name: paddingLeft
+    type: int
+    access: read-write
+    description: paddingLeft property
+
+  - name: paddingRight
+    type: int
+    access: read-write
+    description: paddingRight property
+
+  - name: paddingTop
+    type: int
+    access: read-write
+    description: paddingTop property
+
+  - name: rect
+    type: Rect
+    access: read-write
+    description: rect property
+
+  - name: verticalTiles
+    type: int
+    access: read-write
+    description: verticalTiles property
+
+methods:
+  - name: getBottomLeftRect
+    signature: getBottomLeftRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getBottomLeftRect method
+
+  - name: getBottomRect
+    signature: getBottomRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getBottomRect method
+
+  - name: getBottomRightRect
+    signature: getBottomRightRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getBottomRightRect method
+
+  - name: getCenterRect
+    signature: getCenterRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getCenterRect method
+
+  - name: getLeftRect
+    signature: getLeftRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getLeftRect method
+
+  - name: getRightRect
+    signature: getRightRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getRightRect method
+
+  - name: getTopLeftRect
+    signature: getTopLeftRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getTopLeftRect method
+
+  - name: getTopRect
+    signature: getTopRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getTopRect method
+
+  - name: getTopRightRect
+    signature: getTopRightRect(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Rect
+    description: getTopRightRect method
+
+  - name: partition
+    signature: partition(int x, var y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: var
+        description: y parameter
+    returns: Rect
+    description: partition method
+
+  - name: placeElementBottom
+    signature: placeElementBottom(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementBottom method
+
+  - name: placeElementBottomLeft
+    signature: placeElementBottomLeft(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementBottomLeft method
+
+  - name: placeElementBottomRight
+    signature: placeElementBottomRight(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementBottomRight method
+
+  - name: placeElementCenter
+    signature: placeElementCenter(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementCenter method
+
+  - name: placeElementLeft
+    signature: placeElementLeft(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementLeft method
+
+  - name: placeElementRight
+    signature: placeElementRight(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementRight method
+
+  - name: placeElementTop
+    signature: placeElementTop(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementTop method
+
+  - name: placeElementTopLeft
+    signature: placeElementTopLeft(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementTopLeft method
+
+  - name: placeElementTopRight
+    signature: placeElementTopRight(UIElement element)
+    parameters:
+      - name: element
+        type: UIElement
+        description: element parameter
+    returns: UIElement
+    description: placeElementTopRight method
+
+  - name: setMargin
+    signature: setMargin(int left, int right, int top, int bottom)
+    parameters:
+      - name: left
+        type: int
+        description: left parameter
+      - name: right
+        type: int
+        description: right parameter
+      - name: top
+        type: int
+        description: top parameter
+      - name: bottom
+        type: int
+        description: bottom parameter
+    returns: void
+    description: setMargin method
+
+  - name: setPadding
+    signature: setPadding(int left, int right, int top, int bottom)
+    parameters:
+      - name: left
+        type: int
+        description: left parameter
+      - name: right
+        type: int
+        description: right parameter
+      - name: top
+        type: int
+        description: top parameter
+      - name: bottom
+        type: int
+        description: bottom parameter
+    returns: void
+    description: setPadding method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

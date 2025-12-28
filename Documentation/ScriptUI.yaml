@@ -1,0 +1,134 @@
+# ScriptUI API Documentation
+name: ScriptUI
+type: class
+availability: client-only
+description: ScriptUI class
+
+constructor:
+  signature: ScriptUI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ScriptUI instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: addDialogOption
+    signature: addDialogOption(string text, string function, var priority)
+    parameters:
+      - name: text
+        type: string
+        description: text parameter
+      - name: function
+        type: string
+        description: function parameter
+      - name: priority
+        type: var
+        description: priority parameter
+    returns: int
+    description: addDialogOption method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    description: createWindow method
+
+  - name: interactShowDialog
+    signature: interactShowDialog(Dialog dialog, var closeable)
+    parameters:
+      - name: dialog
+        type: Dialog
+        description: dialog parameter
+      - name: closeable
+        type: var
+        description: closeable parameter
+    returns: void
+    description: interactShowDialog method
+
+  - name: registerInteraction
+    signature: registerInteraction(string caption, string function, var priority)
+    parameters:
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: function
+        type: string
+        description: function parameter
+      - name: priority
+        type: var
+        description: priority parameter
+    returns: void
+    description: registerInteraction method
+
+  - name: registerWindow
+    signature: registerWindow(Window window, string caption, var priority)
+    parameters:
+      - name: window
+        type: Window
+        description: window parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: priority
+        type: var
+        description: priority parameter
+    returns: void
+    description: registerWindow method
+
+  - name: restartInteraction
+    signature: restartInteraction()
+    returns: void
+    description: restartInteraction method
+
+  - name: showDialog
+    signature: showDialog(Dialog dialog, var closeable)
+    parameters:
+      - name: dialog
+        type: Dialog
+        description: dialog parameter
+      - name: closeable
+        type: var
+        description: closeable parameter
+    returns: bool
+    description: showDialog method
+
+  - name: startHailing
+    signature: startHailing(string acceptCallback, string rejectCallback)
+    parameters:
+      - name: acceptCallback
+        type: string
+        description: acceptCallback parameter
+      - name: rejectCallback
+        type: string
+        description: rejectCallback parameter
+    returns: void
+    description: startHailing method
+
+  - name: stopHailing
+    signature: stopHailing()
+    returns: void
+    description: stopHailing method
+
+  - name: stopInteraction
+    signature: stopInteraction()
+    returns: void
+    description: stopInteraction method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

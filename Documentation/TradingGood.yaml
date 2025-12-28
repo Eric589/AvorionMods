@@ -1,0 +1,140 @@
+# TradingGood API Documentation
+name: TradingGood
+type: class
+availability: both
+description: TradingGood class
+
+constructor:
+  signature: TradingGood(string name, string plural, string description, string icon, float price, float size)
+  parameters:
+    - name: name
+      type: string
+      description: name parameter
+    - name: plural
+      type: string
+      description: plural parameter
+    - name: description
+      type: string
+      description: description parameter
+    - name: icon
+      type: string
+      description: icon parameter
+    - name: price
+      type: float
+      description: price parameter
+    - name: size
+      type: float
+      description: size parameter
+  returns: TradingGood instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: dangerous
+    type: bool
+    access: read-only
+    description: dangerous property
+
+  - name: description
+    type: string
+    access: read-only
+    description: description property
+
+  - name: displayDescription
+    type: string
+    access: read-only
+    description: displayDescription property
+
+  - name: icon
+    type: string
+    access: read-only
+    description: icon property
+
+  - name: illegal
+    type: bool
+    access: read-only
+    description: illegal property
+
+  - name: mesh
+    type: string
+    access: read-only
+    description: mesh property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: plural
+    type: string
+    access: read-only
+    description: plural property
+
+  - name: price
+    type: float
+    access: read-only
+    description: price property
+
+  - name: size
+    type: float
+    access: read-only
+    description: size property
+
+  - name: stolen
+    type: bool
+    access: read-only
+    description: stolen property
+
+  - name: suspicious
+    type: bool
+    access: read-only
+    description: suspicious property
+
+  - name: tagDescription
+    type: string
+    access: read-only
+    description: tagDescription property
+
+  - name: tags
+    type: table_t
+    access: read-write
+    description: tags property
+
+methods:
+  - name: __eq
+    signature: __eq(TradingGood other)
+    parameters:
+      - name: other
+        type: TradingGood
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: displayName
+    signature: displayName(int amount)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: string
+    description: displayName method
+
+  - name: pluralForm
+    signature: pluralForm(int amount)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: PluralForm
+    description: pluralForm method
+
+notes:
+  - Auto-converted from HTML documentation

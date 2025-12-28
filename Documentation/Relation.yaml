@@ -1,0 +1,48 @@
+# Relation API Documentation
+name: Relation
+type: class
+availability: both
+description: Relation class
+
+constructor:
+  signature: Relation()
+  returns: Relation instance
+
+properties:
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: description
+    type: string
+    access: read-only
+    description: description property
+
+  - name: factionIndex
+    type: int
+    access: read-only
+    description: factionIndex property
+
+  - name: isStatic
+    type: bool
+    access: read-only
+    description: isStatic property
+
+  - name: level
+    type: int
+    access: read-only
+    description: level property
+
+  - name: status
+    type: int
+    access: read-only
+    description: status property
+
+  - name: translatedStatus
+    type: string
+    access: read-only
+    description: translatedStatus property
+
+notes:
+  - Auto-converted from HTML documentation

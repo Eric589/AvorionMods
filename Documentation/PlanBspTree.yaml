@@ -1,0 +1,101 @@
+# PlanBspTree API Documentation
+name: PlanBspTree
+type: class
+availability: both
+description: PlanBspTree class
+
+constructor:
+  signature: PlanBspTree(BlockPlan plan)
+  parameters:
+    - name: plan
+      type: BlockPlan
+      description: plan parameter
+  returns: PlanBspTree instance
+
+methods:
+  - name: getBlocksByBox
+    signature: getBlocksByBox(Box box)
+    parameters:
+      - name: box
+        type: Box
+        description: box parameter
+    returns: int...
+    description: getBlocksByBox method
+
+  - name: getBlocksByOrientedBox
+    signature: getBlocksByOrientedBox(Box box, Matrix boxOrientation)
+    parameters:
+      - name: box
+        type: Box
+        description: box parameter
+      - name: boxOrientation
+        type: Matrix
+        description: boxOrientation parameter
+    returns: int...
+    description: getBlocksByOrientedBox method
+
+  - name: getBlocksByRay
+    signature: getBlocksByRay(Ray ray, float t0, float t1)
+    parameters:
+      - name: ray
+        type: Ray
+        description: ray parameter
+      - name: t0
+        type: float
+        description: t0 parameter
+      - name: t1
+        type: float
+        description: t1 parameter
+    returns: int...
+    description: getBlocksByRay method
+
+  - name: getBlocksBySphere
+    signature: getBlocksBySphere(Sphere sphere)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+    returns: int...
+    description: getBlocksBySphere method
+
+  - name: intersectRay
+    signature: intersectRay(Ray ray, float t0, float t1)
+    parameters:
+      - name: ray
+        type: Ray
+        description: ray parameter
+      - name: t0
+        type: float
+        description: t0 parameter
+      - name: t1
+        type: float
+        description: t1 parameter
+    returns: int, vec3
+    description: intersectRay method
+
+  - name: intersectsBox
+    signature: intersectsBox(Box box, var exceptionIndex)
+    parameters:
+      - name: box
+        type: Box
+        description: box parameter
+      - name: exceptionIndex
+        type: var
+        description: exceptionIndex parameter
+    returns: bool
+    description: intersectsBox method
+
+  - name: intersectsSphere
+    signature: intersectsSphere(Sphere sphere, var exceptionIndex)
+    parameters:
+      - name: sphere
+        type: Sphere
+        description: sphere parameter
+      - name: exceptionIndex
+        type: var
+        description: exceptionIndex parameter
+    returns: bool
+    description: intersectsSphere method
+
+notes:
+  - Auto-converted from HTML documentation

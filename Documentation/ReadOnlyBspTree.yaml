@@ -1,0 +1,27 @@
+# ReadOnlyBspTree API Documentation
+name: ReadOnlyBspTree
+type: class
+availability: both
+description: ReadOnlyBspTree class
+
+constructor:
+  signature: ReadOnlyBspTree(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyBspTree instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+notes:
+  - Auto-converted from HTML documentation

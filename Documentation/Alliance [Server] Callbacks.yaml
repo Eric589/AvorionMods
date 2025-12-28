@@ -1,0 +1,425 @@
+# Alliance [Server]  Callbacks Documentation
+name: Alliance [Server]  Callbacks
+type: callbacks
+description: Callback functions for Alliance [Server] scripts
+
+callbacks:
+  - name: onAutoPayCrewsChanged
+    signature: onAutoPayCrewsChanged(autoPayCrews)
+    parameters:
+      - name: autoPayCrews
+        description: The new setting for auto-pay-crews
+    description: Called whenever the auto-pay-crews property was changed
+
+  - name: onHomeSectorChanged
+    signature: onHomeSectorChanged(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the new home sector
+      - name: y
+        description: The y coordinate of the new home sector
+    description: Called whenever the home sector of the alliance changes
+
+  - name: onItemAdded
+    signature: onItemAdded(item, index, amount, amountBefore, tagsChanged)
+    parameters:
+      - name: item
+        description: The inventory item
+      - name: index
+        description: Index of the inventory item
+      - name: amount
+        description: Amount of items in the slot
+      - name: amountBefore
+        description: Amount of items in the slot before the change
+      - name: tagsChanged
+        description: Boolean indicating if the tags of the item changed
+    description: Called whenever an item in the alliance inventory is added
+
+  - name: onItemChanged
+    signature: onItemChanged(item, index, amount, amountBefore)
+    parameters:
+      - name: item
+        description: The inventory item
+      - name: index
+        description: Index of the inventory item
+      - name: amount
+        description: Amount of items in the slot
+      - name: amountBefore
+        description: Amount of items in the slot before the change
+    description: Called whenever an item in the alliance inventory changes
+
+  - name: onItemPropertiesChanged
+    signature: onItemPropertiesChanged(item, index, amount)
+    parameters:
+      - name: item
+        description: The inventory item
+      - name: index
+        description: Index of the inventory item
+      - name: amount
+        description: Amount of items in the slot
+    description: Called whenever an item in the alliance inventory changes properties
+
+  - name: onItemRemoved
+    signature: onItemRemoved(item, index, amount, amountBefore)
+    parameters:
+      - name: item
+        description: The inventory item
+      - name: index
+        description: Index of the inventory item
+      - name: amount
+        description: Amount of items in the slot
+      - name: amountBefore
+        description: Amount of items in the slot before the change
+    description: Called whenever an item in the alliance inventory is removed
+
+  - name: onKnownSectorAdded
+    signature: onKnownSectorAdded(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a new tracked sector is added to the alliance database
+
+  - name: onKnownSectorRemoved
+    signature: onKnownSectorRemoved(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a tracked sector was removed from the alliance database
+
+  - name: onKnownSectorUpdated
+    signature: onKnownSectorUpdated(x, y)
+    parameters:
+      - name: x
+        description: The x coordinate of the sector
+      - name: y
+        description: The y coordinate of the sector
+    description: Called whenever a tracked sector is updated in the alliance database
+
+  - name: onLeaderChanged
+    signature: onLeaderChanged(index)
+    parameters:
+      - name: index
+        description: The player index of the new leader
+    description: Called whenever the leader of the alliance was changed
+
+  - name: onMemberChanged
+    signature: onMemberChanged(index, rank)
+    parameters:
+      - name: index
+        description: The player index of the member
+      - name: rank
+        description: The rank of the member
+    description: Called whenever a member is changed in the alliance
+
+  - name: onMemberLeft
+    signature: onMemberLeft(index)
+    parameters:
+      - name: index
+        description: The player index of the ex-member
+    description: Called whenever a member leaves the alliance
+
+  - name: onMessageOfTheDayChanged
+    signature: onMessageOfTheDayChanged(motd)
+    parameters:
+      - name: motd
+        description: The new message of the day
+    description: Called whenever the message of the day was changed
+
+  - name: onNameChanged
+    signature: onNameChanged(newName)
+    parameters:
+      - name: newName
+        description: The new name of the alliance
+    description: Called whenever the name of the alliance changes
+
+  - name: onNewbieRankChanged
+    signature: onNewbieRankChanged(name)
+    parameters:
+      - name: name
+        description: The name of the new newbie rank
+    description: Called whenever the newbie rank was changed
+
+  - name: onNewMember
+    signature: onNewMember(index, rank)
+    parameters:
+      - name: index
+        description: The player index of the new member
+      - name: rank
+        description: The rank of the new member
+    description: Called whenever a new member joins the alliance
+
+  - name: onNewRank
+    signature: onNewRank(name, icon, level, privileges)
+    parameters:
+      - name: name
+        description: The name of the new rank
+      - name: icon
+        description: The icon of the rank
+      - name: level
+        description: The level of the rank
+      - name: privileges
+        description: The privileges of the rank, as a table with privileges as keys
+    description: Called whenever a new rank is added
+
+  - name: onRankChanged
+    signature: onRankChanged(name, icon, level, privileges)
+    parameters:
+      - name: name
+        description: The name of the changed rank
+      - name: icon
+        description: The icon of the rank
+      - name: level
+        description: The level of the rank
+      - name: privileges
+        description: The privileges of the rank, as a table with privileges as keys
+    description: Called whenever a rank is changed
+
+  - name: onRankRemoved
+    signature: onRankRemoved(name)
+    parameters:
+      - name: name
+        description: The name of the removed rank
+    description: Called whenever a rank was removed
+
+  - name: onRelationChanged
+    signature: onRelationChanged(index, level, levelBefore, notify)
+    parameters:
+      - name: index
+        description: The index of the other faction
+      - name: level
+        description: The level of the relation
+      - name: levelBefore
+        description: The level of the relation before the change
+      - name: notify
+        description: A boolean indicating whether or not the alliance should be notified about the change
+    description: Called whenever relations of the alliance to another faction change
+
+  - name: onRelationLevelChanged
+    signature: onRelationLevelChanged(index, level, levelBefore, notify)
+    parameters:
+      - name: index
+        description: The index of the other faction
+      - name: level
+        description: The level of the relation
+      - name: levelBefore
+        description: The level of the relation before the change
+      - name: notify
+        description: A boolean indicating whether or not the alliance should be notified about the change
+    description: Called whenever relation levels of the alliance to another faction change
+
+  - name: onRelationStatusChanged
+    signature: onRelationStatusChanged(index, status, statusBefore, notify)
+    parameters:
+      - name: index
+        description: The index of the other faction
+      - name: status
+        description: The status of the relations
+      - name: statusBefore
+        description: The status of the relation before the change
+      - name: notify
+        description: A boolean indicating whether or not the alliance should be notified about the change
+    description: Called whenever the relation status of the alliance to another faction change (relation status is not yet implemented so this callback will most likely not fire until relation status is in)
+
+  - name: onResourcesChanged
+    signature: onResourcesChanged(money, resources, infinite, notify)
+    parameters:
+      - name: money
+        description: The amount of money the alliance owns
+      - name: resources
+        description: The amount of resources the alliance owns, as table
+      - name: infinite
+        description: True if the alliance has infinite resources, false otherwise
+      - name: notify
+        description: A boolean indicating whether or not the alliance should be visually notified in some way that the resources changed
+    description: Called whenever the amount of money or resources of the alliance changes
+
+  - name: onScriptAdded
+    signature: onScriptAdded(allianceIndex, scriptIndex, scriptPath)
+    parameters:
+      - name: allianceIndex
+        description: The index of the alliance
+      - name: scriptIndex
+        description: The index of the script that was added
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was added to the alliance
+
+  - name: onScriptRemoved
+    signature: onScriptRemoved(allianceIndex, oldScriptIndex, scriptPath)
+    parameters:
+      - name: allianceIndex
+        description: The index of the alliance
+      - name: oldScriptIndex
+        description: The old index of the script that was removed
+      - name: scriptPath
+        description: The path of the old script
+    description: Executed after a script was removed from the alliance
+
+  - name: onShipAvailabilityUpdated
+    signature: onShipAvailabilityUpdated(name, availability)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: availability
+        description: The new availability status of the ship
+    description: Called whenever a ShipInfo changes availability status (ie. goes into background simulation)
+
+  - name: onShipCargoUpdated
+    signature: onShipCargoUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the cargo of a ShipInfo changes
+
+  - name: onShipCrewUpdated
+    signature: onShipCrewUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the crew of a ShipInfo changes
+
+  - name: onShipHyperspacePropertiesUpdated
+    signature: onShipHyperspacePropertiesUpdated(name, reach, canPassRifts)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: reach
+        description: The new reach of the ship
+      - name: canPassRifts
+        description: A boolean indicating whether the ship can jump across rifts
+    description: Called whenever the hyperspace reach of a ShipInfo changes
+
+  - name: onShipIconUpdated
+    signature: onShipIconUpdated(name, icon)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: icon
+        description: The new icon of the ship
+    description: Called whenever the icon of a ShipInfo changes
+
+  - name: onShipInfoAdded
+    signature: onShipInfoAdded(name)
+    parameters:
+      - name: name
+        description: The name of the new ship
+    description: Called whenever a ShipInfo is added to the alliance
+
+  - name: onShipInfoRemoved
+    signature: onShipInfoRemoved(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever a ShipInfo is removed from the alliance
+
+  - name: onShipInfoUpdated
+    signature: onShipInfoUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever a ShipInfo is updated in some way
+
+  - name: onShipNameUpdated
+    signature: onShipNameUpdated(name, newName)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: newName
+        description: The new name of the ship
+    description: Called whenever the name of a ShipInfo changes
+
+  - name: onShipOrderInfoUpdated
+    signature: onShipOrderInfoUpdated(name, orderInfo)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: orderInfo
+        description: The order info of the ship
+    description: Called whenever the order info of a ShipInfo changes
+
+  - name: onShipPayDayUpdated
+    signature: onShipPayDayUpdated(name, time)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: time
+        description: The payday of the ship
+    description: Called whenever the payday of a ShipInfo changes
+
+  - name: onShipPlanUpdated
+    signature: onShipPlanUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the plan of a ShipInfo changes
+
+  - name: onShipPositionUpdated
+    signature: onShipPositionUpdated(name, x, y)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: x
+        description: The new x coordinate of the ship
+      - name: y
+        description: The new y coordinate of the ship
+    description: Called whenever a ShipInfo changes sectors
+
+  - name: onShipReconstructionValueUpdated
+    signature: onShipReconstructionValueUpdated(name, value)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: value
+        description: The value of the ship
+    description: Called whenever the reconstruction value of a ShipInfo changes
+
+  - name: onShipStatusMessageUpdated
+    signature: onShipStatusMessageUpdated(name, status, args)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: status
+        description: The status info text of the ship
+      - name: args
+        description: A table holding the status info localization arguments
+    description: Called whenever the status info of a ShipInfo changes
+
+  - name: onShipTitleUpdated
+    signature: onShipTitleUpdated(name)
+    parameters:
+      - name: name
+        description: The name of the ship
+    description: Called whenever the title of a ShipInfo changes
+
+  - name: onShipTypeUpdated
+    signature: onShipTypeUpdated(name, type)
+    parameters:
+      - name: name
+        description: The name of the ship
+      - name: type
+        description: The new entity type of the ship
+    description: Called whenever the entity type of a ShipInfo changes
+
+  - name: onStateFormChanged
+    signature: onStateFormChanged(newForm)
+    parameters:
+      - name: newForm
+        description: The new state form of the alliance
+    description: Called whenever the state form of the alliance changes
+
+  - name: onTraitChanged
+    signature: onTraitChanged(trait, value)
+    parameters:
+      - name: trait
+        description: The name of the trait that was changed
+      - name: value
+        description: The value of the new trait, from -1 to 1
+    description: Called whenever a "personality" trait of the alliance changes
+
+notes:
+  - Manually converted from HTML callbacks documentation
+  - Callbacks may be buffered and won't always execute immediately

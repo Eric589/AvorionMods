@@ -1,0 +1,51 @@
+# PluralForm API Documentation
+name: PluralForm
+type: class
+availability: both
+description: PluralForm class
+
+constructor:
+  signature: PluralForm(string singular, var plural, var contextOrAmount, var amount)
+  parameters:
+    - name: singular
+      type: string
+      description: singular parameter
+    - name: plural
+      type: var
+      description: plural parameter
+    - name: contextOrAmount
+      type: var
+      description: contextOrAmount parameter
+    - name: amount
+      type: var
+      description: amount parameter
+  returns: PluralForm instance
+
+properties:
+  - name: amount
+    type: int
+    access: read-only
+    description: amount property
+
+  - name: context
+    type: string
+    access: read-only
+    description: context property
+
+  - name: plural
+    type: string
+    access: read-only
+    description: plural property
+
+  - name: singular
+    type: string
+    access: read-only
+    description: singular property
+
+  - name: translated
+    type: string
+    access: read-only
+    description: translated property
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,62 @@
+# ReadOnlyVelocity API Documentation
+name: ReadOnlyVelocity
+type: class
+availability: both
+description: ReadOnlyVelocity class
+
+constructor:
+  signature: ReadOnlyVelocity(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyVelocity instance
+
+properties:
+  - name: axis
+    type: vec3
+    access: read-only
+    description: axis property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: linear
+    type: double
+    access: read-only
+    description: linear property
+
+  - name: linear2
+    type: double
+    access: read-only
+    description: linear2 property
+
+  - name: localAngular
+    type: vec3
+    access: read-only
+    description: localAngular property
+
+  - name: rotationSpeed
+    type: float
+    access: read-only
+    description: rotationSpeed property
+
+  - name: velocity
+    type: dvec3
+    access: read-only
+    description: velocity property
+
+  - name: velocityf
+    type: vec3
+    access: read-only
+    description: velocityf property
+
+notes:
+  - Auto-converted from HTML documentation

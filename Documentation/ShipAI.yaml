@@ -1,0 +1,438 @@
+# ShipAI API Documentation
+name: ShipAI
+type: class
+availability: both
+description: ShipAI class
+
+constructor:
+  signature: ShipAI(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ShipAI instance
+
+properties:
+  - name: attackedEntity
+    type: uuid
+    access: read-only
+    description: attackedEntity property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: flyTarget
+    type: vec3
+    access: read-only
+    description: flyTarget property
+
+  - name: isAttackingSomething
+    type: bool
+    access: read-only
+    description: isAttackingSomething property
+
+  - name: isBusy
+    type: bool
+    access: read-only
+    description: isBusy property
+
+  - name: isStuck
+    type: bool
+    access: read-only
+    description: isStuck property
+
+  - name: state
+    type: int
+    access: read-only
+    description: state property
+
+methods:
+  - name: clearEnemyEntities
+    signature: clearEnemyEntities()
+    returns: void
+    description: clearEnemyEntities method
+
+  - name: clearEnemyFactions
+    signature: clearEnemyFactions()
+    returns: void
+    description: clearEnemyFactions method
+
+  - name: clearFriendEntities
+    signature: clearFriendEntities()
+    returns: void
+    description: clearFriendEntities method
+
+  - name: clearFriendFactions
+    signature: clearFriendFactions()
+    returns: void
+    description: clearFriendFactions method
+
+  - name: enemyFightersPresent
+    signature: enemyFightersPresent()
+    returns: bool
+    description: enemyFightersPresent method
+
+  - name: enemyShipsPresent
+    signature: enemyShipsPresent(var countCivilEnemies)
+    parameters:
+      - name: countCivilEnemies
+        type: var
+        description: countCivilEnemies parameter
+    returns: bool
+    description: enemyShipsPresent method
+
+  - name: getEnemies
+    signature: getEnemies()
+    returns: Entity...
+    description: getEnemies method
+
+  - name: getEnemyFighters
+    signature: getEnemyFighters()
+    returns: Entity...
+    description: getEnemyFighters method
+
+  - name: getEnemyShips
+    signature: getEnemyShips()
+    returns: Entity...
+    description: getEnemyShips method
+
+  - name: getEscortTarget
+    signature: getEscortTarget()
+    returns: Uuid
+    description: getEscortTarget method
+
+  - name: getFollowTarget
+    signature: getFollowTarget()
+    returns: Uuid
+    description: getFollowTarget method
+
+  - name: getNearestEnemy
+    signature: getNearestEnemy()
+    returns: Entity
+    description: getNearestEnemy method
+
+  - name: getRegisteredEnemyEntities
+    signature: getRegisteredEnemyEntities()
+    returns: uuid...
+    description: getRegisteredEnemyEntities method
+
+  - name: getRegisteredEnemyFactions
+    signature: getRegisteredEnemyFactions()
+    returns: int...
+    description: getRegisteredEnemyFactions method
+
+  - name: getRegisteredFriendEntities
+    signature: getRegisteredFriendEntities()
+    returns: uuid...
+    description: getRegisteredFriendEntities method
+
+  - name: getRegisteredFriendFactions
+    signature: getRegisteredFriendFactions()
+    returns: int...
+    description: getRegisteredFriendFactions method
+
+  - name: isEnemy
+    signature: isEnemy(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isEnemy method
+
+  - name: isEnemyPresent
+    signature: isEnemyPresent(var countCivilEnemies)
+    parameters:
+      - name: countCivilEnemies
+        type: var
+        description: countCivilEnemies parameter
+    returns: bool
+    description: isEnemyPresent method
+
+  - name: isRegisteredEnemy
+    signature: isRegisteredEnemy(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isRegisteredEnemy method
+
+  - name: isRegisteredFriend
+    signature: isRegisteredFriend(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: bool
+    description: isRegisteredFriend method
+
+  - name: registerEnemyEntity
+    signature: registerEnemyEntity(Uuid id)
+    parameters:
+      - name: id
+        type: Uuid
+        description: id parameter
+    returns: void
+    description: registerEnemyEntity method
+
+  - name: registerEnemyFaction
+    signature: registerEnemyFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: registerEnemyFaction method
+
+  - name: registerFriendEntity
+    signature: registerFriendEntity(Uuid id)
+    parameters:
+      - name: id
+        type: Uuid
+        description: id parameter
+    returns: void
+    description: registerFriendEntity method
+
+  - name: registerFriendFaction
+    signature: registerFriendFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: registerFriendFaction method
+
+  - name: setAggressive
+    signature: setAggressive(var attackCivilShips, var canFinish)
+    parameters:
+      - name: attackCivilShips
+        type: var
+        description: attackCivilShips parameter
+      - name: canFinish
+        type: var
+        description: canFinish parameter
+    returns: void
+    description: setAggressive method
+
+  - name: setAttack
+    signature: setAttack(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: void
+    description: setAttack method
+
+  - name: setBoard
+    signature: setBoard(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: void
+    description: setBoard method
+
+  - name: setEscort
+    signature: setEscort(Entity escortedShip)
+    parameters:
+      - name: escortedShip
+        type: Entity
+        description: escortedShip parameter
+    returns: void
+    description: setEscort method
+
+  - name: setFly
+    signature: setFly(vec3 location, float arrivalRadius, Entity collisionException, var fighterOrders, var lenientArrivalAllowed)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: arrivalRadius
+        type: float
+        description: arrivalRadius parameter
+      - name: collisionException
+        type: Entity
+        description: collisionException parameter
+      - name: fighterOrders
+        type: var
+        description: fighterOrders parameter
+      - name: lenientArrivalAllowed
+        type: var
+        description: lenientArrivalAllowed parameter
+    returns: void
+    description: setFly method
+
+  - name: setFlyLinear
+    signature: setFlyLinear(vec3 location, float arrivalRadius, var avoidCollisions)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+      - name: arrivalRadius
+        type: float
+        description: arrivalRadius parameter
+      - name: avoidCollisions
+        type: var
+        description: avoidCollisions parameter
+    returns: void
+    description: setFlyLinear method
+
+  - name: setFollow
+    signature: setFollow(Entity followedShip, var followedToOtherSectors)
+    parameters:
+      - name: followedShip
+        type: Entity
+        description: followedShip parameter
+      - name: followedToOtherSectors
+        type: var
+        description: followedToOtherSectors parameter
+    returns: void
+    description: setFollow method
+
+  - name: setGuard
+    signature: setGuard(vec3 location)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+    returns: void
+    description: setGuard method
+
+  - name: setHarvest
+    signature: setHarvest(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: void
+    description: setHarvest method
+
+  - name: setIdle
+    signature: setIdle()
+    returns: void
+    description: setIdle method
+
+  - name: setJump
+    signature: setJump(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setJump method
+
+  - name: setPassive
+    signature: setPassive()
+    returns: void
+    description: setPassive method
+
+  - name: setPassiveShooting
+    signature: setPassiveShooting(bool enabled)
+    parameters:
+      - name: enabled
+        type: bool
+        description: enabled parameter
+    returns: void
+    description: setPassiveShooting method
+
+  - name: setPassiveTurning
+    signature: setPassiveTurning(vec3 location)
+    parameters:
+      - name: location
+        type: vec3
+        description: location parameter
+    returns: void
+    description: setPassiveTurning method
+
+  - name: setRepair
+    signature: setRepair()
+    returns: void
+    description: setRepair method
+
+  - name: setRepairTarget
+    signature: setRepairTarget(Entity target)
+    parameters:
+      - name: target
+        type: Entity
+        description: target parameter
+    returns: void
+    description: setRepairTarget method
+
+  - name: setStatus
+    signature: setStatus(string status, string_pair... arguments)
+    parameters:
+      - name: status
+        type: string
+        description: status parameter
+      - name: arguments
+        type: string_pair...
+        description: arguments parameter
+    returns: void
+    description: setStatus method
+
+  - name: setStatusMessage
+    signature: setStatusMessage(string status, string_pair... arguments)
+    parameters:
+      - name: status
+        type: string
+        description: status parameter
+      - name: arguments
+        type: string_pair...
+        description: arguments parameter
+    returns: void
+    description: setStatusMessage method
+
+  - name: stop
+    signature: stop()
+    returns: void
+    description: stop method
+
+  - name: unregisterEnemyEntity
+    signature: unregisterEnemyEntity(Uuid id)
+    parameters:
+      - name: id
+        type: Uuid
+        description: id parameter
+    returns: void
+    description: unregisterEnemyEntity method
+
+  - name: unregisterEnemyFaction
+    signature: unregisterEnemyFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: unregisterEnemyFaction method
+
+  - name: unregisterFriendEntity
+    signature: unregisterFriendEntity(Uuid id)
+    parameters:
+      - name: id
+        type: Uuid
+        description: id parameter
+    returns: void
+    description: unregisterFriendEntity method
+
+  - name: unregisterFriendFaction
+    signature: unregisterFriendFaction(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: unregisterFriendFaction method
+
+notes:
+  - Auto-converted from HTML documentation

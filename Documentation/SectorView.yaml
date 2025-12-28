@@ -1,0 +1,199 @@
+# SectorView API Documentation
+name: SectorView
+type: class
+availability: both
+description: SectorView class
+
+constructor:
+  signature: SectorView()
+  returns: SectorView instance
+
+properties:
+  - name: deathLocation
+    type: bool
+    access: read-only
+    description: deathLocation property
+
+  - name: factionIndex
+    type: int
+    access: read-only
+    description: factionIndex property
+
+  - name: hasContent
+    type: bool
+    access: read-only
+    description: hasContent property
+
+  - name: influence
+    type: float
+    access: read-only
+    description: influence property
+
+  - name: manuallyTagged
+    type: bool
+    access: read-only
+    description: manuallyTagged property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: note
+    type: NamedFormat
+    access: read-only
+    description: note property
+
+  - name: numAsteroids
+    type: int
+    access: read-only
+    description: numAsteroids property
+
+  - name: numShips
+    type: int
+    access: read-only
+    description: numShips property
+
+  - name: numStations
+    type: int
+    access: read-only
+    description: numStations property
+
+  - name: numWrecks
+    type: int
+    access: read-only
+    description: numWrecks property
+
+  - name: tagIconPath
+    type: string
+    access: read-only
+    description: tagIconPath property
+
+  - name: timeStamp
+    type: double
+    access: read-only
+    description: timeStamp property
+
+  - name: visited
+    type: bool
+    access: read-only
+    description: visited property
+
+methods:
+  - name: calculateInfluence
+    signature: calculateInfluence(int stations)
+    parameters:
+      - name: stations
+        type: int
+        description: stations parameter
+    returns: float
+    description: calculateInfluence method
+
+  - name: getCoordinates
+    signature: getCoordinates()
+    returns: int, int
+    description: getCoordinates method
+
+  - name: getCraftsByFaction
+    signature: getCraftsByFaction()
+    returns: table&lt;int, int&gt;
+    description: getCraftsByFaction method
+
+  - name: getCustomEntries
+    signature: getCustomEntries()
+    returns: table&lt;string, string&gt;
+    description: getCustomEntries method
+
+  - name: getGateDestinations
+    signature: getGateDestinations()
+    returns: ivec2...
+    description: getGateDestinations method
+
+  - name: getShipsByFaction
+    signature: getShipsByFaction()
+    returns: table&lt;int, int&gt;
+    description: getShipsByFaction method
+
+  - name: getStationsByFaction
+    signature: getStationsByFaction()
+    returns: table&lt;int, int&gt;
+    description: getStationsByFaction method
+
+  - name: getStationTitles
+    signature: getStationTitles()
+    returns: NamedFormat...
+    description: getStationTitles method
+
+  - name: getWormHoleDestinations
+    signature: getWormHoleDestinations()
+    returns: ivec2...
+    description: getWormHoleDestinations method
+
+  - name: setCoordinates
+    signature: setCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setCoordinates method
+
+  - name: setCraftsByFaction
+    signature: setCraftsByFaction(int_map_type in)
+    parameters:
+      - name: in
+        type: int_map_type
+        description: in parameter
+    returns: void
+    description: setCraftsByFaction method
+
+  - name: setCustomEntry
+    signature: setCustomEntry(string key, string line)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: line
+        type: string
+        description: line parameter
+    returns: void
+    description: setCustomEntry method
+
+  - name: setGateDestinations
+    signature: setGateDestinations()
+    returns: void
+    description: setGateDestinations method
+
+  - name: setShipsByFaction
+    signature: setShipsByFaction(int_map_type in)
+    parameters:
+      - name: in
+        type: int_map_type
+        description: in parameter
+    returns: void
+    description: setShipsByFaction method
+
+  - name: setStationsByFaction
+    signature: setStationsByFaction(int_map_type in)
+    parameters:
+      - name: in
+        type: int_map_type
+        description: in parameter
+    returns: void
+    description: setStationsByFaction method
+
+  - name: setStationTitles
+    signature: setStationTitles()
+    returns: void
+    description: setStationTitles method
+
+  - name: setWormHoleDestinations
+    signature: setWormHoleDestinations()
+    returns: void
+    description: setWormHoleDestinations method
+
+notes:
+  - Auto-converted from HTML documentation

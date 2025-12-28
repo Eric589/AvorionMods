@@ -1,0 +1,77 @@
+# Version API Documentation
+name: Version
+type: class
+availability: both
+description: Version class
+
+constructor:
+  signature: Version(var majorVersion, var minorVersion, var patch)
+  parameters:
+    - name: majorVersion
+      type: var
+      description: majorVersion parameter
+    - name: minorVersion
+      type: var
+      description: minorVersion parameter
+    - name: patch
+      type: var
+      description: patch parameter
+  returns: Version instance
+
+properties:
+  - name: major
+    type: int
+    access: read-write
+    description: major property
+
+  - name: minor
+    type: int
+    access: read-write
+    description: minor property
+
+  - name: patch
+    type: int
+    access: read-write
+    description: patch property
+
+  - name: revision
+    type: string
+    access: read-write
+    description: revision property
+
+  - name: revisionHash
+    type: string
+    access: read-write
+    description: revisionHash property
+
+  - name: status
+    type: string
+    access: read-write
+    description: status property
+
+methods:
+  - name: __eq
+    signature: __eq(Version other)
+    parameters:
+      - name: other
+        type: Version
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __lt
+    signature: __lt(Version other)
+    parameters:
+      - name: other
+        type: Version
+        description: other parameter
+    returns: bool
+    description: __lt method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+notes:
+  - Auto-converted from HTML documentation

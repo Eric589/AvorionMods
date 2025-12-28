@@ -1,0 +1,32 @@
+# ReadOnlyInteractionText API Documentation
+name: ReadOnlyInteractionText
+type: class
+availability: both
+description: ReadOnlyInteractionText class
+
+constructor:
+  signature: ReadOnlyInteractionText(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyInteractionText instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: text
+    type: string
+    access: read-only
+    description: text property
+
+notes:
+  - Auto-converted from HTML documentation

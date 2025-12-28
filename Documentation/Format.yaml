@@ -1,0 +1,56 @@
+# Format API Documentation
+name: Format
+type: class
+availability: both
+description: Format class
+
+constructor:
+  signature: Format(string text, PluralForm... args)
+  parameters:
+    - name: text
+      type: string
+      description: text parameter
+    - name: args
+      type: PluralForm...
+      description: args parameter
+  returns: Format instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: text
+    type: string
+    access: read-only
+    description: text property
+
+methods:
+  - name: add
+    signature: add()
+    returns: void
+    description: add method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: evaluate
+    signature: evaluate()
+    returns: string
+    description: evaluate method
+
+  - name: getArguments
+    signature: getArguments()
+    returns: PluralForm...
+    description: getArguments method
+
+  - name: translated
+    signature: translated()
+    returns: string
+    description: translated method
+
+notes:
+  - Auto-converted from HTML documentation

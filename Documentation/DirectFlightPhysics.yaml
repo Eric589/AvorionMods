@@ -1,0 +1,42 @@
+# DirectFlightPhysics API Documentation
+name: DirectFlightPhysics
+type: class
+availability: both
+description: DirectFlightPhysics class
+
+constructor:
+  signature: DirectFlightPhysics(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: DirectFlightPhysics instance
+
+properties:
+  - name: drifting
+    type: bool
+    access: read-only
+    description: drifting property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: maxVelocity
+    type: float
+    access: read-write
+    description: maxVelocity property
+
+  - name: turningSpeed
+    type: float
+    access: read-write
+    description: turningSpeed property
+
+notes:
+  - Auto-converted from HTML documentation

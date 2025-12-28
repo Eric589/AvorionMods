@@ -1,0 +1,111 @@
+# dvec4 API Documentation
+name: dvec4
+type: class
+availability: both
+description: dvec4 class
+
+constructor:
+  signature: dvec4(var x, var y, var z, var w)
+  parameters:
+    - name: x
+      type: var
+      description: x parameter
+    - name: y
+      type: var
+      description: y parameter
+    - name: z
+      type: var
+      description: z parameter
+    - name: w
+      type: var
+      description: w parameter
+  returns: dvec4 instance
+
+properties:
+  - name: w
+    type: double
+    access: read-write
+    description: w property
+
+  - name: x
+    type: double
+    access: read-write
+    description: x property
+
+  - name: y
+    type: double
+    access: read-write
+    description: y property
+
+  - name: z
+    type: double
+    access: read-write
+    description: z property
+
+methods:
+  - name: __add
+    signature: __add(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: dvec4
+    description: __add method
+
+  - name: __div
+    signature: __div(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: dvec4
+    description: __div method
+
+  - name: __eq
+    signature: __eq(dvec4 other)
+    parameters:
+      - name: other
+        type: dvec4
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: __lt
+    signature: __lt(dvec4 other)
+    parameters:
+      - name: other
+        type: dvec4
+        description: other parameter
+    returns: bool
+    description: __lt method
+
+  - name: __mul
+    signature: __mul(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: dvec4
+    description: __mul method
+
+  - name: __sub
+    signature: __sub(var other)
+    parameters:
+      - name: other
+        type: var
+        description: other parameter
+    returns: dvec4
+    description: __sub method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: __unm
+    signature: __unm()
+    returns: dvec4
+    description: __unm method
+
+notes:
+  - Auto-converted from HTML documentation

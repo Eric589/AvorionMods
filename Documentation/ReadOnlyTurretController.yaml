@@ -1,0 +1,38 @@
+# ReadOnlyTurretController API Documentation
+name: ReadOnlyTurretController
+type: class
+availability: server-only
+description: ReadOnlyTurretController class
+
+constructor:
+  signature: ReadOnlyTurretController(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyTurretController instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: getGroupOrders
+    signature: getGroupOrders(int group)
+    parameters:
+      - name: group
+        type: int
+        description: group parameter
+    returns: int
+    description: getGroupOrders method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

@@ -1,0 +1,382 @@
+# Selection API Documentation
+name: Selection
+type: class
+extends: UIElement
+availability: client-only
+description: Selection class
+
+constructor:
+  signature: Selection(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: Selection instance
+
+properties:
+  - name: dragFromEnabled
+    type: bool
+    access: write-only
+    description: dragFromEnabled property
+
+  - name: dropIntoEnabled
+    type: bool
+    access: write-only
+    description: dropIntoEnabled property
+
+  - name: dropIntoSelfEnabled
+    type: bool
+    access: write-only
+    description: dropIntoSelfEnabled property
+
+  - name: entriesHighlightable
+    type: bool
+    access: write-only
+    description: entriesHighlightable property
+
+  - name: entriesSelectable
+    type: bool
+    access: write-only
+    description: entriesSelectable property
+
+  - name: hasSelectedItemFrame
+    type: bool
+    access: read-only
+    description: hasSelectedItemFrame property
+
+  - name: isRenderingDraggedItem
+    type: bool
+    access: read-only
+    description: isRenderingDraggedItem property
+
+  - name: maxHorizontalEntries
+    type: unsigned int
+    access: read-only
+    description: maxHorizontalEntries property
+
+  - name: numEntries
+    type: int
+    access: read-only
+    description: numEntries property
+
+  - name: onClickedFunction
+    type: string
+    access: write-only
+    description: onClickedFunction property
+
+  - name: onDeselectedFunction
+    type: string
+    access: write-only
+    description: onDeselectedFunction property
+
+  - name: onDroppedFunction
+    type: string
+    access: write-only
+    description: onDroppedFunction property
+
+  - name: onEntriesSortedFunction
+    type: string
+    access: write-only
+    description: onEntriesSortedFunction property
+
+  - name: onInsertedFunction
+    type: string
+    access: write-only
+    description: onInsertedFunction property
+
+  - name: onReceivedFunction
+    type: string
+    access: write-only
+    description: onReceivedFunction property
+
+  - name: onSelectedFunction
+    type: string
+    access: write-only
+    description: onSelectedFunction property
+
+  - name: padding
+    type: float
+    access: write-only
+    description: padding property
+
+  - name: selected
+    type: UserObject
+    access: read-only
+    description: selected property
+
+  - name: selectedKey
+    type: ivec2
+    access: read-only
+    description: selectedKey property
+
+  - name: showScrollBar
+    type: bool
+    access: write-only
+    description: showScrollBar property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: add
+    signature: add(var item, var pos)
+    parameters:
+      - name: item
+        type: var
+        description: item parameter
+      - name: pos
+        type: var
+        description: pos parameter
+    returns: void
+    description: add method
+
+  - name: addEmpty
+    signature: addEmpty(var pos)
+    parameters:
+      - name: pos
+        type: var
+        description: pos parameter
+    returns: void
+    description: addEmpty method
+
+  - name: addEmptyRows
+    signature: addEmptyRows(int amount)
+    parameters:
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    description: addEmptyRows method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: fillRow
+    signature: fillRow()
+    returns: void
+    description: fillRow method
+
+  - name: fillWithEmptyRows
+    signature: fillWithEmptyRows()
+    returns: void
+    description: fillWithEmptyRows method
+
+  - name: getItem
+    signature: getItem(ivec2 key)
+    parameters:
+      - name: key
+        type: ivec2
+        description: key parameter
+    returns: UserObject
+    description: getItem method
+
+  - name: getItems
+    signature: getItems()
+    returns: table&lt;ivec2, UserObject&gt;
+    description: getItems method
+
+  - name: getMouseOveredKey
+    signature: getMouseOveredKey()
+    returns: ivec2
+    description: getMouseOveredKey method
+
+  - name: getRect
+    signature: getRect(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: int, Rect
+    description: getRect method
+
+  - name: remove
+    signature: remove(ivec2 key)
+    parameters:
+      - name: key
+        type: ivec2
+        description: key parameter
+    returns: void
+    description: remove method
+
+  - name: select
+    signature: select(ivec2 pos)
+    parameters:
+      - name: pos
+        type: ivec2
+        description: pos parameter
+    returns: void
+    description: select method
+
+  - name: selectNoCallback
+    signature: selectNoCallback(ivec2 pos)
+    parameters:
+      - name: pos
+        type: ivec2
+        description: pos parameter
+    returns: void
+    description: selectNoCallback method
+
+  - name: setCustomRects
+    signature: setCustomRects(table_t rects)
+    parameters:
+      - name: rects
+        type: table_t
+        description: rects parameter
+    returns: void
+    description: setCustomRects method
+
+  - name: setFieldSize
+    signature: setFieldSize(float in)
+    parameters:
+      - name: in
+        type: float
+        description: in parameter
+    returns: void
+    description: setFieldSize method
+
+  - name: setShowScrollArrows
+    signature: setShowScrollArrows(bool showTop, bool showBottom, float width)
+    parameters:
+      - name: showTop
+        type: bool
+        description: showTop parameter
+      - name: showBottom
+        type: bool
+        description: showBottom parameter
+      - name: width
+        type: float
+        description: width parameter
+    returns: void
+    description: setShowScrollArrows method
+
+  - name: unselect
+    signature: unselect()
+    returns: void
+    description: unselect method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

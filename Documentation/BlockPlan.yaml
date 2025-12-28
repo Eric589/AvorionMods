@@ -1,0 +1,394 @@
+# BlockPlan API Documentation
+name: BlockPlan
+type: class
+availability: both
+description: BlockPlan class
+
+constructor:
+  signature: BlockPlan()
+  returns: BlockPlan instance
+
+properties:
+  - name: accumulatingHealth
+    type: bool
+    access: read-only
+    description: accumulatingHealth property
+
+  - name: centerOfMass
+    type: vec3
+    access: read-only
+    description: centerOfMass property
+
+  - name: convex
+    type: bool
+    access: read-only
+    description: convex property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: mass
+    type: double
+    access: read-only
+    description: mass property
+
+  - name: numBlocks
+    type: int
+    access: read-only
+    description: numBlocks property
+
+  - name: processingPower
+    type: double
+    access: read-only
+    description: processingPower property
+
+  - name: radius
+    type: float
+    access: read-only
+    description: radius property
+
+  - name: root
+    type: BlockPlanBlock
+    access: read-only
+    description: root property
+
+  - name: rootIndex
+    type: var
+    access: read-only
+    description: rootIndex property
+
+  - name: volume
+    type: double
+    access: read-only
+    description: volume property
+
+methods:
+  - name: addBlock
+    signature: addBlock(vec3 position, vec3 size, int parentIndex, int index, Color color, Material material, Matrix orientation, int blockIndex, var secondaryColor)
+    parameters:
+      - name: position
+        type: vec3
+        description: position parameter
+      - name: size
+        type: vec3
+        description: size parameter
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: orientation
+        type: Matrix
+        description: orientation parameter
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+      - name: secondaryColor
+        type: var
+        description: secondaryColor parameter
+    returns: int
+    description: addBlock method
+
+  - name: addPlan
+    signature: addPlan(int parentIndex, BlockPlan other, int otherBlock)
+    parameters:
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: other
+        type: BlockPlan
+        description: other parameter
+      - name: otherBlock
+        type: int
+        description: otherBlock parameter
+    returns: void
+    description: addPlan method
+
+  - name: addPlanDisplaced
+    signature: addPlanDisplaced(int parentIndex, BlockPlan other, int otherBlock, vec3 delta)
+    parameters:
+      - name: parentIndex
+        type: int
+        description: parentIndex parameter
+      - name: other
+        type: BlockPlan
+        description: other parameter
+      - name: otherBlock
+        type: int
+        description: otherBlock parameter
+      - name: delta
+        type: vec3
+        description: delta parameter
+    returns: void
+    description: addPlanDisplaced method
+
+  - name: center
+    signature: center()
+    returns: void
+    description: center method
+
+  - name: deleteSubTree
+    signature: deleteSubTree(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: deleteSubTree method
+
+  - name: displace
+    signature: displace(vec3 displacement)
+    parameters:
+      - name: displacement
+        type: vec3
+        description: displacement parameter
+    returns: void
+    description: displace method
+
+  - name: divide
+    signature: divide(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: BlockPlan...
+    description: divide method
+
+  - name: empty
+    signature: empty()
+    returns: bool
+    description: empty method
+
+  - name: exists
+    signature: exists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: exists method
+
+  - name: forceMaterial
+    signature: forceMaterial(Material material)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+    returns: void
+    description: forceMaterial method
+
+  - name: getBlock
+    signature: getBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: BlockPlanBlock
+    description: getBlock method
+
+  - name: getBlockIndices
+    signature: getBlockIndices()
+    returns: int...
+    description: getBlockIndices method
+
+  - name: getBlockType
+    signature: getBlockType(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: int
+    description: getBlockType method
+
+  - name: getBoundingBox
+    signature: getBoundingBox()
+    returns: Box
+    description: getBoundingBox method
+
+  - name: getBoundingSphere
+    signature: getBoundingSphere()
+    returns: Sphere
+    description: getBoundingSphere method
+
+  - name: getMoneyValue
+    signature: getMoneyValue()
+    returns: double
+    description: getMoneyValue method
+
+  - name: getNthBlock
+    signature: getNthBlock(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: BlockPlanBlock
+    description: getNthBlock method
+
+  - name: getNthIndex
+    signature: getNthIndex(int n)
+    parameters:
+      - name: n
+        type: int
+        description: n parameter
+    returns: void
+    description: getNthIndex method
+
+  - name: getResourceValue
+    signature: getResourceValue()
+    returns: double...
+    description: getResourceValue method
+
+  - name: getStats
+    signature: getStats()
+    returns: BlockStatistics
+    description: getStats method
+
+  - name: getUndamagedMoneyValue
+    signature: getUndamagedMoneyValue()
+    returns: double
+    description: getUndamagedMoneyValue method
+
+  - name: getUndamagedResourceValue
+    signature: getUndamagedResourceValue()
+    returns: double...
+    description: getUndamagedResourceValue method
+
+  - name: mirror
+    signature: mirror(vec3 axis, vec3 mirrorCenter)
+    parameters:
+      - name: axis
+        type: vec3
+        description: axis parameter
+      - name: mirrorCenter
+        type: vec3
+        description: mirrorCenter parameter
+    returns: void
+    description: mirror method
+
+  - name: propertiesEqual
+    signature: propertiesEqual(BlockPlan other)
+    parameters:
+      - name: other
+        type: BlockPlan
+        description: other parameter
+    returns: bool
+    description: propertiesEqual method
+
+  - name: reassignParents
+    signature: reassignParents(var This)
+    parameters:
+      - name: This
+        type: var
+        description: This parameter
+    returns: void
+    description: reassignParents method
+
+  - name: removeBlock
+    signature: removeBlock(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: void
+    description: removeBlock method
+
+  - name: resetDurability
+    signature: resetDurability()
+    returns: void
+    description: resetDurability method
+
+  - name: rotate
+    signature: rotate(vec3 axis, int dir)
+    parameters:
+      - name: axis
+        type: vec3
+        description: axis parameter
+      - name: dir
+        type: int
+        description: dir parameter
+    returns: void
+    description: rotate method
+
+  - name: scale
+    signature: scale(vec3 factor)
+    parameters:
+      - name: factor
+        type: vec3
+        description: factor parameter
+    returns: void
+    description: scale method
+
+  - name: setBlockColor
+    signature: setBlockColor(int index, Color color)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: setBlockColor method
+
+  - name: setBlockType
+    signature: setBlockType(int index, int blockTypeIndex)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: blockTypeIndex
+        type: int
+        description: blockTypeIndex parameter
+    returns: void
+    description: setBlockType method
+
+  - name: setColor
+    signature: setColor(Color in)
+    parameters:
+      - name: in
+        type: Color
+        description: in parameter
+    returns: void
+    description: setColor method
+
+  - name: setMaterial
+    signature: setMaterial(Material material)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+    returns: void
+    description: setMaterial method
+
+  - name: setMaterialTier
+    signature: setMaterialTier(Material material)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+    returns: void
+    description: setMaterialTier method
+
+  - name: setSecondaryBlockColor
+    signature: setSecondaryBlockColor(int index, Color color)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: void
+    description: setSecondaryBlockColor method
+
+notes:
+  - Auto-converted from HTML documentation

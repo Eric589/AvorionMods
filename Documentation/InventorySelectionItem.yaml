@@ -1,0 +1,49 @@
+# InventorySelectionItem API Documentation
+name: InventorySelectionItem
+type: class
+availability: client-only
+description: InventorySelectionItem class
+
+constructor:
+  signature: InventorySelectionItem()
+  returns: InventorySelectionItem instance
+
+properties:
+  - name: amount
+    type: var
+    access: read-write
+    description: amount property
+
+  - name: border
+    type: IconBorderMode
+    access: read-write
+    description: border property
+
+  - name: deleteable
+    type: bool
+    access: read-write
+    description: deleteable property
+
+  - name: highlighted
+    type: bool
+    access: read-write
+    description: highlighted property
+
+  - name: item
+    type: InventoryItem
+    access: read-write
+    description: item property
+
+  - name: readyForDeletion
+    type: bool
+    access: read-write
+    description: readyForDeletion property
+
+  - name: uvalue
+    type: var
+    access: read-write
+    description: uvalue property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

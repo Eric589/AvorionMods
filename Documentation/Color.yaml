@@ -1,0 +1,83 @@
+# Color API Documentation
+name: Color
+type: class
+availability: both
+description: Color class
+
+constructor:
+  signature: Color(var c)
+  parameters:
+    - name: c
+      type: var
+      description: c parameter
+  returns: Color instance
+
+properties:
+  - name: a
+    type: float
+    access: read-only
+    description: a property
+
+  - name: b
+    type: float
+    access: read-only
+    description: b property
+
+  - name: g
+    type: float
+    access: read-only
+    description: g property
+
+  - name: html
+    type: string
+    access: read-only
+    description: html property
+
+  - name: hue
+    type: float
+    access: read-write
+    description: hue property
+
+  - name: r
+    type: float
+    access: read-write
+    description: r property
+
+  - name: saturation
+    type: float
+    access: read-write
+    description: saturation property
+
+  - name: value
+    type: float
+    access: read-write
+    description: value property
+
+methods:
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: setHSV
+    signature: setHSV(float h, float s, float v)
+    parameters:
+      - name: h
+        type: float
+        description: h parameter
+      - name: s
+        type: float
+        description: s parameter
+      - name: v
+        type: float
+        description: v parameter
+    returns: void
+    description: setHSV method
+
+  - name: toInt
+    signature: toInt()
+    returns: int
+    description: toInt method
+
+notes:
+  - Auto-converted from HTML documentation

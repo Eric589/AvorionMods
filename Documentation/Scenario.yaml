@@ -1,0 +1,33 @@
+# Scenario API Documentation
+name: Scenario
+type: class
+availability: both
+description: Scenario class
+
+constructor:
+  signature: Scenario()
+  returns: Scenario instance
+
+properties:
+  - name: isClassic
+    type: var
+    access: read-only
+    description: isClassic property
+
+  - name: isCreative
+    type: var
+    access: read-only
+    description: isCreative property
+
+  - name: isNormal
+    type: var
+    access: read-only
+    description: isNormal property
+
+  - name: type
+    type: var
+    access: read-only
+    description: type property
+
+notes:
+  - Auto-converted from HTML documentation

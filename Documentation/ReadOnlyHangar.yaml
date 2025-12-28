@@ -1,0 +1,229 @@
+# ReadOnlyHangar API Documentation
+name: ReadOnlyHangar
+type: class
+availability: both
+description: ReadOnlyHangar class
+
+constructor:
+  signature: ReadOnlyHangar(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyHangar instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: freeSpace
+    type: float
+    access: read-only
+    description: freeSpace property
+
+  - name: maxFighters
+    type: static int
+    access: read-only
+    description: maxFighters property
+
+  - name: maxSquads
+    type: int
+    access: read-only
+    description: maxSquads property
+
+  - name: minFighters
+    type: static int
+    access: read-only
+    description: minFighters property
+
+  - name: numFighters
+    type: unsigned int
+    access: read-only
+    description: numFighters property
+
+  - name: numSquads
+    type: unsigned int
+    access: read-only
+    description: numSquads property
+
+  - name: numSupportedSquads
+    type: unsigned int
+    access: read-only
+    description: numSupportedSquads property
+
+  - name: occupiedSpace
+    type: float
+    access: read-only
+    description: occupiedSpace property
+
+  - name: space
+    type: static float
+    access: read-only
+    description: space property
+
+methods:
+  - name: canLand
+    signature: canLand(Entity entity)
+    parameters:
+      - name: entity
+        type: Entity
+        description: entity parameter
+    returns: bool
+    description: canLand method
+
+  - name: fighterTypeMatchesSquad
+    signature: fighterTypeMatchesSquad(FighterTemplate fighter, unsigned int squadIndex)
+    parameters:
+      - name: fighter
+        type: FighterTemplate
+        description: fighter parameter
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: bool
+    description: fighterTypeMatchesSquad method
+
+  - name: getBlueprint
+    signature: getBlueprint(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: FighterTemplate
+    description: getBlueprint method
+
+  - name: getFighter
+    signature: getFighter(unsigned int squadIndex, unsigned int fighterIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+      - name: fighterIndex
+        type: unsigned int
+        description: fighterIndex parameter
+    returns: FighterTemplate
+    description: getFighter method
+
+  - name: getFighterDPS
+    signature: getFighterDPS()
+    returns: double
+    description: getFighterDPS method
+
+  - name: getHighestMaterialInSquadMainCategory
+    signature: getHighestMaterialInSquadMainCategory(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: Material
+    description: getHighestMaterialInSquadMainCategory method
+
+  - name: getRandomStartPosition
+    signature: getRandomStartPosition()
+    returns: Matrix
+    description: getRandomStartPosition method
+
+  - name: getSquad
+    signature: getSquad(unsigned int index)
+    parameters:
+      - name: index
+        type: unsigned int
+        description: index parameter
+    returns: Squad
+    description: getSquad method
+
+  - name: getSquadDPS
+    signature: getSquadDPS(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: double
+    description: getSquadDPS method
+
+  - name: getSquadFighters
+    signature: getSquadFighters(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: unsigned int
+    description: getSquadFighters method
+
+  - name: getSquadFighterType
+    signature: getSquadFighterType(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: void
+    description: getSquadFighterType method
+
+  - name: getSquadFreeSlots
+    signature: getSquadFreeSlots(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: unsigned int
+    description: getSquadFreeSlots method
+
+  - name: getSquadHasRawMinersOrSalvagers
+    signature: getSquadHasRawMinersOrSalvagers(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: bool
+    description: getSquadHasRawMinersOrSalvagers method
+
+  - name: getSquadId
+    signature: getSquadId(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: Uuid
+    description: getSquadId method
+
+  - name: getSquadMainWeaponCategory
+    signature: getSquadMainWeaponCategory(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: void
+    description: getSquadMainWeaponCategory method
+
+  - name: getSquadMaxFighters
+    signature: getSquadMaxFighters(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: unsigned int
+    description: getSquadMaxFighters method
+
+  - name: getSquadName
+    signature: getSquadName(unsigned int squadIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+    returns: void
+    description: getSquadName method
+
+  - name: getSquads
+    signature: getSquads()
+    returns: unsigned int...
+    description: getSquads method
+
+notes:
+  - Auto-converted from HTML documentation

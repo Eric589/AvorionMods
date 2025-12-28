@@ -1,0 +1,700 @@
+# InputWindow API Documentation
+name: InputWindow
+type: class
+extends: Window
+availability: client-only
+description: InputWindow class
+
+constructor:
+  signature: InputWindow(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: InputWindow instance
+
+properties:
+  - name: cancelButton
+    type: Button
+    access: read-only
+    description: cancelButton property
+
+  - name: label
+    type: Label
+    access: read-only
+    description: label property
+
+  - name: okButton
+    type: Button
+    access: read-only
+    description: okButton property
+
+  - name: onCancelFunction
+    type: string
+    access: read-only
+    description: onCancelFunction property
+
+  - name: onOKFunction
+    type: string
+    access: read-only
+    description: onOKFunction property
+
+  - name: text
+    type: string
+    access: read-only
+    description: text property
+
+  - name: textBox
+    type: TextBox
+    access: read-only
+    description: textBox property
+
+  - name: caption
+    type: string
+    access: read-only
+    inherited: Window
+    description: caption property
+
+  - name: clickThrough
+    type: bool
+    access: read-only
+    inherited: Window
+    description: clickThrough property
+
+  - name: closeableWithEscape
+    type: bool
+    access: read-only
+    inherited: Window
+    description: closeableWithEscape property
+
+  - name: consumeAllEvents
+    type: bool
+    access: read-only
+    inherited: Window
+    description: consumeAllEvents property
+
+  - name: moveable
+    type: bool
+    access: read-only
+    inherited: Window
+    description: moveable property
+
+  - name: shadeBackground
+    type: bool
+    access: read-only
+    inherited: Window
+    description: shadeBackground property
+
+  - name: showCloseButton
+    type: bool
+    access: read-only
+    inherited: Window
+    description: showCloseButton property
+
+  - name: transparency
+    type: float
+    access: read-only
+    inherited: Window
+    description: transparency property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: Window
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: Window
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: Window
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: Window
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: Window
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: Window
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: Window
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: Window
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: Window
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: Window
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: Window
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: Window
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: Window
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: Window
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: Window
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: Window
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: Window
+    description: width property
+
+methods:
+  - name: show
+    signature: show(string caption)
+    parameters:
+      - name: caption
+        type: string
+        description: caption parameter
+    returns: void
+    description: show method
+
+  - name: center
+    signature: center()
+    returns: void
+    inherited: Window
+    description: center method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    inherited: Window
+    description: clear method
+
+  - name: createAllianceEmblem
+    signature: createAllianceEmblem(Rect rect, int allianceIndex)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: allianceIndex
+        type: int
+        description: allianceIndex parameter
+    returns: AllianceEmblem
+    inherited: Window
+    description: createAllianceEmblem method
+
+  - name: createArrowLine
+    signature: createArrowLine()
+    returns: ArrowLine
+    inherited: Window
+    description: createArrowLine method
+
+  - name: createButton
+    signature: createButton(Rect rect, string caption, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    inherited: Window
+    description: createButton method
+
+  - name: createCaptainIcon
+    signature: createCaptainIcon(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainIcon
+    inherited: Window
+    description: createCaptainIcon method
+
+  - name: createCaptainProfile
+    signature: createCaptainProfile(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CaptainProfile
+    inherited: Window
+    description: createCaptainProfile method
+
+  - name: createCheckBox
+    signature: createCheckBox(Rect rect, string caption, string onCheckedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onCheckedFunction
+        type: string
+        description: onCheckedFunction parameter
+    returns: CheckBox
+    inherited: Window
+    description: createCheckBox method
+
+  - name: createComboBox
+    signature: createComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ComboBox
+    inherited: Window
+    description: createComboBox method
+
+  - name: createContainer
+    signature: createContainer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: UIContainer
+    inherited: Window
+    description: createContainer method
+
+  - name: createContextMenu
+    signature: createContextMenu()
+    returns: ContextMenu
+    inherited: Window
+    description: createContextMenu method
+
+  - name: createCraftPortrait
+    signature: createCraftPortrait(Rect rect, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: CraftPortrait
+    inherited: Window
+    description: createCraftPortrait method
+
+  - name: createCrewBar
+    signature: createCrewBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: CrewBar
+    inherited: Window
+    description: createCrewBar method
+
+  - name: createFrame
+    signature: createFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Frame
+    inherited: Window
+    description: createFrame method
+
+  - name: createInputWindow
+    signature: createInputWindow()
+    returns: InputWindow
+    inherited: Window
+    description: createInputWindow method
+
+  - name: createInventorySelection
+    signature: createInventorySelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: InventorySelection
+    inherited: Window
+    description: createInventorySelection method
+
+  - name: createLabel
+    signature: createLabel(var position, string caption, int fontSize)
+    parameters:
+      - name: position
+        type: var
+        description: position parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: fontSize
+        type: int
+        description: fontSize parameter
+    returns: Label
+    inherited: Window
+    description: createLabel method
+
+  - name: createLine
+    signature: createLine(vec2 a, vec2 b)
+    parameters:
+      - name: a
+        type: vec2
+        description: a parameter
+      - name: b
+        type: vec2
+        description: b parameter
+    returns: Line
+    inherited: Window
+    description: createLine method
+
+  - name: createListBox
+    signature: createListBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBox
+    inherited: Window
+    description: createListBox method
+
+  - name: createListBoxEx
+    signature: createListBoxEx(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ListBoxEx
+    inherited: Window
+    description: createListBoxEx method
+
+  - name: createMapArrowLine
+    signature: createMapArrowLine()
+    returns: MapArrowLine
+    inherited: Window
+    description: createMapArrowLine method
+
+  - name: createMapIcon
+    signature: createMapIcon(string texture, ivec2 coordinates, Color [or nil] color)
+    parameters:
+      - name: texture
+        type: string
+        description: texture parameter
+      - name: coordinates
+        type: ivec2
+        description: coordinates parameter
+      - name: color
+        type: Color [or nil]
+        description: color parameter
+    returns: MapIcon
+    inherited: Window
+    description: createMapIcon method
+
+  - name: createMultiLineTextBox
+    signature: createMultiLineTextBox(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: MultiLineTextBox
+    inherited: Window
+    description: createMultiLineTextBox method
+
+  - name: createNumbersBar
+    signature: createNumbersBar(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: NumbersBar
+    inherited: Window
+    description: createNumbersBar method
+
+  - name: createPicture
+    signature: createPicture(Rect rect, string path)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: path
+        type: string
+        description: path parameter
+    returns: Picture
+    inherited: Window
+    description: createPicture method
+
+  - name: createPlanDisplayer
+    signature: createPlanDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: PlanDisplayer
+    inherited: Window
+    description: createPlanDisplayer method
+
+  - name: createProgressBar
+    signature: createProgressBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: ProgressBar
+    inherited: Window
+    description: createProgressBar method
+
+  - name: createRect
+    signature: createRect(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: UIRect
+    inherited: Window
+    description: createRect method
+
+  - name: createRoundButton
+    signature: createRoundButton(Rect rect, string icon, string function)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: function
+        type: string
+        description: function parameter
+    returns: Button
+    inherited: Window
+    description: createRoundButton method
+
+  - name: createSavedDesignsSelection
+    signature: createSavedDesignsSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: SavedDesignsSelection
+    inherited: Window
+    description: createSavedDesignsSelection method
+
+  - name: createScrollFrame
+    signature: createScrollFrame(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: ScrollFrame
+    inherited: Window
+    description: createScrollFrame method
+
+  - name: createSelection
+    signature: createSelection(Rect rect, int width)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: width
+        type: int
+        description: width parameter
+    returns: Selection
+    inherited: Window
+    description: createSelection method
+
+  - name: createSlider
+    signature: createSlider(Rect rect, int min, int max, int steps, string caption, string onValueChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: min
+        type: int
+        description: min parameter
+      - name: max
+        type: int
+        description: max parameter
+      - name: steps
+        type: int
+        description: steps parameter
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: onValueChangedFunction
+        type: string
+        description: onValueChangedFunction parameter
+    returns: Slider
+    inherited: Window
+    description: createSlider method
+
+  - name: createStatisticsBar
+    signature: createStatisticsBar(Rect rect, Color color)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: color
+        type: Color
+        description: color parameter
+    returns: StatisticsBar
+    inherited: Window
+    description: createStatisticsBar method
+
+  - name: createTabbedWindow
+    signature: createTabbedWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TabbedWindow
+    inherited: Window
+    description: createTabbedWindow method
+
+  - name: createTextBox
+    signature: createTextBox(Rect rect, string onTextChangedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onTextChangedFunction
+        type: string
+        description: onTextChangedFunction parameter
+    returns: TextBox
+    inherited: Window
+    description: createTextBox method
+
+  - name: createTextField
+    signature: createTextField(Rect rect, string text)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: text
+        type: string
+        description: text parameter
+    returns: TextField
+    inherited: Window
+    description: createTextField method
+
+  - name: createTooltipDisplayer
+    signature: createTooltipDisplayer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: TooltipDisplayer
+    inherited: Window
+    description: createTooltipDisplayer method
+
+  - name: createTree
+    signature: createTree(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Tree
+    inherited: Window
+    description: createTree method
+
+  - name: createValueComboBox
+    signature: createValueComboBox(Rect rect, string onSelectedFunction)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+      - name: onSelectedFunction
+        type: string
+        description: onSelectedFunction parameter
+    returns: ValueComboBox
+    inherited: Window
+    description: createValueComboBox method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    inherited: Window
+    description: createWindow method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: Window
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: Window
+    description: isMouseOverAndUnobscured method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from Window

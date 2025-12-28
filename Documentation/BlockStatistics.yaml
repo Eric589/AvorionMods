@@ -1,0 +1,181 @@
+# BlockStatistics API Documentation
+name: BlockStatistics
+type: class
+availability: both
+description: BlockStatistics class
+
+constructor:
+  signature: BlockStatistics()
+  returns: BlockStatistics instance
+
+properties:
+  - name: averageSize
+    type: vec3
+    access: read-only
+    description: averageSize property
+
+  - name: cargoHold
+    type: double
+    access: read-only
+    description: cargoHold property
+
+  - name: centerOfMass
+    type: vec3
+    access: read-only
+    description: centerOfMass property
+
+  - name: durability
+    type: double
+    access: read-only
+    description: durability property
+
+  - name: energyYield
+    type: double
+    access: read-only
+    description: energyYield property
+
+  - name: gyroPower
+    type: dvec3
+    access: read-only
+    description: gyroPower property
+
+  - name: hangarSpace
+    type: double
+    access: read-only
+    description: hangarSpace property
+
+  - name: height
+    type: double
+    access: read-only
+    description: height property
+
+  - name: hyperspacePower
+    type: double
+    access: read-only
+    description: hyperspacePower property
+
+  - name: inertiaDampening
+    type: double
+    access: read-only
+    description: inertiaDampening property
+
+  - name: length
+    type: double
+    access: read-only
+    description: length property
+
+  - name: maintenance
+    type: double
+    access: read-only
+    description: maintenance property
+
+  - name: mass
+    type: double
+    access: read-only
+    description: mass property
+
+  - name: momentOfInertia
+    type: vec3
+    access: read-only
+    description: momentOfInertia property
+
+  - name: pitch
+    type: double
+    access: read-only
+    description: pitch property
+
+  - name: processingPower
+    type: double
+    access: read-only
+    description: processingPower property
+
+  - name: productionCapacity
+    type: double
+    access: read-only
+    description: productionCapacity property
+
+  - name: radarRadius
+    type: double
+    access: read-only
+    description: radarRadius property
+
+  - name: roll
+    type: double
+    access: read-only
+    description: roll property
+
+  - name: shield
+    type: double
+    access: read-only
+    description: shield property
+
+  - name: storableEnergy
+    type: double
+    access: read-only
+    description: storableEnergy property
+
+  - name: thrust
+    type: double
+    access: read-only
+    description: thrust property
+
+  - name: thrusterPower
+    type: vec3
+    access: read-only
+    description: thrusterPower property
+
+  - name: torpedoSpace
+    type: double
+    access: read-only
+    description: torpedoSpace property
+
+  - name: volume
+    type: double
+    access: read-only
+    description: volume property
+
+  - name: width
+    type: double
+    access: read-only
+    description: width property
+
+  - name: yaw
+    type: double
+    access: read-only
+    description: yaw property
+
+methods:
+  - name: getBlockEnergyDrain
+    signature: getBlockEnergyDrain(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: double
+    description: getBlockEnergyDrain method
+
+  - name: getBlockNumber
+    signature: getBlockNumber(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: unsigned int
+    description: getBlockNumber method
+
+  - name: getBlockVolume
+    signature: getBlockVolume(int blockIndex)
+    parameters:
+      - name: blockIndex
+        type: int
+        description: blockIndex parameter
+    returns: double
+    description: getBlockVolume method
+
+  - name: getTotalEnergyDrain
+    signature: getTotalEnergyDrain()
+    returns: double
+    description: getTotalEnergyDrain method
+
+notes:
+  - Auto-converted from HTML documentation

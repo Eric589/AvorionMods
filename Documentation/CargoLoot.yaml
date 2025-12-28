@@ -1,0 +1,64 @@
+# CargoLoot API Documentation
+name: CargoLoot
+type: class
+availability: both
+description: CargoLoot class
+
+constructor:
+  signature: CargoLoot(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: CargoLoot instance
+
+properties:
+  - name: amount
+    type: int
+    access: read-only
+    description: amount property
+
+  - name: good
+    type: TradingGood
+    access: read-only
+    description: good property
+
+  - name: hasOwner
+    type: var
+    access: read-only
+    description: hasOwner property
+
+  - name: mined
+    type: bool
+    access: read-write
+    description: mined property
+
+  - name: owner
+    type: int
+    access: read-write
+    description: owner property
+
+methods:
+  - name: matches
+    signature: matches(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: bool
+    description: matches method
+
+  - name: setCargo
+    signature: setCargo(TradingGood good, var amount)
+    parameters:
+      - name: good
+        type: TradingGood
+        description: good parameter
+      - name: amount
+        type: var
+        description: amount parameter
+    returns: void
+    description: setCargo method
+
+notes:
+  - Auto-converted from HTML documentation

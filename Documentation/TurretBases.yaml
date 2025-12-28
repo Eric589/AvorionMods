@@ -1,0 +1,43 @@
+# TurretBases API Documentation
+name: TurretBases
+type: class
+availability: both
+description: TurretBases class
+
+constructor:
+  signature: TurretBases(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: TurretBases instance
+
+methods:
+  - name: getDesigns
+    signature: getDesigns()
+    returns: table&lt;int, TurretDesign&gt;
+    description: getDesigns method
+
+  - name: setDesign
+    signature: setDesign(var index, TurretDesign design)
+    parameters:
+      - name: index
+        type: var
+        description: index parameter
+      - name: design
+        type: TurretDesign
+        description: design parameter
+    returns: void
+    description: setDesign method
+
+  - name: setDesigns
+    signature: setDesigns(table_t designs)
+    parameters:
+      - name: designs
+        type: table_t
+        description: designs parameter
+    returns: void
+    description: setDesigns method
+
+notes:
+  - Auto-converted from HTML documentation

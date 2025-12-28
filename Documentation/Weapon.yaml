@@ -1,0 +1,378 @@
+# Weapon API Documentation
+name: Weapon
+type: class
+availability: both
+description: Weapon class
+
+constructor:
+  signature: Weapon()
+  returns: Weapon instance
+
+properties:
+  - name: accuracy
+    type: float
+    access: read-only
+    description: accuracy property
+
+  - name: appearance
+    type: int
+    access: read-only
+    description: appearance property
+
+  - name: appearanceSeed
+    type: int
+    access: read-only
+    description: appearanceSeed property
+
+  - name: armed
+    type: bool
+    access: read-only
+    description: armed property
+
+  - name: banimationAcceleration
+    type: float
+    access: read-only
+    description: banimationAcceleration property
+
+  - name: banimationSpeed
+    type: float
+    access: read-only
+    description: banimationSpeed property
+
+  - name: bauraWidth
+    type: float
+    access: read-only
+    description: bauraWidth property
+
+  - name: binnerColor
+    type: Color
+    access: read-only
+    description: binnerColor property
+
+  - name: blength
+    type: float
+    access: read-only
+    description: blength property
+
+  - name: blockPenetration
+    type: int
+    access: read-only
+    description: blockPenetration property
+
+  - name: bouterColor
+    type: Color
+    access: read-only
+    description: bouterColor property
+
+  - name: bshape
+    type: int
+    access: read-only
+    description: bshape property
+
+  - name: bshapeSize
+    type: float
+    access: read-only
+    description: bshapeSize property
+
+  - name: bwidth
+    type: float
+    access: read-only
+    description: bwidth property
+
+  - name: civil
+    type: bool
+    access: read-only
+    description: civil property
+
+  - name: continuousBeam
+    type: bool
+    access: read-only
+    description: continuousBeam property
+
+  - name: damage
+    type: float
+    access: read-only
+    description: damage property
+
+  - name: damageType
+    type: DamageType
+    access: read-only
+    description: damageType property
+
+  - name: deathExplosion
+    type: bool
+    access: read-only
+    description: deathExplosion property
+
+  - name: dps
+    type: float
+    access: read-only
+    description: dps property
+
+  - name: explosionRadius
+    type: float
+    access: read-only
+    description: explosionRadius property
+
+  - name: fireDelay
+    type: float
+    access: read-only
+    description: fireDelay property
+
+  - name: fireRate
+    type: float
+    access: read-only
+    description: fireRate property
+
+  - name: holdingForce
+    type: float
+    access: read-only
+    description: holdingForce property
+
+  - name: hullDamage
+    type: float
+    access: read-only
+    description: hullDamage property
+
+  - name: hullDamageMultiplicator
+    type: float
+    access: read-only
+    description: hullDamageMultiplicator property
+
+  - name: hullDamageMultiplier
+    type: float
+    access: read-only
+    description: hullDamageMultiplier property
+
+  - name: hullRepair
+    type: float
+    access: read-only
+    description: hullRepair property
+
+  - name: icon
+    type: string
+    access: read-only
+    description: icon property
+
+  - name: impactExplosion
+    type: bool
+    access: read-only
+    description: impactExplosion property
+
+  - name: impactParticles
+    type: int
+    access: read-only
+    description: impactParticles property
+
+  - name: impactSound
+    type: int
+    access: read-only
+    description: impactSound property
+
+  - name: isBeam
+    type: bool
+    access: read-only
+    description: isBeam property
+
+  - name: isProjectile
+    type: bool
+    access: read-only
+    description: isProjectile property
+
+  - name: localPosition
+    type: vec3
+    access: read-only
+    description: localPosition property
+
+  - name: material
+    type: Material
+    access: read-only
+    description: material property
+
+  - name: metalRawEfficiency
+    type: float
+    access: read-only
+    description: metalRawEfficiency property
+
+  - name: metalRefinedEfficiency
+    type: float
+    access: read-only
+    description: metalRefinedEfficiency property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: otherForce
+    type: float
+    access: read-only
+    description: otherForce property
+
+  - name: pangularVelocity
+    type: float
+    access: read-only
+    description: pangularVelocity property
+
+  - name: pcolor
+    type: Color
+    access: read-only
+    description: pcolor property
+
+  - name: pmaximumTime
+    type: float
+    access: read-only
+    description: pmaximumTime property
+
+  - name: position
+    type: vec3
+    access: read-only
+    description: position property
+
+  - name: prefix
+    type: string
+    access: read-only
+    description: prefix property
+
+  - name: pshape
+    type: int
+    access: read-only
+    description: pshape property
+
+  - name: psize
+    type: float
+    access: read-only
+    description: psize property
+
+  - name: pvelocity
+    type: float
+    access: read-only
+    description: pvelocity property
+
+  - name: rarity
+    type: Rarity
+    access: read-only
+    description: rarity property
+
+  - name: reach
+    type: float
+    access: read-only
+    description: reach property
+
+  - name: recoil
+    type: float
+    access: read-only
+    description: recoil property
+
+  - name: seeker
+    type: bool
+    access: read-only
+    description: seeker property
+
+  - name: selfForce
+    type: float
+    access: read-only
+    description: selfForce property
+
+  - name: shieldDamage
+    type: float
+    access: read-only
+    description: shieldDamage property
+
+  - name: shieldDamageMultiplicator
+    type: float
+    access: read-only
+    description: shieldDamageMultiplicator property
+
+  - name: shieldDamageMultiplier
+    type: float
+    access: read-only
+    description: shieldDamageMultiplier property
+
+  - name: shieldPenetration
+    type: float
+    access: read-only
+    description: shieldPenetration property
+
+  - name: shieldRepair
+    type: float
+    access: read-only
+    description: shieldRepair property
+
+  - name: shotCreationPosition
+    type: vec3
+    access: read-only
+    description: shotCreationPosition property
+
+  - name: shotsFired
+    type: int
+    access: read-only
+    description: shotsFired property
+
+  - name: shotsPerSecond
+    type: float
+    access: read-only
+    description: shotsPerSecond property
+
+  - name: smaterial
+    type: Material
+    access: read-write
+    description: smaterial property
+
+  - name: sound
+    type: string
+    access: read-write
+    description: sound property
+
+  - name: stoneDamageMultiplicator
+    type: float
+    access: read-write
+    description: stoneDamageMultiplicator property
+
+  - name: stoneDamageMultiplier
+    type: float
+    access: read-write
+    description: stoneDamageMultiplier property
+
+  - name: stoneRawEfficiency
+    type: float
+    access: read-write
+    description: stoneRawEfficiency property
+
+  - name: stoneRefinedEfficiency
+    type: float
+    access: read-write
+    description: stoneRefinedEfficiency property
+
+  - name: tech
+    type: int
+    access: read-write
+    description: tech property
+
+  - name: timedDeath
+    type: bool
+    access: read-write
+    description: timedDeath property
+
+methods:
+  - name: propertiesEqual
+    signature: propertiesEqual(Weapon other)
+    parameters:
+      - name: other
+        type: Weapon
+        description: other parameter
+    returns: bool
+    description: propertiesEqual method
+
+  - name: setBeam
+    signature: setBeam()
+    returns: void
+    description: setBeam method
+
+  - name: setProjectile
+    signature: setProjectile()
+    returns: void
+    description: setProjectile method
+
+notes:
+  - Auto-converted from HTML documentation

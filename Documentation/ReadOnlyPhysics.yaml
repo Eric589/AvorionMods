@@ -1,0 +1,67 @@
+# ReadOnlyPhysics API Documentation
+name: ReadOnlyPhysics
+type: class
+availability: both
+description: ReadOnlyPhysics class
+
+constructor:
+  signature: ReadOnlyPhysics(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyPhysics instance
+
+properties:
+  - name: centerOfMass
+    type: vec3
+    access: read-only
+    description: centerOfMass property
+
+  - name: centerOfRotation
+    type: vec3
+    access: read-only
+    description: centerOfRotation property
+
+  - name: driftDecrease
+    type: double
+    access: read-only
+    description: driftDecrease property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: invMass
+    type: double
+    access: read-only
+    description: invMass property
+
+  - name: kineticEnergy
+    type: double
+    access: read-only
+    description: kineticEnergy property
+
+  - name: mass
+    type: double
+    access: read-only
+    description: mass property
+
+  - name: rotationalEnergy
+    type: double
+    access: read-only
+    description: rotationalEnergy property
+
+  - name: rotationDecrease
+    type: double
+    access: read-only
+    description: rotationDecrease property
+
+notes:
+  - Auto-converted from HTML documentation

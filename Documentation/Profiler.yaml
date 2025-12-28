@@ -1,0 +1,78 @@
+# Profiler API Documentation
+name: Profiler
+type: class
+availability: both
+description: Profiler class
+
+constructor:
+  signature: Profiler(string str)
+  parameters:
+    - name: str
+      type: string
+      description: str parameter
+  returns: Profiler instance
+
+properties:
+  - name: printedSections
+    type: int
+    access: read-only
+    description: printedSections property
+
+  - name: started
+    type: bool
+    access: read-only
+    description: started property
+
+methods:
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: addSection
+    signature: addSection(string name, double duration)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: duration
+        type: double
+        description: duration parameter
+    returns: void
+    description: addSection method
+
+  - name: done
+    signature: done()
+    returns: double
+    description: done method
+
+  - name: print
+    signature: print()
+    returns: void
+    description: print method
+
+  - name: reenter
+    signature: reenter(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: reenter method
+
+  - name: reset
+    signature: reset()
+    returns: void
+    description: reset method
+
+  - name: section
+    signature: section(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: void
+    description: section method
+
+notes:
+  - Auto-converted from HTML documentation

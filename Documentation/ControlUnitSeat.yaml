@@ -1,0 +1,43 @@
+# ControlUnitSeat API Documentation
+name: ControlUnitSeat
+type: class
+availability: both
+description: ControlUnitSeat class
+
+constructor:
+  signature: ControlUnitSeat()
+  returns: ControlUnitSeat instance
+
+properties:
+  - name: aimedPosition
+    type: vec3
+    access: read-only
+    description: aimedPosition property
+
+  - name: controlActions
+    type: int
+    access: read-only
+    description: controlActions property
+
+  - name: occupied
+    type: bool
+    access: read-only
+    description: occupied property
+
+  - name: playerIndex
+    type: int
+    access: read-only
+    description: playerIndex property
+
+  - name: selectedObjectId
+    type: uuid
+    access: read-only
+    description: selectedObjectId property
+
+  - name: steering
+    type: bool
+    access: read-only
+    description: steering property
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,101 @@
+# Seed API Documentation
+name: Seed
+type: class
+availability: both
+description: Seed class
+
+constructor:
+  signature: Seed(var in)
+  parameters:
+    - name: in
+      type: var
+      description: in parameter
+  returns: Seed instance
+
+properties:
+  - name: int32
+    type: int
+    access: read-only
+    description: int32 property
+
+  - name: value
+    type: double
+    access: read-write
+    description: value property
+
+methods:
+  - name: __add
+    signature: __add(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: Seed
+    description: __add method
+
+  - name: __div
+    signature: __div(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: Seed
+    description: __div method
+
+  - name: __eq
+    signature: __eq(Seed other)
+    parameters:
+      - name: other
+        type: Seed
+        description: other parameter
+    returns: void
+    description: __eq method
+
+  - name: __le
+    signature: __le(Seed other)
+    parameters:
+      - name: other
+        type: Seed
+        description: other parameter
+    returns: void
+    description: __le method
+
+  - name: __lt
+    signature: __lt(Seed other)
+    parameters:
+      - name: other
+        type: Seed
+        description: other parameter
+    returns: void
+    description: __lt method
+
+  - name: __mul
+    signature: __mul(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: Seed
+    description: __mul method
+
+  - name: __sub
+    signature: __sub(int other)
+    parameters:
+      - name: other
+        type: int
+        description: other parameter
+    returns: Seed
+    description: __sub method
+
+  - name: __tostring
+    signature: __tostring()
+    returns: string
+    description: __tostring method
+
+  - name: __unm
+    signature: __unm()
+    returns: Seed
+    description: __unm method
+
+notes:
+  - Auto-converted from HTML documentation

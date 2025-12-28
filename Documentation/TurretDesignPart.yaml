@@ -1,0 +1,55 @@
+# TurretDesignPart API Documentation
+name: TurretDesignPart
+type: class
+availability: both
+description: TurretDesignPart class
+
+constructor:
+  signature: TurretDesignPart()
+  returns: TurretDesignPart instance
+
+methods:
+  - name: getMovePlan
+    signature: getMovePlan()
+    returns: BlockPlan
+    description: getMovePlan method
+
+  - name: getPlan
+    signature: getPlan()
+    returns: BlockPlan
+    description: getPlan method
+
+  - name: getPosition
+    signature: getPosition()
+    returns: vec3
+    description: getPosition method
+
+  - name: setMovePlan
+    signature: setMovePlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setMovePlan method
+
+  - name: setPlan
+    signature: setPlan(BlockPlan plan)
+    parameters:
+      - name: plan
+        type: BlockPlan
+        description: plan parameter
+    returns: void
+    description: setPlan method
+
+  - name: setPosition
+    signature: setPosition(vec3 in)
+    parameters:
+      - name: in
+        type: vec3
+        description: in parameter
+    returns: void
+    description: setPosition method
+
+notes:
+  - Auto-converted from HTML documentation

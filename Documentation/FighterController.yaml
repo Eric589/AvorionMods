@@ -1,0 +1,104 @@
+# FighterController API Documentation
+name: FighterController
+type: class
+availability: server-only
+description: FighterController class
+
+constructor:
+  signature: FighterController(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: FighterController instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: getDeployedFighters
+    signature: getDeployedFighters(var squad)
+    parameters:
+      - name: squad
+        type: var
+        description: squad parameter
+    returns: Entity...
+    description: getDeployedFighters method
+
+  - name: getFighterStartError
+    signature: getFighterStartError(unsigned int squadIndex, var fighterIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+      - name: fighterIndex
+        type: var
+        description: fighterIndex parameter
+    returns: void
+    description: getFighterStartError method
+
+  - name: getFighterStatsOfType
+    signature: getFighterStatsOfType(FighterType type)
+    parameters:
+      - name: type
+        type: FighterType
+        description: type parameter
+    returns: FighterTemplate
+    description: getFighterStatsOfType method
+
+  - name: getFighterTypeStartError
+    signature: getFighterTypeStartError(FighterType type)
+    parameters:
+      - name: type
+        type: FighterType
+        description: type parameter
+    returns: void
+    description: getFighterTypeStartError method
+
+  - name: setSquadOrders
+    signature: setSquadOrders(unsigned int squad, FighterOrders orders, Uuid targetId)
+    parameters:
+      - name: squad
+        type: unsigned int
+        description: squad parameter
+      - name: orders
+        type: FighterOrders
+        description: orders parameter
+      - name: targetId
+        type: Uuid
+        description: targetId parameter
+    returns: void
+    description: setSquadOrders method
+
+  - name: startFighter
+    signature: startFighter(unsigned int squadIndex, var fighterIndex)
+    parameters:
+      - name: squadIndex
+        type: unsigned int
+        description: squadIndex parameter
+      - name: fighterIndex
+        type: var
+        description: fighterIndex parameter
+    returns: Entity, int
+    description: startFighter method
+
+  - name: startFighterOfType
+    signature: startFighterOfType(FighterType type)
+    parameters:
+      - name: type
+        type: FighterType
+        description: type parameter
+    returns: Entity, int
+    description: startFighterOfType method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

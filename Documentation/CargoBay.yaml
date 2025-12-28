@@ -1,0 +1,181 @@
+# CargoBay API Documentation
+name: CargoBay
+type: class
+availability: both
+description: CargoBay class
+
+constructor:
+  signature: CargoBay(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: CargoBay instance
+
+properties:
+  - name: alwaysStoreAtLeastOne
+    type: bool
+    access: read-only
+    description: alwaysStoreAtLeastOne property
+
+  - name: cargoHold
+    type: float
+    access: read-only
+    description: cargoHold property
+
+  - name: cargoVolume
+    type: float
+    access: read-only
+    description: cargoVolume property
+
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: fixedSize
+    type: bool
+    access: read-only
+    description: fixedSize property
+
+  - name: freeSpace
+    type: float
+    access: read-only
+    description: freeSpace property
+
+  - name: numCargos
+    type: int
+    access: read-only
+    description: numCargos property
+
+  - name: pickUpDangerous
+    type: bool
+    access: read-write
+    description: pickUpDangerous property
+
+  - name: pickUpDefaults
+    type: bool
+    access: read-write
+    description: pickUpDefaults property
+
+  - name: pickUpIllegal
+    type: bool
+    access: read-write
+    description: pickUpIllegal property
+
+  - name: pickUpOres
+    type: bool
+    access: read-write
+    description: pickUpOres property
+
+  - name: pickUpScrap
+    type: bool
+    access: read-write
+    description: pickUpScrap property
+
+  - name: pickUpStolen
+    type: bool
+    access: read-write
+    description: pickUpStolen property
+
+methods:
+  - name: add
+    signature: add(CargoBay other)
+    parameters:
+      - name: other
+        type: CargoBay
+        description: other parameter
+    returns: void
+    description: add method
+
+  - name: addCargo
+    signature: addCargo(TradingGood good, int amount)
+    parameters:
+      - name: good
+        type: TradingGood
+        description: good parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: unsigned int
+    description: addCargo method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: destroyCargo
+    signature: destroyCargo(float volume)
+    parameters:
+      - name: volume
+        type: float
+        description: volume parameter
+    returns: void
+    description: destroyCargo method
+
+  - name: findCargos
+    signature: findCargos(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: table&lt;TradingGood, int&gt;
+    description: findCargos method
+
+  - name: getCargo
+    signature: getCargo(unsigned int n)
+    parameters:
+      - name: n
+        type: unsigned int
+        description: n parameter
+    returns: TradingGood, int...
+    description: getCargo method
+
+  - name: getCargos
+    signature: getCargos()
+    returns: table&lt;TradingGood, int&gt;
+    description: getCargos method
+
+  - name: getNumCargos
+    signature: getNumCargos(var name)
+    parameters:
+      - name: name
+        type: var
+        description: name parameter
+    returns: int
+    description: getNumCargos method
+
+  - name: getSummary
+    signature: getSummary(var goods)
+    parameters:
+      - name: goods
+        type: var
+        description: goods parameter
+    returns: string
+    description: getSummary method
+
+  - name: removeCargo
+    signature: removeCargo(var good, int amount)
+    parameters:
+      - name: good
+        type: var
+        description: good parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    description: removeCargo method
+
+notes:
+  - Auto-converted from HTML documentation

@@ -1,0 +1,203 @@
+# ModManager API Documentation
+name: ModManager
+type: class
+availability: both
+description: ModManager class
+
+constructor:
+  signature: ModManager()
+  returns: ModManager instance
+
+properties:
+  - name: forceEnabledMods
+    type: bool
+    access: read-only
+    description: forceEnabledMods property
+
+methods:
+  - name: addMod
+    signature: addMod(string folder)
+    parameters:
+      - name: folder
+        type: string
+        description: folder parameter
+    returns: void
+    description: addMod method
+
+  - name: disableAll
+    signature: disableAll()
+    returns: void
+    description: disableAll method
+
+  - name: disableMod
+    signature: disableMod(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: disableMod method
+
+  - name: enableAll
+    signature: enableAll()
+    returns: string...
+    description: enableAll method
+
+  - name: enableMod
+    signature: enableMod(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: enableMod method
+
+  - name: find
+    signature: find(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: find method
+
+  - name: findEnabled
+    signature: findEnabled(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: findEnabled method
+
+  - name: forceDisable
+    signature: forceDisable(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: forceDisable method
+
+  - name: forceEnable
+    signature: forceEnable(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: forceEnable method
+
+  - name: forceEnableAll
+    signature: forceEnableAll()
+    returns: string...
+    description: forceEnableAll method
+
+  - name: getDetectedMods
+    signature: getDetectedMods()
+    returns: table_t...
+    description: getDetectedMods method
+
+  - name: getEnabledLoadOrder
+    signature: getEnabledLoadOrder()
+    returns: string...
+    description: getEnabledLoadOrder method
+
+  - name: getEnabledMods
+    signature: getEnabledMods()
+    returns: string...
+    description: getEnabledMods method
+
+  - name: getFullLoadOrder
+    signature: getFullLoadOrder()
+    returns: string...
+    description: getFullLoadOrder method
+
+  - name: getIncompatibleMods
+    signature: getIncompatibleMods(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: string...
+    description: getIncompatibleMods method
+
+  - name: getLoadOrder
+    signature: getLoadOrder()
+    returns: string...
+    description: getLoadOrder method
+
+  - name: getLoadPriorities
+    signature: getLoadPriorities()
+    returns: table&lt;string, int&gt;
+    description: getLoadPriorities method
+
+  - name: getModsModifyingFile
+    signature: getModsModifyingFile(string file)
+    parameters:
+      - name: file
+        type: string
+        description: file parameter
+    returns: string...
+    description: getModsModifyingFile method
+
+  - name: getModTitle
+    signature: getModTitle(string id)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+    returns: void
+    description: getModTitle method
+
+  - name: getOutdatedMods
+    signature: getOutdatedMods()
+    returns: string...
+    description: getOutdatedMods method
+
+  - name: getProblematicMods
+    signature: getProblematicMods()
+    returns: table&lt;string, string&gt;
+    description: getProblematicMods method
+
+  - name: getRequiredMods
+    signature: getRequiredMods(string id, bool optionalToo)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+      - name: optionalToo
+        type: bool
+        description: optionalToo parameter
+    returns: string...
+    description: getRequiredMods method
+
+  - name: getRequiringMods
+    signature: getRequiringMods(string id, bool optionalToo)
+    parameters:
+      - name: id
+        type: string
+        description: id parameter
+      - name: optionalToo
+        type: bool
+        description: optionalToo parameter
+    returns: string...
+    description: getRequiringMods method
+
+  - name: refreshEnabledLoadOrder
+    signature: refreshEnabledLoadOrder()
+    returns: void
+    description: refreshEnabledLoadOrder method
+
+  - name: refreshLoadOrder
+    signature: refreshLoadOrder()
+    returns: void
+    description: refreshLoadOrder method
+
+  - name: refreshProblematicMods
+    signature: refreshProblematicMods()
+    returns: void
+    description: refreshProblematicMods method
+
+notes:
+  - Auto-converted from HTML documentation

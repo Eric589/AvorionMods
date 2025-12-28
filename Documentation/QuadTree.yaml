@@ -1,0 +1,65 @@
+# QuadTree API Documentation
+name: QuadTree
+type: class
+availability: both
+description: QuadTree class
+
+constructor:
+  signature: QuadTree(vec2 min, vec2 max, int maxLevel)
+  parameters:
+    - name: min
+      type: vec2
+      description: min parameter
+    - name: max
+      type: vec2
+      description: max parameter
+    - name: maxLevel
+      type: int
+      description: maxLevel parameter
+  returns: QuadTree instance
+
+properties:
+  - name: empty
+    type: bool
+    access: read-only
+    description: empty property
+
+methods:
+  - name: get
+    signature: get(vec2 center, float radius)
+    parameters:
+      - name: center
+        type: vec2
+        description: center parameter
+      - name: radius
+        type: float
+        description: radius parameter
+    returns: auto values =
+    description: get method
+
+  - name: insert
+    signature: insert(vec2 point)
+    parameters:
+      - name: point
+        type: vec2
+        description: point parameter
+    returns: void
+    description: insert method
+
+  - name: nearest
+    signature: nearest(float x, float y, var radius)
+    parameters:
+      - name: x
+        type: float
+        description: x parameter
+      - name: y
+        type: float
+        description: y parameter
+      - name: radius
+        type: var
+        description: radius parameter
+    returns: var, var
+    description: nearest method
+
+notes:
+  - Auto-converted from HTML documentation

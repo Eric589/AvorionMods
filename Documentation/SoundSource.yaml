@@ -1,0 +1,75 @@
+# SoundSource API Documentation
+name: SoundSource
+type: class
+availability: client-only
+description: SoundSource class
+
+constructor:
+  signature: SoundSource(string soundName, var position, var radius)
+  parameters:
+    - name: soundName
+      type: string
+      description: soundName parameter
+    - name: position
+      type: var
+      description: position parameter
+    - name: radius
+      type: var
+      description: radius parameter
+  returns: SoundSource instance
+
+properties:
+  - name: is3D
+    type: bool
+    access: read-only
+    description: is3D property
+
+  - name: loop
+    type: bool
+    access: read-only
+    description: loop property
+
+  - name: maxRadius
+    type: float
+    access: read-only
+    description: maxRadius property
+
+  - name: minRadius
+    type: float
+    access: read-only
+    description: minRadius property
+
+  - name: playing
+    type: bool
+    access: read-only
+    description: playing property
+
+  - name: position
+    type: vec3
+    access: read-write
+    description: position property
+
+  - name: volume
+    type: float
+    access: read-write
+    description: volume property
+
+methods:
+  - name: play
+    signature: play()
+    returns: void
+    description: play method
+
+  - name: stop
+    signature: stop()
+    returns: void
+    description: stop method
+
+  - name: terminate
+    signature: terminate()
+    returns: void
+    description: terminate method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

@@ -1,0 +1,73 @@
+# EntityIcon API Documentation
+name: EntityIcon
+type: class
+availability: client-only
+description: EntityIcon class
+
+constructor:
+  signature: EntityIcon(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: EntityIcon instance
+
+properties:
+  - name: dangerIcon
+    type: string
+    access: read-only
+    description: dangerIcon property
+
+  - name: dangerIconColor
+    type: Color
+    access: read-only
+    description: dangerIconColor property
+
+  - name: dangerIconVisible
+    type: bool
+    access: read-only
+    description: dangerIconVisible property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: icon
+    type: string
+    access: read-write
+    description: icon property
+
+  - name: iconColor
+    type: Color
+    access: read-write
+    description: iconColor property
+
+  - name: secondaryIcon
+    type: string
+    access: read-write
+    description: secondaryIcon property
+
+  - name: secondaryIconColor
+    type: Color
+    access: read-write
+    description: secondaryIconColor property
+
+  - name: tertiaryIcon
+    type: string
+    access: read-write
+    description: tertiaryIcon property
+
+  - name: tertiaryIconColor
+    type: Color
+    access: read-write
+    description: tertiaryIconColor property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

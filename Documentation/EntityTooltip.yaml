@@ -1,0 +1,56 @@
+# EntityTooltip API Documentation
+name: EntityTooltip
+type: class
+availability: client-only
+description: EntityTooltip class
+
+constructor:
+  signature: EntityTooltip(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: EntityTooltip instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+methods:
+  - name: setDisplayTooltip
+    signature: setDisplayTooltip(int i, string description, string str)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: description
+        type: string
+        description: description parameter
+      - name: str
+        type: string
+        description: str parameter
+    returns: void
+    description: setDisplayTooltip method
+
+  - name: setTargeterTooltip
+    signature: setTargeterTooltip(int i, string str)
+    parameters:
+      - name: i
+        type: int
+        description: i parameter
+      - name: str
+        type: string
+        description: str parameter
+    returns: void
+    description: setTargeterTooltip method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

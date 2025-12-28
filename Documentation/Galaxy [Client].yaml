@@ -1,0 +1,124 @@
+# Galaxy [Client] API Documentation
+name: Galaxy [Client]
+type: class
+availability: client-only
+description: Galaxy [Client] class
+
+methods:
+  - name: factionExists
+    signature: factionExists(int index)
+    parameters:
+      - name: index
+        type: int
+        description: index parameter
+    returns: bool
+    description: factionExists method
+
+  - name: findFaction
+    signature: findFaction(int omdex)
+    parameters:
+      - name: omdex
+        type: int
+        description: omdex parameter
+    returns: UserObject
+    description: findFaction method
+
+  - name: getControllingFaction
+    signature: getControllingFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: getControllingFaction method
+
+  - name: getLocalFaction
+    signature: getLocalFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: getLocalFaction method
+
+  - name: getNearestFaction
+    signature: getNearestFaction(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: getNearestFaction method
+
+  - name: getPlayerCraftFaction
+    signature: getPlayerCraftFaction()
+    returns: UserObject
+    description: getPlayerCraftFaction method
+
+  - name: getPlayerIndices
+    signature: getPlayerIndices()
+    returns: int...
+    description: getPlayerIndices method
+
+  - name: getPlayerNames
+    signature: getPlayerNames()
+    returns: table&lt;int, string&gt;
+    description: getPlayerNames method
+
+  - name: isCentralFactionArea
+    signature: isCentralFactionArea(int x, int y, var factionIndex)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+      - name: factionIndex
+        type: var
+        description: factionIndex parameter
+    returns: bool
+    description: isCentralFactionArea method
+
+  - name: jumpRouteUnobstructed
+    signature: jumpRouteUnobstructed(int fromX, int fromY, int toX, int toY)
+    parameters:
+      - name: fromX
+        type: int
+        description: fromX parameter
+      - name: fromY
+        type: int
+        description: fromY parameter
+      - name: toX
+        type: int
+        description: toX parameter
+      - name: toY
+        type: int
+        description: toY parameter
+    returns: bool
+    description: jumpRouteUnobstructed method
+
+  - name: sectorInRift
+    signature: sectorInRift(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: bool
+    description: sectorInRift method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

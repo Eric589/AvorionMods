@@ -1,0 +1,172 @@
+# ContextMenu API Documentation
+name: ContextMenu
+type: class
+extends: UIElement
+availability: client-only
+description: ContextMenu class
+
+constructor:
+  signature: ContextMenu(int index)
+  parameters:
+    - name: index
+      type: int
+      description: index parameter
+  returns: ContextMenu instance
+
+properties:
+  - name: onEntryClickedFunction
+    type: string
+    access: read-only
+    description: onEntryClickedFunction property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: addEntry
+    signature: addEntry(string caption, int id, string onClickedFunction)
+    parameters:
+      - name: caption
+        type: string
+        description: caption parameter
+      - name: id
+        type: int
+        description: id parameter
+      - name: onClickedFunction
+        type: string
+        description: onClickedFunction parameter
+    returns: void
+    description: addEntry method
+
+  - name: clear
+    signature: clear()
+    returns: void
+    description: clear method
+
+  - name: show
+    signature: show(vec2 position, bool ignoreNextMouseUp)
+    parameters:
+      - name: position
+        type: vec2
+        description: position parameter
+      - name: ignoreNextMouseUp
+        type: bool
+        description: ignoreNextMouseUp parameter
+    returns: void
+    description: show method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

@@ -1,0 +1,28 @@
+# ReadOnlyLoot API Documentation
+name: ReadOnlyLoot
+type: class
+availability: server-only
+description: ReadOnlyLoot class
+
+constructor:
+  signature: ReadOnlyLoot(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyLoot instance
+
+properties:
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

@@ -1,0 +1,71 @@
+# CrewProfession API Documentation
+name: CrewProfession
+type: class
+availability: both
+description: CrewProfession class
+
+constructor:
+  signature: CrewProfession(int value)
+  parameters:
+    - name: value
+      type: int
+      description: value parameter
+  returns: CrewProfession instance
+
+properties:
+  - name: assignable
+    type: bool
+    access: read-only
+    description: assignable property
+
+  - name: color
+    type: Color
+    access: read-only
+    description: color property
+
+  - name: description
+    type: string
+    access: read-only
+    description: description property
+
+  - name: icon
+    type: string
+    access: read-only
+    description: icon property
+
+  - name: price
+    type: unsigned int
+    access: read-only
+    description: price property
+
+  - name: salary
+    type: unsigned int
+    access: read-only
+    description: salary property
+
+  - name: value
+    type: int
+    access: read-write
+    description: value property
+
+methods:
+  - name: __eq
+    signature: __eq(CrewProfession other)
+    parameters:
+      - name: other
+        type: CrewProfession
+        description: other parameter
+    returns: bool
+    description: __eq method
+
+  - name: name
+    signature: name(var amount)
+    parameters:
+      - name: amount
+        type: var
+        description: amount parameter
+    returns: string
+    description: name method
+
+notes:
+  - Auto-converted from HTML documentation

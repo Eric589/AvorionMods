@@ -1,0 +1,286 @@
+# Hud API Documentation
+name: Hud
+type: class
+extends: UIElement
+availability: client-only
+description: Hud class
+
+constructor:
+  signature: Hud()
+  returns: Hud instance
+
+properties:
+  - name: buildingUIVisible
+    type: bool
+    access: read-only
+    description: buildingUIVisible property
+
+  - name: mailWindowVisible
+    type: bool
+    access: read-only
+    description: mailWindowVisible property
+
+  - name: mouseOverSecondaryWindow
+    type: bool
+    access: read-only
+    description: mouseOverSecondaryWindow property
+
+  - name: notificationsVisible
+    type: bool
+    access: read-only
+    description: notificationsVisible property
+
+  - name: playerTradeWindowVisible
+    type: bool
+    access: read-only
+    description: playerTradeWindowVisible property
+
+  - name: playerWindowVisible
+    type: bool
+    access: read-only
+    description: playerWindowVisible property
+
+  - name: resourcesVisible
+    type: bool
+    access: read-only
+    description: resourcesVisible property
+
+  - name: shieldBarSaturation
+    type: float
+    access: write-only
+    description: shieldBarSaturation property
+
+  - name: shipWindowVisible
+    type: bool
+    access: read-only
+    description: shipWindowVisible property
+
+  - name: tutorialActive
+    type: bool
+    access: read-only
+    description: tutorialActive property
+
+  - name: center
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: center property
+
+  - name: height
+    type: float
+    access: read-only
+    inherited: UIElement
+    description: height property
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: index property
+
+  - name: layer
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: layer property
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localCenter property
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: localPosition property
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: localRect property
+
+  - name: lower
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: lower property
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: mouseOver property
+
+  - name: position
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: position property
+
+  - name: rect
+    type: Rect
+    access: write-only
+    inherited: UIElement
+    description: rect property
+
+  - name: size
+    type: vec2
+    access: write-only
+    inherited: UIElement
+    description: size property
+
+  - name: tooltip
+    type: var
+    access: write-only
+    inherited: UIElement
+    description: tooltip property
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: tooltipWidth property
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: upper property
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: visible property
+
+  - name: width
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: width property
+
+methods:
+  - name: addMouseShowingWindow
+    signature: addMouseShowingWindow(Window window)
+    parameters:
+      - name: window
+        type: Window
+        description: window parameter
+    returns: void
+    description: addMouseShowingWindow method
+
+  - name: createContainer
+    signature: createContainer(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: UIContainer
+    description: createContainer method
+
+  - name: createWindow
+    signature: createWindow(Rect rect)
+    parameters:
+      - name: rect
+        type: Rect
+        description: rect parameter
+    returns: Window
+    description: createWindow method
+
+  - name: displayHint
+    signature: displayHint(string text, var... highlights)
+    parameters:
+      - name: text
+        type: string
+        description: text parameter
+      - name: highlights
+        type: var...
+        description: highlights parameter
+    returns: void
+    description: displayHint method
+
+  - name: displayNotification
+    signature: displayNotification(string text, Color textColor, string icon, Color [or nil] iconColor, var alliance, var size, var iconPadding)
+    parameters:
+      - name: text
+        type: string
+        description: text parameter
+      - name: textColor
+        type: Color
+        description: textColor parameter
+      - name: icon
+        type: string
+        description: icon parameter
+      - name: iconColor
+        type: Color [or nil]
+        description: iconColor parameter
+      - name: alliance
+        type: var
+        description: alliance parameter
+      - name: size
+        type: var
+        description: size parameter
+      - name: iconPadding
+        type: var
+        description: iconPadding parameter
+    returns: void
+    description: displayNotification method
+
+  - name: highlightScriptButton
+    signature: highlightScriptButton(string script)
+    parameters:
+      - name: script
+        type: string
+        description: script parameter
+    returns: void
+    description: highlightScriptButton method
+
+  - name: resetScriptButtonHighlight
+    signature: resetScriptButtonHighlight(string script)
+    parameters:
+      - name: script
+        type: string
+        description: script parameter
+    returns: void
+    description: resetScriptButtonHighlight method
+
+  - name: setCursor
+    signature: setCursor(var icon, var x, var y)
+    parameters:
+      - name: icon
+        type: var
+        description: icon parameter
+      - name: x
+        type: var
+        description: x parameter
+      - name: y
+        type: var
+        description: y parameter
+    returns: void
+    description: setCursor method
+
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: hide method
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: isMouseOverAndUnobscured method
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement

@@ -1,0 +1,38 @@
+# CaptainSelectionItem API Documentation
+name: CaptainSelectionItem
+type: class
+availability: client-only
+description: CaptainSelectionItem class
+
+constructor:
+  signature: CaptainSelectionItem(Captain other)
+  parameters:
+    - name: other
+      type: Captain
+      description: other parameter
+  returns: CaptainSelectionItem instance
+
+properties:
+  - name: passengerIndex
+    type: int
+    access: read-write
+    description: passengerIndex property
+
+methods:
+  - name: getCaptain
+    signature: getCaptain()
+    returns: Captain
+    description: getCaptain method
+
+  - name: setCaptain
+    signature: setCaptain(Captain captain)
+    parameters:
+      - name: captain
+        type: Captain
+        description: captain parameter
+    returns: void
+    description: setCaptain method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server

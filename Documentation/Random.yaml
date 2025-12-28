@@ -1,0 +1,108 @@
+# Random API Documentation
+name: Random
+type: class
+availability: both
+description: Random class
+
+constructor:
+  signature: Random(Seed seed)
+  parameters:
+    - name: seed
+      type: Seed
+      description: seed parameter
+  returns: Random instance
+
+methods:
+  - name: createSeed
+    signature: createSeed()
+    returns: Seed
+    description: createSeed method
+
+  - name: get2DDirection
+    signature: get2DDirection()
+    returns: vec2
+    description: get2DDirection method
+
+  - name: getBool
+    signature: getBool()
+    returns: bool
+    description: getBool method
+
+  - name: getDirection
+    signature: getDirection()
+    returns: vec3
+    description: getDirection method
+
+  - name: getFloat
+    signature: getFloat(var min, var max)
+    parameters:
+      - name: min
+        type: var
+        description: min parameter
+      - name: max
+        type: var
+        description: max parameter
+    returns: float
+    description: getFloat method
+
+  - name: getInt
+    signature: getInt(var min, var max)
+    parameters:
+      - name: min
+        type: var
+        description: min parameter
+      - name: max
+        type: var
+        description: max parameter
+    returns: int
+    description: getInt method
+
+  - name: getValueOfDistribution
+    signature: getValueOfDistribution()
+    returns: int
+    description: getValueOfDistribution method
+
+  - name: getVector
+    signature: getVector(var min, var max)
+    parameters:
+      - name: min
+        type: var
+        description: min parameter
+      - name: max
+        type: var
+        description: max parameter
+    returns: vec3
+    description: getVector method
+
+  - name: multitest
+    signature: multitest(unsigned int tries, float probability)
+    parameters:
+      - name: tries
+        type: unsigned int
+        description: tries parameter
+      - name: probability
+        type: float
+        description: probability parameter
+    returns: unsigned int
+    description: multitest method
+
+  - name: setSeed
+    signature: setSeed(Seed seed)
+    parameters:
+      - name: seed
+        type: Seed
+        description: seed parameter
+    returns: void
+    description: setSeed method
+
+  - name: test
+    signature: test(float probability)
+    parameters:
+      - name: probability
+        type: float
+        description: probability parameter
+    returns: bool
+    description: test method
+
+notes:
+  - Auto-converted from HTML documentation

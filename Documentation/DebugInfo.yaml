@@ -1,0 +1,52 @@
+# DebugInfo API Documentation
+name: DebugInfo
+type: class
+availability: both
+description: DebugInfo class
+
+constructor:
+  signature: DebugInfo()
+  returns: DebugInfo instance
+
+methods:
+  - name: getEndingLog
+    signature: getEndingLog()
+    returns: string
+    description: getEndingLog method
+
+  - name: getStartingLog
+    signature: getStartingLog()
+    returns: string
+    description: getStartingLog method
+
+  - name: log
+    signature: log()
+    returns: void
+    description: log method
+
+  - name: set
+    signature: set(string key, string value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: string
+        description: value parameter
+    returns: void
+    description: set method
+
+  - name: threadSet
+    signature: threadSet(string key, string value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: string
+        description: value parameter
+    returns: void
+    description: threadSet method
+
+notes:
+  - Auto-converted from HTML documentation

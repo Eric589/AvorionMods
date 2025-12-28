@@ -1,0 +1,39 @@
+# NamedFormat API Documentation
+name: NamedFormat
+type: class
+availability: both
+description: NamedFormat class
+
+constructor:
+  signature: NamedFormat()
+  returns: NamedFormat instance
+
+properties:
+  - name: text
+    type: string
+    access: read-only
+    description: text property
+
+methods:
+  - name: arguments
+    signature: arguments()
+    returns: table&lt;string, PluralForm&gt;
+    description: arguments method
+
+  - name: empty
+    signature: empty()
+    returns: bool
+    description: empty method
+
+  - name: evaluate
+    signature: evaluate()
+    returns: string
+    description: evaluate method
+
+  - name: translated
+    signature: translated()
+    returns: string
+    description: translated method
+
+notes:
+  - Auto-converted from HTML documentation

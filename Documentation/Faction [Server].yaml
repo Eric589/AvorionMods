@@ -1,0 +1,418 @@
+# Faction [Server] API Documentation
+name: Faction [Server]
+type: class
+availability: server-only
+description: Faction [Server] class
+
+properties:
+  - name: alwaysAtWar
+    type: bool
+    access: read-only
+    description: alwaysAtWar property
+
+  - name: baseName
+    type: string
+    access: read-only
+    description: baseName property
+
+  - name: fullLogId
+    type: string
+    access: read-only
+    description: fullLogId property
+
+  - name: homeSectorUnknown
+    type: bool
+    access: read-only
+    description: homeSectorUnknown property
+
+  - name: index
+    type: int
+    access: read-only
+    description: index property
+
+  - name: infiniteResources
+    type: bool
+    access: read-only
+    description: infiniteResources property
+
+  - name: initialRelations
+    type: int
+    access: read-only
+    description: initialRelations property
+
+  - name: initialRelationsToPlayer
+    type: int
+    access: read-only
+    description: initialRelationsToPlayer property
+
+  - name: isAIFaction
+    type: bool
+    access: read-only
+    description: isAIFaction property
+
+  - name: isAlliance
+    type: bool
+    access: read-only
+    description: isAlliance property
+
+  - name: isPlayer
+    type: bool
+    access: read-only
+    description: isPlayer property
+
+  - name: money
+    type: int
+    access: read-only
+    description: money property
+
+  - name: name
+    type: string
+    access: read-only
+    description: name property
+
+  - name: stateForm
+    type: string
+    access: read-only
+    description: stateForm property
+
+  - name: staticRelationsToAI
+    type: bool
+    access: read-only
+    description: staticRelationsToAI property
+
+  - name: staticRelationsToAll
+    type: bool
+    access: read-only
+    description: staticRelationsToAll property
+
+  - name: staticRelationsToPlayers
+    type: bool
+    access: read-only
+    description: staticRelationsToPlayers property
+
+  - name: unformattedName
+    type: Format
+    access: read-only
+    description: unformattedName property
+
+methods:
+  - name: addPlanStyle
+    signature: addPlanStyle(string name, PlanStyle style)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+      - name: style
+        type: PlanStyle
+        description: style parameter
+    returns: void
+    description: addPlanStyle method
+
+  - name: canPay
+    signature: canPay()
+    returns: bool, string, table&lt;int, string&gt;
+    description: canPay method
+
+  - name: canPayMoney
+    signature: canPayMoney(int money)
+    parameters:
+      - name: money
+        type: int
+        description: money parameter
+    returns: bool, string, table&lt;int, string&gt;
+    description: canPayMoney method
+
+  - name: canPayResource
+    signature: canPayResource(Material material, int amount)
+    parameters:
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: bool, string, table&lt;int, string&gt;
+    description: canPayResource method
+
+  - name: clearValues
+    signature: clearValues()
+    returns: void
+    description: clearValues method
+
+  - name: getAllRelations
+    signature: getAllRelations()
+    returns: Relation...
+    description: getAllRelations method
+
+  - name: getHomeSectorCoordinates
+    signature: getHomeSectorCoordinates()
+    returns: int, int
+    description: getHomeSectorCoordinates method
+
+  - name: getInventory
+    signature: getInventory()
+    returns: Inventory
+    description: getInventory method
+
+  - name: getLanguage
+    signature: getLanguage()
+    returns: Language
+    description: getLanguage method
+
+  - name: getPlanStyle
+    signature: getPlanStyle(string name)
+    parameters:
+      - name: name
+        type: string
+        description: name parameter
+    returns: PlanStyle
+    description: getPlanStyle method
+
+  - name: getPlanStyleNames
+    signature: getPlanStyleNames()
+    returns: string...
+    description: getPlanStyleNames method
+
+  - name: getRelation
+    signature: getRelation(int otherFactionIndex)
+    parameters:
+      - name: otherFactionIndex
+        type: int
+        description: otherFactionIndex parameter
+    returns: Relation
+    description: getRelation method
+
+  - name: getRelations
+    signature: getRelations(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    description: getRelations method
+
+  - name: getRelationStatus
+    signature: getRelationStatus(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: int
+    description: getRelationStatus method
+
+  - name: getResources
+    signature: getResources()
+    returns: int...
+    description: getResources method
+
+  - name: getTrait
+    signature: getTrait(string trait)
+    parameters:
+      - name: trait
+        type: string
+        description: trait parameter
+    returns: float
+    description: getTrait method
+
+  - name: getTraits
+    signature: getTraits()
+    returns: table&lt;string, float&gt;
+    description: getTraits method
+
+  - name: getValue
+    signature: getValue(string key)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+    returns: void
+    description: getValue method
+
+  - name: getValues
+    signature: getValues()
+    returns: table&lt;string, var&gt;
+    description: getValues method
+
+  - name: hasStaticRelationsToFaction
+    signature: hasStaticRelationsToFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    description: hasStaticRelationsToFaction method
+
+  - name: knowsFaction
+    signature: knowsFaction(int factionIndex)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+    returns: bool
+    description: knowsFaction method
+
+  - name: pay
+    signature: pay(string or Format [optional] description, int money, int... resources)
+    parameters:
+      - name: description
+        type: string or Format [optional]
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: resources
+        type: int...
+        description: resources parameter
+    returns: void
+    description: pay method
+
+  - name: payResource
+    signature: payResource(string or Format description, Material material, int amount)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    description: payResource method
+
+  - name: payWithoutNotify
+    signature: payWithoutNotify(string or Format description, int money, int... args)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: args
+        type: int...
+        description: args parameter
+    returns: void
+    description: payWithoutNotify method
+
+  - name: receive
+    signature: receive(string or Format [optional] description, int money, int... resources)
+    parameters:
+      - name: description
+        type: string or Format [optional]
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: resources
+        type: int...
+        description: resources parameter
+    returns: void
+    description: receive method
+
+  - name: receiveResource
+    signature: receiveResource(string or Format description, Material material, int amount)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: material
+        type: Material
+        description: material parameter
+      - name: amount
+        type: int
+        description: amount parameter
+    returns: void
+    description: receiveResource method
+
+  - name: receiveWithoutNotify
+    signature: receiveWithoutNotify(string or Format description, int money, int... args)
+    parameters:
+      - name: description
+        type: string or Format
+        description: description parameter
+      - name: money
+        type: int
+        description: money parameter
+      - name: args
+        type: int...
+        description: args parameter
+    returns: void
+    description: receiveWithoutNotify method
+
+  - name: sendCallback
+    signature: sendCallback()
+    returns: void
+    description: sendCallback method
+
+  - name: sendChatMessage
+    signature: sendChatMessage()
+    returns: void
+    description: sendChatMessage method
+
+  - name: setHomeSectorCoordinates
+    signature: setHomeSectorCoordinates(int x, int y)
+    parameters:
+      - name: x
+        type: int
+        description: x parameter
+      - name: y
+        type: int
+        description: y parameter
+    returns: void
+    description: setHomeSectorCoordinates method
+
+  - name: setLanguage
+    signature: setLanguage(Language language)
+    parameters:
+      - name: language
+        type: Language
+        description: language parameter
+    returns: void
+    description: setLanguage method
+
+  - name: setResources
+    signature: setResources()
+    returns: void
+    description: setResources method
+
+  - name: setStaticRelationsToFaction
+    signature: setStaticRelationsToFaction(int factionIndex, bool in)
+    parameters:
+      - name: factionIndex
+        type: int
+        description: factionIndex parameter
+      - name: in
+        type: bool
+        description: in parameter
+    returns: void
+    description: setStaticRelationsToFaction method
+
+  - name: setTrait
+    signature: setTrait(string trait, float value)
+    parameters:
+      - name: trait
+        type: string
+        description: trait parameter
+      - name: value
+        type: float
+        description: value parameter
+    returns: void
+    description: setTrait method
+
+  - name: setValue
+    signature: setValue(string key, var value)
+    parameters:
+      - name: key
+        type: string
+        description: key parameter
+      - name: value
+        type: var
+        description: value parameter
+    returns: void
+    description: setValue method
+
+notes:
+  - Auto-converted from HTML documentation
+  - Server-only - not available on client

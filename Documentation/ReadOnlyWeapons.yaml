@@ -1,0 +1,317 @@
+# ReadOnlyWeapons API Documentation
+name: ReadOnlyWeapons
+type: class
+availability: both
+description: ReadOnlyWeapons class
+
+constructor:
+  signature: ReadOnlyWeapons(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: ReadOnlyWeapons instance
+
+properties:
+  - name: accuracy
+    type: float
+    access: read-only
+    description: accuracy property
+
+  - name: armed
+    type: bool
+    access: read-only
+    description: armed property
+
+  - name: averageTech
+    type: int
+    access: read-only
+    description: averageTech property
+
+  - name: baseEnergyPerSecond
+    type: float
+    access: read-only
+    description: baseEnergyPerSecond property
+
+  - name: bestEfficiency
+    type: float
+    access: read-only
+    description: bestEfficiency property
+
+  - name: category
+    type: WeaponCategory
+    access: read-only
+    description: category property
+
+  - name: civil
+    type: bool
+    access: read-only
+    description: civil property
+
+  - name: continuousBeam
+    type: bool
+    access: read-only
+    description: continuousBeam property
+
+  - name: coolingRate
+    type: float
+    access: read-only
+    description: coolingRate property
+
+  - name: coolingTime
+    type: float
+    access: read-only
+    description: coolingTime property
+
+  - name: coolingType
+    type: int
+    access: read-only
+    description: coolingType property
+
+  - name: damage
+    type: float
+    access: read-only
+    description: damage property
+
+  - name: damageType
+    type: int
+    access: read-only
+    description: damageType property
+
+  - name: deathExplosion
+    type: bool
+    access: read-only
+    description: deathExplosion property
+
+  - name: dps
+    type: float
+    access: read-only
+    description: dps property
+
+  - name: energyIncreasePerSecond
+    type: float
+    access: read-only
+    description: energyIncreasePerSecond property
+
+  - name: entity
+    type: Entity
+    access: read-only
+    description: entity property
+
+  - name: entityId
+    type: uuid
+    access: read-only
+    description: entityId property
+
+  - name: fireRate
+    type: float
+    access: read-only
+    description: fireRate property
+
+  - name: firing
+    type: bool
+    access: read-only
+    description: firing property
+
+  - name: firingsPerSecond
+    type: float
+    access: read-only
+    description: firingsPerSecond property
+
+  - name: heat
+    type: float
+    access: read-only
+    description: heat property
+
+  - name: heatPerShot
+    type: float
+    access: read-only
+    description: heatPerShot property
+
+  - name: holdingForce
+    type: float
+    access: read-only
+    description: holdingForce property
+
+  - name: hullDamageMultiplicator
+    type: float
+    access: read-only
+    description: hullDamageMultiplicator property
+
+  - name: hullDamageMultiplier
+    type: float
+    access: read-only
+    description: hullDamageMultiplier property
+
+  - name: hullRepairRate
+    type: float
+    access: read-only
+    description: hullRepairRate property
+
+  - name: material
+    type: Material
+    access: read-only
+    description: material property
+
+  - name: maxHeat
+    type: float
+    access: read-only
+    description: maxHeat property
+
+  - name: maxTech
+    type: int
+    access: read-only
+    description: maxTech property
+
+  - name: metalBestEfficiency
+    type: float
+    access: read-only
+    description: metalBestEfficiency property
+
+  - name: metalRawEfficiency
+    type: float
+    access: read-only
+    description: metalRawEfficiency property
+
+  - name: metalRefinedEfficiency
+    type: float
+    access: read-only
+    description: metalRefinedEfficiency property
+
+  - name: numVisibleWeapons
+    type: int
+    access: read-only
+    description: numVisibleWeapons property
+
+  - name: numWeapons
+    type: unsigned int
+    access: read-only
+    description: numWeapons property
+
+  - name: otherForce
+    type: float
+    access: read-only
+    description: otherForce property
+
+  - name: overheated
+    type: bool
+    access: read-only
+    description: overheated property
+
+  - name: rarity
+    type: Rarity
+    access: read-only
+    description: rarity property
+
+  - name: reach
+    type: float
+    access: read-only
+    description: reach property
+
+  - name: requiredShootingEnergy
+    type: double
+    access: read-only
+    description: requiredShootingEnergy property
+
+  - name: seeker
+    type: bool
+    access: read-only
+    description: seeker property
+
+  - name: selfForce
+    type: float
+    access: read-only
+    description: selfForce property
+
+  - name: shieldDamageMultiplicator
+    type: float
+    access: read-only
+    description: shieldDamageMultiplicator property
+
+  - name: shieldDamageMultiplier
+    type: float
+    access: read-only
+    description: shieldDamageMultiplier property
+
+  - name: shieldPenetration
+    type: float
+    access: read-only
+    description: shieldPenetration property
+
+  - name: shieldRepairRate
+    type: float
+    access: read-only
+    description: shieldRepairRate property
+
+  - name: shootingTime
+    type: float
+    access: read-only
+    description: shootingTime property
+
+  - name: shotSpeed
+    type: float
+    access: read-only
+    description: shotSpeed property
+
+  - name: shotsPerFiring
+    type: int
+    access: read-only
+    description: shotsPerFiring property
+
+  - name: shotsPerSecond
+    type: float
+    access: read-only
+    description: shotsPerSecond property
+
+  - name: shotsUntilOverheated
+    type: int
+    access: read-only
+    description: shotsUntilOverheated property
+
+  - name: simultaneousShooting
+    type: bool
+    access: read-only
+    description: simultaneousShooting property
+
+  - name: stoneBestEfficiency
+    type: float
+    access: read-only
+    description: stoneBestEfficiency property
+
+  - name: stoneDamageMultiplicator
+    type: float
+    access: read-only
+    description: stoneDamageMultiplicator property
+
+  - name: stoneDamageMultiplier
+    type: float
+    access: read-only
+    description: stoneDamageMultiplier property
+
+  - name: stoneRawEfficiency
+    type: float
+    access: read-only
+    description: stoneRawEfficiency property
+
+  - name: stoneRefinedEfficiency
+    type: float
+    access: read-only
+    description: stoneRefinedEfficiency property
+
+  - name: weaponIcon
+    type: string
+    access: read-only
+    description: weaponIcon property
+
+  - name: weaponName
+    type: string
+    access: read-only
+    description: weaponName property
+
+  - name: weaponPrefix
+    type: string
+    access: read-only
+    description: weaponPrefix property
+
+notes:
+  - Auto-converted from HTML documentation

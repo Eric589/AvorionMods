@@ -1,0 +1,84 @@
+# DockingClamps API Documentation
+name: DockingClamps
+type: class
+availability: both
+description: DockingClamps class
+
+constructor:
+  signature: DockingClamps(var id)
+  parameters:
+    - name: id
+      type: var
+      description: id parameter
+  returns: DockingClamps instance
+
+properties:
+  - name: numDocks
+    type: int
+    access: read-only
+    description: numDocks property
+
+methods:
+  - name: dock
+    signature: dock(Entity dockee, var dockIndex)
+    parameters:
+      - name: dockee
+        type: Entity
+        description: dockee parameter
+      - name: dockIndex
+        type: var
+        description: dockIndex parameter
+    returns: bool
+    description: dock method
+
+  - name: forceDock
+    signature: forceDock(Entity dockee, var dockIndex, var blockIndex, var look, var up)
+    parameters:
+      - name: dockee
+        type: Entity
+        description: dockee parameter
+      - name: dockIndex
+        type: var
+        description: dockIndex parameter
+      - name: blockIndex
+        type: var
+        description: blockIndex parameter
+      - name: look
+        type: var
+        description: look parameter
+      - name: up
+        type: var
+        description: up parameter
+    returns: bool
+    description: forceDock method
+
+  - name: getDockedEntities
+    signature: getDockedEntities()
+    returns: Uuid...
+    description: getDockedEntities method
+
+  - name: getDocks
+    signature: getDocks()
+    returns: table_t
+    description: getDocks method
+
+  - name: isDocked
+    signature: isDocked(var entity)
+    parameters:
+      - name: entity
+        type: var
+        description: entity parameter
+    returns: bool
+    description: isDocked method
+
+  - name: undock
+    signature: undock(Entity dockee)
+    parameters:
+      - name: dockee
+        type: Entity
+        description: dockee parameter
+    returns: bool
+    description: undock method
+
+notes:
+  - Auto-converted from HTML documentation
