@@ -28,14 +28,14 @@ function execute(sender, commandName, action)
         local scripts = entity:getScripts()
         local hasScript = false
         for _, scriptPath in pairs(scripts) do
-            if scriptPath == "entity/uisamplecontroller.lua" then
+            if scriptPath == "../entity/uisamplecontroller.lua" then
                 hasScript = true
                 break
             end
         end
 
         if not hasScript then
-            entity:addScriptOnce("entity/uisamplecontroller.lua")
+            entity:addScriptOnce("../entity/uisamplecontroller.lua.lua")
             return 0, "", "UI Sample activated. Open UI with TAB."
         else
             return 0, "", "UI Sample already active."
@@ -55,7 +55,7 @@ function execute(sender, commandName, action)
         local scripts = entity:getScripts()
         local scriptCount = 0
         for _, scriptPath in pairs(scripts) do
-            if scriptPath == "entity/uisamplecontroller.lua" then
+            if scriptPath == "../entity/uisamplecontroller.lua" then
                 scriptCount = scriptCount + 1
             end
         end
@@ -64,11 +64,11 @@ function execute(sender, commandName, action)
             return 0, "", "UI Sample not active."
         end
 
-        entity:invokeFunction("entity/uisamplecontroller.lua", "disable")
+        entity:invokeFunction("../entity/uisamplecontroller.lua", "disable")
         entity:setValue("uisample_initialized", nil)
 
         for i = 1, scriptCount do
-            entity:removeScript("entity/uisamplecontroller.lua")
+            entity:removeScript("../entity/uisamplecontroller.lua")
         end
         
         return 0, "", "UI Sample disabled."
