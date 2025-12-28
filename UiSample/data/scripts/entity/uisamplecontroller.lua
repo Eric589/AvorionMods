@@ -50,9 +50,6 @@ function UiSampleController.initialize()
             end
         end
     end
-    if onClient() then
-        UiSampleController.initUI()
-    end
 end
 
 function UiSampleController.secure()
