@@ -1,0 +1,80 @@
+================================================================================
+                    AUTO MINING MOD - FILE STRUCTURE
+================================================================================
+
+Your Avorion Installation
+│
+└── data/
+    └── scripts/
+        │
+        ├── commands/                    📁 FOLDER 1
+        │   └── autominer.lua           📄 COPY HERE (Command interface)
+        │
+        ├── entity/                      📁 FOLDER 2
+        │   └── autominingcontroller.lua 📄 COPY HERE (Main system + UI)
+        │
+        └── player/                      📁 FOLDER 3
+            └── init.lua                 📄 COPY HERE (Auto-initializer)
+
+
+================================================================================
+                         INSTALLATION CHECKLIST
+================================================================================
+
+Step 1: Locate your Avorion folder
+  Windows: C:\Program Files (x86)\Steam\steamapps\common\Avorion\
+  Linux:   ~/.steam/steam/steamapps/common/Avorion/
+  macOS:   ~/Library/Application Support/Steam/steamapps/common/Avorion/
+
+Step 2: Navigate to data/scripts/
+
+Step 3: Copy files to correct folders:
+  ☐ autominer.lua → commands/
+  ☐ autominingcontroller.lua → entity/
+  ☐ init.lua → player/
+
+Step 4: Launch Avorion and test
+  ☐ Type: /autominer
+  ☐ Should see: "Usage: /autominer [on|off|status]"
+
+================================================================================
+                           QUICK REFERENCE
+================================================================================
+
+File                         Size    Location
+────────────────────────────────────────────────────────────────────────
+autominer.lua                ~3 KB   data/scripts/commands/
+autominingcontroller.lua    ~25 KB   data/scripts/entity/
+init.lua                     ~1 KB   data/scripts/player/
+
+Total mod size: ~30 KB (negligible)
+
+================================================================================
+                         VERIFICATION TEST
+================================================================================
+
+After installation, in-game:
+1. Press Enter (chat)
+2. Type: /autominer
+3. Press Enter
+
+Expected output:
+"Usage: /autominer [on|off|status]"
+
+If you see this message → ✅ Installation successful!
+If you see "Command not found" → ❌ Check file locations
+
+================================================================================
+                            NEXT STEPS
+================================================================================
+
+Once installed:
+1. Board a mining ship with fighters
+2. Type: /autominer on
+3. Press TAB → Open "Auto Mining Controller"
+4. Deploy fighters (Press H)
+5. Click "Enable Auto Mining"
+
+See README.md for full documentation.
+
+================================================================================

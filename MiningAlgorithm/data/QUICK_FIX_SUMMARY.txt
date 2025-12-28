@@ -1,0 +1,75 @@
+# 🔧 AUTO MINING MOD - QUICK FIX SUMMARY
+
+## The Problem
+- `/autominer` command was found but did nothing
+- No output when using `/autominer on/off/status`
+- UI was not appearing
+
+## The Root Causes
+1. ❌ **Wrong API usage** - Used `craft.index:method()` instead of `Entity(craft.index)`
+2. ❌ **Wrong init.lua** - Had lootCleaner code, not auto-mining
+3. ❌ **Missing callable** - updateUIStatus not marked as callable
+
+## The Fix
+
+### ✅ Use These Fixed Files From /outputs/
+
+Copy these 3 files to your Avorion installation:
+
+```
+autominer.lua           → data/scripts/commands/
+autominingcontroller.lua → data/scripts/entity/
+init.lua                → data/scripts/player/
+```
+
+### ✅ Then Restart Avorion (Important!)
+
+Avorion caches scripts, so you MUST restart the game completely.
+
+## Test It
+
+```bash
+1. Start Avorion
+2. Board a ship
+3. Type: /autominer on
+4. Should see: "Auto Mining activated. Open the Auto Miner UI (TAB key) to configure."
+5. Press TAB
+6. Look for "Auto Mining Controller" button
+7. Click it - UI should open
+```
+
+If all steps work → ✅ **FIXED!**
+
+## Key Code Changes
+
+### autominer.lua (line 20)
+```lua
+-- BEFORE (broken):
+craft.index:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
+
+-- AFTER (fixed):
+local entity = Entity(craft.index)
+entity:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
+```
+
+### init.lua (complete file)
+```lua
+-- BEFORE: Wrong file (lootCleaner code)
+-- AFTER: Correct auto-mining initialization with callbacks
+```
+
+### autominingcontroller.lua (after line 182)
+```lua
+-- ADDED:
+callable(AutoMiningController, "updateUIStatus")
+```
+
+## Why This Fixes It
+
+1. **Entity wrapper** - Provides access to script methods
+2. **Correct init** - Actually attaches the controller to ships
+3. **Callable wrapper** - Allows client/server communication for UI
+
+---
+
+**Use the files in /outputs/ - they are the corrected versions!**
