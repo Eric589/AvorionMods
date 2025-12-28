@@ -39,19 +39,6 @@ function restore(data)
     return UiSampleController.restore(data)
 end
 
--- Button callbacks (must be at module level)
-function onToggle()
-    return UiSampleController.onToggle()
-end
-
-function onPress()
-    return UiSampleController.onPress()
-end
-
-function onShowWindow()
-    return UiSampleController.onShowWindow()
-end
-
 -- State
 local enabled = false
 local pressCount = 0
