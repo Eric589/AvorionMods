@@ -1,57 +1,52 @@
 -- data/scripts/player/init.lua
--- Auto-adds mining controller to ships when player boards them
+-- Auto-adds the automining entity script to any player/alliance ship when you board/switch crafts (client asks server to attach once).
 
 package.path = package.path .. ";data/scripts/lib/?.lua"
 include("callable")
 
 function initialize()
     if onClient() then
-        -- Register callback for when player boards a new craft
-        Player():registerCallback("onStartDialog", "onPlayerBoardsShip")
+        Player():registerCallback("onCraftChanged", "onCraftChanged")
     end
 end
 
-function onPlayerBoardsShip()
+function onCraftChanged(playerIndex, craftIndex)
     if onClient() then
-        -- Small delay to ensure ship is fully loaded
-        deferredCallback(0.5, "checkAndAddController")
+        -- Request server to add scripts
+        invokeServerFunction("addControllersToShip", craftIndex)
     end
 end
 
-function deferredCallback(delay, funcName)
-    invokeServerFunction("addControllerToCurrentShip")
-end
-
-function addControllerToCurrentShip()
+function addControllersToShip(craftIndex)
     if not onServer() then return end
-    
-    -- Get the calling player
-    local player = Player(callingPlayer)
-    if not player then return end
-    
-    -- Get their current craft
-    local craft = player.craft
+
+    local craft = Entity(craftIndex)
     if not craft or not valid(craft) then return end
-    
-    local entity = Entity(craft.index)
-    if not entity or not valid(entity) then return end
-    
-    -- Only add to ships (not stations)
-    if not entity.isShip then return end
-    
-    -- Only add to player-owned or alliance-owned ships
-    if not entity.playerOwned and not entity.allianceOwned then return end
-    
-    -- Check if ship has FighterController component (required for mining)
-    if not entity:hasComponent(ComponentType.FighterController) then 
-        print("[AutoMiner] Ship has no FighterController - skipping")
-        return 
-    end
-    
-    -- Add the controller script if not already present
-    if not entity:hasScript("data/scripts/entity/autominingcontroller.lua") then
-        entity:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
-        print("[AutoMiner] Added Auto Mining Controller to: " .. (entity.name or "unnamed ship"))
+
+    -- Check if it's a ship
+    if not craft.isShip then return end
+
+    -- Check if it belongs to the player
+    if not craft.playerOwned and not craft.allianceOwned then return end
+
+    -- Add Auto Mining Controller
+    local minerInitFlag = craft:getValue("autominer_initialized")
+    if not minerInitFlag then
+        -- Check more thoroughly for existing script to prevent duplicates
+        local scripts = craft:getScripts()
+        local hasAutoMiner = false
+        for _, scriptPath in pairs(scripts) do
+            if scriptPath == "data/scripts/entity/autominingcontroller.lua" then
+                hasAutoMiner = true
+                break
+            end
+        end
+
+        -- Add the auto-mining controller if not already present
+        if not hasAutoMiner then
+            craft:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
+            print("[AutoMiner] Added Auto Mining Controller to ship: " .. (craft.name or "unnamed"))
+        end
     end
 end
-callable(nil, "addControllerToCurrentShip")
+callable(nil, "addControllersToShip")

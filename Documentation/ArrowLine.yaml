@@ -1,0 +1,166 @@
+# ArrowLine API Documentation
+name: ArrowLine
+type: class
+extends: UIElement
+availability: client-only
+description: UI element for drawing arrow lines between two points
+
+constructor:
+  signature: ArrowLine(int index)
+  parameters:
+    - name: index
+      type: int
+      description: Index identifier
+  returns: ArrowLine instance
+
+properties:
+  # ArrowLine-specific properties
+  - name: color
+    type: Color
+    access: write-only
+    description: Color of the arrow line
+
+  - name: from
+    type: vec2
+    access: write-only
+    description: Starting point of the arrow
+
+  - name: to
+    type: vec2
+    access: write-only
+    description: Ending point of the arrow
+
+  - name: width
+    type: float
+    access: write-only
+    description: Line width in pixels
+
+  # Inherited from UIElement
+  - name: center
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: Center position of the element
+
+  - name: height
+    type: float
+    access: read-write
+    inherited: UIElement
+    description: Height of the element
+
+  - name: index
+    type: int
+    access: read-only
+    inherited: UIElement
+    description: Unique index identifier
+
+  - name: layer
+    type: int
+    access: read-write
+    inherited: UIElement
+    description: Z-layer for rendering order
+
+  - name: localCenter
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: Local center position
+
+  - name: localPosition
+    type: vec2
+    access: read-only
+    inherited: UIElement
+    description: Local position
+
+  - name: localRect
+    type: Rect
+    access: read-only
+    inherited: UIElement
+    description: Local rectangle bounds
+
+  - name: lower
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: Lower corner position
+
+  - name: mouseOver
+    type: bool
+    access: read-only
+    inherited: UIElement
+    description: True if mouse is over element
+
+  - name: position
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: Screen position
+
+  - name: rect
+    type: Rect
+    access: read-write
+    inherited: UIElement
+    description: Rectangle bounds
+
+  - name: size
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: Size of the element
+
+  - name: tooltip
+    type: var
+    access: read-write
+    inherited: UIElement
+    description: Tooltip text or content
+
+  - name: tooltipWidth
+    type: int
+    access: write-only
+    inherited: UIElement
+    description: Width of tooltip
+
+  - name: upper
+    type: vec2
+    access: read-write
+    inherited: UIElement
+    description: Upper corner position
+
+  - name: visible
+    type: bool
+    access: read-write
+    inherited: UIElement
+    description: Visibility state
+
+methods:
+  - name: hide
+    signature: hide()
+    returns: void
+    inherited: UIElement
+    description: Hides the UI element
+
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: Shows the UI element
+
+  - name: isMouseOverAndUnobscured
+    signature: isMouseOverAndUnobscured()
+    returns: bool
+    inherited: UIElement
+    description: Checks if mouse is over element and not obscured by other UI
+
+example: |
+  -- Create an arrow line from point A to point B
+  local line = ArrowLine()
+  line.from = vec2(100, 100)
+  line.to = vec2(200, 200)
+  line.color = ColorRGB(1, 0, 0)  -- Red
+  line.width = 2.0
+  line:show()
+
+notes:
+  - ArrowLine is client-only and cannot be used in server-side scripts
+  - Inherits all UIElement properties and methods
+  - Width property appears in both ArrowLine-specific and inherited properties

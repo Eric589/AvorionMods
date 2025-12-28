@@ -1,0 +1,1649 @@
+<html>
+<head>
+<title> ShipDatabaseEntry [Server]</title>
+<link rel="stylesheet" href="stylesheet.css"/>
+<meta charset="utf-8"/>
+</head>
+<body>
+<div class="maincentered">
+<div class="maincontent">
+<h1 class="documentationheader">Avorion Script API Documentation</h1>
+<div class="sitemap">
+<div class="headerlisting flexheader">
+<div>
+<a href="index.html">Home</a>
+<a href="Functions.html">Functions</a>
+<a href="Search.html">Search</a>
+</div>
+<div class="flexheaderwhitespace"></div>
+<form action="Search.html" method="get">Search:<input name="search" class="headersearchinput" type="search"></form></div></div>
+<div class="floatleft">
+<div class="codecontainer">
+<table>
+<tr>
+<td>
+<a class="type" href="ShipDatabaseEntry [Server].html">ShipDatabaseEntry [Server]</a>
+<a class="function" href="#ShipDatabaseEntry">ShipDatabaseEntry</a>
+</td>
+</tr>
+<tr><td><br/></td></tr>
+<tr><td><span class="docheader">Properties</span></td></tr>
+<tr><td>
+<a href="#faction">faction</a>
+</td></tr>
+<tr><td>
+<a href="#name">name</a>
+</td></tr>
+<tr><td>
+<a href="#numBlocks">numBlocks</a>
+</td></tr>
+<tr><td>
+<a href="#numBlocksWhileMalusActive">numBlocksWhileMalusActive</a>
+</td></tr>
+<tr><td><br/></td></tr>
+<tr><td><span class="docheader">Member Functions</span></td></tr>
+<tr><td>
+<a class="code" href="#addScript">addScript</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#addScriptOnce">addScriptOnce</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#buildIdealCrew">buildIdealCrew</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#exists">exists</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getAvailability">getAvailability</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getCaptain">getCaptain</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getCargo">getCargo</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getCoordinates">getCoordinates</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getCrew">getCrew</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getCrewRequirementsFulfilled">getCrewRequirementsFulfilled</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getDocksEnabled">getDocksEnabled</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getDPSValues">getDPSValues</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getDurabilityProperties">getDurabilityProperties</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getEnergyProperties">getEnergyProperties</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getEntityType">getEntityType</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getFighterSquadRequirementsFulfilled">getFighterSquadRequirementsFulfilled</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getFighterStartRequirementsFulfilled">getFighterStartRequirementsFulfilled</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getFreeCargoSpace">getFreeCargoSpace</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getHangar">getHangar</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getHyperspaceProperties">getHyperspaceProperties</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getIcon">getIcon</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getLightweightHangar">getLightweightHangar</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getLocalPosition">getLocalPosition</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getOrderInfo">getOrderInfo</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getPaymentTime">getPaymentTime</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getPlan">getPlan</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getPlanValue">getPlanValue</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getPlanWithActiveMalus">getPlanWithActiveMalus</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getPlayerPiloted">getPlayerPiloted</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getReconstructionValue">getReconstructionValue</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getScripts">getScripts</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getScriptValue">getScriptValue</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getScriptValues">getScriptValues</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getSecuredScriptValues">getSecuredScriptValues</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getShields">getShields</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getStatusMessage">getStatusMessage</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getSystems">getSystems</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getTitle">getTitle</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getTorpedoes">getTorpedoes</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getTurrets">getTurrets</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#getTurretSlotRequirementsFulfilled">getTurretSlotRequirementsFulfilled</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#removeScript">removeScript</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setAvailability">setAvailability</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setBlocksDestroyedByMalus">setBlocksDestroyedByMalus</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setCaptain">setCaptain</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setCargo">setCargo</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setCoordinates">setCoordinates</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setCrew">setCrew</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setDurabilityMalus">setDurabilityMalus</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setDurabilityPercentage">setDurabilityPercentage</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setHangar">setHangar</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setIcon">setIcon</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setLocalPosition">setLocalPosition</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setNewName">setNewName</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setOrderInfo">setOrderInfo</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setPaymentTime">setPaymentTime</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setPlan">setPlan</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setReconstructionValue">setReconstructionValue</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setScriptValue">setScriptValue</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setShieldPercentage">setShieldPercentage</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setStatusMessage">setStatusMessage</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setTitle">setTitle</a>
+</td></tr>
+<tr><td>
+<a class="code" href="#setTorpedoes">setTorpedoes</a>
+</td></tr>
+</table>
+</div>
+</div>
+<div class="floatright">
+<h1>ShipDatabaseEntry [Server]</h1>
+<p>
+This represents an interface to a database entry of a ship of a Player or Alliance (=ShipOwner). When writing values here, proceed with caution and note that many database entries that linked directly to the ship will be overridden steadily (when changed on the ship) while it's being simulated in a sector. It only makes sense to update these values if the ship is in background simulation, and you want to change properties of the ship. <br/> Note: Changing the name or faction properties of the instance will make the instance point to another faction/ship of that faction. It will not change the faction or name of the ship. If you want to change the ship's name, use the setNewName() function. Changing the ship's faction is not possible with this.  <br/><br/><span class="warning">This object is only available on the server.</span>
+</p>
+<div id="ShipDatabaseEntry" class="codecontainer">
+<div id="ShipDatabaseEntry" class="function">
+<p>
+<span class="keyword">function </span> ShipDatabaseEntry(<span class="type">int</span> <span class="parameter">faction</span>, <span class="type">string</span> <span class="parameter">name</span>) <br/>
+</p>
+</div>
+<div id="ShipDatabaseEntry" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A new instance of ShipDatabaseEntry
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="Properties" class="codecontainer">
+<div id="faction">
+<table style="width:100%;"><tr>
+<td><span class="keyword">property</span> <span class="type">int </span> <span class="property">faction</span></td><td align="right"></td></tr></table>
+<div style="padding-left:20px; padding-bottom:10px">
+</div>
+</div>
+<div id="name">
+<table style="width:100%;"><tr>
+<td><span class="keyword">property</span> <span class="type">string </span> <span class="property">name</span></td><td align="right"></td></tr></table>
+<div style="padding-left:20px; padding-bottom:10px">
+</div>
+</div>
+<div id="numBlocks">
+<table style="width:100%;"><tr>
+<td><span class="keyword">property</span> <span class="type">int </span> <span class="property">numBlocks</span></td><td align="right"><span><b>[read-only]</b></span></td></tr></table>
+<div style="padding-left:20px; padding-bottom:10px">
+</div>
+</div>
+<div id="numBlocksWhileMalusActive">
+<table style="width:100%;"><tr>
+<td><span class="keyword">property</span> <span class="type">unsigned int </span> <span class="property">numBlocksWhileMalusActive</span></td><td align="right"><span><b>[read-only]</b></span></td></tr></table>
+<div style="padding-left:20px; padding-bottom:10px">
+</div>
+</div>
+</div>
+<div id="addScript" class="codecontainer">
+<div id="addScript" class="function">
+<p>
+<span class="keyword">function var</span> addScript(<span class="type">string</span> <span class="parameter">path</span>) <br/>
+</p>
+</div>
+<div id="addScript" class="">
+<p>
+Adds a script to the entity. For technical reasons, it's not possible to pass initialization values here. The script will be attached as if it was restored from database, so a call to initialize() won't have any parameters and _restoring will be set to true. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="addScriptOnce" class="codecontainer">
+<div id="addScriptOnce" class="function">
+<p>
+<span class="keyword">function var</span> addScriptOnce(<span class="type">string</span> <span class="parameter">path</span>) <br/>
+</p>
+</div>
+<div id="addScriptOnce" class="">
+<p>
+Adds a script to the entity, if a script with the same name is not yet already attached. For technical reasons, it's not possible to pass initialization values here. The script will be attached as if it was restored from database, so a call to initialize() won't have any parameters and _restoring will be set to true. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="buildIdealCrew" class="codecontainer">
+<div id="buildIdealCrew" class="function">
+<p>
+<span class="keyword">function Crew</span> buildIdealCrew() <br/>
+</p>
+</div>
+<div id="buildIdealCrew" class="">
+</p>
+</div>
+</div>
+<div id="exists" class="codecontainer">
+<div id="exists" class="function">
+<p>
+<span class="keyword">function bool</span> exists() <br/>
+</p>
+</div>
+<div id="exists" class="">
+</p>
+</div>
+</div>
+<div id="getAvailability" class="codecontainer">
+<div id="getAvailability" class="function">
+<p>
+<span class="keyword">function ShipAvailability</span> getAvailability() <br/>
+</p>
+</div>
+<div id="getAvailability" class="">
+</p>
+</div>
+</div>
+<div id="getCaptain" class="codecontainer">
+<div id="getCaptain" class="function">
+<p>
+<span class="keyword">function Captain</span> getCaptain() <br/>
+</p>
+</div>
+<div id="getCaptain" class="">
+</p>
+</div>
+</div>
+<div id="getCargo" class="codecontainer">
+<div id="getCargo" class="function">
+<p>
+<span class="keyword">function table&lt;TradingGood, float&gt;, float</span> getCargo() <br/>
+</p>
+</div>
+<div id="getCargo" class="">
+<p>
+Returns the current cargo and the cargo bay size. The cargo is stored in a table of the format result = { }; result[good1] = 5; result[good2] = 4; ... etc. The goods are used as keys, the amount of the good is the value. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns 2 values: 1. A table holding the current cargo of the ship; 2. a number containing the cargo bay size of the ship 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getCoordinates" class="codecontainer">
+<div id="getCoordinates" class="function">
+<p>
+<span class="keyword">function int, int</span> getCoordinates() <br/>
+</p>
+</div>
+<div id="getCoordinates" class="">
+</p>
+</div>
+</div>
+<div id="getCrew" class="codecontainer">
+<div id="getCrew" class="function">
+<p>
+<span class="keyword">function Crew</span> getCrew() <br/>
+</p>
+</div>
+<div id="getCrew" class="">
+</p>
+</div>
+</div>
+<div id="getCrewRequirementsFulfilled" class="codecontainer">
+<div id="getCrewRequirementsFulfilled" class="function">
+<p>
+<span class="keyword">function bool</span> getCrewRequirementsFulfilled() <br/>
+</p>
+</div>
+<div id="getCrewRequirementsFulfilled" class="">
+<p>
+Returns a boolean whether the crew requirements of the craft are all fulfilled. These are things like overpopulation, not enough crew members, etc. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A boolean whether the crew requirements of the ship are all fulfilled. 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getDocksEnabled" class="codecontainer">
+<div id="getDocksEnabled" class="function">
+<p>
+<span class="keyword">function var</span> getDocksEnabled() <br/>
+</p>
+</div>
+<div id="getDocksEnabled" class="">
+<p>
+Returns information about the crafts's docks. If in transport mode, docks are disabled. Only valid for stations. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A bool value indicating whether docks are enabled or not 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getDPSValues" class="codecontainer">
+<div id="getDPSValues" class="function">
+<p>
+<span class="keyword">function double, double</span> getDPSValues() <br/>
+</p>
+</div>
+<div id="getDPSValues" class="">
+<p>
+Returns information about the ship's DPS. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+2 values: Total turret DPS; Total fighter DPS 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getDurabilityProperties" class="codecontainer">
+<div id="getDurabilityProperties" class="function">
+<p>
+<span class="keyword">function var...</span> getDurabilityProperties() <br/>
+</p>
+</div>
+<div id="getDurabilityProperties" class="">
+<p>
+Returns information about the ship's hull durability. Returns 5 values: The maximum durability, the durability percentage, range 0 to 1; The HP malus factor (from boarding or reconstruction), 0 to 1; A MalusReason enum value, the reason for the malus; A bool indicating if the ship is currently damaged (blocks are lost) 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+5 values: Maximum durability; durability percentage; malus factor; malus reason, damaged 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getEnergyProperties" class="codecontainer">
+<div id="getEnergyProperties" class="function">
+<p>
+<span class="keyword">function var...</span> getEnergyProperties() <br/>
+</p>
+</div>
+<div id="getEnergyProperties" class="">
+<p>
+Returns the energy properties of the craft. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+Two values: required energy, produced energy in watts 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getEntityType" class="codecontainer">
+<div id="getEntityType" class="function">
+<p>
+<span class="keyword">function int</span> getEntityType() <br/>
+</p>
+</div>
+<div id="getEntityType" class="">
+</p>
+</div>
+</div>
+<div id="getFighterSquadRequirementsFulfilled" class="codecontainer">
+<div id="getFighterSquadRequirementsFulfilled" class="function">
+<p>
+<span class="keyword">function bool</span> getFighterSquadRequirementsFulfilled() <br/>
+</p>
+</div>
+<div id="getFighterSquadRequirementsFulfilled" class="">
+<p>
+Returns a boolean whether the figher squad requirements of the craft are all fulfilled. That's not fulfilled when there aren't enough squads for fighters. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A boolean whether the requirements are all fulfilled. 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getFighterStartRequirementsFulfilled" class="codecontainer">
+<div id="getFighterStartRequirementsFulfilled" class="function">
+<p>
+<span class="keyword">function bool</span> getFighterStartRequirementsFulfilled() <br/>
+</p>
+</div>
+<div id="getFighterStartRequirementsFulfilled" class="">
+<p>
+Returns a boolean whether the figher start requirements of the craft are all fulfilled. That's not fulfilled when there aren't any starting positions for fighters. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A boolean whether the requirements are all fulfilled. 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getFreeCargoSpace" class="codecontainer">
+<div id="getFreeCargoSpace" class="function">
+<p>
+<span class="keyword">function float</span> getFreeCargoSpace() <br/>
+</p>
+</div>
+<div id="getFreeCargoSpace" class="">
+<p>
+Returns the amount of free cargo space on the ship. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A number value containing the free cargo bay space of the ship 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getHangar" class="codecontainer">
+<div id="getHangar" class="function">
+<p>
+<span class="keyword">function table&lt;unsigned int, Squad&gt;, table_t</span> getHangar() <br/>
+</p>
+</div>
+<div id="getHangar" class="">
+<p>
+Returns the current hangar squads and misc info about the hangar. The squads are stored in a table of the format squads = {}; squads[index1] = squad1; squads[index2] = squad2; ... etc. The squad indices are used as keys, the value is a Squad class. The second value is information about the hangar, with a few properties such as its space, occupied space, etc. It's recommended to use printTable() to print the complete table for inspection. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns 2 values: 1. A table holding the current squads of the ship; 2. a table containing more hangar info 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getHyperspaceProperties" class="codecontainer">
+<div id="getHyperspaceProperties" class="function">
+<p>
+<span class="keyword">function var...</span> getHyperspaceProperties() <br/>
+</p>
+</div>
+<div id="getHyperspaceProperties" class="">
+<p>
+Returns the hyperspace range, if the ship can pass over rifts, hyperspace cooldown and if the hyperspace engine is currently impaired (blocked or distorted by enemies) . 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns 4 values: 1. A number containing the hyperspace range of the ship; 2. A boolean whether the ship can jump over rifts; 3. The hyperspace cooldown in seconds of the ship; 4. A boolean whether the hyperspace engine is currently impaired 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getIcon" class="codecontainer">
+<div id="getIcon" class="function">
+<p>
+<span class="keyword">function string</span> getIcon() <br/>
+</p>
+</div>
+<div id="getIcon" class="">
+</p>
+</div>
+</div>
+<div id="getLightweightHangar" class="codecontainer">
+<div id="getLightweightHangar" class="function">
+<p>
+<span class="keyword">function table&lt;unsigned int, Squad&gt;, table_t</span> getLightweightHangar() <br/>
+</p>
+</div>
+<div id="getLightweightHangar" class="">
+<p>
+Returns the current hangar squads and misc info about the hangar. Lightweight version that will not return BlockPlans of fighters. The squads are stored in a table of the format squads = {}; squads[index1] = squad1; squads[index2] = squad2; ... etc. The squad indices are used as keys, the value is a Squad class. The second value is information about the hangar, with a few properties such as its space, occupied space, etc. It's recommended to use printTable() to print the complete table for inspection. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns 2 values: 1. A table holding the current squads of the ship; 2. a table containing more hangar info 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getLocalPosition" class="codecontainer">
+<div id="getLocalPosition" class="function">
+<p>
+<span class="keyword">function Matrix</span> getLocalPosition() <br/>
+</p>
+</div>
+<div id="getLocalPosition" class="">
+</p>
+</div>
+</div>
+<div id="getOrderInfo" class="codecontainer">
+<div id="getOrderInfo" class="function">
+<p>
+<span class="keyword">function string</span> getOrderInfo() <br/>
+</p>
+</div>
+<div id="getOrderInfo" class="">
+</p>
+</div>
+</div>
+<div id="getPaymentTime" class="codecontainer">
+<div id="getPaymentTime" class="function">
+<p>
+<span class="keyword">function float</span> getPaymentTime() <br/>
+</p>
+</div>
+<div id="getPaymentTime" class="">
+</p>
+</div>
+</div>
+<div id="getPlan" class="codecontainer">
+<div id="getPlan" class="function">
+<p>
+<span class="keyword">function BlockPlan</span> getPlan() <br/>
+</p>
+</div>
+<div id="getPlan" class="">
+</p>
+</div>
+</div>
+<div id="getPlanValue" class="codecontainer">
+<div id="getPlanValue" class="function">
+<p>
+<span class="keyword">function double</span> getPlanValue() <br/>
+</p>
+</div>
+<div id="getPlanValue" class="">
+</p>
+</div>
+</div>
+<div id="getPlanWithActiveMalus" class="codecontainer">
+<div id="getPlanWithActiveMalus" class="function">
+<p>
+<span class="keyword">function BlockPlan</span> getPlanWithActiveMalus() <br/>
+</p>
+</div>
+<div id="getPlanWithActiveMalus" class="">
+</p>
+</div>
+</div>
+<div id="getPlayerPiloted" class="codecontainer">
+<div id="getPlayerPiloted" class="function">
+<p>
+<span class="keyword">function var</span> getPlayerPiloted() <br/>
+</p>
+</div>
+<div id="getPlayerPiloted" class="">
+<p>
+Returns whether the craft is currently being piloted by a player. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A bool value whether the craft is currently being piloted by a player. 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getReconstructionValue" class="codecontainer">
+<div id="getReconstructionValue" class="function">
+<p>
+<span class="keyword">function double</span> getReconstructionValue() <br/>
+</p>
+</div>
+<div id="getReconstructionValue" class="">
+</p>
+</div>
+</div>
+<div id="getScripts" class="codecontainer">
+<div id="getScripts" class="function">
+<p>
+<span class="keyword">function table&lt;int, string&gt;</span> getScripts() <br/>
+</p>
+</div>
+<div id="getScripts" class="">
+<p>
+Returns the scripts that are currently attached to the ship, in the form of a table with key = scriptIndex, value = scriptPath. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A table containing script paths by script index 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getScriptValue" class="codecontainer">
+<div id="getScriptValue" class="function">
+<p>
+<span class="keyword">function var</span> getScriptValue(<span class="type">string</span> <span class="parameter">key</span>) <br/>
+</p>
+</div>
+<div id="getScriptValue" class="">
+<p>
+Retrieves a custom value 
+</p>
+<p><span class="docheader">Parameters</span></p>
+<div class="indented">
+<span class="parameter">key</span>
+the name of the value as a string <br/>
+</div>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+The value 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getScriptValues" class="codecontainer">
+<div id="getScriptValues" class="function">
+<p>
+<span class="keyword">function var</span> getScriptValues() <br/>
+</p>
+</div>
+<div id="getScriptValues" class="">
+<p>
+Returns the script values of the ship. These are the values that can be set via the setValue() and getValue() functions. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A table containing the script values by name 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getSecuredScriptValues" class="codecontainer">
+<div id="getSecuredScriptValues" class="function">
+<p>
+<span class="keyword">function var</span> getSecuredScriptValues() <br/>
+</p>
+</div>
+<div id="getSecuredScriptValues" class="">
+<p>
+Returns the secured values of all scripts attached to the ship. Contains a table per script. This table is the one that's passed to the script in the "restore(values)" function. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A table containing value tables by script index 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getShields" class="codecontainer">
+<div id="getShields" class="function">
+<p>
+<span class="keyword">function float, float</span> getShields() <br/>
+</p>
+</div>
+<div id="getShields" class="">
+<p>
+Returns the max shields and percentage of the shields of the craft. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+2 number values: 1. The maximum shields, 2. the percentage of the craft's shield, range 0 to 1 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getStatusMessage" class="codecontainer">
+<div id="getStatusMessage" class="function">
+<p>
+<span class="keyword">function NamedFormat</span> getStatusMessage() <br/>
+</p>
+</div>
+<div id="getStatusMessage" class="">
+</p>
+</div>
+</div>
+<div id="getSystems" class="codecontainer">
+<div id="getSystems" class="function">
+<p>
+<span class="keyword">function pair<ScriptSystemUpgradeTemplate, table_t>...</span> getSystems() <br/>
+</p>
+</div>
+<div id="getSystems" class="">
+<p>
+Returns the currently equipped subsystems of the ship. The subsystems are stored in a table of the format subsystems = {}; subsystems[subsystem1] = {...}; subsystems[subsystem2] = {...}; ... etc. The keys of the returned table are the subsystems, the values are information about the subsystems. It's recommended to use printTable() to print the tables for inspection. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns a table where the subsystems are the keys, and tables holding information about the subsystems are the values 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getTitle" class="codecontainer">
+<div id="getTitle" class="function">
+<p>
+<span class="keyword">function Format</span> getTitle() <br/>
+</p>
+</div>
+<div id="getTitle" class="">
+</p>
+</div>
+</div>
+<div id="getTorpedoes" class="codecontainer">
+<div id="getTorpedoes" class="function">
+<p>
+<span class="keyword">function TorpedoTemplate...</span> getTorpedoes() <br/>
+</p>
+</div>
+<div id="getTorpedoes" class="">
+<p>
+Returns the current torpedo shafts and misc info about the torpedo launcher. The shafts are stored in a table of the format shafts = {}; shafts[index1] = shaft1; shafts[index2] = shaft2; ... etc. The shaft indices are used as keys, the value is a TorpedoShaft class. Shaft with index -1 is the general torpedo storage. Note that the space for the shafts is an integer number of torpedoes, while the space for the general storage is torpedo space, which torpedoes take up and which can be extended with blocks. The second value is information about the launcher, with a few properties such as its space, occupied space, etc. It's recommended to use printTable() to print the complete table for inspection. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns 2 values: 1. A table holding the current shafts of the ship; 2. a table containing more launcher info 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getTurrets" class="codecontainer">
+<div id="getTurrets" class="function">
+<p>
+<span class="keyword">function pair<ScriptTurretTemplate, table_t>...</span> getTurrets() <br/>
+</p>
+</div>
+<div id="getTurrets" class="">
+<p>
+Returns the currently equipped turrets of the ship. The turrets are stored in a table of the format turrets = {}; turrets[turret1] = {...}; turrets[turret2] = {...}; ... etc. The keys of the returned table are the turrets, the values are information about the turrets. It's recommended to use printTable() to print the tables for inspection. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+returns a table where the turrets are the keys, and tables holding information about the turrets are the values 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="getTurretSlotRequirementsFulfilled" class="codecontainer">
+<div id="getTurretSlotRequirementsFulfilled" class="function">
+<p>
+<span class="keyword">function bool</span> getTurretSlotRequirementsFulfilled() <br/>
+</p>
+</div>
+<div id="getTurretSlotRequirementsFulfilled" class="">
+<p>
+Returns a boolean whether the turret slot requirements of the craft are all fulfilled. That's not fulfilled when there aren't enough slots for all turrets. 
+</p>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+A boolean whether the requirements are all fulfilled. 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="removeScript" class="codecontainer">
+<div id="removeScript" class="function">
+<p>
+<span class="keyword">function var</span> removeScript(<span class="type">var</span> <span class="parameter">script</span>) <br/>
+</p>
+</div>
+<div id="removeScript" class="">
+<p>
+Removes a script from the entity. 
+</p>
+<p><span class="docheader">Parameters</span></p>
+<div class="indented">
+<span class="parameter">script</span>
+A path (fragment) or index of the script that should be removed. <br/>
+</div>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setAvailability" class="codecontainer">
+<div id="setAvailability" class="function">
+<p>
+<span class="keyword">function var</span> setAvailability(<span class="type">ShipAvailability</span> <span class="parameter">availability</span>) <br/>
+</p>
+</div>
+<div id="setAvailability" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setBlocksDestroyedByMalus" class="codecontainer">
+<div id="setBlocksDestroyedByMalus" class="function">
+<p>
+<span class="keyword">function var</span> setBlocksDestroyedByMalus(<span class="type">table_t</span> <span class="parameter">blocks</span>) <br/>
+</p>
+</div>
+<div id="setBlocksDestroyedByMalus" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setCaptain" class="codecontainer">
+<div id="setCaptain" class="function">
+<p>
+<span class="keyword">function var</span> setCaptain(<span class="type">Captain</span> <span class="parameter">captain</span>) <br/>
+</p>
+</div>
+<div id="setCaptain" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setCargo" class="codecontainer">
+<div id="setCargo" class="function">
+<p>
+<span class="keyword">function var</span> setCargo(<span class="type">table_t</span> <span class="parameter">cargo</span>) <br/>
+</p>
+</div>
+<div id="setCargo" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setCoordinates" class="codecontainer">
+<div id="setCoordinates" class="function">
+<p>
+<span class="keyword">function var</span> setCoordinates(<span class="type">int</span> <span class="parameter">x</span>, <span class="type">int</span> <span class="parameter">y</span>) <br/>
+</p>
+</div>
+<div id="setCoordinates" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setCrew" class="codecontainer">
+<div id="setCrew" class="function">
+<p>
+<span class="keyword">function var</span> setCrew(<span class="type">Crew</span> <span class="parameter">other</span>) <br/>
+</p>
+</div>
+<div id="setCrew" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setDurabilityMalus" class="codecontainer">
+<div id="setDurabilityMalus" class="function">
+<p>
+<span class="keyword">function var</span> setDurabilityMalus(<span class="type">float</span> <span class="parameter">malusFactor</span>, <span class="type">DurabilityMalusReason</span> <span class="parameter">reason</span>) <br/>
+</p>
+</div>
+<div id="setDurabilityMalus" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setDurabilityPercentage" class="codecontainer">
+<div id="setDurabilityPercentage" class="function">
+<p>
+<span class="keyword">function var</span> setDurabilityPercentage(<span class="type">float</span> <span class="parameter">percentage</span>) <br/>
+</p>
+</div>
+<div id="setDurabilityPercentage" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setHangar" class="codecontainer">
+<div id="setHangar" class="function">
+<p>
+<span class="keyword">function var</span> setHangar(<span class="type">table_t</span> <span class="parameter">squads</span>) <br/>
+</p>
+</div>
+<div id="setHangar" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setIcon" class="codecontainer">
+<div id="setIcon" class="function">
+<p>
+<span class="keyword">function var</span> setIcon(<span class="type">string</span> <span class="parameter">icon</span>) <br/>
+</p>
+</div>
+<div id="setIcon" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setLocalPosition" class="codecontainer">
+<div id="setLocalPosition" class="function">
+<p>
+<span class="keyword">function var</span> setLocalPosition(<span class="type">Matrix</span> <span class="parameter">matrix</span>) <br/>
+</p>
+</div>
+<div id="setLocalPosition" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setNewName" class="codecontainer">
+<div id="setNewName" class="function">
+<p>
+<span class="keyword">function var</span> setNewName(<span class="type">string</span> <span class="parameter">newName</span>) <br/>
+</p>
+</div>
+<div id="setNewName" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setOrderInfo" class="codecontainer">
+<div id="setOrderInfo" class="function">
+<p>
+<span class="keyword">function var</span> setOrderInfo(<span class="type">string</span> <span class="parameter">info</span>) <br/>
+</p>
+</div>
+<div id="setOrderInfo" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setPaymentTime" class="codecontainer">
+<div id="setPaymentTime" class="function">
+<p>
+<span class="keyword">function var</span> setPaymentTime(<span class="type">float</span> <span class="parameter">timeSincePayDay</span>) <br/>
+</p>
+</div>
+<div id="setPaymentTime" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setPlan" class="codecontainer">
+<div id="setPlan" class="function">
+<p>
+<span class="keyword">function var</span> setPlan(<span class="type">BlockPlan</span> <span class="parameter">plan</span>) <br/>
+</p>
+</div>
+<div id="setPlan" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setReconstructionValue" class="codecontainer">
+<div id="setReconstructionValue" class="function">
+<p>
+<span class="keyword">function var</span> setReconstructionValue(<span class="type">double</span> <span class="parameter">value</span>) <br/>
+</p>
+</div>
+<div id="setReconstructionValue" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setScriptValue" class="codecontainer">
+<div id="setScriptValue" class="function">
+<p>
+<span class="keyword">function var</span> setScriptValue(<span class="type">string</span> <span class="parameter">key</span>, <span class="type">var</span> <span class="parameter">value</span>) <br/>
+</p>
+</div>
+<div id="setScriptValue" class="">
+<p>
+Sets a custom value. 
+</p>
+<p><span class="docheader">Parameters</span></p>
+<div class="indented">
+<span class="parameter">key</span>
+A string that serves as the name of the value <br/>
+<span class="parameter">value</span>
+The value to save. Must be bool, number, string or nil. If nil is given, the value will be deleted. <br/>
+</div>
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+The previous value 
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setShieldPercentage" class="codecontainer">
+<div id="setShieldPercentage" class="function">
+<p>
+<span class="keyword">function var</span> setShieldPercentage(<span class="type">float</span> <span class="parameter">percentage</span>) <br/>
+</p>
+</div>
+<div id="setShieldPercentage" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setStatusMessage" class="codecontainer">
+<div id="setStatusMessage" class="function">
+<p>
+<span class="keyword">function var</span> setStatusMessage(<span class="type">NamedFormat</span> <span class="parameter">status</span>) <br/>
+</p>
+</div>
+<div id="setStatusMessage" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setTitle" class="codecontainer">
+<div id="setTitle" class="function">
+<p>
+<span class="keyword">function var</span> setTitle(<span class="type">NamedFormat</span> <span class="parameter">title</span>) <br/>
+</p>
+</div>
+<div id="setTitle" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+<div id="setTorpedoes" class="codecontainer">
+<div id="setTorpedoes" class="function">
+<p>
+<span class="keyword">function var</span> setTorpedoes(<span class="type">table_t</span> <span class="parameter">torpedoes</span>) <br/>
+</p>
+</div>
+<div id="setTorpedoes" class="">
+<p><span class="docheader">Returns</span></p>
+<div class="indented">
+<p>
+nothing
+</p>
+</div>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sitemap">
+<div class="flexheader">   <div class="headerlisting">
+      <span class="docheader">Overview</span>
+      <br>      <a href="index.html">Home</a>
+      <a href="Functions.html">Functions</a>
+      <a href="Search.html">Search</a>
+   </div>   <div class="flexheaderwhitespace"></div>
+   <form action="Search.html" method="get">      Search:<input name="search" class="headersearchinput" type="search">   </form></div><div class="headerlisting">
+<span class="docheader">Callbacks</span>
+<br><a href="Callbacks.html"> Callbacks</a>
+<a href="Alliance [Client] Callbacks.html">Alliance [Client]  Callbacks</a>
+<a href="Alliance [Server] Callbacks.html">Alliance [Server]  Callbacks</a>
+<a href="Alliance [Server]  Callbacks.html">Alliance [Server]   Callbacks</a>
+<a href="Entity Callbacks.html">Entity  Callbacks</a>
+<a href="Galaxy Callbacks.html">Galaxy  Callbacks</a>
+<a href="Player Callbacks.html">Player  Callbacks</a>
+<a href="Player [Client] Callbacks.html">Player [Client]  Callbacks</a>
+<a href="Sector Callbacks.html">Sector  Callbacks</a>
+<a href="Server Callbacks.html">Server  Callbacks</a>
+</div><div class="headerlisting">
+<span class="docheader">Predefined Functions & Example Scripts</span>
+<br><a href="CommandFunctions.html">Command</a>
+<a href="EntityFunctions.html">Entity</a>
+<a href="FactionDatabaseFunctions.html">FactionDatabase</a>
+<a href="PlanGeneratorFunctions.html">PlanGenerator</a>
+<a href="PlayerFunctions.html">Player</a>
+<a href="SectorFunctions.html">Sector</a>
+<a href="ServerFunctions.html">Server</a>
+<a href="UsableInventoryItemFunctions.html">UsableInventoryItem</a>
+</div><div class="headerlisting">
+<span class="docheader">Common Components</span>
+<br><a href="Boarding.html">Boarding</a>
+<a href="BspTree.html">BspTree</a>
+<a href="CargoBay.html">CargoBay</a>
+<a href="CargoLoot.html">CargoLoot</a>
+<a href="ControlUnit.html">ControlUnit</a>
+<a href="CrewComponent.html">CrewComponent</a>
+<a href="DeletionTimer.html">DeletionTimer</a>
+<a href="DirectFlightPhysics.html">DirectFlightPhysics</a>
+<a href="DockingClamps.html">DockingClamps</a>
+<a href="DockingParent.html">DockingParent</a>
+<a href="DockingPositions.html">DockingPositions</a>
+<a href="Durability.html">Durability</a>
+<a href="EnergySystem.html">EnergySystem</a>
+<a href="Engine.html">Engine</a>
+<a href="FighterAI.html">FighterAI</a>
+<a href="Hangar.html">Hangar</a>
+<a href="HyperspaceEngine.html">HyperspaceEngine</a>
+<a href="InteractionText.html">InteractionText</a>
+<a href="InventoryItemLoot.html">InventoryItemLoot</a>
+<a href="Owner.html">Owner</a>
+<a href="Physics.html">Physics</a>
+<a href="Plan.html">Plan</a>
+<a href="ReadOnlyBoarding.html">ReadOnlyBoarding</a>
+<a href="ReadOnlyBspTree.html">ReadOnlyBspTree</a>
+<a href="ReadOnlyCargoBay.html">ReadOnlyCargoBay</a>
+<a href="ReadOnlyControlUnit.html">ReadOnlyControlUnit</a>
+<a href="ReadOnlyCrew.html">ReadOnlyCrew</a>
+<a href="ReadOnlyDeletionTimer.html">ReadOnlyDeletionTimer</a>
+<a href="ReadOnlyEnergySystem.html">ReadOnlyEnergySystem</a>
+<a href="ReadOnlyEngine.html">ReadOnlyEngine</a>
+<a href="ReadOnlyFighterAI.html">ReadOnlyFighterAI</a>
+<a href="ReadOnlyHangar.html">ReadOnlyHangar</a>
+<a href="ReadOnlyHyperspaceEngine.html">ReadOnlyHyperspaceEngine</a>
+<a href="ReadOnlyInteractionText.html">ReadOnlyInteractionText</a>
+<a href="ReadOnlyOwner.html">ReadOnlyOwner</a>
+<a href="ReadOnlyPhysics.html">ReadOnlyPhysics</a>
+<a href="ReadOnlyPlan.html">ReadOnlyPlan</a>
+<a href="ReadOnlyShipAI.html">ReadOnlyShipAI</a>
+<a href="ReadOnlyShipSystem.html">ReadOnlyShipSystem</a>
+<a href="ReadOnlyTorpedoAI [Server] [Client] [Server] [Client].html">ReadOnlyTorpedoAI [Server] [Client] [Server] [Client]</a>
+<a href="ReadOnlyTorpedoAI [Server] [Client] [Server] [Client].html">ReadOnlyTorpedoAI [Server] [Client] [Server] [Client]</a>
+<a href="ReadOnlyTorpedoLauncher.html">ReadOnlyTorpedoLauncher</a>
+<a href="ReadOnlyTurretBases.html">ReadOnlyTurretBases</a>
+<a href="ReadOnlyVelocity.html">ReadOnlyVelocity</a>
+<a href="ReadOnlyWeapons.html">ReadOnlyWeapons</a>
+<a href="ReadOnlyWormHole.html">ReadOnlyWormHole</a>
+<a href="Shield.html">Shield</a>
+<a href="ShipAI.html">ShipAI</a>
+<a href="ShipSystem.html">ShipSystem</a>
+<a href="StructuralIntegrity.html">StructuralIntegrity</a>
+<a href="SystemUpgradeLoot.html">SystemUpgradeLoot</a>
+<a href="Thrusters.html">Thrusters</a>
+<a href="Torpedo.html">Torpedo</a>
+<a href="TorpedoAI.html">TorpedoAI</a>
+<a href="TorpedoLauncher.html">TorpedoLauncher</a>
+<a href="Turret.html">Turret</a>
+<a href="TurretAI.html">TurretAI</a>
+<a href="TurretBases.html">TurretBases</a>
+<a href="Velocity.html">Velocity</a>
+<a href="Weapons.html">Weapons</a>
+<a href="WormHole.html">WormHole</a>
+</div><div class="headerlisting">
+<span class="docheader">Common Objects</span>
+<br><a href="AllianceMember.html">AllianceMember</a>
+<a href="AllianceRank.html">AllianceRank</a>
+<a href="BlockPlan.html">BlockPlan</a>
+<a href="BlockPlanBlock.html">BlockPlanBlock</a>
+<a href="BlockStatistics.html">BlockStatistics</a>
+<a href="Box.html">Box</a>
+<a href="Captain.html">Captain</a>
+<a href="Color.html">Color</a>
+<a href="ControlUnitSeat.html">ControlUnitSeat</a>
+<a href="CraftDesign.html">CraftDesign</a>
+<a href="CraftStatsOverview.html">CraftStatsOverview</a>
+<a href="Crew.html">Crew</a>
+<a href="CrewMan.html">CrewMan</a>
+<a href="CrewProfession.html">CrewProfession</a>
+<a href="DebugInfo.html">DebugInfo</a>
+<a href="dvec2.html">dvec2</a>
+<a href="dvec3.html">dvec3</a>
+<a href="dvec4.html">dvec4</a>
+<a href="Entity.html">Entity</a>
+<a href="EntityDescriptor.html">EntityDescriptor</a>
+<a href="FighterTemplate.html">FighterTemplate</a>
+<a href="Format.html">Format</a>
+<a href="GameSettings.html">GameSettings</a>
+<a href="Group.html">Group</a>
+<a href="HighResolutionTimer.html">HighResolutionTimer</a>
+<a href="Inventory.html">Inventory</a>
+<a href="InventoryTurret.html">InventoryTurret</a>
+<a href="ivec2.html">ivec2</a>
+<a href="ivec3.html">ivec3</a>
+<a href="ivec4.html">ivec4</a>
+<a href="Language.html">Language</a>
+<a href="Mail.html">Mail</a>
+<a href="Material.html">Material</a>
+<a href="Matrix.html">Matrix</a>
+<a href="ModManager.html">ModManager</a>
+<a href="NamedFormat.html">NamedFormat</a>
+<a href="PlanBspTree.html">PlanBspTree</a>
+<a href="PlanetSpecifics.html">PlanetSpecifics</a>
+<a href="PlanGenerationStage.html">PlanGenerationStage</a>
+<a href="PlanPart.html">PlanPart</a>
+<a href="PlanStyle.html">PlanStyle</a>
+<a href="PlayerId.html">PlayerId</a>
+<a href="PluralForm.html">PluralForm</a>
+<a href="Profiler.html">Profiler</a>
+<a href="QuadTree.html">QuadTree</a>
+<a href="Random.html">Random</a>
+<a href="Rarity.html">Rarity</a>
+<a href="Ray.html">Ray</a>
+<a href="ReadOnlyEntity.html">ReadOnlyEntity</a>
+<a href="Rect.html">Rect</a>
+<a href="Relation.html">Relation</a>
+<a href="Scenario.html">Scenario</a>
+<a href="SectorView.html">SectorView</a>
+<a href="Seed.html">Seed</a>
+<a href="Sphere.html">Sphere</a>
+<a href="Squad.html">Squad</a>
+<a href="SystemUpgradeTemplate.html">SystemUpgradeTemplate</a>
+<a href="Timer.html">Timer</a>
+<a href="Tooltip.html">Tooltip</a>
+<a href="TooltipLine.html">TooltipLine</a>
+<a href="TorpedoShaft.html">TorpedoShaft</a>
+<a href="TorpedoTemplate.html">TorpedoTemplate</a>
+<a href="TradingGood.html">TradingGood</a>
+<a href="TurretDesign.html">TurretDesign</a>
+<a href="TurretDesignPart.html">TurretDesignPart</a>
+<a href="TurretTemplate.html">TurretTemplate</a>
+<a href="UsableInventoryItem.html">UsableInventoryItem</a>
+<a href="Uuid.html">Uuid</a>
+<a href="VanillaInventoryItem.html">VanillaInventoryItem</a>
+<a href="vec2.html">vec2</a>
+<a href="vec3.html">vec3</a>
+<a href="vec4.html">vec4</a>
+<a href="Version.html">Version</a>
+<a href="Weapon.html">Weapon</a>
+</div><div class="headerlisting">
+<span class="docheader">Client Components</span>
+<br><a href="EntityIcon.html">EntityIcon</a>
+<a href="EntityTooltip.html">EntityTooltip</a>
+<a href="PlanMesh.html">PlanMesh</a>
+<a href="ReadOnlyIcon.html">ReadOnlyIcon</a>
+<a href="ReadOnlyPlanMesh.html">ReadOnlyPlanMesh</a>
+<a href="ReadOnlyScriptUI.html">ReadOnlyScriptUI</a>
+<a href="ReadOnlyTooltip.html">ReadOnlyTooltip</a>
+<a href="ScriptUI.html">ScriptUI</a>
+</div><div class="headerlisting">
+<span class="docheader">Client Objects</span>
+<br><a href="Achievements.html">Achievements</a>
+<a href="Alliance [Client].html">Alliance [Client]</a>
+<a href="CameraKeyFrame.html">CameraKeyFrame</a>
+<a href="CaptainSelectionItem.html">CaptainSelectionItem</a>
+<a href="Client.html">Client</a>
+<a href="ClientSettings.html">ClientSettings</a>
+<a href="ColorSelectionItem.html">ColorSelectionItem</a>
+<a href="CraftDesignSelectionItem.html">CraftDesignSelectionItem</a>
+<a href="Faction [Client].html">Faction [Client]</a>
+<a href="Galaxy [Client].html">Galaxy [Client]</a>
+<a href="GalaxyMap.html">GalaxyMap</a>
+<a href="GameInput.html">GameInput</a>
+<a href="GlowFX.html">GlowFX</a>
+<a href="IconSelectionItem.html">IconSelectionItem</a>
+<a href="InputWindow.html">InputWindow</a>
+<a href="InventoryReferenceSelectionItem.html">InventoryReferenceSelectionItem</a>
+<a href="InventorySelectionItem.html">InventorySelectionItem</a>
+<a href="Keyboard.html">Keyboard</a>
+<a href="LaserFX.html">LaserFX</a>
+<a href="Mouse.html">Mouse</a>
+<a href="Music.html">Music</a>
+<a href="PixelIconSelectionItem.html">PixelIconSelectionItem</a>
+<a href="Planet.html">Planet</a>
+<a href="Player [Client].html">Player [Client]</a>
+<a href="PlayerWindow.html">PlayerWindow</a>
+<a href="RefractionFX.html">RefractionFX</a>
+<a href="Sector [Client].html">Sector [Client]</a>
+<a href="SelectionItem.html">SelectionItem</a>
+<a href="ShipDatabaseEntry [Client].html">ShipDatabaseEntry [Client]</a>
+<a href="SoundSource.html">SoundSource</a>
+<a href="StrategyState.html">StrategyState</a>
+<a href="TargetIndicator.html">TargetIndicator</a>
+<a href="TooltipRenderer.html">TooltipRenderer</a>
+<a href="TurretDesignSelectionItem.html">TurretDesignSelectionItem</a>
+</div><div class="headerlisting">
+<span class="docheader">Client UI Objects</span>
+<br><a href="AllianceEmblem.html">AllianceEmblem</a>
+<a href="AllianceTab.html">AllianceTab</a>
+<a href="ArrowLine.html">ArrowLine</a>
+<a href="Button [Client] [Client].html">Button [Client] [Client]</a>
+<a href="Button [Client] [Client].html">Button [Client] [Client]</a>
+<a href="CaptainIcon.html">CaptainIcon</a>
+<a href="CaptainProfile.html">CaptainProfile</a>
+<a href="CheckBox.html">CheckBox</a>
+<a href="ComboBox.html">ComboBox</a>
+<a href="ContextMenu.html">ContextMenu</a>
+<a href="CraftPortrait.html">CraftPortrait</a>
+<a href="CrewBar.html">CrewBar</a>
+<a href="Frame.html">Frame</a>
+<a href="Hud.html">Hud</a>
+<a href="InventorySelection.html">InventorySelection</a>
+<a href="Label.html">Label</a>
+<a href="Line.html">Line</a>
+<a href="ListBox.html">ListBox</a>
+<a href="ListBoxEx.html">ListBoxEx</a>
+<a href="MapArrowLine.html">MapArrowLine</a>
+<a href="MapIcon.html">MapIcon</a>
+<a href="MultiLineTextBox.html">MultiLineTextBox</a>
+<a href="NumbersBar.html">NumbersBar</a>
+<a href="Picture.html">Picture</a>
+<a href="PlanDisplayer.html">PlanDisplayer</a>
+<a href="ProgressBar.html">ProgressBar</a>
+<a href="SavedDesignsSelection.html">SavedDesignsSelection</a>
+<a href="ScrollFrame.html">ScrollFrame</a>
+<a href="Selection.html">Selection</a>
+<a href="ShipWindow.html">ShipWindow</a>
+<a href="Slider.html">Slider</a>
+<a href="StatisticsBar.html">StatisticsBar</a>
+<a href="Tab.html">Tab</a>
+<a href="TabbedWindow.html">TabbedWindow</a>
+<a href="TextBox.html">TextBox</a>
+<a href="TextField.html">TextField</a>
+<a href="TooltipDisplayer.html">TooltipDisplayer</a>
+<a href="Tree.html">Tree</a>
+<a href="UIArbitraryHorizontalSplitter.html">UIArbitraryHorizontalSplitter</a>
+<a href="UIArbitraryVerticalSplitter.html">UIArbitraryVerticalSplitter</a>
+<a href="UIContainer.html">UIContainer</a>
+<a href="UIElement.html">UIElement</a>
+<a href="UIGridSplitter.html">UIGridSplitter</a>
+<a href="UIHorizontalLister.html">UIHorizontalLister</a>
+<a href="UIHorizontalMultiSplitter.html">UIHorizontalMultiSplitter</a>
+<a href="UIHorizontalSplitter.html">UIHorizontalSplitter</a>
+<a href="UIOrganizer.html">UIOrganizer</a>
+<a href="UIRect.html">UIRect</a>
+<a href="UIRenderer.html">UIRenderer</a>
+<a href="UIVerticalLister.html">UIVerticalLister</a>
+<a href="UIVerticalMultiSplitter.html">UIVerticalMultiSplitter</a>
+<a href="UIVerticalSplitter.html">UIVerticalSplitter</a>
+<a href="ValueComboBox.html">ValueComboBox</a>
+<a href="Window.html">Window</a>
+</div><div class="headerlisting">
+<span class="docheader">Server Components</span>
+<br><a href="EntityTransferrer.html">EntityTransferrer</a>
+<a href="FighterController.html">FighterController</a>
+<a href="Loot.html">Loot</a>
+<a href="ReadOnlyEntityTransferrer.html">ReadOnlyEntityTransferrer</a>
+<a href="ReadOnlyFighterController.html">ReadOnlyFighterController</a>
+<a href="ReadOnlyLoot.html">ReadOnlyLoot</a>
+<a href="ReadOnlyTurretController.html">ReadOnlyTurretController</a>
+<a href="ReadOnlyWreckageCreator.html">ReadOnlyWreckageCreator</a>
+<a href="TurretController.html">TurretController</a>
+<a href="WreckageCreator.html">WreckageCreator</a>
+</div><div class="headerlisting">
+<span class="docheader">Server Objects</span>
+<br><a href="Alliance [Server].html">Alliance [Server]</a>
+<a href="Faction [Server].html">Faction [Server]</a>
+<a href="Galaxy [Server].html">Galaxy [Server]</a>
+<a href="Player [Server].html">Player [Server]</a>
+<a href="ReadOnlySector.html">ReadOnlySector</a>
+<a href="Sector [Server].html">Sector [Server]</a>
+<a href="Server.html">Server</a>
+<a href="ShipDatabaseEntry [Server].html">ShipDatabaseEntry [Server]</a>
+</div><div class="lastheaderlisting">
+<span class="docheader">Enums</span>
+<br><a href="Enums.html#AIState">AIState</a>
+<a href="Enums.html#AlliancePrivilege">AlliancePrivilege</a>
+<a href="Enums.html#BeamShape">BeamShape</a>
+<a href="Enums.html#BlockShading">BlockShading</a>
+<a href="Enums.html#BlockStructure">BlockStructure</a>
+<a href="Enums.html#BlockType">BlockType</a>
+<a href="Enums.html#BlockType2">BlockType2</a>
+<a href="Enums.html#BoxType">BoxType</a>
+<a href="Enums.html#BuildError">BuildError</a>
+<a href="Enums.html#CaptainGenderId">CaptainGenderId</a>
+<a href="Enums.html#ChatChannel">ChatChannel</a>
+<a href="Enums.html#ChatMessageType">ChatMessageType</a>
+<a href="Enums.html#ComponentType">ComponentType</a>
+<a href="Enums.html#ControlAction">ControlAction</a>
+<a href="Enums.html#ControlActionBit">ControlActionBit</a>
+<a href="Enums.html#ControlStyle">ControlStyle</a>
+<a href="Enums.html#CoolingType">CoolingType</a>
+<a href="Enums.html#CraftStatsOverviewStat">CraftStatsOverviewStat</a>
+<a href="Enums.html#CrewProfessionType">CrewProfessionType</a>
+<a href="Enums.html#CrewRank">CrewRank</a>
+<a href="Enums.html#DamageSource">DamageSource</a>
+<a href="Enums.html#DamageType">DamageType</a>
+<a href="Enums.html#DeletionType">DeletionType</a>
+<a href="Enums.html#Difficulty">Difficulty</a>
+<a href="Enums.html#EntityArrivalType">EntityArrivalType</a>
+<a href="Enums.html#EntityType">EntityType</a>
+<a href="Enums.html#FighterOrders">FighterOrders</a>
+<a href="Enums.html#FighterStartError">FighterStartError</a>
+<a href="Enums.html#FighterType">FighterType</a>
+<a href="Enums.html#FontType">FontType</a>
+<a href="Enums.html#ImpactParticles">ImpactParticles</a>
+<a href="Enums.html#InventoryItemType">InventoryItemType</a>
+<a href="Enums.html#JumpError">JumpError</a>
+<a href="Enums.html#KeyboardKey">KeyboardKey</a>
+<a href="Enums.html#ListBoxEntryType">ListBoxEntryType</a>
+<a href="Enums.html#MalusReason">MalusReason</a>
+<a href="Enums.html#MaterialType">MaterialType</a>
+<a href="Enums.html#MoonType">MoonType</a>
+<a href="Enums.html#MouseButton">MouseButton</a>
+<a href="Enums.html#PlanetType">PlanetType</a>
+<a href="Enums.html#PlanTypeFilter">PlanTypeFilter</a>
+<a href="Enums.html#PlayerStateType">PlayerStateType</a>
+<a href="Enums.html#ProjectileShape">ProjectileShape</a>
+<a href="Enums.html#RarityType">RarityType</a>
+<a href="Enums.html#RelationStatus">RelationStatus</a>
+<a href="Enums.html#SavedDesignType">SavedDesignType</a>
+<a href="Enums.html#ScenarioType">ScenarioType</a>
+<a href="Enums.html#SectorChangeType">SectorChangeType</a>
+<a href="Enums.html#ShipAvailability">ShipAvailability</a>
+<a href="Enums.html#SoundType">SoundType</a>
+<a href="Enums.html#StatsBonuses">StatsBonuses</a>
+<a href="Enums.html#TargetIndicatorVisuals">TargetIndicatorVisuals</a>
+<a href="Enums.html#TransformationFeature">TransformationFeature</a>
+<a href="Enums.html#TurretAutoFireMode">TurretAutoFireMode</a>
+<a href="Enums.html#TurretSlotType">TurretSlotType</a>
+<a href="Enums.html#WeaponAppearance">WeaponAppearance</a>
+<a href="Enums.html#WeaponCategory">WeaponCategory</a>
+</div></div>
+<div class="disclaimer">
+<p>This is the official documentation for the scripting API of Avorion. This documentation is automatically generated and <strong>not</strong> necessarily complete. Depending on the context in which functions exist, some documentation such as descriptions, return values or variable names or types may be missing.</p>
+<p>Work in Progress. Documentation of Avorion Version: 2.5.11 9e50c49dc2f1</p>
+</div>
+<div class="footer">
+<p align="center">Work in Progress.</p>
+<p align="center">Copyright &copy; 2025 Boxelware GmbH. All rights reserved.</p>
+</div>
+</div>
+</body>
+</html>

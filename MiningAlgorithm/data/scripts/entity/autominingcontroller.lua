@@ -75,9 +75,6 @@ local cachedAsteroidCount = 0
 local cachedCargoPercent = 0
 
 function AutoMiningController.initialize()
-    -- Register icon
-    getIcon()
-
     if onServer() then
         local entity = Entity()
         if entity then
