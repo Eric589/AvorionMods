@@ -3,6 +3,7 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 include("utility")
 include("callable")
 
+-- namespace UiSampleController
 UiSampleController = {}
 
 -- Module-level functions for Avorion
@@ -34,6 +35,19 @@ end
 
 function restore(data)
     return UiSampleController.restore(data)
+end
+
+-- Button callbacks (must be at module level)
+function onToggle()
+    return UiSampleController.onToggle()
+end
+
+function onPress()
+    return UiSampleController.onPress()
+end
+
+function onShowWindow()
+    return UiSampleController.onShowWindow()
 end
 
 -- State
@@ -72,7 +86,7 @@ function UiSampleController.initUI()
     window.showCloseButton = 1
     window.moveable = 1
     menu:registerWindow(window, "UI Sample")
-    
+
     local y = 10
     UiSampleController.statusLabel = window:createLabel(vec2(10, y), "Status: Inactive", 14)
     y = y + 40
@@ -80,7 +94,20 @@ function UiSampleController.initUI()
     y = y + 50
     UiSampleController.pressLabel = window:createLabel(vec2(10, y), "Presses: 0", 14)
     y = y + 30
-    window:createButton(Rect(10, y, 200, y + 30), "Press Me", "onPress")
+    UiSampleController.actionBtn = window:createButton(Rect(10, y, 200, y + 30), "Press Me", "onPress")
+end
+
+function UiSampleController.onShowWindow()
+    -- Update UI with current state when window opens
+    if UiSampleController.statusLabel then
+        UiSampleController.statusLabel.caption = "Status: " .. (enabled and "Active" or "Inactive")
+    end
+    if UiSampleController.toggleBtn then
+        UiSampleController.toggleBtn.caption = enabled and "Disable" or "Enable"
+    end
+    if UiSampleController.pressLabel then
+        UiSampleController.pressLabel.caption = "Presses: " .. pressCount
+    end
 end
 
 function UiSampleController.onToggle()
