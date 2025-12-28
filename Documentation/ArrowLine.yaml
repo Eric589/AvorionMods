@@ -3,164 +3,153 @@ name: ArrowLine
 type: class
 extends: UIElement
 availability: client-only
-description: UI element for drawing arrow lines between two points
+description: ArrowLine class
 
 constructor:
   signature: ArrowLine(int index)
   parameters:
     - name: index
       type: int
-      description: Index identifier
+      description: index parameter
   returns: ArrowLine instance
 
 properties:
-  # ArrowLine-specific properties
   - name: color
     type: Color
     access: write-only
-    description: Color of the arrow line
+    description: color property
 
   - name: from
     type: vec2
     access: write-only
-    description: Starting point of the arrow
+    description: from property
 
   - name: to
     type: vec2
     access: write-only
-    description: Ending point of the arrow
+    description: to property
 
   - name: width
     type: float
     access: write-only
-    description: Line width in pixels
+    description: width property
 
-  # Inherited from UIElement
   - name: center
     type: vec2
-    access: read-write
+    access: read-only
     inherited: UIElement
-    description: Center position of the element
+    description: center property
 
   - name: height
     type: float
-    access: read-write
+    access: read-only
     inherited: UIElement
-    description: Height of the element
+    description: height property
 
   - name: index
     type: int
     access: read-only
     inherited: UIElement
-    description: Unique index identifier
+    description: index property
 
   - name: layer
     type: int
-    access: read-write
+    access: read-only
     inherited: UIElement
-    description: Z-layer for rendering order
+    description: layer property
 
   - name: localCenter
     type: vec2
     access: read-only
     inherited: UIElement
-    description: Local center position
+    description: localCenter property
 
   - name: localPosition
     type: vec2
     access: read-only
     inherited: UIElement
-    description: Local position
+    description: localPosition property
 
   - name: localRect
     type: Rect
     access: read-only
     inherited: UIElement
-    description: Local rectangle bounds
+    description: localRect property
 
   - name: lower
     type: vec2
-    access: read-write
+    access: read-only
     inherited: UIElement
-    description: Lower corner position
+    description: lower property
 
   - name: mouseOver
     type: bool
     access: read-only
     inherited: UIElement
-    description: True if mouse is over element
+    description: mouseOver property
 
   - name: position
     type: vec2
-    access: read-write
+    access: write-only
     inherited: UIElement
-    description: Screen position
+    description: position property
 
   - name: rect
     type: Rect
-    access: read-write
+    access: write-only
     inherited: UIElement
-    description: Rectangle bounds
+    description: rect property
 
   - name: size
     type: vec2
-    access: read-write
+    access: write-only
     inherited: UIElement
-    description: Size of the element
+    description: size property
 
   - name: tooltip
     type: var
-    access: read-write
+    access: write-only
     inherited: UIElement
-    description: Tooltip text or content
+    description: tooltip property
 
   - name: tooltipWidth
     type: int
     access: write-only
     inherited: UIElement
-    description: Width of tooltip
+    description: tooltipWidth property
 
   - name: upper
     type: vec2
     access: read-write
     inherited: UIElement
-    description: Upper corner position
+    description: upper property
 
   - name: visible
     type: bool
     access: read-write
     inherited: UIElement
-    description: Visibility state
+    description: visible property
 
 methods:
   - name: hide
     signature: hide()
     returns: void
     inherited: UIElement
-    description: Hides the UI element
-
-  - name: show
-    signature: show()
-    returns: void
-    inherited: UIElement
-    description: Shows the UI element
+    description: hide method
 
   - name: isMouseOverAndUnobscured
     signature: isMouseOverAndUnobscured()
     returns: bool
     inherited: UIElement
-    description: Checks if mouse is over element and not obscured by other UI
+    description: isMouseOverAndUnobscured method
 
-example: |
-  -- Create an arrow line from point A to point B
-  local line = ArrowLine()
-  line.from = vec2(100, 100)
-  line.to = vec2(200, 200)
-  line.color = ColorRGB(1, 0, 0)  -- Red
-  line.width = 2.0
-  line:show()
+  - name: show
+    signature: show()
+    returns: void
+    inherited: UIElement
+    description: show method
 
 notes:
-  - ArrowLine is client-only and cannot be used in server-side scripts
-  - Inherits all UIElement properties and methods
-  - Width property appears in both ArrowLine-specific and inherited properties
+  - Auto-converted from HTML documentation
+  - Client-only - not available on server
+  - Inherits from UIElement
