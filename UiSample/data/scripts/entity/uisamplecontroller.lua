@@ -3,7 +3,6 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 include("utility")
 include("callable")
 
--- namespace UiSampleController
 UiSampleController = {}
 
 -- Module-level functions for Avorion
