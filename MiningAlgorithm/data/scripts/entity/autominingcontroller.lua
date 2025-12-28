@@ -26,16 +26,43 @@ local cachedAsteroidCount = 0
 local cachedCargoPercent = 0
 
 function AutoMiningController.initialize()
-    if onClient() then
-        AutoMiningController.initUI()
-        invokeServerFunction("requestStateUpdate")
-    end
-    
     if onServer() then
         local entity = Entity()
         if entity then
+            -- Use a persistent value to remember initialization across reloads without killing the primary script.
+            local initFlag = entity:getValue("autominer_initialized")
+            if not initFlag then
+                entity:setValue("autominer_initialized", true)
+                print("[AutoMiner] Primary instance initialized on server")
+            else
+                -- Already initialized (e.g., sector reload); keep this instance running.
+                print("[AutoMiner] Instance already initialized on server (reload)")
+            end
+
+            -- Clean up duplicates if the script was added multiple times; keep one instance alive.
+            local scripts = entity:getScripts()
+            local scriptCount = 0
+            for _, scriptPath in pairs(scripts) do
+                if scriptPath == "data/scripts/entity/autominingcontroller.lua" then
+                    scriptCount = scriptCount + 1
+                end
+            end
+
+            if scriptCount > 1 then
+                local duplicates = scriptCount - 1
+                print("[AutoMiner] Removing " .. duplicates .. " duplicate script entries...")
+                for _ = 1, duplicates do
+                    entity:removeScript("data/scripts/entity/autominingcontroller.lua")
+                end
+            end
+
             Sector():registerCallback("onDestroyed", "onAsteroidDestroyed")
         end
+    end
+
+    if onClient() then
+        AutoMiningController.initUI()
+        invokeServerFunction("requestStateUpdate")
     end
 end
 
@@ -656,7 +683,7 @@ end
 callable(AutoMiningController, "getStatus")
 
 function AutoMiningController.getIcon()
-    return "data/textures/icons/pixel/pick.png"
+    return "mods/MiningAlgorithm/data/icon/icon.png"
 end
 
 function AutoMiningController.interactionPossible()

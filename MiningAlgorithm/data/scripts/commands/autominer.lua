@@ -22,8 +22,28 @@ function execute(sender, commandName, action, ...)
             return 0, "", "Could not access craft entity."
         end
 
-        entity:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
-        return 0, "", "Auto Mining activated. Open the Auto Miner UI (TAB key) to configure."
+        -- Check if already initialized using the flag
+        local initFlag = entity:getValue("autominer_initialized")
+        if initFlag then
+            return 0, "", "Auto Mining is already active on this ship. Use TAB key to open the UI."
+        end
+
+        -- Check thoroughly for existing script to prevent duplicates
+        local scripts = entity:getScripts()
+        local hasAutoMiner = false
+        for _, scriptPath in pairs(scripts) do
+            if scriptPath == "data/scripts/entity/autominingcontroller.lua" then
+                hasAutoMiner = true
+                break
+            end
+        end
+
+        if not hasAutoMiner then
+            entity:addScriptOnce("data/scripts/entity/autominingcontroller.lua")
+            return 0, "", "Auto Mining activated. Open the Auto Miner UI (TAB key) to configure."
+        else
+            return 0, "", "Auto Mining is already active on this ship. Use TAB key to open the UI."
+        end
 
     elseif action == "off" or action == "stop" or action == "disable" then
         local craft = player.craft
@@ -36,11 +56,34 @@ function execute(sender, commandName, action, ...)
             return 0, "", "Could not access craft entity."
         end
 
-        local ok, err = entity:invokeFunction("data/scripts/entity/autominingcontroller.lua", "disableAutoMining")
-        if ok == 0 then
-            return 0, "", "Auto Mining disabled."
-        else
+        -- Check if script exists
+        local scripts = entity:getScripts()
+        local scriptCount = 0
+        for _, scriptPath in pairs(scripts) do
+            if scriptPath == "data/scripts/entity/autominingcontroller.lua" then
+                scriptCount = scriptCount + 1
+            end
+        end
+
+        if scriptCount == 0 then
             return 0, "", "Auto Mining script not active on this ship."
+        end
+
+        -- Disable the mining system first
+        local ok, err = entity:invokeFunction("data/scripts/entity/autominingcontroller.lua", "disableAutoMining")
+
+        -- Clear the initialization flag
+        entity:setValue("autominer_initialized", nil)
+
+        -- Remove all instances of the script
+        for i = 1, scriptCount do
+            entity:removeScript("data/scripts/entity/autominingcontroller.lua")
+        end
+
+        if scriptCount > 1 then
+            return 0, "", "Auto Mining disabled and " .. scriptCount .. " duplicate scripts removed."
+        else
+            return 0, "", "Auto Mining disabled."
         end
 
     elseif action == "status" then

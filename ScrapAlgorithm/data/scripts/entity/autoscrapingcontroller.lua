@@ -15,7 +15,7 @@ AutoScrapingController = {}
 -- =====================================================
 
 function getIcon(seed, rarity)
-    return "mods/ScrapAlgorithm/data/icons/recycle.png"
+    return "mods/ScrapAlgorithm/data/icons/icon.png"
 end
 
 function interactionPossible(playerIndex, option)
