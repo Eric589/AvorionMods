@@ -8,6 +8,55 @@ include("callable")
 -- namespace AutoMiningController
 AutoMiningController = {}
 
+-- =====================================================
+-- MODULE-LEVEL FUNCTIONS (REQUIRED FOR AVORION HUD)
+-- These MUST be at module level for Avorion to detect them
+-- =====================================================
+
+function getIcon(seed, rarity)
+    return "mods/MiningAlgorithm/data/icon/icon.png"
+end
+
+function interactionPossible(playerIndex, option)
+    if onServer() then return false end
+    local player = Player()
+    if not player then return false end
+    if player.index ~= playerIndex then return false end
+    return true
+end
+
+function getInteractionText()
+    return "Auto Miner"
+end
+
+function initUI()
+    return AutoMiningController.initUI()
+end
+
+function initialize()
+    return AutoMiningController.initialize()
+end
+
+function getUpdateInterval()
+    return AutoMiningController.getUpdateInterval()
+end
+
+function secure()
+    return AutoMiningController.secure()
+end
+
+function restore(data)
+    return AutoMiningController.restore(data)
+end
+
+function updateServer(timeStep)
+    return AutoMiningController.updateServer(timeStep)
+end
+
+function updateClient(timeStep)
+    return AutoMiningController.updateClient(timeStep)
+end
+
 -- Configuration
 local updateInterval = 3.0
 local minResourceThreshold = 1
@@ -662,35 +711,22 @@ end
 function AutoMiningController.getStatus()
     local entity = Entity()
     if not entity then return "No entity" end
-    
+
     local fighterCount = 0
     for _ in pairs(assignedFighters) do
         fighterCount = fighterCount + 1
     end
-    
+
     local asteroidCount = 0
     for _ in pairs(asteroidAssignments) do
         asteroidCount = asteroidCount + 1
     end
-    
-    local status = string.format("Auto Mining: %s\nFighters: %d\nAsteroids: %d", 
+
+    local status = string.format("Auto Mining: %s\nFighters: %d\nAsteroids: %d",
         enabled and "ACTIVE" or "INACTIVE",
         fighterCount,
         asteroidCount)
-    
+
     return status
 end
 callable(AutoMiningController, "getStatus")
-
-function AutoMiningController.getIcon()
-    return "mods/MiningAlgorithm/data/icon/icon.png"
-end
-
-function AutoMiningController.interactionPossible()
-    local player = Player()
-    local entity = Entity()
-    if player and entity and player.craft and player.craft.index.value == entity.id.value then
-        return true, ""
-    end
-    return false, ""
-end
