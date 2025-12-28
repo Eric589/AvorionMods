@@ -12,7 +12,9 @@ function getIcon()
 end
 
 function interactionPossible(playerIndex)
-    if onServer() then return false end
+    if onServer() then
+        return false
+    end
     local player = Player()
     return player and player.index == playerIndex
 end
@@ -67,7 +69,7 @@ function UiSampleController.initialize()
 end
 
 function UiSampleController.secure()
-    return {enabled = enabled, pressCount = pressCount}
+    return { enabled = enabled, pressCount = pressCount }
 end
 
 function UiSampleController.restore(data)
@@ -94,20 +96,7 @@ function UiSampleController.initUI()
     y = y + 50
     UiSampleController.pressLabel = window:createLabel(vec2(10, y), "Presses: 0", 14)
     y = y + 30
-    UiSampleController.actionBtn = window:createButton(Rect(10, y, 200, y + 30), "Press Me", "onPress")
-end
-
-function UiSampleController.onShowWindow()
-    -- Update UI with current state when window opens
-    if UiSampleController.statusLabel then
-        UiSampleController.statusLabel.caption = "Status: " .. (enabled and "Active" or "Inactive")
-    end
-    if UiSampleController.toggleBtn then
-        UiSampleController.toggleBtn.caption = enabled and "Disable" or "Enable"
-    end
-    if UiSampleController.pressLabel then
-        UiSampleController.pressLabel.caption = "Presses: " .. pressCount
-    end
+    window:createButton(Rect(10, y, 200, y + 30), "Press Me", "onPress")
 end
 
 function UiSampleController.onToggle()
@@ -117,7 +106,9 @@ function UiSampleController.onToggle()
 end
 
 function UiSampleController.toggleEnabled()
-    if not onServer() then return end
+    if not onServer() then
+        return
+    end
     enabled = not enabled
     broadcastInvokeClientFunction("updateUI", enabled, pressCount)
 end
@@ -130,14 +121,18 @@ function UiSampleController.onPress()
 end
 
 function UiSampleController.incrementPress()
-    if not onServer() then return end
+    if not onServer() then
+        return
+    end
     pressCount = pressCount + 1
     broadcastInvokeClientFunction("updateUI", enabled, pressCount)
 end
 callable(UiSampleController, "incrementPress")
 
 function UiSampleController.updateUI(isEnabled, count)
-    if not onClient() then return end
+    if not onClient() then
+        return
+    end
     if UiSampleController.statusLabel then
         UiSampleController.statusLabel.caption = "Status: " .. (isEnabled and "Active" or "Inactive")
     end
@@ -151,7 +146,9 @@ end
 callable(UiSampleController, "updateUI")
 
 function UiSampleController.disable()
-    if not onServer() then return end
+    if not onServer() then
+        return
+    end
     enabled = false
     return 0
 end
