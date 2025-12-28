@@ -14,14 +14,23 @@ AutoMiningController = {}
 -- =====================================================
 
 function getIcon(seed, rarity)
-    return "mods/MiningAlgorithm/data/icon/icon.png"
+    -- Path relative to mod directory
+    return "data/icon/icon.png"
 end
 
 function interactionPossible(playerIndex, option)
+    -- Only show on client side
     if onServer() then return false end
+
     local player = Player()
     if not player then return false end
+
+    -- Only show for the current player on their craft
     if player.index ~= playerIndex then return false end
+
+    local entity = Entity()
+    if not entity then return false end
+
     return true
 end
 

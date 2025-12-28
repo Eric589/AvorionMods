@@ -15,14 +15,23 @@ AutoScrapingController = {}
 -- =====================================================
 
 function getIcon(seed, rarity)
-    return "mods/ScrapAlgorithm/data/icons/icon.png"
+    -- Path relative to mod directory
+    return "data/icons/icon.png"
 end
 
 function interactionPossible(playerIndex, option)
+    -- Only show on client side
     if onServer() then return false end
+
     local player = Player()
     if not player then return false end
+
+    -- Only show for the current player on their craft
     if player.index ~= playerIndex then return false end
+
+    local entity = Entity()
+    if not entity then return false end
+
     return true
 end
 
@@ -166,24 +175,6 @@ end
 -- =====================================================
 -- UI IMPLEMENTATION
 -- =====================================================
-
--- HUD button: show an icon on the top-left interaction bar to open this UI.
-function AutoScrapingController.getIcon()
-    return "mods/ScrapAlgorithm/data/icons/recycle.png"
-end
-
--- Always allow the interaction button for the local player while client-side.
-function AutoScrapingController.interactionPossible(playerIndex, _)
-    if onServer() then return false end
-    local player = Player()
-    if not player or player.index ~= playerIndex then return false end
-    return true
-end
-
--- Optional text shown when hovering the HUD icon.
-function AutoScrapingController.getInteractionText()
-    return "Auto Scraper"
-end
 
 function AutoScrapingController.initUI()
     -- Prevent duplicate UI windows
