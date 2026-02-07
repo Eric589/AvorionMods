@@ -134,12 +134,15 @@ function UiSampleController.updateServer()
 
     -- If settings changed, clear all assignments for full redistribution
     if settingsChanged then
+        -- Release all fighters back to orbit mothership
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    -- Clear orders by setting to Passive with empty target
+                    ai:setOrders(FighterOrders.Passive, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -172,6 +175,7 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.Passive, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -211,6 +215,7 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.Passive, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -228,6 +233,7 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.Passive, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -284,6 +290,7 @@ function UiSampleController.updateServer()
             local ai = FighterAI(fighterData.id)
             if ai then
                 ai.ignoreMothershipOrders = false
+                ai:setOrders(FighterOrders.Passive, Uuid())
                 ai:clearFeedback()
             end
         end
@@ -384,6 +391,7 @@ function UiSampleController.setEnabled(value)
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.Passive, Uuid())
                     ai:clearFeedback()
                 end
             end
