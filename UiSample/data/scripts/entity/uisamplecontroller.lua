@@ -82,7 +82,7 @@ end
 
 function UiSampleController.initUI()
     local res = getResolution()
-    local size = vec2(400, 380)
+    local size = vec2(400, 395)
     local menu = ScriptUI()
     local window = menu:createWindow(Rect(res * 0.5 - size * 0.5, res * 0.5 + size * 0.5))
     window.caption = "Auto Mining"
@@ -112,15 +112,17 @@ function UiSampleController.initUI()
     UiSampleController.resPerFighterTextBox.allowedCharacters = "0123456789"
     UiSampleController.resPerFighterTextBox.text = resPerFighter
 
-    -- Clear Resources button
+    -- Clear Resources button with info text
     window:createButton(Rect(10, 255, 250, 285), "Clear Resources", "onClearResources")
+    local clearInfoLabel = window:createLabel(vec2(10, 290), "(Deletes asteroids < min limit)", 12)
+    clearInfoLabel.color = ColorRGB(0.7, 0.7, 0.7)
 
     -- Separator
-    window:createLine(vec2(10, 295), vec2(390, 295))
+    window:createLine(vec2(10, 310), vec2(390, 310))
 
     -- Status section
-    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 310), "Distributed Fighters: 0", 14)
-    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 335), "Targeted Asteroids: 0", 14)
+    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
+    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Asteroids: 0", 14)
 end
 
 function UiSampleController.getUpdateInterval()
