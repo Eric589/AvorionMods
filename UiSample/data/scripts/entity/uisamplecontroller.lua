@@ -153,7 +153,6 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -192,7 +191,6 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -249,7 +247,6 @@ function UiSampleController.updateServer()
             local ai = FighterAI(fighterData.id)
             if ai then
                 ai.ignoreMothershipOrders = false
-                ai:setOrders(FighterOrders.None, Uuid())
                 ai:clearFeedback()
             end
         end
@@ -350,7 +347,6 @@ function UiSampleController.setEnabled(value)
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
