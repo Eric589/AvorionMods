@@ -129,9 +129,6 @@ function UiSampleController.updateServer()
     local entity = Entity()
     if not valid(entity) then return end
 
-    -- Debug logging
-    print("[UISample] serverMinResource: " .. serverMinResource .. ", serverResPerFighter: " .. serverResPerFighter)
-
     -- Cleanup invalid assignments and release fighters back to default AI
     for fighterIndex, asteroidId in pairs(assignedFighters) do
         local fighter = Entity(Uuid(fighterIndex))
@@ -162,9 +159,10 @@ function UiSampleController.updateServer()
         end
     end
 
-    -- Get qualifying asteroids with resource counts
+    -- Get qualifying asteroids with resource counts and distance
     local sector = Sector()
     if not sector then return end
+    local entityPos = entity.translationf
     local asteroids = {}
     for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
         if valid(asteroid) then
@@ -176,13 +174,14 @@ function UiSampleController.updateServer()
                 local perFighter = serverResPerFighter
                 if perFighter <= 0 then perFighter = 1 end
                 local needed = math.max(1, math.ceil(total / perFighter))
-                print("[UISample] Asteroid total: " .. total .. ", perFighter: " .. perFighter .. ", needed: " .. needed)
-                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed})
+                local distance = distance(entityPos, asteroid.translationf)
+                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed, distance = distance})
             end
         end
     end
     
-    print("[UISample] Total qualifying asteroids: " .. #asteroids)
+    -- Sort asteroids by distance (nearest first)
+    table.sort(asteroids, function(a, b) return a.distance < b.distance end)
 
     if #asteroids == 0 then
         -- Release all fighters back to default AI
@@ -360,10 +359,8 @@ callable(UiSampleController, "setEnabled")
 -- Server RPC: sync settings from client
 function UiSampleController.syncSettings(minRes, perFighter)
     if not onServer() then return end
-    print("[UISample] syncSettings called - minRes: " .. tostring(minRes) .. ", perFighter: " .. tostring(perFighter))
     serverMinResource = tonumber(minRes) or 1000
     serverResPerFighter = tonumber(perFighter) or 1000
-    print("[UISample] After conversion - serverMinResource: " .. serverMinResource .. ", serverResPerFighter: " .. serverResPerFighter)
 end
 callable(UiSampleController, "syncSettings")
 
