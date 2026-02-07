@@ -283,7 +283,20 @@ callable(UiSampleController, "updateFighterCount")
 function UiSampleController.setEnabled(value)
     if not onServer() then return end
     serverEnabled = value
-    if serverEnabled == 0 then assignedFighters = {} end
+    if serverEnabled == 0 then
+        -- Release all fighters back to default AI
+        for fighterIndex, _ in pairs(assignedFighters) do
+            local fighter = Entity(Uuid(fighterIndex))
+            if valid(fighter) then
+                local ai = FighterAI(fighter.id)
+                if ai then
+                    ai.ignoreMothershipOrders = false
+                    ai:clearFeedback()
+                end
+            end
+        end
+        assignedFighters = {}
+    end
 end
 callable(UiSampleController, "setEnabled")
 
