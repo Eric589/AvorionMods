@@ -21,6 +21,7 @@ local assignedFighters = {}
 local serverEnabled = 0
 local serverMinResource = 1000
 local serverResPerFighter = 1000
+local settingsChanged = false
 
 function UiSampleController.getIcon()
     return "data/icon/icon.png"
@@ -62,6 +63,7 @@ function UiSampleController.secure()
         serverMinResource = serverMinResource,
         serverResPerFighter = serverResPerFighter,
         assignedFighters = assignedFighters,
+        settingsChanged = settingsChanged,
     }
 end
 
@@ -74,6 +76,7 @@ function UiSampleController.restore(data)
         serverMinResource = data.serverMinResource or 1000
         serverResPerFighter = data.serverResPerFighter or 1000
         assignedFighters = data.assignedFighters or {}
+        settingsChanged = data.settingsChanged or false
     end
 end
 
@@ -128,6 +131,22 @@ function UiSampleController.updateServer()
     if serverEnabled == 0 then return end
     local entity = Entity()
     if not valid(entity) then return end
+
+    -- If settings changed, clear all assignments for full redistribution
+    if settingsChanged then
+        for fighterIndex, _ in pairs(assignedFighters) do
+            local fighter = Entity(Uuid(fighterIndex))
+            if valid(fighter) then
+                local ai = FighterAI(fighter.id)
+                if ai then
+                    ai.ignoreMothershipOrders = false
+                    ai:clearFeedback()
+                end
+            end
+        end
+        assignedFighters = {}
+        settingsChanged = false
+    end
 
     -- Cleanup invalid assignments and release fighters back to default AI
     for fighterIndex, asteroidId in pairs(assignedFighters) do
@@ -377,8 +396,15 @@ callable(UiSampleController, "setEnabled")
 -- Server RPC: sync settings from client
 function UiSampleController.syncSettings(minRes, perFighter)
     if not onServer() then return end
-    serverMinResource = tonumber(minRes) or 1000
-    serverResPerFighter = tonumber(perFighter) or 1000
+    local newMinResource = tonumber(minRes) or 1000
+    local newResPerFighter = tonumber(perFighter) or 1000
+    
+    -- Check if settings actually changed
+    if newMinResource ~= serverMinResource or newResPerFighter ~= serverResPerFighter then
+        serverMinResource = newMinResource
+        serverResPerFighter = newResPerFighter
+        settingsChanged = true
+    end
 end
 callable(UiSampleController, "syncSettings")
 
