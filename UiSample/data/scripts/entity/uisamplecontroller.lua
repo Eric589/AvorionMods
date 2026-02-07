@@ -129,28 +129,40 @@ function UiSampleController.updateServer()
     local entity = Entity()
     if not valid(entity) then return end
 
-    -- Cleanup invalid assignments
+    -- Debug logging
+    print("[UISample] serverMinResource: " .. serverMinResource .. ", serverResPerFighter: " .. serverResPerFighter)
+
+    -- Cleanup invalid assignments and release fighters back to default AI
     for fighterIndex, asteroidId in pairs(assignedFighters) do
         local fighter = Entity(Uuid(fighterIndex))
         if not valid(fighter) then
             assignedFighters[fighterIndex] = nil
         else
+            local needsRelease = false
             local asteroid = Entity(asteroidId)
             if not valid(asteroid) then
-                assignedFighters[fighterIndex] = nil
+                needsRelease = true
             else
                 local res = 0
                 for _, amount in pairs({asteroid:getMineableResources()}) do
                     res = res + (amount or 0)
                 end
                 if res < serverMinResource then
-                    assignedFighters[fighterIndex] = nil
+                    needsRelease = true
+                end
+            end
+            if needsRelease then
+                assignedFighters[fighterIndex] = nil
+                local ai = FighterAI(fighter.id)
+                if ai then
+                    ai.ignoreMothershipOrders = false
+                    ai:clearFeedback()
                 end
             end
         end
     end
 
-    -- Get qualifying asteroids
+    -- Get qualifying asteroids with resource counts
     local sector = Sector()
     if not sector then return end
     local asteroids = {}
@@ -161,37 +173,82 @@ function UiSampleController.updateServer()
                 total = total + (amount or 0)
             end
             if total >= serverMinResource then
-                table.insert(asteroids, asteroid)
+                local perFighter = serverResPerFighter
+                if perFighter <= 0 then perFighter = 1 end
+                local needed = math.max(1, math.ceil(total / perFighter))
+                print("[UISample] Asteroid total: " .. total .. ", perFighter: " .. perFighter .. ", needed: " .. needed)
+                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed})
             end
         end
     end
+    
+    print("[UISample] Total qualifying asteroids: " .. #asteroids)
 
     if #asteroids == 0 then
+        -- Release all fighters back to default AI
+        for fighterIndex, _ in pairs(assignedFighters) do
+            local fighter = Entity(Uuid(fighterIndex))
+            if valid(fighter) then
+                local ai = FighterAI(fighter.id)
+                if ai then
+                    ai.ignoreMothershipOrders = false
+                    ai:clearFeedback()
+                end
+            end
+        end
         assignedFighters = {}
         broadcastInvokeClientFunction("updateStats", 0, 0)
         return
     end
 
-    -- Get deployed fighters and assign unassigned ones
+    -- Count how many fighters are already assigned to each asteroid
+    local asteroidFighterCount = {}
+    for _, asteroidId in pairs(assignedFighters) do
+        local key = tostring(asteroidId)
+        asteroidFighterCount[key] = (asteroidFighterCount[key] or 0) + 1
+    end
+
+    -- Get all deployed fighters
     local controller = FighterController(entity.id)
     if not controller then return end
-    local asteroidIdx = 1
+    local unassigned = {}
     for squad = 0, 9 do
         local fighters = {controller:getDeployedFighters(squad)}
         for _, fighter in pairs(fighters) do
             if valid(fighter) then
                 local fighterIndex = fighter.index.string
                 if not assignedFighters[fighterIndex] then
-                    local asteroid = asteroids[asteroidIdx]
-                    local ai = FighterAI(fighter.id)
-                    if ai then
-                        ai.ignoreMothershipOrders = true
-                        ai:clearFeedback()
-                        ai:setOrders(FighterOrders.Attack, asteroid.index)
-                        assignedFighters[fighterIndex] = asteroid.id
-                    end
-                    asteroidIdx = (asteroidIdx % #asteroids) + 1
+                    table.insert(unassigned, fighter)
                 end
+            end
+        end
+    end
+
+    -- Assign unassigned fighters to asteroids that still need more
+    for _, fighterData in ipairs(unassigned) do
+        local assigned = false
+        for _, asteroidData in ipairs(asteroids) do
+            local key = tostring(asteroidData.entity.id)
+            local current = asteroidFighterCount[key] or 0
+            if current < asteroidData.needed then
+                local ai = FighterAI(fighterData.id)
+                if ai then
+                    ai.ignoreMothershipOrders = true
+                    ai:clearFeedback()
+                    ai:setOrders(FighterOrders.Attack, asteroidData.entity.index)
+                    assignedFighters[fighterData.index.string] = asteroidData.entity.id
+                    asteroidFighterCount[key] = current + 1
+                    assigned = true
+                end
+                break
+            end
+        end
+        -- No asteroid needs more fighters, release to default AI
+        if not assigned then
+            local ai = FighterAI(fighterData.id)
+            if ai then
+                ai.ignoreMothershipOrders = false
+                ai:clearFeedback()
             end
         end
     end
@@ -303,8 +360,10 @@ callable(UiSampleController, "setEnabled")
 -- Server RPC: sync settings from client
 function UiSampleController.syncSettings(minRes, perFighter)
     if not onServer() then return end
+    print("[UISample] syncSettings called - minRes: " .. tostring(minRes) .. ", perFighter: " .. tostring(perFighter))
     serverMinResource = tonumber(minRes) or 1000
     serverResPerFighter = tonumber(perFighter) or 1000
+    print("[UISample] After conversion - serverMinResource: " .. serverMinResource .. ", serverResPerFighter: " .. serverResPerFighter)
 end
 callable(UiSampleController, "syncSettings")
 
