@@ -8,8 +8,8 @@ include("callable")
 
 UiSampleController = {}
 
--- State
-local enabled = false
+-- State (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
+local enabled = 0
 local pressCount = 0
 
 function UiSampleController.getIcon()
@@ -49,7 +49,7 @@ end
 
 function UiSampleController.restore(data)
     if data then
-        enabled = data.enabled or false
+        enabled = data.enabled or 0
         pressCount = data.pressCount or 0
     end
 end
@@ -75,31 +75,16 @@ function UiSampleController.initUI()
 end
 
 function UiSampleController.onShowWindow()
-    -- Update UI with current state when window opens
-    if UiSampleController.statusLabel then
-        UiSampleController.statusLabel.caption = "Status: " .. (enabled and "Active" or "Inactive")
-    end
-    if UiSampleController.toggleBtn then
-        UiSampleController.toggleBtn.caption = enabled and "Disable" or "Enable"
-    end
-    if UiSampleController.pressLabel then
-        UiSampleController.pressLabel.caption = "Presses: " .. pressCount
-    end
+    UiSampleController.refreshUI()
 end
 
+-- Toggle is client-side only, matching the SampleMods pattern
 function UiSampleController.onToggle()
-    if onClient() then
-        invokeServerFunction("toggleEnabled")
-    end
+    if enabled == 1 then enabled = 0 else enabled = 1 end
+    UiSampleController.refreshUI()
 end
 
-function UiSampleController.toggleEnabled()
-    if not onServer() then return end
-    enabled = not enabled
-    broadcastInvokeClientFunction("updateUI", enabled, pressCount)
-end
-callable(UiSampleController, "toggleEnabled")
-
+-- Press counter uses server round-trip to demonstrate RPC
 function UiSampleController.onPress()
     if onClient() then
         invokeServerFunction("incrementPress")
@@ -109,27 +94,25 @@ end
 function UiSampleController.incrementPress()
     if not onServer() then return end
     pressCount = pressCount + 1
-    broadcastInvokeClientFunction("updateUI", enabled, pressCount)
+    broadcastInvokeClientFunction("updatePressCount", pressCount)
 end
 callable(UiSampleController, "incrementPress")
 
-function UiSampleController.updateUI(isEnabled, count)
+function UiSampleController.updatePressCount(count)
     if not onClient() then return end
+    pressCount = count
+    UiSampleController.refreshUI()
+end
+callable(UiSampleController, "updatePressCount")
+
+function UiSampleController.refreshUI()
     if UiSampleController.statusLabel then
-        UiSampleController.statusLabel.caption = "Status: " .. (isEnabled and "Active" or "Inactive")
+        UiSampleController.statusLabel.caption = "Status: " .. (enabled == 1 and "Active" or "Inactive")
     end
     if UiSampleController.toggleBtn then
-        UiSampleController.toggleBtn.caption = isEnabled and "Disable" or "Enable"
+        UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
     if UiSampleController.pressLabel then
-        UiSampleController.pressLabel.caption = "Presses: " .. count
+        UiSampleController.pressLabel.caption = "Presses: " .. pressCount
     end
 end
-callable(UiSampleController, "updateUI")
-
-function UiSampleController.disable()
-    if not onServer() then return end
-    enabled = false
-    return 0
-end
-callable(UiSampleController, "disable")
