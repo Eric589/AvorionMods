@@ -110,7 +110,7 @@ function UiSampleController.initUI()
     UiSampleController.resPerFighterTextBox.text = resPerFighter
 
     -- Clear Resources button
-    window:createButton(Rect(10, 255, 200, 285), "Clear Resources", "onClearResources")
+    window:createButton(Rect(10, 255, 250, 285), "Clear Resources", "onClearResources")
 
     -- Separator
     window:createLine(vec2(10, 295), vec2(390, 295))
@@ -153,6 +153,7 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -191,6 +192,7 @@ function UiSampleController.updateServer()
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
@@ -247,6 +249,7 @@ function UiSampleController.updateServer()
             local ai = FighterAI(fighterData.id)
             if ai then
                 ai.ignoreMothershipOrders = false
+                ai:setOrders(FighterOrders.None, Uuid())
                 ai:clearFeedback()
             end
         end
@@ -347,6 +350,7 @@ function UiSampleController.setEnabled(value)
                 local ai = FighterAI(fighter.id)
                 if ai then
                     ai.ignoreMothershipOrders = false
+                    ai:setOrders(FighterOrders.None, Uuid())
                     ai:clearFeedback()
                 end
             end
