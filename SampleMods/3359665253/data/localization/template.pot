@@ -1,0 +1,86 @@
+# ========== C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua ==========
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Sector cleaner"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Clean loot"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete insignificant loot listed below"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Clean wreckages"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete wreckages that meets criteria below\nIf you select several options, the wreckage will be deleted if at least one of the requirements is met"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Auto"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Sets a timer in seconds for the cleaning\n60 is recommended. Values below 10 are almost pointless and will do more harm than good"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Filters:"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Frequency(sec):"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Money"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete money loot"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Scrap metals"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete scrap metals loot"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete resource loot, if its floating more than 30 seconds (protection from accidental deletion of mined resouces)"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage smaller than this value will be deleted"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Money value"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage cheaper than this value will be deleted"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Resources value"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage cheaper(in resources) than this value will be deleted"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Reset settings"
+msgstr ""
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Restore default settings"
+msgstr ""
+
+

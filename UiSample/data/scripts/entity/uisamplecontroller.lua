@@ -3,55 +3,33 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 include("utility")
 include("callable")
 
+-- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
+-- namespace UiSampleController
+
 UiSampleController = {}
-
--- Module-level functions for Avorion
-function getIcon()
-    return "data/icon/icon.png"
-end
-
-function interactionPossible(playerIndex)
-    if onServer() then return false end
-    local player = Player()
-    return player and player.index == playerIndex
-end
-
-function getInteractionText()
-    return "UI Sample"
-end
-
-function initUI()
-    return UiSampleController.initUI()
-end
-
-function initialize()
-    return UiSampleController.initialize()
-end
-
-function secure()
-    return UiSampleController.secure()
-end
-
-function restore(data)
-    return UiSampleController.restore(data)
-end
-
--- Button callbacks (must be at module level)
-function onToggle()
-    return UiSampleController.onToggle()
-end
-
-function onPress()
-    return UiSampleController.onPress()
-end
-
-function onShowWindow()
-    return UiSampleController.onShowWindow()
-end
 
 -- State
 local enabled = false
 local pressCount = 0
+
+function UiSampleController.getIcon()
+    return "data/icon/icon.png"
+end
+
+function UiSampleController.interactionPossible(playerIndex)
+    if onServer() then return false end
+    local player = Player()
+    local entity = Entity()
+    if player.craft.index.value == entity.id.value then
+        return true, ""
+    else
+        return false, ""
+    end
+end
+
+function UiSampleController.getInteractionText()
+    return "UI Sample"
+end
 
 function UiSampleController.initialize()
     if onServer() then

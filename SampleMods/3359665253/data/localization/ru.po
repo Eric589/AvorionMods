@@ -1,0 +1,85 @@
+# ========== C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua ==========
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Sector cleaner"
+msgstr "Чистка сектора"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Clean loot"
+msgstr "Очистить лут"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete insignificant loot listed below"
+msgstr "Удалить незначительный лут, указанный ниже"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Clean wreckages"
+msgstr "Удалить обломки"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete wreckages that meets criteria below\nIf you select several options, the wreckage will be deleted if at least one of the requirements is met"
+msgstr "Удалить обломки, которые соответствуют критериям, указанным ниже\nЕсли выбрано несколько условий, обломок удалится при выполнении хотя бы одного из них"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Auto"
+msgstr "Авто"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Sets a timer in seconds for the cleaning\n60 is recommended. Values below 10 are almost pointless and will do more harm than good"
+msgstr "Устанавливает таймер в секундах на очистку\nРекомендуется 60. Значения ниже 10 практически бесполезны и будут больше вредить, чем помогать"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Filters:"
+msgstr "Фильтры"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Frequency(sec):"
+msgstr "Частота(сек)"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Money"
+msgstr "Деньги"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete money loot"
+msgstr "Удалять денежный лут"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Scrap metals"
+msgstr "Металлолом"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete scrap metals loot"
+msgstr "Удалять лут в виде металлолома"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Delete resource loot, if its floating more than 30 seconds (protection from accidental deletion of mined resouces)"
+msgstr "Удалять лут в виде ресурсов, которые летают больше 30 секунд(защита от случайного удаления добытых ресурсов с астероида)"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage smaller than this value will be deleted"
+msgstr "Будет удалён каждый обломок с размером меньше, чем указанное число"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Money value"
+msgstr "Ценность"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage cheaper than this value will be deleted"
+msgstr "Будет удалён каждый обломок с денежной ценностью меньшей, чем указанное число"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Resources value"
+msgstr "Содержание ресурсов"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Every wreckage cheaper(in resources) than this value will be deleted"
+msgstr "Будет удалён каждый обломок с содержанием ресурсов меньшим, чем указанное число"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Reset settings"
+msgstr "Сбросить настройки"
+
+#: C:/Users/bphot/AppData/Roaming/Avorion/mods/Sector cleaner (customizable)/data/scripts/lib/lootCleaner.lua:
+msgid "Restore default settings"
+msgstr "Восстановить настройки по умолчанию"
+
