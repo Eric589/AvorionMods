@@ -460,10 +460,8 @@ function UiSampleController.countAsteroids()
 end
 
 function UiSampleController.onClearResources()
-    -- Reset minimum resource limit and trigger server-side asteroid cleanup
-    minResourceLimit = "1000"
+    -- Delete asteroids below current minimum resource threshold
     invokeServerFunction("clearLowResourceAsteroids", minResourceLimit)
-    UiSampleController.refreshUI()
     UiSampleController.countAsteroids()
 end
 
