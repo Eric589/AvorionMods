@@ -8,13 +8,19 @@ include("callable")
 
 UiSampleController = {}
 
--- State (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
+-- Client state (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
 local enabled = 0
 local minResourceLimit = "1000"
 local resPerFighter = "1000"
 local fighterCount = 0
 local distributedFighters = 0
 local targetedAsteroids = 0
+
+-- Server state
+local assignedFighters = {}
+local serverEnabled = 0
+local serverMinResource = 1000
+local serverResPerFighter = 1000
 
 function UiSampleController.getIcon()
     return "data/icon/icon.png"
@@ -48,7 +54,15 @@ function UiSampleController.initialize()
 end
 
 function UiSampleController.secure()
-    return {enabled = enabled, minResourceLimit = minResourceLimit, resPerFighter = resPerFighter}
+    return {
+        enabled = enabled,
+        minResourceLimit = minResourceLimit,
+        resPerFighter = resPerFighter,
+        serverEnabled = serverEnabled,
+        serverMinResource = serverMinResource,
+        serverResPerFighter = serverResPerFighter,
+        assignedFighters = assignedFighters,
+    }
 end
 
 function UiSampleController.restore(data)
@@ -56,6 +70,10 @@ function UiSampleController.restore(data)
         enabled = data.enabled or 0
         minResourceLimit = data.minResourceLimit or "1000"
         resPerFighter = data.resPerFighter or "1000"
+        serverEnabled = data.serverEnabled or 0
+        serverMinResource = data.serverMinResource or 1000
+        serverResPerFighter = data.serverResPerFighter or 1000
+        assignedFighters = data.assignedFighters or {}
     end
 end
 
@@ -106,6 +124,91 @@ function UiSampleController.getUpdateInterval()
     return 1
 end
 
+function UiSampleController.updateServer()
+    if serverEnabled == 0 then return end
+    local entity = Entity()
+    if not valid(entity) then return end
+
+    -- Cleanup invalid assignments
+    for fighterIndex, asteroidId in pairs(assignedFighters) do
+        local fighter = Entity(Uuid(fighterIndex))
+        if not valid(fighter) then
+            assignedFighters[fighterIndex] = nil
+        else
+            local asteroid = Entity(asteroidId)
+            if not valid(asteroid) then
+                assignedFighters[fighterIndex] = nil
+            else
+                local res = 0
+                for _, amount in pairs({asteroid:getMineableResources()}) do
+                    res = res + (amount or 0)
+                end
+                if res < serverMinResource then
+                    assignedFighters[fighterIndex] = nil
+                end
+            end
+        end
+    end
+
+    -- Get qualifying asteroids
+    local sector = Sector()
+    if not sector then return end
+    local asteroids = {}
+    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
+        if valid(asteroid) then
+            local total = 0
+            for _, amount in pairs({asteroid:getMineableResources()}) do
+                total = total + (amount or 0)
+            end
+            if total >= serverMinResource then
+                table.insert(asteroids, asteroid)
+            end
+        end
+    end
+
+    if #asteroids == 0 then
+        assignedFighters = {}
+        broadcastInvokeClientFunction("updateStats", 0, 0)
+        return
+    end
+
+    -- Get deployed fighters and assign unassigned ones
+    local controller = FighterController(entity.id)
+    if not controller then return end
+    local asteroidIdx = 1
+    for squad = 0, 9 do
+        local fighters = {controller:getDeployedFighters(squad)}
+        for _, fighter in pairs(fighters) do
+            if valid(fighter) then
+                local fighterIndex = fighter.index.string
+                if not assignedFighters[fighterIndex] then
+                    local asteroid = asteroids[asteroidIdx]
+                    local ai = FighterAI(fighter.id)
+                    if ai then
+                        ai.ignoreMothershipOrders = true
+                        ai:clearFeedback()
+                        ai:setOrders(FighterOrders.Attack, asteroid.index)
+                        assignedFighters[fighterIndex] = asteroid.id
+                    end
+                    asteroidIdx = (asteroidIdx % #asteroids) + 1
+                end
+            end
+        end
+    end
+
+    -- Count actual stats
+    local distributed = 0
+    local targetedSet = {}
+    for _, asteroidId in pairs(assignedFighters) do
+        distributed = distributed + 1
+        targetedSet[tostring(asteroidId)] = true
+    end
+    local targeted = 0
+    for _ in pairs(targetedSet) do targeted = targeted + 1 end
+
+    broadcastInvokeClientFunction("updateStats", distributed, targeted)
+end
+
 function UiSampleController.updateClient()
     UiSampleController.countAsteroids()
     invokeServerFunction("countFighters")
@@ -120,6 +223,8 @@ end
 -- Toggle is client-side only, matching the SampleMods pattern
 function UiSampleController.onToggle()
     if enabled == 1 then enabled = 0 else enabled = 1 end
+    invokeServerFunction("setEnabled", enabled)
+    invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     UiSampleController.refreshUI()
 end
 
@@ -130,6 +235,7 @@ function UiSampleController.onMinResourceChanged()
         if text == "" then text = "0" end
         minResourceLimit = text
         UiSampleController.countAsteroids()
+        invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
@@ -139,6 +245,7 @@ function UiSampleController.onResPerFighterChanged()
         if text == "" then text = "0" end
         resPerFighter = text
         UiSampleController.countAsteroids()
+        invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
@@ -172,15 +279,42 @@ function UiSampleController.updateFighterCount(count)
 end
 callable(UiSampleController, "updateFighterCount")
 
+-- Server RPC: sync enable state from client
+function UiSampleController.setEnabled(value)
+    if not onServer() then return end
+    serverEnabled = value
+    if serverEnabled == 0 then assignedFighters = {} end
+end
+callable(UiSampleController, "setEnabled")
+
+-- Server RPC: sync settings from client
+function UiSampleController.syncSettings(minRes, perFighter)
+    if not onServer() then return end
+    serverMinResource = tonumber(minRes) or 1000
+    serverResPerFighter = tonumber(perFighter) or 1000
+end
+callable(UiSampleController, "syncSettings")
+
+-- Client RPC: receive actual assignment stats from server
+function UiSampleController.updateStats(distributed, targeted)
+    if not onClient() then return end
+    distributedFighters = distributed
+    targetedAsteroids = targeted
+    if UiSampleController.distributedFightersLabel then
+        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    end
+    if UiSampleController.targetedAsteroidsLabel then
+        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+    end
+end
+callable(UiSampleController, "updateStats")
+
 -- Client-side asteroid counting (Sector queries work on client)
 function UiSampleController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
-    local fighters = 0
     local limit = tonumber(minResourceLimit) or 0
-    local perFighter = tonumber(resPerFighter) or 1000
-    if perFighter <= 0 then perFighter = 1 end
     for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
         if valid(asteroid) then
             local total = 0
@@ -189,20 +323,22 @@ function UiSampleController.countAsteroids()
             end
             if total >= limit then
                 count = count + 1
-                fighters = fighters + math.ceil(total / perFighter)
             end
         end
     end
-    targetedAsteroids = count
-    distributedFighters = fighters
     if UiSampleController.asteroidCountLabel then
         UiSampleController.asteroidCountLabel.caption = "Available Asteroids: " .. count
     end
-    if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
-    end
-    if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+    -- When enabled, server provides real distributed/targeted values via updateStats
+    if enabled == 0 then
+        distributedFighters = 0
+        targetedAsteroids = 0
+        if UiSampleController.distributedFightersLabel then
+            UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
+        end
+        if UiSampleController.targetedAsteroidsLabel then
+            UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: 0"
+        end
     end
 end
 
