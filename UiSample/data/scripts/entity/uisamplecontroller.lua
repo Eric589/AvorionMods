@@ -144,8 +144,8 @@ function UiSampleController.releaseFighter(fighter, mothership)
         -- Fighter is far away (>3km), actively fly to mothership for faster return
         ai:setOrders(FighterOrders.Attack, mothership.index)
     else
-        -- Fighter is close, use passive orbit mode
-        ai:setOrders(FighterOrders.Passive, Uuid())
+        -- Fighter is close, enter default orbit mode
+        ai:setOrders(FighterOrders.None, Uuid())
     end
     
     ai:clearFeedback()
@@ -460,10 +460,38 @@ function UiSampleController.countAsteroids()
 end
 
 function UiSampleController.onClearResources()
+    -- Reset minimum resource limit and trigger server-side asteroid cleanup
     minResourceLimit = "1000"
+    invokeServerFunction("clearLowResourceAsteroids", minResourceLimit)
     UiSampleController.refreshUI()
     UiSampleController.countAsteroids()
 end
+
+-- Server RPC: Delete all asteroids with resources below threshold
+function UiSampleController.clearLowResourceAsteroids(minResStr)
+    if not onServer() then return end
+    
+    local minRes = tonumber(minResStr) or 1000
+    local sector = Sector()
+    if not sector then return end
+    
+    local deleted = 0
+    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
+        if valid(asteroid) then
+            local total = 0
+            for _, amount in pairs({asteroid:getMineableResources()}) do
+                total = total + (amount or 0)
+            end
+            if total < minRes then
+                sector:deleteEntity(asteroid)
+                deleted = deleted + 1
+            end
+        end
+    end
+    
+    print("[UISample] Cleared " .. deleted .. " asteroids with resources < " .. minRes)
+end
+callable(UiSampleController, "clearLowResourceAsteroids")
 
 function UiSampleController.refreshUI()
     if UiSampleController.toggleBtn then
