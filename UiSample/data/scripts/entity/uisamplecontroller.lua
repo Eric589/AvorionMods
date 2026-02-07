@@ -12,6 +12,7 @@ UiSampleController = {}
 local enabled = 0
 local minResourceLimit = "1000"
 local resPerFighter = "1000"
+local fighterCount = 0
 
 function UiSampleController.getIcon()
     return "data/icon/icon.png"
@@ -58,7 +59,7 @@ end
 
 function UiSampleController.initUI()
     local res = getResolution()
-    local size = vec2(400, 340)
+    local size = vec2(400, 380)
     local menu = ScriptUI()
     local window = menu:createWindow(Rect(res * 0.5 - size * 0.5, res * 0.5 + size * 0.5))
     window.caption = "Auto Mining"
@@ -88,16 +89,30 @@ function UiSampleController.initUI()
     UiSampleController.resPerFighterTextBox.allowedCharacters = "0123456789"
     UiSampleController.resPerFighterTextBox.text = resPerFighter
 
+    -- Clear Resources button
+    window:createButton(Rect(10, 255, 200, 285), "Clear Resources", "onClearResources")
+
     -- Separator
-    window:createLine(vec2(10, 260), vec2(390, 260))
+    window:createLine(vec2(10, 295), vec2(390, 295))
 
     -- Status section
-    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 275), "Distributed Fighters: 0", 14)
-    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 300), "Targeted Asteroids: 0", 14)
+    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 310), "Distributed Fighters: 0", 14)
+    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 335), "Targeted Asteroids: 0", 14)
+end
+
+function UiSampleController.getUpdateInterval()
+    return 1
+end
+
+function UiSampleController.updateClient()
+    UiSampleController.countAsteroids()
+    invokeServerFunction("countFighters")
 end
 
 function UiSampleController.onShowWindow()
     UiSampleController.refreshUI()
+    UiSampleController.countAsteroids()
+    invokeServerFunction("countFighters")
 end
 
 -- Toggle is client-side only, matching the SampleMods pattern
@@ -112,6 +127,7 @@ function UiSampleController.onMinResourceChanged()
         local text = UiSampleController.minResourceTextBox.text
         if text == "" then text = "0" end
         minResourceLimit = text
+        UiSampleController.countAsteroids()
     end
 end
 
@@ -123,15 +139,70 @@ function UiSampleController.onResPerFighterChanged()
     end
 end
 
+-- Server-side fighter counting (FighterController is server-only)
+function UiSampleController.countFighters()
+    if not onServer() then return end
+    local entity = Entity()
+    if not valid(entity) then return end
+    local count = 0
+    local controller = FighterController(entity.id)
+    if controller then
+        for squad = 0, 9 do
+            local fighters = {controller:getDeployedFighters(squad)}
+            for _, fighter in pairs(fighters) do
+                if valid(fighter) then
+                    count = count + 1
+                end
+            end
+        end
+    end
+    broadcastInvokeClientFunction("updateFighterCount", count)
+end
+callable(UiSampleController, "countFighters")
+
+function UiSampleController.updateFighterCount(count)
+    if not onClient() then return end
+    fighterCount = count
+    if UiSampleController.fighterCountLabel then
+        UiSampleController.fighterCountLabel.caption = "Available Fighters: " .. fighterCount
+    end
+end
+callable(UiSampleController, "updateFighterCount")
+
+-- Client-side asteroid counting (Sector queries work on client)
+function UiSampleController.countAsteroids()
+    local sector = Sector()
+    if not sector then return end
+    local count = 0
+    local limit = tonumber(minResourceLimit) or 0
+    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
+        if valid(asteroid) then
+            local total = 0
+            for _, amount in pairs({asteroid:getMineableResources()}) do
+                total = total + (amount or 0)
+            end
+            if total >= limit then
+                count = count + 1
+            end
+        end
+    end
+    if UiSampleController.asteroidCountLabel then
+        UiSampleController.asteroidCountLabel.caption = "Available Asteroids: " .. count
+    end
+end
+
+function UiSampleController.onClearResources()
+    minResourceLimit = "1000"
+    UiSampleController.refreshUI()
+    UiSampleController.countAsteroids()
+end
+
 function UiSampleController.refreshUI()
     if UiSampleController.toggleBtn then
         UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
     if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Fighters: 0"
-    end
-    if UiSampleController.asteroidCountLabel then
-        UiSampleController.asteroidCountLabel.caption = "Available Asteroids: 0"
+        UiSampleController.fighterCountLabel.caption = "Available Fighters: " .. fighterCount
     end
     if UiSampleController.distributedFightersLabel then
         UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
