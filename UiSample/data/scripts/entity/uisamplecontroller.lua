@@ -164,6 +164,7 @@ function UiSampleController.updateServer()
     if not sector then return end
     local entityPos = entity.translationf
     local asteroids = {}
+    local qualifyingAsteroidIds = {}
     for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
         if valid(asteroid) then
             local total = 0
@@ -176,6 +177,23 @@ function UiSampleController.updateServer()
                 local needed = math.max(1, math.ceil(total / perFighter))
                 local distance = distance(entityPos, asteroid.translationf)
                 table.insert(asteroids, {entity = asteroid, resources = total, needed = needed, distance = distance})
+                qualifyingAsteroidIds[tostring(asteroid.id)] = true
+            end
+        end
+    end
+    
+    -- Release fighters assigned to non-qualifying asteroids
+    for fighterIndex, asteroidId in pairs(assignedFighters) do
+        local asteroidKey = tostring(asteroidId)
+        if not qualifyingAsteroidIds[asteroidKey] then
+            assignedFighters[fighterIndex] = nil
+            local fighter = Entity(Uuid(fighterIndex))
+            if valid(fighter) then
+                local ai = FighterAI(fighter.id)
+                if ai then
+                    ai.ignoreMothershipOrders = false
+                    ai:clearFeedback()
+                end
             end
         end
     end
