@@ -127,6 +127,30 @@ function UiSampleController.getUpdateInterval()
     return 1
 end
 
+-- Helper function to release a fighter back to mothership
+-- If fighter is >3km away, it will actively fly to ship for faster return
+function UiSampleController.releaseFighter(fighter, mothership)
+    if not valid(fighter) or not valid(mothership) then return end
+    
+    local ai = FighterAI(fighter.id)
+    if not ai then return end
+    
+    ai.ignoreMothershipOrders = false
+    
+    -- Check distance from mothership
+    local dist = distance(fighter.translationf, mothership.translationf)
+    
+    if dist > 3000 then
+        -- Fighter is far away (>3km), actively fly to mothership for faster return
+        ai:setOrders(FighterOrders.Attack, mothership.index)
+    else
+        -- Fighter is close, use passive orbit mode
+        ai:setOrders(FighterOrders.Passive, Uuid())
+    end
+    
+    ai:clearFeedback()
+end
+
 function UiSampleController.updateServer()
     if serverEnabled == 0 then return end
     local entity = Entity()
@@ -138,13 +162,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                local ai = FighterAI(fighter.id)
-                if ai then
-                    ai.ignoreMothershipOrders = false
-                    -- Clear orders by setting to Passive with empty target
-                    ai:setOrders(FighterOrders.Passive, Uuid())
-                    ai:clearFeedback()
-                end
+                UiSampleController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -172,12 +190,7 @@ function UiSampleController.updateServer()
             end
             if needsRelease then
                 assignedFighters[fighterIndex] = nil
-                local ai = FighterAI(fighter.id)
-                if ai then
-                    ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.Passive, Uuid())
-                    ai:clearFeedback()
-                end
+                UiSampleController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -212,12 +225,7 @@ function UiSampleController.updateServer()
             assignedFighters[fighterIndex] = nil
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                local ai = FighterAI(fighter.id)
-                if ai then
-                    ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.Passive, Uuid())
-                    ai:clearFeedback()
-                end
+                UiSampleController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -230,12 +238,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                local ai = FighterAI(fighter.id)
-                if ai then
-                    ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.Passive, Uuid())
-                    ai:clearFeedback()
-                end
+                UiSampleController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -287,12 +290,7 @@ function UiSampleController.updateServer()
         end
         -- No asteroid needs more fighters, release to default AI
         if not assigned then
-            local ai = FighterAI(fighterData.id)
-            if ai then
-                ai.ignoreMothershipOrders = false
-                ai:setOrders(FighterOrders.Passive, Uuid())
-                ai:clearFeedback()
-            end
+            UiSampleController.releaseFighter(fighterData, entity)
         end
     end
 
@@ -385,14 +383,12 @@ function UiSampleController.setEnabled(value)
     serverEnabled = value
     if serverEnabled == 0 then
         -- Release all fighters back to default AI
-        for fighterIndex, _ in pairs(assignedFighters) do
-            local fighter = Entity(Uuid(fighterIndex))
-            if valid(fighter) then
-                local ai = FighterAI(fighter.id)
-                if ai then
-                    ai.ignoreMothershipOrders = false
-                    ai:setOrders(FighterOrders.Passive, Uuid())
-                    ai:clearFeedback()
+        local entity = Entity()
+        if valid(entity) then
+            for fighterIndex, _ in pairs(assignedFighters) do
+                local fighter = Entity(Uuid(fighterIndex))
+                if valid(fighter) then
+                    UiSampleController.releaseFighter(fighter, entity)
                 end
             end
         end
