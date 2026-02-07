@@ -13,6 +13,8 @@ local enabled = 0
 local minResourceLimit = "1000"
 local resPerFighter = "1000"
 local fighterCount = 0
+local distributedFighters = 0
+local targetedAsteroids = 0
 
 function UiSampleController.getIcon()
     return "data/icon/icon.png"
@@ -136,6 +138,7 @@ function UiSampleController.onResPerFighterChanged()
         local text = UiSampleController.resPerFighterTextBox.text
         if text == "" then text = "0" end
         resPerFighter = text
+        UiSampleController.countAsteroids()
     end
 end
 
@@ -174,7 +177,10 @@ function UiSampleController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
+    local fighters = 0
     local limit = tonumber(minResourceLimit) or 0
+    local perFighter = tonumber(resPerFighter) or 1000
+    if perFighter <= 0 then perFighter = 1 end
     for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
         if valid(asteroid) then
             local total = 0
@@ -183,11 +189,20 @@ function UiSampleController.countAsteroids()
             end
             if total >= limit then
                 count = count + 1
+                fighters = fighters + math.ceil(total / perFighter)
             end
         end
     end
+    targetedAsteroids = count
+    distributedFighters = fighters
     if UiSampleController.asteroidCountLabel then
         UiSampleController.asteroidCountLabel.caption = "Available Asteroids: " .. count
+    end
+    if UiSampleController.distributedFightersLabel then
+        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    end
+    if UiSampleController.targetedAsteroidsLabel then
+        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
     end
 end
 
@@ -205,10 +220,10 @@ function UiSampleController.refreshUI()
         UiSampleController.fighterCountLabel.caption = "Available Fighters: " .. fighterCount
     end
     if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
+        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
     if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: 0"
+        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
     end
     if UiSampleController.minResourceTextBox then
         UiSampleController.minResourceTextBox.text = minResourceLimit
