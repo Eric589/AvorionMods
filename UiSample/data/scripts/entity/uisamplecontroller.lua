@@ -308,7 +308,8 @@ function UiSampleController.updateServer()
                 if ai then
                     ai.ignoreMothershipOrders = true
                     ai:clearFeedback()
-                    ai:setOrders(FighterOrders.Salvage, wreckData.entity.index)
+                    -- Use Attack order - fighters with salvaging equipment will automatically salvage
+                    ai:setOrders(FighterOrders.Attack, wreckData.entity.index)
                     assignedFighters[fighterData.index.string] = wreckData.entity.id
                     wreckFighterCount[key] = current + 1
                     assigned = true
