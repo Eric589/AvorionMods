@@ -180,8 +180,8 @@ function UiSampleController.releaseFighter(fighter, mothership)
         -- Fighter is far away (>3km), actively fly to mothership for faster return
         ai:setOrders(FighterOrders.Attack, mothership.index)
     else
-        -- Fighter is close, enter default orbit mode
-        ai:setOrders(FighterOrders.None, Uuid())
+        -- Fighter is close, enter passive mode
+        ai:setOrders(FighterOrders.Passive, Uuid())
     end
     
     ai:clearFeedback()
@@ -458,17 +458,23 @@ function UiSampleController.updateStats(distributed, targeted)
 end
 callable(UiSampleController, "updateStats")
 
--- Client-side asteroid counting (Sector queries work on client)
+-- Client-side wreckage counting (Sector queries work on client)
 function UiSampleController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
-    -- Count wreckage instead of asteroids
+    local minValue = tonumber(minResourceLimit) or 1000
+    
+    -- Count wreckage that meets minimum value threshold
     for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
         if valid(wreckage) then
-            count = count + 1
+            local value = UiSampleController.getWreckageValue(wreckage)
+            if value >= minValue then
+                count = count + 1
+            end
         end
     end
+    
     if UiSampleController.asteroidCountLabel then
         UiSampleController.asteroidCountLabel.caption = "Available Wrecks: " .. count
     end
