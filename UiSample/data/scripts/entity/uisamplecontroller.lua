@@ -255,7 +255,22 @@ function UiSampleController.updateServer()
         asteroidFighterCount[key] = (asteroidFighterCount[key] or 0) + 1
     end
 
-    -- Get all deployed fighters
+-- Helper function to check if a fighter can mine
+function UiSampleController.canFighterMine(fighter)
+    if not valid(fighter) then return false end
+    
+    -- Check if fighter has mining capability by checking title/name
+    local title = fighter.title or ""
+    if string.find(string.lower(title), "mining") then
+        return true
+    end
+    
+    -- Alternative: Check if it has civil weapons (miners are typically civil)
+    -- Mining fighters usually have "Mining" in their name
+    return false
+end
+
+-- Get all deployed fighters
     local controller = FighterController(entity.id)
     if not controller then return end
     local unassigned = {}
@@ -264,7 +279,8 @@ function UiSampleController.updateServer()
         for _, fighter in pairs(fighters) do
             if valid(fighter) then
                 local fighterIndex = fighter.index.string
-                if not assignedFighters[fighterIndex] then
+                -- Only use fighters that can mine and are not already assigned
+                if not assignedFighters[fighterIndex] and UiSampleController.canFighterMine(fighter) then
                     table.insert(unassigned, fighter)
                 end
             end
