@@ -1,12 +1,12 @@
--- Simple UI Sample Controller
+-- Auto Salvager Controller
 package.path = package.path .. ";data/scripts/lib/?.lua"
 include("utility")
 include("callable")
 
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
--- namespace UiSampleController
+-- namespace AutoSalvagerController
 
-UiSampleController = {}
+AutoSalvagerController = {}
 
 -- Client state (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
 local enabled = 0
@@ -23,11 +23,11 @@ local serverMinResource = 1000
 local serverResPerFighter = 1000
 local settingsChanged = false
 
-function UiSampleController.getIcon()
+function AutoSalvagerController.getIcon()
     return "data/icon/icon.png"
 end
 
-function UiSampleController.interactionPossible(playerIndex)
+function AutoSalvagerController.interactionPossible(playerIndex)
     if onServer() then return false end
     local player = Player()
     local entity = Entity()
@@ -38,23 +38,23 @@ function UiSampleController.interactionPossible(playerIndex)
     end
 end
 
-function UiSampleController.getInteractionText()
+function AutoSalvagerController.getInteractionText()
     return "UI Sample"
 end
 
-function UiSampleController.initialize()
+function AutoSalvagerController.initialize()
     if onServer() then
         local entity = Entity()
         if entity then
-            local initFlag = entity:getValue("uisample_initialized")
+            local initFlag = entity:getValue("autosalvager_initialized")
             if not initFlag then
-                entity:setValue("uisample_initialized", true)
+                entity:setValue("autosalvager_initialized", true)
             end
         end
     end
 end
 
-function UiSampleController.secure()
+function AutoSalvagerController.secure()
     return {
         enabled = enabled,
         minResourceLimit = minResourceLimit,
@@ -67,7 +67,7 @@ function UiSampleController.secure()
     }
 end
 
-function UiSampleController.restore(data)
+function AutoSalvagerController.restore(data)
     if data then
         enabled = data.enabled or 0
         minResourceLimit = data.minResourceLimit or "1000"
@@ -80,7 +80,7 @@ function UiSampleController.restore(data)
     end
 end
 
-function UiSampleController.initUI()
+function AutoSalvagerController.initUI()
     local res = getResolution()
     local size = vec2(400, 395)
     local menu = ScriptUI()
@@ -91,26 +91,26 @@ function UiSampleController.initUI()
     menu:registerWindow(window, "Auto Salvaging")
 
     -- Info section
-    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Salvaging Fighters: 0", 14)
-    UiSampleController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Wrecks: 0", 14)
+    AutoSalvagerController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Salvaging Fighters: 0", 14)
+    AutoSalvagerController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Wrecks: 0", 14)
 
     -- Separator
     window:createLine(vec2(10, 65), vec2(390, 65))
 
     -- Enable/Disable button
-    UiSampleController.toggleBtn = window:createButton(Rect(10, 80, 390, 115), "Enable", "onToggle")
+    AutoSalvagerController.toggleBtn = window:createButton(Rect(10, 80, 390, 115), "Enable", "onToggle")
 
     -- Minimum Resource Limit
     local label = window:createLabel(vec2(10, 130), "Minimum Wreck Value", 14)
-    UiSampleController.minResourceTextBox = window:createTextBox(Rect(10, 155, 200, 185), "onMinResourceChanged")
-    UiSampleController.minResourceTextBox.allowedCharacters = "0123456789"
-    UiSampleController.minResourceTextBox.text = minResourceLimit
+    AutoSalvagerController.minResourceTextBox = window:createTextBox(Rect(10, 155, 200, 185), "onMinResourceChanged")
+    AutoSalvagerController.minResourceTextBox.allowedCharacters = "0123456789"
+    AutoSalvagerController.minResourceTextBox.text = minResourceLimit
 
     -- Resources Per Fighter
     label = window:createLabel(vec2(10, 195), "Value Per Fighter", 14)
-    UiSampleController.resPerFighterTextBox = window:createTextBox(Rect(10, 220, 200, 250), "onResPerFighterChanged")
-    UiSampleController.resPerFighterTextBox.allowedCharacters = "0123456789"
-    UiSampleController.resPerFighterTextBox.text = resPerFighter
+    AutoSalvagerController.resPerFighterTextBox = window:createTextBox(Rect(10, 220, 200, 250), "onResPerFighterChanged")
+    AutoSalvagerController.resPerFighterTextBox.allowedCharacters = "0123456789"
+    AutoSalvagerController.resPerFighterTextBox.text = resPerFighter
 
     -- Clear Resources button with info text
     window:createButton(Rect(10, 255, 250, 285), "Clear Wrecks", "onClearResources")
@@ -121,17 +121,17 @@ function UiSampleController.initUI()
     window:createLine(vec2(10, 310), vec2(390, 310))
 
     -- Status section
-    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
-    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Wrecks: 0", 14)
+    AutoSalvagerController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
+    AutoSalvagerController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Wrecks: 0", 14)
 end
 
-function UiSampleController.getUpdateInterval()
+function AutoSalvagerController.getUpdateInterval()
     return 1
 end
 
 -- Helper function to check if a fighter can salvage
 -- Check the fighter's actual weapons, not the squad blueprint
-function UiSampleController.canFighterMine(fighter)
+function AutoSalvagerController.canFighterMine(fighter)
     if not valid(fighter) then return false end
     
     -- Get the fighter's actual Weapons component to check what it really has equipped
@@ -148,7 +148,7 @@ function UiSampleController.canFighterMine(fighter)
 end
 
 -- Helper function to calculate wreckage value
-function UiSampleController.getWreckageValue(wreckage)
+function AutoSalvagerController.getWreckageValue(wreckage)
     if not wreckage or not valid(wreckage) then return 0 end
 
     -- Use Entity's built-in getPlanResourceValue which returns material amounts
@@ -164,7 +164,7 @@ function UiSampleController.getWreckageValue(wreckage)
 end
 
 -- Helper function to release a fighter back to mothership
-function UiSampleController.releaseFighter(fighter, mothership)
+function AutoSalvagerController.releaseFighter(fighter, mothership)
     if not valid(fighter) or not valid(mothership) then return end
     
     local ai = FighterAI(fighter.id)
@@ -179,7 +179,7 @@ function UiSampleController.releaseFighter(fighter, mothership)
     ai:setOrders(FighterOrders.Harvest, mothership.index)
 end
 
-function UiSampleController.updateServer()
+function AutoSalvagerController.updateServer()
     if serverEnabled == 0 then return end
     local entity = Entity()
     if not valid(entity) then return end
@@ -190,7 +190,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                AutoSalvagerController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -208,14 +208,14 @@ function UiSampleController.updateServer()
             if not valid(wreckage) then
                 needsRelease = true
             else
-                local value = UiSampleController.getWreckageValue(wreckage)
+                local value = AutoSalvagerController.getWreckageValue(wreckage)
                 if value < serverMinResource then
                     needsRelease = true
                 end
             end
             if needsRelease then
                 assignedFighters[fighterIndex] = nil
-                UiSampleController.releaseFighter(fighter, entity)
+                AutoSalvagerController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -228,7 +228,7 @@ function UiSampleController.updateServer()
     local qualifyingWreckIds = {}
     for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
         if valid(wreckage) then
-            local value = UiSampleController.getWreckageValue(wreckage)
+            local value = AutoSalvagerController.getWreckageValue(wreckage)
             if value >= serverMinResource then
                 local perFighter = serverResPerFighter
                 if perFighter <= 0 then perFighter = 1 end
@@ -247,7 +247,7 @@ function UiSampleController.updateServer()
             assignedFighters[fighterIndex] = nil
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                AutoSalvagerController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -260,7 +260,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                AutoSalvagerController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -285,7 +285,7 @@ function UiSampleController.updateServer()
             if valid(fighter) then
                 local fighterIndex = fighter.index.string
                 -- Only use fighters that can salvage and are not already assigned
-                if not assignedFighters[fighterIndex] and UiSampleController.canFighterMine(fighter) then
+                if not assignedFighters[fighterIndex] and AutoSalvagerController.canFighterMine(fighter) then
                     table.insert(unassigned, fighter)
                 end
             end
@@ -314,7 +314,7 @@ function UiSampleController.updateServer()
         end
         -- No wreck needs more fighters, release to default AI
         if not assigned then
-            UiSampleController.releaseFighter(fighterData, entity)
+            AutoSalvagerController.releaseFighter(fighterData, entity)
         end
     end
 
@@ -331,48 +331,48 @@ function UiSampleController.updateServer()
     broadcastInvokeClientFunction("updateStats", distributed, targeted)
 end
 
-function UiSampleController.updateClient()
-    UiSampleController.countAsteroids()
+function AutoSalvagerController.updateClient()
+    AutoSalvagerController.countAsteroids()
     invokeServerFunction("countFighters")
 end
 
-function UiSampleController.onShowWindow()
-    UiSampleController.refreshUI()
-    UiSampleController.countAsteroids()
+function AutoSalvagerController.onShowWindow()
+    AutoSalvagerController.refreshUI()
+    AutoSalvagerController.countAsteroids()
     invokeServerFunction("countFighters")
 end
 
 -- Toggle is client-side only, matching the SampleMods pattern
-function UiSampleController.onToggle()
+function AutoSalvagerController.onToggle()
     if enabled == 1 then enabled = 0 else enabled = 1 end
     invokeServerFunction("setEnabled", enabled)
     invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
-    UiSampleController.refreshUI()
+    AutoSalvagerController.refreshUI()
 end
 
 -- TextBox callbacks - store values when user types
-function UiSampleController.onMinResourceChanged()
-    if UiSampleController.minResourceTextBox then
-        local text = UiSampleController.minResourceTextBox.text
+function AutoSalvagerController.onMinResourceChanged()
+    if AutoSalvagerController.minResourceTextBox then
+        local text = AutoSalvagerController.minResourceTextBox.text
         if text == "" then text = "0" end
         minResourceLimit = text
-        UiSampleController.countAsteroids()
+        AutoSalvagerController.countAsteroids()
         invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
-function UiSampleController.onResPerFighterChanged()
-    if UiSampleController.resPerFighterTextBox then
-        local text = UiSampleController.resPerFighterTextBox.text
+function AutoSalvagerController.onResPerFighterChanged()
+    if AutoSalvagerController.resPerFighterTextBox then
+        local text = AutoSalvagerController.resPerFighterTextBox.text
         if text == "" then text = "0" end
         resPerFighter = text
-        UiSampleController.countAsteroids()
+        AutoSalvagerController.countAsteroids()
         invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
 -- Server-side fighter counting (FighterController is server-only)
-function UiSampleController.countFighters()
+function AutoSalvagerController.countFighters()
     if not onServer() then return end
     local entity = Entity()
     if not valid(entity) then return end
@@ -382,7 +382,7 @@ function UiSampleController.countFighters()
         for squad = 0, 9 do
             local fighters = {controller:getDeployedFighters(squad)}
             for _, fighter in pairs(fighters) do
-                if valid(fighter) and UiSampleController.canFighterMine(fighter) then
+                if valid(fighter) and AutoSalvagerController.canFighterMine(fighter) then
                     count = count + 1
                 end
             end
@@ -390,19 +390,19 @@ function UiSampleController.countFighters()
     end
     broadcastInvokeClientFunction("updateFighterCount", count)
 end
-callable(UiSampleController, "countFighters")
+callable(AutoSalvagerController, "countFighters")
 
-function UiSampleController.updateFighterCount(count)
+function AutoSalvagerController.updateFighterCount(count)
     if not onClient() then return end
     fighterCount = count
-    if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
+    if AutoSalvagerController.fighterCountLabel then
+        AutoSalvagerController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
     end
 end
-callable(UiSampleController, "updateFighterCount")
+callable(AutoSalvagerController, "updateFighterCount")
 
 -- Server RPC: sync enable state from client
-function UiSampleController.setEnabled(value)
+function AutoSalvagerController.setEnabled(value)
     if not onServer() then return end
     serverEnabled = value
     if serverEnabled == 0 then
@@ -412,17 +412,17 @@ function UiSampleController.setEnabled(value)
             for fighterIndex, _ in pairs(assignedFighters) do
                 local fighter = Entity(Uuid(fighterIndex))
                 if valid(fighter) then
-                    UiSampleController.releaseFighter(fighter, entity)
+                    AutoSalvagerController.releaseFighter(fighter, entity)
                 end
             end
         end
         assignedFighters = {}
     end
 end
-callable(UiSampleController, "setEnabled")
+callable(AutoSalvagerController, "setEnabled")
 
 -- Server RPC: sync settings from client
-function UiSampleController.syncSettings(minRes, perFighter)
+function AutoSalvagerController.syncSettings(minRes, perFighter)
     if not onServer() then return end
     local newMinResource = tonumber(minRes) or 1000
     local newResPerFighter = tonumber(perFighter) or 1000
@@ -434,24 +434,24 @@ function UiSampleController.syncSettings(minRes, perFighter)
         settingsChanged = true
     end
 end
-callable(UiSampleController, "syncSettings")
+callable(AutoSalvagerController, "syncSettings")
 
 -- Client RPC: receive actual assignment stats from server
-function UiSampleController.updateStats(distributed, targeted)
+function AutoSalvagerController.updateStats(distributed, targeted)
     if not onClient() then return end
     distributedFighters = distributed
     targetedAsteroids = targeted
-    if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    if AutoSalvagerController.distributedFightersLabel then
+        AutoSalvagerController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
-    if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
+    if AutoSalvagerController.targetedAsteroidsLabel then
+        AutoSalvagerController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
     end
 end
-callable(UiSampleController, "updateStats")
+callable(AutoSalvagerController, "updateStats")
 
 -- Client-side wreckage counting (Sector queries work on client)
-function UiSampleController.countAsteroids()
+function AutoSalvagerController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
@@ -460,37 +460,37 @@ function UiSampleController.countAsteroids()
     -- Count wreckage that meets minimum value threshold
     for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
         if valid(wreckage) then
-            local value = UiSampleController.getWreckageValue(wreckage)
+            local value = AutoSalvagerController.getWreckageValue(wreckage)
             if value >= minValue then
                 count = count + 1
             end
         end
     end
     
-    if UiSampleController.asteroidCountLabel then
-        UiSampleController.asteroidCountLabel.caption = "Available Wrecks: " .. count
+    if AutoSalvagerController.asteroidCountLabel then
+        AutoSalvagerController.asteroidCountLabel.caption = "Available Wrecks: " .. count
     end
     -- When enabled, server provides real distributed/targeted values via updateStats
     if enabled == 0 then
         distributedFighters = 0
         targetedAsteroids = 0
-        if UiSampleController.distributedFightersLabel then
-            UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
+        if AutoSalvagerController.distributedFightersLabel then
+            AutoSalvagerController.distributedFightersLabel.caption = "Distributed Fighters: 0"
         end
-        if UiSampleController.targetedAsteroidsLabel then
-            UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: 0"
+        if AutoSalvagerController.targetedAsteroidsLabel then
+            AutoSalvagerController.targetedAsteroidsLabel.caption = "Targeted Wrecks: 0"
         end
     end
 end
 
-function UiSampleController.onClearResources()
+function AutoSalvagerController.onClearResources()
     -- Delete wreckage below current minimum value threshold
     invokeServerFunction("clearLowResourceAsteroids", minResourceLimit)
-    UiSampleController.countAsteroids()
+    AutoSalvagerController.countAsteroids()
 end
 
 -- Server RPC: Delete all wreckage with value below threshold
-function UiSampleController.clearLowResourceAsteroids(minResStr)
+function AutoSalvagerController.clearLowResourceAsteroids(minResStr)
     if not onServer() then return end
     
     local minRes = tonumber(minResStr) or 1000
@@ -500,7 +500,7 @@ function UiSampleController.clearLowResourceAsteroids(minResStr)
     local deleted = 0
     for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
         if valid(wreckage) then
-            local value = UiSampleController.getWreckageValue(wreckage)
+            local value = AutoSalvagerController.getWreckageValue(wreckage)
             if value < minRes then
                 sector:deleteEntity(wreckage)
                 deleted = deleted + 1
@@ -508,27 +508,26 @@ function UiSampleController.clearLowResourceAsteroids(minResStr)
         end
     end
     
-    print("[UISample] Cleared " .. deleted .. " wreckage with value < " .. minRes)
 end
-callable(UiSampleController, "clearLowResourceAsteroids")
+callable(AutoSalvagerController, "clearLowResourceAsteroids")
 
-function UiSampleController.refreshUI()
-    if UiSampleController.toggleBtn then
-        UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
+function AutoSalvagerController.refreshUI()
+    if AutoSalvagerController.toggleBtn then
+        AutoSalvagerController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
-    if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
+    if AutoSalvagerController.fighterCountLabel then
+        AutoSalvagerController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
     end
-    if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    if AutoSalvagerController.distributedFightersLabel then
+        AutoSalvagerController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
-    if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
+    if AutoSalvagerController.targetedAsteroidsLabel then
+        AutoSalvagerController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
     end
-    if UiSampleController.minResourceTextBox then
-        UiSampleController.minResourceTextBox.text = minResourceLimit
+    if AutoSalvagerController.minResourceTextBox then
+        AutoSalvagerController.minResourceTextBox.text = minResourceLimit
     end
-    if UiSampleController.resPerFighterTextBox then
-        UiSampleController.resPerFighterTextBox.text = resPerFighter
+    if AutoSalvagerController.resPerFighterTextBox then
+        AutoSalvagerController.resPerFighterTextBox.text = resPerFighter
     end
 end

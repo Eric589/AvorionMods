@@ -4,9 +4,9 @@ include("utility")
 include("callable")
 
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
--- namespace UiSampleController
+-- namespace MiningAlgoController
 
-UiSampleController = {}
+MiningAlgoController = {}
 
 -- Client state (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
 local enabled = 0
@@ -23,11 +23,11 @@ local serverMinResource = 1000
 local serverResPerFighter = 1000
 local settingsChanged = false
 
-function UiSampleController.getIcon()
-    return "data/icon/icon.png"
+function MiningAlgoController.getIcon()
+    return "data/icon/icon2.png"
 end
 
-function UiSampleController.interactionPossible(playerIndex)
+function MiningAlgoController.interactionPossible(playerIndex)
     if onServer() then return false end
     local player = Player()
     local entity = Entity()
@@ -38,11 +38,11 @@ function UiSampleController.interactionPossible(playerIndex)
     end
 end
 
-function UiSampleController.getInteractionText()
+function MiningAlgoController.getInteractionText()
     return "UI Sample"
 end
 
-function UiSampleController.initialize()
+function MiningAlgoController.initialize()
     if onServer() then
         local entity = Entity()
         if entity then
@@ -54,7 +54,7 @@ function UiSampleController.initialize()
     end
 end
 
-function UiSampleController.secure()
+function MiningAlgoController.secure()
     return {
         enabled = enabled,
         minResourceLimit = minResourceLimit,
@@ -67,7 +67,7 @@ function UiSampleController.secure()
     }
 end
 
-function UiSampleController.restore(data)
+function MiningAlgoController.restore(data)
     if data then
         enabled = data.enabled or 0
         minResourceLimit = data.minResourceLimit or "1000"
@@ -80,7 +80,7 @@ function UiSampleController.restore(data)
     end
 end
 
-function UiSampleController.initUI()
+function MiningAlgoController.initUI()
     local res = getResolution()
     local size = vec2(400, 395)
     local menu = ScriptUI()
@@ -91,26 +91,26 @@ function UiSampleController.initUI()
     menu:registerWindow(window, "Auto Mining")
 
     -- Info section
-    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Mining Fighters: 0", 14)
-    UiSampleController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Asteroids: 0", 14)
+    MiningAlgoController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Mining Fighters: 0", 14)
+    MiningAlgoController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Asteroids: 0", 14)
 
     -- Separator
     window:createLine(vec2(10, 65), vec2(390, 65))
 
     -- Enable/Disable button
-    UiSampleController.toggleBtn = window:createButton(Rect(10, 80, 390, 115), "Enable", "onToggle")
+    MiningAlgoController.toggleBtn = window:createButton(Rect(10, 80, 390, 115), "Enable", "onToggle")
 
     -- Minimum Resource Limit
     local label = window:createLabel(vec2(10, 130), "Minimum Resource Limit", 14)
-    UiSampleController.minResourceTextBox = window:createTextBox(Rect(10, 155, 200, 185), "onMinResourceChanged")
-    UiSampleController.minResourceTextBox.allowedCharacters = "0123456789"
-    UiSampleController.minResourceTextBox.text = minResourceLimit
+    MiningAlgoController.minResourceTextBox = window:createTextBox(Rect(10, 155, 200, 185), "onMinResourceChanged")
+    MiningAlgoController.minResourceTextBox.allowedCharacters = "0123456789"
+    MiningAlgoController.minResourceTextBox.text = minResourceLimit
 
     -- Resources Per Fighter
     label = window:createLabel(vec2(10, 195), "Resources Per Fighter", 14)
-    UiSampleController.resPerFighterTextBox = window:createTextBox(Rect(10, 220, 200, 250), "onResPerFighterChanged")
-    UiSampleController.resPerFighterTextBox.allowedCharacters = "0123456789"
-    UiSampleController.resPerFighterTextBox.text = resPerFighter
+    MiningAlgoController.resPerFighterTextBox = window:createTextBox(Rect(10, 220, 200, 250), "onResPerFighterChanged")
+    MiningAlgoController.resPerFighterTextBox.allowedCharacters = "0123456789"
+    MiningAlgoController.resPerFighterTextBox.text = resPerFighter
 
     -- Clear Resources button with info text
     window:createButton(Rect(10, 255, 250, 285), "Clear Resources", "onClearResources")
@@ -121,17 +121,17 @@ function UiSampleController.initUI()
     window:createLine(vec2(10, 310), vec2(390, 310))
 
     -- Status section
-    UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
-    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Asteroids: 0", 14)
+    MiningAlgoController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
+    MiningAlgoController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Asteroids: 0", 14)
 end
 
-function UiSampleController.getUpdateInterval()
+function MiningAlgoController.getUpdateInterval()
     return 1
 end
 
 -- Helper function to check if a fighter can mine
 -- Check the fighter's actual weapons, not the squad blueprint
-function UiSampleController.canFighterMine(fighter)
+function MiningAlgoController.canFighterMine(fighter)
     if not valid(fighter) then return false end
     
     -- Get the fighter's actual Weapons component to check what it really has equipped
@@ -141,30 +141,18 @@ function UiSampleController.canFighterMine(fighter)
     local entity = Entity()
     if not valid(entity) then return false end
     
-    local shipName = entity.name or "Unknown Ship"
-    
-    -- Debug output
-    print(string.format("[UISample] Ship '%s' - Fighter weapons - civil: %s, category: %s, stoneBestEff: %s, metalBestEff: %s", 
-        shipName,
-        tostring(weapons.civil), 
-        tostring(weapons.category),
-        tostring(weapons.stoneBestEfficiency),
-        tostring(weapons.metalBestEfficiency)))
-    
     -- Check if the fighter's actual weapons are civil and have mining efficiency
     -- Miners have stoneBestEfficiency > 0, Salvagers have metalBestEfficiency > 0
     if weapons.civil and weapons.stoneBestEfficiency and weapons.stoneBestEfficiency > 0 then
-        print(string.format("[UISample] Ship '%s' - Fighter IS a miner (stoneBestEfficiency > 0)", shipName))
         return true
     else
-        print(string.format("[UISample] Ship '%s' - Fighter is NOT a miner", shipName))
         return false
     end
 end
 
 -- Helper function to release a fighter back to mothership
 -- If fighter is >3km away, it will actively fly to ship for faster return
-function UiSampleController.releaseFighter(fighter, mothership)
+function MiningAlgoController.releaseFighter(fighter, mothership)
     if not valid(fighter) or not valid(mothership) then return end
 
     local ai = FighterAI(fighter.id)
@@ -179,7 +167,7 @@ function UiSampleController.releaseFighter(fighter, mothership)
     ai:setOrders(FighterOrders.Harvest, mothership.index)
 end
 
-function UiSampleController.updateServer()
+function MiningAlgoController.updateServer()
     if serverEnabled == 0 then return end
     local entity = Entity()
     if not valid(entity) then return end
@@ -190,7 +178,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                MiningAlgoController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -218,7 +206,7 @@ function UiSampleController.updateServer()
             end
             if needsRelease then
                 assignedFighters[fighterIndex] = nil
-                UiSampleController.releaseFighter(fighter, entity)
+                MiningAlgoController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -253,7 +241,7 @@ function UiSampleController.updateServer()
             assignedFighters[fighterIndex] = nil
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                MiningAlgoController.releaseFighter(fighter, entity)
             end
         end
     end
@@ -266,7 +254,7 @@ function UiSampleController.updateServer()
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
-                UiSampleController.releaseFighter(fighter, entity)
+                MiningAlgoController.releaseFighter(fighter, entity)
             end
         end
         assignedFighters = {}
@@ -291,7 +279,7 @@ function UiSampleController.updateServer()
             if valid(fighter) then
                 local fighterIndex = fighter.index.string
                 -- Only use fighters that can mine and are not already assigned
-                if not assignedFighters[fighterIndex] and UiSampleController.canFighterMine(fighter) then
+                if not assignedFighters[fighterIndex] and MiningAlgoController.canFighterMine(fighter) then
                     table.insert(unassigned, fighter)
                 end
             end
@@ -319,7 +307,7 @@ function UiSampleController.updateServer()
         end
         -- No asteroid needs more fighters, release to default AI
         if not assigned then
-            UiSampleController.releaseFighter(fighterData, entity)
+            MiningAlgoController.releaseFighter(fighterData, entity)
         end
     end
 
@@ -336,48 +324,48 @@ function UiSampleController.updateServer()
     broadcastInvokeClientFunction("updateStats", distributed, targeted)
 end
 
-function UiSampleController.updateClient()
-    UiSampleController.countAsteroids()
+function MiningAlgoController.updateClient()
+    MiningAlgoController.countAsteroids()
     invokeServerFunction("countFighters")
 end
 
-function UiSampleController.onShowWindow()
-    UiSampleController.refreshUI()
-    UiSampleController.countAsteroids()
+function MiningAlgoController.onShowWindow()
+    MiningAlgoController.refreshUI()
+    MiningAlgoController.countAsteroids()
     invokeServerFunction("countFighters")
 end
 
 -- Toggle is client-side only, matching the SampleMods pattern
-function UiSampleController.onToggle()
+function MiningAlgoController.onToggle()
     if enabled == 1 then enabled = 0 else enabled = 1 end
     invokeServerFunction("setEnabled", enabled)
     invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
-    UiSampleController.refreshUI()
+    MiningAlgoController.refreshUI()
 end
 
 -- TextBox callbacks - store values when user types
-function UiSampleController.onMinResourceChanged()
-    if UiSampleController.minResourceTextBox then
-        local text = UiSampleController.minResourceTextBox.text
+function MiningAlgoController.onMinResourceChanged()
+    if MiningAlgoController.minResourceTextBox then
+        local text = MiningAlgoController.minResourceTextBox.text
         if text == "" then text = "0" end
         minResourceLimit = text
-        UiSampleController.countAsteroids()
+        MiningAlgoController.countAsteroids()
         invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
-function UiSampleController.onResPerFighterChanged()
-    if UiSampleController.resPerFighterTextBox then
-        local text = UiSampleController.resPerFighterTextBox.text
+function MiningAlgoController.onResPerFighterChanged()
+    if MiningAlgoController.resPerFighterTextBox then
+        local text = MiningAlgoController.resPerFighterTextBox.text
         if text == "" then text = "0" end
         resPerFighter = text
-        UiSampleController.countAsteroids()
+        MiningAlgoController.countAsteroids()
         invokeServerFunction("syncSettings", minResourceLimit, resPerFighter)
     end
 end
 
 -- Server-side fighter counting (FighterController is server-only)
-function UiSampleController.countFighters()
+function MiningAlgoController.countFighters()
     if not onServer() then return end
     local entity = Entity()
     if not valid(entity) then return end
@@ -387,7 +375,7 @@ function UiSampleController.countFighters()
         for squad = 0, 9 do
             local fighters = {controller:getDeployedFighters(squad)}
             for _, fighter in pairs(fighters) do
-                if valid(fighter) and UiSampleController.canFighterMine(fighter) then
+                if valid(fighter) and MiningAlgoController.canFighterMine(fighter) then
                     count = count + 1
                 end
             end
@@ -395,19 +383,19 @@ function UiSampleController.countFighters()
     end
     broadcastInvokeClientFunction("updateFighterCount", count)
 end
-callable(UiSampleController, "countFighters")
+callable(MiningAlgoController, "countFighters")
 
-function UiSampleController.updateFighterCount(count)
+function MiningAlgoController.updateFighterCount(count)
     if not onClient() then return end
     fighterCount = count
-    if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
+    if MiningAlgoController.fighterCountLabel then
+        MiningAlgoController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
     end
 end
-callable(UiSampleController, "updateFighterCount")
+callable(MiningAlgoController, "updateFighterCount")
 
 -- Server RPC: sync enable state from client
-function UiSampleController.setEnabled(value)
+function MiningAlgoController.setEnabled(value)
     if not onServer() then return end
     serverEnabled = value
     if serverEnabled == 0 then
@@ -417,17 +405,17 @@ function UiSampleController.setEnabled(value)
             for fighterIndex, _ in pairs(assignedFighters) do
                 local fighter = Entity(Uuid(fighterIndex))
                 if valid(fighter) then
-                    UiSampleController.releaseFighter(fighter, entity)
+                    MiningAlgoController.releaseFighter(fighter, entity)
                 end
             end
         end
         assignedFighters = {}
     end
 end
-callable(UiSampleController, "setEnabled")
+callable(MiningAlgoController, "setEnabled")
 
 -- Server RPC: sync settings from client
-function UiSampleController.syncSettings(minRes, perFighter)
+function MiningAlgoController.syncSettings(minRes, perFighter)
     if not onServer() then return end
     local newMinResource = tonumber(minRes) or 1000
     local newResPerFighter = tonumber(perFighter) or 1000
@@ -439,24 +427,24 @@ function UiSampleController.syncSettings(minRes, perFighter)
         settingsChanged = true
     end
 end
-callable(UiSampleController, "syncSettings")
+callable(MiningAlgoController, "syncSettings")
 
 -- Client RPC: receive actual assignment stats from server
-function UiSampleController.updateStats(distributed, targeted)
+function MiningAlgoController.updateStats(distributed, targeted)
     if not onClient() then return end
     distributedFighters = distributed
     targetedAsteroids = targeted
-    if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    if MiningAlgoController.distributedFightersLabel then
+        MiningAlgoController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
-    if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+    if MiningAlgoController.targetedAsteroidsLabel then
+        MiningAlgoController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
     end
 end
-callable(UiSampleController, "updateStats")
+callable(MiningAlgoController, "updateStats")
 
 -- Client-side asteroid counting (Sector queries work on client)
-function UiSampleController.countAsteroids()
+function MiningAlgoController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
@@ -472,30 +460,30 @@ function UiSampleController.countAsteroids()
             end
         end
     end
-    if UiSampleController.asteroidCountLabel then
-        UiSampleController.asteroidCountLabel.caption = "Available Asteroids: " .. count
+    if MiningAlgoController.asteroidCountLabel then
+        MiningAlgoController.asteroidCountLabel.caption = "Available Asteroids: " .. count
     end
     -- When enabled, server provides real distributed/targeted values via updateStats
     if enabled == 0 then
         distributedFighters = 0
         targetedAsteroids = 0
-        if UiSampleController.distributedFightersLabel then
-            UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
+        if MiningAlgoController.distributedFightersLabel then
+            MiningAlgoController.distributedFightersLabel.caption = "Distributed Fighters: 0"
         end
-        if UiSampleController.targetedAsteroidsLabel then
-            UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: 0"
+        if MiningAlgoController.targetedAsteroidsLabel then
+            MiningAlgoController.targetedAsteroidsLabel.caption = "Targeted Asteroids: 0"
         end
     end
 end
 
-function UiSampleController.onClearResources()
+function MiningAlgoController.onClearResources()
     -- Delete asteroids below current minimum resource threshold
     invokeServerFunction("clearLowResourceAsteroids", minResourceLimit)
-    UiSampleController.countAsteroids()
+    MiningAlgoController.countAsteroids()
 end
 
 -- Server RPC: Delete all asteroids with resources below threshold
-function UiSampleController.clearLowResourceAsteroids(minResStr)
+function MiningAlgoController.clearLowResourceAsteroids(minResStr)
     if not onServer() then return end
     
     local minRes = tonumber(minResStr) or 1000
@@ -516,27 +504,26 @@ function UiSampleController.clearLowResourceAsteroids(minResStr)
         end
     end
     
-    print("[UISample] Cleared " .. deleted .. " asteroids with resources < " .. minRes)
 end
-callable(UiSampleController, "clearLowResourceAsteroids")
+callable(MiningAlgoController, "clearLowResourceAsteroids")
 
-function UiSampleController.refreshUI()
-    if UiSampleController.toggleBtn then
-        UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
+function MiningAlgoController.refreshUI()
+    if MiningAlgoController.toggleBtn then
+        MiningAlgoController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
-    if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
+    if MiningAlgoController.fighterCountLabel then
+        MiningAlgoController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
     end
-    if UiSampleController.distributedFightersLabel then
-        UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
+    if MiningAlgoController.distributedFightersLabel then
+        MiningAlgoController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
-    if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+    if MiningAlgoController.targetedAsteroidsLabel then
+        MiningAlgoController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
     end
-    if UiSampleController.minResourceTextBox then
-        UiSampleController.minResourceTextBox.text = minResourceLimit
+    if MiningAlgoController.minResourceTextBox then
+        MiningAlgoController.minResourceTextBox.text = minResourceLimit
     end
-    if UiSampleController.resPerFighterTextBox then
-        UiSampleController.resPerFighterTextBox.text = resPerFighter
+    if MiningAlgoController.resPerFighterTextBox then
+        MiningAlgoController.resPerFighterTextBox.text = resPerFighter
     end
 end

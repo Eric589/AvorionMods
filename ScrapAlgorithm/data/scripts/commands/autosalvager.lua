@@ -1,4 +1,4 @@
--- UI Sample command
+-- Auto Salvager command
 package.path = package.path .. ";data/scripts/lib/?.lua"
 
 function execute(sender, commandName, action)
@@ -20,25 +20,25 @@ function execute(sender, commandName, action)
             return 0, "", "Could not access craft."
         end
         
-        local initFlag = entity:getValue("uisample_initialized")
+        local initFlag = entity:getValue("autosalvager_initialized")
         if initFlag then
-            return 0, "", "UI Sample already active. Use TAB to open UI."
+            return 0, "", "Auto Salvager already active. Use TAB to open UI."
         end
         
         local scripts = entity:getScripts()
         local hasScript = false
         for _, scriptPath in pairs(scripts) do
-            if scriptPath == "../entity/uisamplecontroller.lua" then
+            if scriptPath == "../entity/autosalvagercontroller.lua" then
                 hasScript = true
                 break
             end
         end
 
         if not hasScript then
-            entity:addScriptOnce("../entity/uisamplecontroller.lua.lua")
-            return 0, "", "UI Sample activated. Open UI with TAB."
+            entity:addScriptOnce("../entity/autosalvagercontroller.lua")
+            return 0, "", "Auto Salvager activated. Open UI with TAB."
         else
-            return 0, "", "UI Sample already active."
+            return 0, "", "Auto Salvager already active."
         end
         
     elseif action == "off" or action == "disable" then
@@ -55,33 +55,33 @@ function execute(sender, commandName, action)
         local scripts = entity:getScripts()
         local scriptCount = 0
         for _, scriptPath in pairs(scripts) do
-            if scriptPath == "../entity/uisamplecontroller.lua" then
+            if scriptPath == "../entity/autosalvagercontroller.lua" then
                 scriptCount = scriptCount + 1
             end
         end
 
         if scriptCount == 0 then
-            return 0, "", "UI Sample not active."
+            return 0, "", "Auto Salvager not active."
         end
 
-        entity:invokeFunction("../entity/uisamplecontroller.lua", "disable")
-        entity:setValue("uisample_initialized", nil)
+        entity:invokeFunction("../entity/autosalvagercontroller.lua", "disable")
+        entity:setValue("autosalvager_initialized", nil)
 
         for i = 1, scriptCount do
-            entity:removeScript("../entity/uisamplecontroller.lua")
+            entity:removeScript("../entity/autosalvagercontroller.lua")
         end
         
-        return 0, "", "UI Sample disabled."
+        return 0, "", "Auto Salvager disabled."
         
     else
-        return 0, "", "Usage: /uisample [on|off]"
+        return 0, "", "Usage: /autosalvager [on|off]"
     end
 end
 
 function getDescription()
-    return "Toggles the UI Sample controller"
+    return "Toggles the Auto Salvager controller"
 end
 
 function getHelp()
-    return "Usage: /uisample [on|off]\n\nActivates or deactivates the UI Sample controller on your current ship."
+    return "Usage: /autosalvager [on|off]\n\nActivates or deactivates the Auto Salvager controller on your current ship."
 end
