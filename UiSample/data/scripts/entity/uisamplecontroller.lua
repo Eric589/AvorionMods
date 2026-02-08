@@ -85,14 +85,14 @@ function UiSampleController.initUI()
     local size = vec2(400, 395)
     local menu = ScriptUI()
     local window = menu:createWindow(Rect(res * 0.5 - size * 0.5, res * 0.5 + size * 0.5))
-    window.caption = "Auto Mining"
+    window.caption = "Auto Salvaging"
     window.showCloseButton = 1
     window.moveable = 1
-    menu:registerWindow(window, "Auto Mining")
+    menu:registerWindow(window, "Auto Salvaging")
 
     -- Info section
-    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Mining Fighters: 0", 14)
-    UiSampleController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Asteroids: 0", 14)
+    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Salvaging Fighters: 0", 14)
+    UiSampleController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Wrecks: 0", 14)
 
     -- Separator
     window:createLine(vec2(10, 65), vec2(390, 65))
@@ -101,20 +101,20 @@ function UiSampleController.initUI()
     UiSampleController.toggleBtn = window:createButton(Rect(10, 80, 390, 115), "Enable", "onToggle")
 
     -- Minimum Resource Limit
-    local label = window:createLabel(vec2(10, 130), "Minimum Resource Limit", 14)
+    local label = window:createLabel(vec2(10, 130), "Minimum Wreck Value", 14)
     UiSampleController.minResourceTextBox = window:createTextBox(Rect(10, 155, 200, 185), "onMinResourceChanged")
     UiSampleController.minResourceTextBox.allowedCharacters = "0123456789"
     UiSampleController.minResourceTextBox.text = minResourceLimit
 
     -- Resources Per Fighter
-    label = window:createLabel(vec2(10, 195), "Resources Per Fighter", 14)
+    label = window:createLabel(vec2(10, 195), "Value Per Fighter", 14)
     UiSampleController.resPerFighterTextBox = window:createTextBox(Rect(10, 220, 200, 250), "onResPerFighterChanged")
     UiSampleController.resPerFighterTextBox.allowedCharacters = "0123456789"
     UiSampleController.resPerFighterTextBox.text = resPerFighter
 
     -- Clear Resources button with info text
-    window:createButton(Rect(10, 255, 250, 285), "Clear Resources", "onClearResources")
-    local clearInfoLabel = window:createLabel(vec2(10, 290), "(Deletes asteroids < min resource limit)", 12)
+    window:createButton(Rect(10, 255, 250, 285), "Clear Wrecks", "onClearResources")
+    local clearInfoLabel = window:createLabel(vec2(10, 290), "(Deletes wrecks < min value)", 12)
     clearInfoLabel.color = ColorRGB(0.7, 0.7, 0.7)
 
     -- Separator
@@ -122,14 +122,14 @@ function UiSampleController.initUI()
 
     -- Status section
     UiSampleController.distributedFightersLabel = window:createLabel(vec2(10, 325), "Distributed Fighters: 0", 14)
-    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Asteroids: 0", 14)
+    UiSampleController.targetedAsteroidsLabel = window:createLabel(vec2(10, 350), "Targeted Wrecks: 0", 14)
 end
 
 function UiSampleController.getUpdateInterval()
     return 1
 end
 
--- Helper function to check if a fighter can mine
+-- Helper function to check if a fighter can salvage
 -- Check the fighter's actual weapons, not the squad blueprint
 function UiSampleController.canFighterMine(fighter)
     if not valid(fighter) then return false end
@@ -138,28 +138,35 @@ function UiSampleController.canFighterMine(fighter)
     local weapons = Weapons(fighter.id)
     if not weapons then return false end
     
-    local entity = Entity()
-    if not valid(entity) then return false end
-    
-    local shipName = entity.name or "Unknown Ship"
-    
-    -- Debug output
-    print(string.format("[UISample] Ship '%s' - Fighter weapons - civil: %s, category: %s, stoneBestEff: %s, metalBestEff: %s", 
-        shipName,
-        tostring(weapons.civil), 
-        tostring(weapons.category),
-        tostring(weapons.stoneBestEfficiency),
-        tostring(weapons.metalBestEfficiency)))
-    
-    -- Check if the fighter's actual weapons are civil and have mining efficiency
-    -- Miners have stoneBestEfficiency > 0, Salvagers have metalBestEfficiency > 0
-    if weapons.civil and weapons.stoneBestEfficiency and weapons.stoneBestEfficiency > 0 then
-        print(string.format("[UISample] Ship '%s' - Fighter IS a miner (stoneBestEfficiency > 0)", shipName))
+    -- Check if the fighter's actual weapons are civil and have salvaging efficiency
+    -- Salvagers have metalBestEfficiency > 0, Miners have stoneBestEfficiency > 0
+    if weapons.civil and weapons.metalBestEfficiency and weapons.metalBestEfficiency > 0 then
         return true
     else
-        print(string.format("[UISample] Ship '%s' - Fighter is NOT a miner", shipName))
         return false
     end
+end
+
+-- Helper function to calculate wreckage value
+function UiSampleController.getWreckageValue(wreckage)
+    if not wreckage or not valid(wreckage) then return 0 end
+    
+    -- Calculate total value of resources in wreckage
+    local totalValue = 0
+    local plan = wreckage:getPlan()
+    
+    if plan then
+        local materials = {plan:getMaterialCounts()}
+        for i = 1, #materials, 2 do
+            local material = materials[i]
+            local amount = materials[i + 1]
+            if material and amount then
+                totalValue = totalValue + (amount * Material(material).costFactor)
+            end
+        end
+    end
+    
+    return totalValue
 end
 
 -- Helper function to release a fighter back to mothership
@@ -205,21 +212,18 @@ function UiSampleController.updateServer()
     end
 
     -- Cleanup invalid assignments and release fighters back to default AI
-    for fighterIndex, asteroidId in pairs(assignedFighters) do
+    for fighterIndex, wreckageId in pairs(assignedFighters) do
         local fighter = Entity(Uuid(fighterIndex))
         if not valid(fighter) then
             assignedFighters[fighterIndex] = nil
         else
             local needsRelease = false
-            local asteroid = Entity(asteroidId)
-            if not valid(asteroid) then
+            local wreckage = Entity(wreckageId)
+            if not valid(wreckage) then
                 needsRelease = true
             else
-                local res = 0
-                for _, amount in pairs({asteroid:getMineableResources()}) do
-                    res = res + (amount or 0)
-                end
-                if res < serverMinResource then
+                local value = UiSampleController.getWreckageValue(wreckage)
+                if value < serverMinResource then
                     needsRelease = true
                 end
             end
@@ -230,33 +234,30 @@ function UiSampleController.updateServer()
         end
     end
 
-    -- Get qualifying asteroids with resource counts and distance
+    -- Get qualifying wreckage with value and distance
     local sector = Sector()
     if not sector then return end
     local entityPos = entity.translationf
-    local asteroids = {}
-    local qualifyingAsteroidIds = {}
-    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
-        if valid(asteroid) then
-            local total = 0
-            for _, amount in pairs({asteroid:getMineableResources()}) do
-                total = total + (amount or 0)
-            end
-            if total >= serverMinResource then
+    local wrecks = {}
+    local qualifyingWreckIds = {}
+    for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
+        if valid(wreckage) then
+            local value = UiSampleController.getWreckageValue(wreckage)
+            if value >= serverMinResource then
                 local perFighter = serverResPerFighter
                 if perFighter <= 0 then perFighter = 1 end
-                local needed = math.max(1, math.ceil(total / perFighter))
-                local distance = distance(entityPos, asteroid.translationf)
-                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed, distance = distance})
-                qualifyingAsteroidIds[tostring(asteroid.id)] = true
+                local needed = math.max(1, math.ceil(value / perFighter))
+                local distance = distance(entityPos, wreckage.translationf)
+                table.insert(wrecks, {entity = wreckage, resources = value, needed = needed, distance = distance})
+                qualifyingWreckIds[tostring(wreckage.id)] = true
             end
         end
     end
     
-    -- Release fighters assigned to non-qualifying asteroids
-    for fighterIndex, asteroidId in pairs(assignedFighters) do
-        local asteroidKey = tostring(asteroidId)
-        if not qualifyingAsteroidIds[asteroidKey] then
+    -- Release fighters assigned to non-qualifying wreckage
+    for fighterIndex, wreckageId in pairs(assignedFighters) do
+        local wreckageKey = tostring(wreckageId)
+        if not qualifyingWreckIds[wreckageKey] then
             assignedFighters[fighterIndex] = nil
             local fighter = Entity(Uuid(fighterIndex))
             if valid(fighter) then
@@ -265,10 +266,10 @@ function UiSampleController.updateServer()
         end
     end
     
-    -- Sort asteroids by distance (nearest first)
-    table.sort(asteroids, function(a, b) return a.distance < b.distance end)
+    -- Sort wrecks by distance (nearest first)
+    table.sort(wrecks, function(a, b) return a.distance < b.distance end)
 
-    if #asteroids == 0 then
+    if #wrecks == 0 then
         -- Release all fighters back to default AI
         for fighterIndex, _ in pairs(assignedFighters) do
             local fighter = Entity(Uuid(fighterIndex))
@@ -281,11 +282,11 @@ function UiSampleController.updateServer()
         return
     end
 
-    -- Count how many fighters are already assigned to each asteroid
-    local asteroidFighterCount = {}
-    for _, asteroidId in pairs(assignedFighters) do
-        local key = tostring(asteroidId)
-        asteroidFighterCount[key] = (asteroidFighterCount[key] or 0) + 1
+    -- Count how many fighters are already assigned to each wreck
+    local wreckFighterCount = {}
+    for _, wreckageId in pairs(assignedFighters) do
+        local key = tostring(wreckageId)
+        wreckFighterCount[key] = (wreckFighterCount[key] or 0) + 1
     end
 
     -- Get all deployed fighters
@@ -297,7 +298,7 @@ function UiSampleController.updateServer()
         for _, fighter in pairs(fighters) do
             if valid(fighter) then
                 local fighterIndex = fighter.index.string
-                -- Only use fighters that can mine and are not already assigned
+                -- Only use fighters that can salvage and are not already assigned
                 if not assignedFighters[fighterIndex] and UiSampleController.canFighterMine(fighter) then
                     table.insert(unassigned, fighter)
                 end
@@ -305,26 +306,26 @@ function UiSampleController.updateServer()
         end
     end
 
-    -- Assign unassigned fighters to asteroids that still need more
+    -- Assign unassigned fighters to wrecks that still need more
     for _, fighterData in ipairs(unassigned) do
         local assigned = false
-        for _, asteroidData in ipairs(asteroids) do
-            local key = tostring(asteroidData.entity.id)
-            local current = asteroidFighterCount[key] or 0
-            if current < asteroidData.needed then
+        for _, wreckData in ipairs(wrecks) do
+            local key = tostring(wreckData.entity.id)
+            local current = wreckFighterCount[key] or 0
+            if current < wreckData.needed then
                 local ai = FighterAI(fighterData.id)
                 if ai then
                     ai.ignoreMothershipOrders = true
                     ai:clearFeedback()
-                    ai:setOrders(FighterOrders.Attack, asteroidData.entity.index)
-                    assignedFighters[fighterData.index.string] = asteroidData.entity.id
-                    asteroidFighterCount[key] = current + 1
+                    ai:setOrders(FighterOrders.Salvage, wreckData.entity.index)
+                    assignedFighters[fighterData.index.string] = wreckData.entity.id
+                    wreckFighterCount[key] = current + 1
                     assigned = true
                 end
                 break
             end
         end
-        -- No asteroid needs more fighters, release to default AI
+        -- No wreck needs more fighters, release to default AI
         if not assigned then
             UiSampleController.releaseFighter(fighterData, entity)
         end
@@ -333,9 +334,9 @@ function UiSampleController.updateServer()
     -- Count actual stats
     local distributed = 0
     local targetedSet = {}
-    for _, asteroidId in pairs(assignedFighters) do
+    for _, wreckageId in pairs(assignedFighters) do
         distributed = distributed + 1
-        targetedSet[tostring(asteroidId)] = true
+        targetedSet[tostring(wreckageId)] = true
     end
     local targeted = 0
     for _ in pairs(targetedSet) do targeted = targeted + 1 end
@@ -408,7 +409,7 @@ function UiSampleController.updateFighterCount(count)
     if not onClient() then return end
     fighterCount = count
     if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
+        UiSampleController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
     end
 end
 callable(UiSampleController, "updateFighterCount")
@@ -457,7 +458,7 @@ function UiSampleController.updateStats(distributed, targeted)
         UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
     if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
     end
 end
 callable(UiSampleController, "updateStats")
@@ -474,7 +475,7 @@ function UiSampleController.countAsteroids()
         end
     end
     if UiSampleController.asteroidCountLabel then
-        UiSampleController.asteroidCountLabel.caption = "Available Asteroids: " .. count
+        UiSampleController.asteroidCountLabel.caption = "Available Wrecks: " .. count
     end
     -- When enabled, server provides real distributed/targeted values via updateStats
     if enabled == 0 then
@@ -484,18 +485,18 @@ function UiSampleController.countAsteroids()
             UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: 0"
         end
         if UiSampleController.targetedAsteroidsLabel then
-            UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: 0"
+            UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: 0"
         end
     end
 end
 
 function UiSampleController.onClearResources()
-    -- Delete asteroids below current minimum resource threshold
+    -- Delete wreckage below current minimum value threshold
     invokeServerFunction("clearLowResourceAsteroids", minResourceLimit)
     UiSampleController.countAsteroids()
 end
 
--- Server RPC: Delete all asteroids with resources below threshold
+-- Server RPC: Delete all wreckage with value below threshold
 function UiSampleController.clearLowResourceAsteroids(minResStr)
     if not onServer() then return end
     
@@ -504,20 +505,17 @@ function UiSampleController.clearLowResourceAsteroids(minResStr)
     if not sector then return end
     
     local deleted = 0
-    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
-        if valid(asteroid) then
-            local total = 0
-            for _, amount in pairs({asteroid:getMineableResources()}) do
-                total = total + (amount or 0)
-            end
-            if total < minRes then
-                sector:deleteEntity(asteroid)
+    for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
+        if valid(wreckage) then
+            local value = UiSampleController.getWreckageValue(wreckage)
+            if value < minRes then
+                sector:deleteEntity(wreckage)
                 deleted = deleted + 1
             end
         end
     end
     
-    print("[UISample] Cleared " .. deleted .. " asteroids with resources < " .. minRes)
+    print("[UISample] Cleared " .. deleted .. " wreckage with value < " .. minRes)
 end
 callable(UiSampleController, "clearLowResourceAsteroids")
 
@@ -526,13 +524,13 @@ function UiSampleController.refreshUI()
         UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
     if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
+        UiSampleController.fighterCountLabel.caption = "Available Salvaging Fighters: " .. fighterCount
     end
     if UiSampleController.distributedFightersLabel then
         UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
     end
     if UiSampleController.targetedAsteroidsLabel then
-        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Asteroids: " .. targetedAsteroids
+        UiSampleController.targetedAsteroidsLabel.caption = "Targeted Wrecks: " .. targetedAsteroids
     end
     if UiSampleController.minResourceTextBox then
         UiSampleController.minResourceTextBox.text = minResourceLimit
