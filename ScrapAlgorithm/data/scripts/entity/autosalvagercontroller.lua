@@ -10,8 +10,8 @@ AutoSalvagerController = {}
 
 -- Client state (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
 local enabled = 0
-local minResourceLimit = "1000"
-local resPerFighter = "1000"
+local minResourceLimit = "1"
+local resPerFighter = "100"
 local fighterCount = 0
 local distributedFighters = 0
 local targetedAsteroids = 0
@@ -70,8 +70,8 @@ end
 function AutoSalvagerController.restore(data)
     if data then
         enabled = data.enabled or 0
-        minResourceLimit = data.minResourceLimit or "1000"
-        resPerFighter = data.resPerFighter or "1000"
+        minResourceLimit = data.minResourceLimit or "1"
+        resPerFighter = data.resPerFighter or "100"
         serverEnabled = data.serverEnabled or 0
         serverMinResource = data.serverMinResource or 1000
         serverResPerFighter = data.serverResPerFighter or 1000
