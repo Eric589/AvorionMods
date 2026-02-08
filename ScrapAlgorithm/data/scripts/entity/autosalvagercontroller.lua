@@ -220,10 +220,9 @@ function AutoSalvagerController.updateServer()
         end
     end
 
-    -- Get qualifying wreckage with value and distance
+    -- Get qualifying wreckage with value
     local sector = Sector()
     if not sector then return end
-    local entityPos = entity.translationf
     local wrecks = {}
     local qualifyingWreckIds = {}
     for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
@@ -233,8 +232,7 @@ function AutoSalvagerController.updateServer()
                 local perFighter = serverResPerFighter
                 if perFighter <= 0 then perFighter = 1 end
                 local needed = math.max(1, math.ceil(value / perFighter))
-                local distance = distance(entityPos, wreckage.translationf)
-                table.insert(wrecks, {entity = wreckage, resources = value, needed = needed, distance = distance})
+                table.insert(wrecks, {entity = wreckage, resources = value, needed = needed})
                 qualifyingWreckIds[tostring(wreckage.id)] = true
             end
         end
@@ -292,26 +290,44 @@ function AutoSalvagerController.updateServer()
         end
     end
 
-    -- Assign unassigned fighters to wrecks that still need more
+    -- FIGHTER-CENTRIC DISTRIBUTION ALGORITHM
+    -- Each fighter finds its nearest available wreck (that still needs more fighters)
     for _, fighterData in ipairs(unassigned) do
+        local fighterPos = fighterData.translationf
         local assigned = false
+        local bestWreck = nil
+        local bestDistance = math.huge
+
+        -- Find the nearest wreck that still needs more fighters
         for _, wreckData in ipairs(wrecks) do
             local key = tostring(wreckData.entity.id)
             local current = wreckFighterCount[key] or 0
+
+            -- Only consider wrecks that still need more fighters
             if current < wreckData.needed then
-                local ai = FighterAI(fighterData.id)
-                if ai then
-                    ai.ignoreMothershipOrders = true
-                    ai:clearFeedback()
-                    -- Use Attack order - fighters with salvaging equipment will automatically salvage
-                    ai:setOrders(FighterOrders.Attack, wreckData.entity.index)
-                    assignedFighters[fighterData.index.string] = wreckData.entity.id
-                    wreckFighterCount[key] = current + 1
-                    assigned = true
+                local dist = distance(fighterPos, wreckData.entity.translationf)
+                if dist < bestDistance then
+                    bestDistance = dist
+                    bestWreck = wreckData
                 end
-                break
             end
         end
+
+        -- Assign fighter to the nearest available wreck
+        if bestWreck then
+            local ai = FighterAI(fighterData.id)
+            if ai then
+                ai.ignoreMothershipOrders = true
+                ai:clearFeedback()
+                -- Use Attack order - fighters with salvaging equipment will automatically salvage
+                ai:setOrders(FighterOrders.Attack, bestWreck.entity.index)
+                assignedFighters[fighterData.index.string] = bestWreck.entity.id
+                local key = tostring(bestWreck.entity.id)
+                wreckFighterCount[key] = (wreckFighterCount[key] or 0) + 1
+                assigned = true
+            end
+        end
+        
         -- No wreck needs more fighters, release to default AI
         if not assigned then
             AutoSalvagerController.releaseFighter(fighterData, entity)
