@@ -91,7 +91,7 @@ function UiSampleController.initUI()
     menu:registerWindow(window, "Auto Mining")
 
     -- Info section
-    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Fighters: 0", 14)
+    UiSampleController.fighterCountLabel = window:createLabel(vec2(10, 10), "Available Mining Fighters: 0", 14)
     UiSampleController.asteroidCountLabel = window:createLabel(vec2(10, 35), "Available Asteroids: 0", 14)
 
     -- Separator
@@ -127,6 +127,21 @@ end
 
 function UiSampleController.getUpdateInterval()
     return 1
+end
+
+-- Helper function to check if a fighter can mine
+function UiSampleController.canFighterMine(fighter)
+    if not valid(fighter) then return false end
+    
+    -- Check if fighter has mining capability by checking title/name
+    local title = fighter.title or ""
+    if string.find(string.lower(title), "mining") then
+        return true
+    end
+    
+    -- Alternative: Check if it has civil weapons (miners are typically civil)
+    -- Mining fighters usually have "Mining" in their name
+    return false
 end
 
 -- Helper function to release a fighter back to mothership
@@ -255,22 +270,7 @@ function UiSampleController.updateServer()
         asteroidFighterCount[key] = (asteroidFighterCount[key] or 0) + 1
     end
 
--- Helper function to check if a fighter can mine
-function UiSampleController.canFighterMine(fighter)
-    if not valid(fighter) then return false end
-    
-    -- Check if fighter has mining capability by checking title/name
-    local title = fighter.title or ""
-    if string.find(string.lower(title), "mining") then
-        return true
-    end
-    
-    -- Alternative: Check if it has civil weapons (miners are typically civil)
-    -- Mining fighters usually have "Mining" in their name
-    return false
-end
-
--- Get all deployed fighters
+    -- Get all deployed fighters
     local controller = FighterController(entity.id)
     if not controller then return end
     local unassigned = {}
@@ -376,7 +376,7 @@ function UiSampleController.countFighters()
         for squad = 0, 9 do
             local fighters = {controller:getDeployedFighters(squad)}
             for _, fighter in pairs(fighters) do
-                if valid(fighter) then
+                if valid(fighter) and UiSampleController.canFighterMine(fighter) then
                     count = count + 1
                 end
             end
@@ -390,7 +390,7 @@ function UiSampleController.updateFighterCount(count)
     if not onClient() then return end
     fighterCount = count
     if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Fighters: " .. fighterCount
+        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
     end
 end
 callable(UiSampleController, "updateFighterCount")
@@ -514,7 +514,7 @@ function UiSampleController.refreshUI()
         UiSampleController.toggleBtn.caption = enabled == 1 and "Disable" or "Enable"
     end
     if UiSampleController.fighterCountLabel then
-        UiSampleController.fighterCountLabel.caption = "Available Fighters: " .. fighterCount
+        UiSampleController.fighterCountLabel.caption = "Available Mining Fighters: " .. fighterCount
     end
     if UiSampleController.distributedFightersLabel then
         UiSampleController.distributedFightersLabel.caption = "Distributed Fighters: " .. distributedFighters
