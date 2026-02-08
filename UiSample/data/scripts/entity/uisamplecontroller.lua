@@ -49,6 +49,17 @@ function UiSampleController.initialize()
             local initFlag = entity:getValue("uisample_initialized")
             if not initFlag then
                 entity:setValue("uisample_initialized", true)
+                
+                -- DEBUG: Print all FighterOrders enum values
+                print("=== DEBUG: FighterOrders enum values ===")
+                if FighterOrders then
+                    for key, value in pairs(FighterOrders) do
+                        print(string.format("FighterOrders.%s = %s", tostring(key), tostring(value)))
+                    end
+                else
+                    print("FighterOrders is nil!")
+                end
+                print("=== END DEBUG ===")
             end
         end
     end
@@ -171,7 +182,9 @@ function UiSampleController.releaseFighter(fighter, mothership)
     local ai = FighterAI(fighter.id)
     if not ai then return end
     
+    -- Set ignoreMothershipOrders to false so fighter returns to default AI
     ai.ignoreMothershipOrders = false
+    ai:clearFeedback()
     
     -- Check distance from mothership
     local dist = distance(fighter.translationf, mothership.translationf)
@@ -180,11 +193,35 @@ function UiSampleController.releaseFighter(fighter, mothership)
         -- Fighter is far away (>3km), actively fly to mothership for faster return
         ai:setOrders(FighterOrders.Attack, mothership.index)
     else
-        -- Fighter is close, enter passive mode
-        ai:setOrders(FighterOrders.Passive, Uuid())
+        -- Fighter is close, try different order types
+        print("[UISample] DEBUG: Trying to set fighter to passive/idle mode")
+        
+        -- Try each possible order until one works
+        local success = false
+        local orderTypes = {"Passive", "None", "Idle"}
+        
+        for _, orderType in ipairs(orderTypes) do
+            local status, err = pcall(function()
+                local order = FighterOrders[orderType]
+                if order ~= nil then
+                    ai:setOrders(order, Uuid())
+                    print(string.format("[UISample] SUCCESS: Used FighterOrders.%s", orderType))
+                    success = true
+                    return true
+                end
+            end)
+            
+            if success then break end
+            
+            if not status then
+                print(string.format("[UISample] FAILED: FighterOrders.%s - %s", orderType, tostring(err)))
+            end
+        end
+        
+        if not success then
+            print("[UISample] WARNING: Could not set passive order, fighter will rely on ignoreMothershipOrders=false")
+        end
     end
-    
-    ai:clearFeedback()
 end
 
 function UiSampleController.updateServer()
