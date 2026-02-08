@@ -3,5 +3,6 @@ achievementsEnabled = true
 
 enabled =
 {
-    "3633651082",
+    "3610252115",
+    "3610475144",
 }

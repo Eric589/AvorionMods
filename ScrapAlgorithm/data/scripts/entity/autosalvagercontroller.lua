@@ -249,9 +249,6 @@ function AutoSalvagerController.updateServer()
             end
         end
     end
-    
-    -- Sort wrecks by distance (nearest first)
-    table.sort(wrecks, function(a, b) return a.distance < b.distance end)
 
     if #wrecks == 0 then
         -- Release all fighters back to default AI
@@ -298,7 +295,7 @@ function AutoSalvagerController.updateServer()
         local bestWreck = nil
         local bestDistance = math.huge
 
-        -- Find the nearest wreck that still needs more fighters
+        -- Find the nearest wreck that still needs more fightersopencode
         for _, wreckData in ipairs(wrecks) do
             local key = tostring(wreckData.entity.id)
             local current = wreckFighterCount[key] or 0
