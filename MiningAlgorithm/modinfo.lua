@@ -17,7 +17,7 @@ meta =
     type = "mod",
 
     -- Description of your mod that will be displayed to players
-    description = "Automatische Verteilung von Mining-Jägern auf Asteroiden basierend auf Ressourcenmenge. Dividiert Ressourcen durch 1000 und sendet entsprechend viele Jäger.",
+    description = "Automatically distributes mining fighters to asteroids based on resource amounts. Intelligently assigns fighters proportional to resources (1 fighter per 1000 resources by default), prioritizing nearest asteroids first. Features configurable minimum resource thresholds, resource-per-fighter ratios, and real-time UI for monitoring fighter distribution.",
 
     -- Insert all authors into this list
     authors = {"Masterchiller"},
@@ -26,7 +26,7 @@ meta =
     -- This will be used to check for unmet dependencies or incompatibilities, and to check compatibility between clients and dedicated servers with mods.
     -- If a client with an unmatching major or minor mod version wants to log into a server, login is prohibited.
     -- Unmatching patch version still allows logging into a server. This works in both ways (server or client higher or lower version).
-    version = "2.0",
+    version = "2.0.0",
 
     -- If your mod requires dependencies, enter them here. The game will check that all dependencies given here are met.
     -- Possible attributes:

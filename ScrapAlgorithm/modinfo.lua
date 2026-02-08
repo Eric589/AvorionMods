@@ -17,7 +17,7 @@ meta =
     type = "mod",
 
     -- Description of your mod that will be displayed to players
-    description = "Distributes fighter to efficently farm scrapt",
+    description = "Automatically distributes salvaging fighters to wreckage based on scrap value. Intelligently assigns fighters proportional to wreckage worth (1 fighter per 1000 value by default), prioritizing nearest targets first. Features configurable minimum value thresholds, value-per-fighter ratios, and real-time UI for monitoring salvage operations.",
 
     -- Insert all authors into this list
     authors = {"Masterchiller"},
@@ -26,7 +26,7 @@ meta =
     -- This will be used to check for unmet dependencies or incompatibilities, and to check compatibility between clients and dedicated servers with mods.
     -- If a client with an unmatching major or minor mod version wants to log into a server, login is prohibited.
     -- Unmatching patch version still allows logging into a server. This works in both ways (server or client higher or lower version).
-    version = "2.0",
+    version = "2.0.0",
 
     -- If your mod requires dependencies, enter them here. The game will check that all dependencies given here are met.
     -- Possible attributes:
