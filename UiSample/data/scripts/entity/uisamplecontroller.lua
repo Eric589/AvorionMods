@@ -467,16 +467,10 @@ function UiSampleController.countAsteroids()
     local sector = Sector()
     if not sector then return end
     local count = 0
-    local limit = tonumber(minResourceLimit) or 0
-    for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
-        if valid(asteroid) then
-            local total = 0
-            for _, amount in pairs({asteroid:getMineableResources()}) do
-                total = total + (amount or 0)
-            end
-            if total >= limit then
-                count = count + 1
-            end
+    -- Count wreckage instead of asteroids
+    for _, wreckage in pairs({sector:getEntitiesByType(EntityType.Wreckage)}) do
+        if valid(wreckage) then
+            count = count + 1
         end
     end
     if UiSampleController.asteroidCountLabel then
