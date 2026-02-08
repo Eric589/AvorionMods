@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python convert_html_to_yaml.py:*)"
+      "Bash(python convert_html_to_yaml.py:*)",
+      "Bash(grep:*)",
+      "WebSearch",
+      "WebFetch(domain:avorion.fandom.com)",
+      "Bash(where /r \"C:\\\\Program Files\\\\Steam\" Avorion.exe)",
+      "Bash(where:*)",
+      "Bash(where /r:*)",
+      "Bash(reg query:*)",
+      "Bash(findstr:*)",
+      "Bash(dir:*)"
     ]
   }
 }

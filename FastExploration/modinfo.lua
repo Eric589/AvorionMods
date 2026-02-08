@@ -7,7 +7,7 @@ meta =
     type = "mod",
     description = "Automatically dispatch drones to explore unknown sectors. Create exploration drones with a button press and send them to unvisited locations for efficient sector scanning.",
     authors = {"Masterchiller"},
-    version = "2.0.0",
+    version = "2.0.1",
     dependencies = {
         {id = "Avorion", max = "2.5.11"}
     },

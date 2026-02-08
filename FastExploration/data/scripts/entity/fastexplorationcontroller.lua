@@ -6,8 +6,8 @@ include("callable")
 -- namespace FastExplorationController
 FastExplorationController = {}
 
-local DRONE_LIFETIME = 5 -- seconds before drone is destroyed
-local trackedDrones = {} -- {id = Uuid, name = string, elapsed = number}
+local DRONE_LIFETIME = 20 -- seconds before drone is destroyed
+local trackedDrones = {} -- {name = string, elapsed = number}
 
 function FastExplorationController.getIcon()
     return "data/scripts/icon/icon.png"
@@ -94,7 +94,34 @@ function FastExplorationController.createDrone()
 
     if valid(drone) then
         print("[FastExploration] Drone created: " .. tostring(drone.id))
-        table.insert(trackedDrones, {id = drone.id, name = drone.name, elapsed = 0})
+
+        -- Find a random unknown sector within range
+        local cx, cy = sector:getCoordinates()
+        local range = 5
+        local candidates = {}
+
+        for dx = -range, range do
+            for dy = -range, range do
+                if dx ~= 0 or dy ~= 0 then
+                    local tx, ty = cx + dx, cy + dy
+                    if not player:knowsSector(tx, ty) then
+                        table.insert(candidates, {x = tx, y = ty})
+                    end
+                end
+            end
+        end
+
+        if #candidates > 0 then
+            local target = candidates[math.random(#candidates)]
+            print("[FastExploration] Jumping drone to sector " .. target.x .. ":" .. target.y)
+            sector:transferEntity(drone, target.x, target.y, SectorChangeType.Jump)
+            table.insert(trackedDrones, {name = drone.name, elapsed = 0})
+        else
+            print("[FastExploration] No unknown sectors within range, destroying drone")
+            sector:deleteEntity(drone)
+            player:setShipDestroyed(drone.name, true)
+            player:removeDestroyedShipInfo(drone.name)
+        end
     else
         print("[FastExploration] Failed to create drone")
     end
@@ -111,12 +138,9 @@ function FastExplorationController.updateServer(timeStep)
         entry.elapsed = entry.elapsed + timeStep
 
         if entry.elapsed >= DRONE_LIFETIME then
-            local drone = Entity(entry.id)
-            if valid(drone) then
-                print("[FastExploration] Destroying drone: " .. tostring(entry.id))
-                Sector():deleteEntity(drone)
-            end
-            -- Remove from player's ship list
+            print("[FastExploration] Cleaning up drone: " .. entry.name)
+            -- Drone is in another sector, can't delete the entity directly
+            -- Just remove it from the player's ship list
             local owner = Player(Entity().factionIndex)
             if owner then
                 owner:setShipDestroyed(entry.name, true)
