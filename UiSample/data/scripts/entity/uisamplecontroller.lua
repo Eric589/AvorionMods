@@ -145,10 +145,19 @@ function UiSampleController.canFighterMine(fighter)
     for squad = 0, 9 do
         local template = hangar:getBlueprint(squad)
         if template and template.civil then
+            -- Debug logging
+            print("[UISample] Squad " .. squad .. " - civil: " .. tostring(template.civil))
+            print("[UISample] metalBestEfficiency: " .. tostring(template.metalBestEfficiency))
+            print("[UISample] stoneBestEfficiency: " .. tostring(template.stoneBestEfficiency))
+            print("[UISample] category: " .. tostring(template.category))
+            print("[UISample] weaponName: " .. tostring(template.weaponName))
+            
             -- Check if template has mining efficiency (distinguishes miners from salvagers)
             -- Miners have metalBestEfficiency or stoneBestEfficiency > 0
             local hasMiningEfficiency = (template.metalBestEfficiency and template.metalBestEfficiency > 0) or 
                                        (template.stoneBestEfficiency and template.stoneBestEfficiency > 0)
+            
+            print("[UISample] hasMiningEfficiency: " .. tostring(hasMiningEfficiency))
             
             if hasMiningEfficiency then
                 -- Check if this fighter is in this squad by comparing IDs
