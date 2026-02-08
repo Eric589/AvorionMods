@@ -130,7 +130,8 @@ function UiSampleController.getUpdateInterval()
 end
 
 -- Helper function to check if a fighter can mine
--- Fighters need to be civil AND have mining efficiency to mine asteroids (not salvagers)
+-- Fighters need to be civil AND have category == 1 (mining) to mine asteroids
+-- Category 1 = Mining, Category 2 = Salvaging
 function UiSampleController.canFighterMine(fighter)
     if not valid(fighter) then return false end
     
@@ -145,21 +146,8 @@ function UiSampleController.canFighterMine(fighter)
     for squad = 0, 9 do
         local template = hangar:getBlueprint(squad)
         if template and template.civil then
-            -- Debug logging
-            print("[UISample] Squad " .. squad .. " - civil: " .. tostring(template.civil))
-            print("[UISample] metalBestEfficiency: " .. tostring(template.metalBestEfficiency))
-            print("[UISample] stoneBestEfficiency: " .. tostring(template.stoneBestEfficiency))
-            print("[UISample] category: " .. tostring(template.category))
-            print("[UISample] weaponName: " .. tostring(template.weaponName))
-            
-            -- Check if template has mining efficiency (distinguishes miners from salvagers)
-            -- Miners have metalBestEfficiency or stoneBestEfficiency > 0
-            local hasMiningEfficiency = (template.metalBestEfficiency and template.metalBestEfficiency > 0) or 
-                                       (template.stoneBestEfficiency and template.stoneBestEfficiency > 0)
-            
-            print("[UISample] hasMiningEfficiency: " .. tostring(hasMiningEfficiency))
-            
-            if hasMiningEfficiency then
+            -- Check if template category is 1 (mining), not 2 (salvaging)
+            if template.category == 1 then
                 -- Check if this fighter is in this squad by comparing IDs
                 local controller = FighterController(entity.id)
                 if controller then
