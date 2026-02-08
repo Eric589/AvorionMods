@@ -151,20 +151,13 @@ end
 function UiSampleController.getWreckageValue(wreckage)
     if not wreckage or not valid(wreckage) then return 0 end
 
-    -- Calculate total value of resources in wreckage
-    local totalValue = 0
+    -- Use Entity's built-in getPlanResourceValue which returns material amounts
+    -- Returns multiple doubles representing material values
+    local values = {wreckage:getPlanResourceValue()}
     
-    -- Access the Plan component (similar to FighterAI(id), Weapons(id), etc.)
-    local plan = Plan(wreckage.id)
-    if not plan then return 0 end
-
-    local materials = {plan:getMaterialCounts()}
-    for i = 1, #materials, 2 do
-        local material = materials[i]
-        local amount = materials[i + 1]
-        if material and amount then
-            totalValue = totalValue + (amount * Material(material).costFactor)
-        end
+    local totalValue = 0
+    for _, value in pairs(values) do
+        totalValue = totalValue + (value or 0)
     end
 
     return totalValue
