@@ -146,18 +146,27 @@ function UiSampleController.canFighterMine(fighter)
     for squad = 0, 9 do
         local template = hangar:getBlueprint(squad)
         if template and template.civil then
+            -- Debug: print category info
+            print(string.format("[UISample] Squad %d - category type: %s, value: %s", squad, type(template.category), tostring(template.category)))
+            print(string.format("[UISample] Squad %d - stoneBestEfficiency: %s", squad, tostring(template.stoneBestEfficiency)))
+            print(string.format("[UISample] Squad %d - metalBestEfficiency: %s", squad, tostring(template.metalBestEfficiency)))
+            
             -- Check if template category is 1 (mining), not 2 (salvaging)
             if template.category == 1 then
+                print(string.format("[UISample] Squad %d MATCHED as mining (category == 1)", squad))
                 -- Check if this fighter is in this squad by comparing IDs
                 local controller = FighterController(entity.id)
                 if controller then
                     local squadFighters = {controller:getDeployedFighters(squad)}
                     for _, squadFighter in pairs(squadFighters) do
                         if valid(squadFighter) and squadFighter.id == fighter.id then
+                            print(string.format("[UISample] Fighter %s matched in mining squad %d", tostring(fighter.id), squad))
                             return true
                         end
                     end
                 end
+            else
+                print(string.format("[UISample] Squad %d NOT mining (category: %s)", squad, tostring(template.category)))
             end
         end
     end
