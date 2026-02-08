@@ -172,7 +172,6 @@ function UiSampleController.releaseFighter(fighter, mothership)
     if not ai then return end
     
     ai.ignoreMothershipOrders = false
-    ai:clearFeedback()
     
     -- Check distance from mothership
     local dist = distance(fighter.translationf, mothership.translationf)
@@ -180,8 +179,12 @@ function UiSampleController.releaseFighter(fighter, mothership)
     if dist > 3000 then
         -- Fighter is far away (>3km), actively fly to mothership for faster return
         ai:setOrders(FighterOrders.Attack, mothership.index)
+    else
+        -- Fighter is close, enter default orbit mode
+        ai:setOrders(FighterOrders.None, Uuid())
     end
-    -- When close, just let the fighter return to default behavior by not setting orders
+    
+    ai:clearFeedback()
 end
 
 function UiSampleController.updateServer()
