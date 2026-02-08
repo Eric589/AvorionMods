@@ -211,10 +211,9 @@ function MiningAlgoController.updateServer()
         end
     end
 
-    -- Get qualifying asteroids with resource counts and distance
+    -- Get qualifying asteroids with resource counts
     local sector = Sector()
     if not sector then return end
-    local entityPos = entity.translationf
     local asteroids = {}
     local qualifyingAsteroidIds = {}
     for _, asteroid in pairs({sector:getEntitiesByType(EntityType.Asteroid)}) do
@@ -227,8 +226,7 @@ function MiningAlgoController.updateServer()
                 local perFighter = serverResPerFighter
                 if perFighter <= 0 then perFighter = 1 end
                 local needed = math.max(1, math.ceil(total / perFighter))
-                local distance = distance(entityPos, asteroid.translationf)
-                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed, distance = distance})
+                table.insert(asteroids, {entity = asteroid, resources = total, needed = needed})
                 qualifyingAsteroidIds[tostring(asteroid.id)] = true
             end
         end
@@ -245,9 +243,6 @@ function MiningAlgoController.updateServer()
             end
         end
     end
-    
-    -- Sort asteroids by distance (nearest first)
-    table.sort(asteroids, function(a, b) return a.distance < b.distance end)
 
     if #asteroids == 0 then
         -- Release all fighters back to default AI
@@ -286,25 +281,43 @@ function MiningAlgoController.updateServer()
         end
     end
 
-    -- Assign unassigned fighters to asteroids that still need more
+    -- FIGHTER-CENTRIC DISTRIBUTION ALGORITHM
+    -- Each fighter finds its nearest available asteroid (that still needs more fighters)
     for _, fighterData in ipairs(unassigned) do
+        local fighterPos = fighterData.translationf
         local assigned = false
+        local bestAsteroid = nil
+        local bestDistance = math.huge
+        
+        -- Find the nearest asteroid that still needs more fighters
         for _, asteroidData in ipairs(asteroids) do
             local key = tostring(asteroidData.entity.id)
             local current = asteroidFighterCount[key] or 0
+            
+            -- Only consider asteroids that still need more fighters
             if current < asteroidData.needed then
-                local ai = FighterAI(fighterData.id)
-                if ai then
-                    ai.ignoreMothershipOrders = true
-                    ai:clearFeedback()
-                    ai:setOrders(FighterOrders.Attack, asteroidData.entity.index)
-                    assignedFighters[fighterData.index.string] = asteroidData.entity.id
-                    asteroidFighterCount[key] = current + 1
-                    assigned = true
+                local dist = distance(fighterPos, asteroidData.entity.translationf)
+                if dist < bestDistance then
+                    bestDistance = dist
+                    bestAsteroid = asteroidData
                 end
-                break
             end
         end
+        
+        -- Assign fighter to the nearest available asteroid
+        if bestAsteroid then
+            local ai = FighterAI(fighterData.id)
+            if ai then
+                ai.ignoreMothershipOrders = true
+                ai:clearFeedback()
+                ai:setOrders(FighterOrders.Attack, bestAsteroid.entity.index)
+                assignedFighters[fighterData.index.string] = bestAsteroid.entity.id
+                local key = tostring(bestAsteroid.entity.id)
+                asteroidFighterCount[key] = (asteroidFighterCount[key] or 0) + 1
+                assigned = true
+            end
+        end
+        
         -- No asteroid needs more fighters, release to default AI
         if not assigned then
             MiningAlgoController.releaseFighter(fighterData, entity)
