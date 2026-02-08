@@ -114,7 +114,7 @@ function UiSampleController.initUI()
 
     -- Clear Resources button with info text
     window:createButton(Rect(10, 255, 250, 285), "Clear Resources", "onClearResources")
-    local clearInfoLabel = window:createLabel(vec2(10, 290), "(Deletes asteroids < min limit)", 12)
+    local clearInfoLabel = window:createLabel(vec2(10, 290), "(Deletes asteroids < min resource limit)", 12)
     clearInfoLabel.color = ColorRGB(0.7, 0.7, 0.7)
 
     -- Separator
