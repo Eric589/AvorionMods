@@ -150,22 +150,23 @@ end
 -- Helper function to calculate wreckage value
 function UiSampleController.getWreckageValue(wreckage)
     if not wreckage or not valid(wreckage) then return 0 end
-    
+
     -- Calculate total value of resources in wreckage
     local totalValue = 0
-    local plan = wreckage:getPlan()
     
-    if plan then
-        local materials = {plan:getMaterialCounts()}
-        for i = 1, #materials, 2 do
-            local material = materials[i]
-            local amount = materials[i + 1]
-            if material and amount then
-                totalValue = totalValue + (amount * Material(material).costFactor)
-            end
+    -- Access the Plan component (similar to FighterAI(id), Weapons(id), etc.)
+    local plan = Plan(wreckage.id)
+    if not plan then return 0 end
+
+    local materials = {plan:getMaterialCounts()}
+    for i = 1, #materials, 2 do
+        local material = materials[i]
+        local amount = materials[i + 1]
+        if material and amount then
+            totalValue = totalValue + (amount * Material(material).costFactor)
         end
     end
-    
+
     return totalValue
 end
 
