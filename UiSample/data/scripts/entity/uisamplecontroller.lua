@@ -130,17 +130,41 @@ function UiSampleController.getUpdateInterval()
 end
 
 -- Helper function to check if a fighter can mine
+-- Fighters need to be civil AND have mining efficiency to mine asteroids (not salvagers)
 function UiSampleController.canFighterMine(fighter)
     if not valid(fighter) then return false end
     
-    -- Check if fighter has mining capability by checking title/name
-    local title = fighter.title or ""
-    if string.find(string.lower(title), "mining") then
-        return true
+    -- Get fighter's template to check if it's a mining type
+    local entity = Entity()
+    if not valid(entity) then return false end
+    
+    local hangar = Hangar(entity.id)
+    if not hangar then return false end
+    
+    -- Find which squad this fighter belongs to
+    for squad = 0, 9 do
+        local template = hangar:getBlueprint(squad)
+        if template and template.civil then
+            -- Check if template has mining efficiency (distinguishes miners from salvagers)
+            -- Miners have metalBestEfficiency or stoneBestEfficiency > 0
+            local hasMiningEfficiency = (template.metalBestEfficiency and template.metalBestEfficiency > 0) or 
+                                       (template.stoneBestEfficiency and template.stoneBestEfficiency > 0)
+            
+            if hasMiningEfficiency then
+                -- Check if this fighter is in this squad by comparing IDs
+                local controller = FighterController(entity.id)
+                if controller then
+                    local squadFighters = {controller:getDeployedFighters(squad)}
+                    for _, squadFighter in pairs(squadFighters) do
+                        if valid(squadFighter) and squadFighter.id == fighter.id then
+                            return true
+                        end
+                    end
+                end
+            end
+        end
     end
     
-    -- Alternative: Check if it has civil weapons (miners are typically civil)
-    -- Mining fighters usually have "Mining" in their name
     return false
 end
 
