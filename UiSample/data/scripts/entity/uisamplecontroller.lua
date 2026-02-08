@@ -130,48 +130,36 @@ function UiSampleController.getUpdateInterval()
 end
 
 -- Helper function to check if a fighter can mine
--- Fighters need to be civil AND have category == 1 (mining) to mine asteroids
--- Category 1 = Mining, Category 2 = Salvaging
+-- Check the fighter's actual weapons, not the squad blueprint
 function UiSampleController.canFighterMine(fighter)
     if not valid(fighter) then return false end
     
-    -- Get fighter's template to check if it's a mining type
+    -- Get the fighter's actual Weapons component to check what it really has equipped
+    local weapons = Weapons(fighter.id)
+    if not weapons then return false end
+    
     local entity = Entity()
     if not valid(entity) then return false end
     
-    local hangar = Hangar(entity.id)
-    if not hangar then return false end
+    local shipName = entity.name or "Unknown Ship"
     
-    -- Find which squad this fighter belongs to
-    for squad = 0, 9 do
-        local template = hangar:getBlueprint(squad)
-        if template and template.civil then
-            -- Debug: print category info
-            print(string.format("[UISample] Squad %d - category type: %s, value: %s", squad, type(template.category), tostring(template.category)))
-            print(string.format("[UISample] Squad %d - stoneBestEfficiency: %s", squad, tostring(template.stoneBestEfficiency)))
-            print(string.format("[UISample] Squad %d - metalBestEfficiency: %s", squad, tostring(template.metalBestEfficiency)))
-            
-            -- Check if template category is 1 (mining), not 2 (salvaging)
-            if template.category == 1 then
-                print(string.format("[UISample] Squad %d MATCHED as mining (category == 1)", squad))
-                -- Check if this fighter is in this squad by comparing IDs
-                local controller = FighterController(entity.id)
-                if controller then
-                    local squadFighters = {controller:getDeployedFighters(squad)}
-                    for _, squadFighter in pairs(squadFighters) do
-                        if valid(squadFighter) and squadFighter.id == fighter.id then
-                            print(string.format("[UISample] Fighter %s matched in mining squad %d", tostring(fighter.id), squad))
-                            return true
-                        end
-                    end
-                end
-            else
-                print(string.format("[UISample] Squad %d NOT mining (category: %s)", squad, tostring(template.category)))
-            end
-        end
+    -- Debug output
+    print(string.format("[UISample] Ship '%s' - Fighter weapons - civil: %s, category: %s, stoneBestEff: %s, metalBestEff: %s", 
+        shipName,
+        tostring(weapons.civil), 
+        tostring(weapons.category),
+        tostring(weapons.stoneBestEfficiency),
+        tostring(weapons.metalBestEfficiency)))
+    
+    -- Check if the fighter's actual weapons are civil and have mining efficiency
+    -- Miners have stoneBestEfficiency > 0, Salvagers have metalBestEfficiency > 0
+    if weapons.civil and weapons.stoneBestEfficiency and weapons.stoneBestEfficiency > 0 then
+        print(string.format("[UISample] Ship '%s' - Fighter IS a miner (stoneBestEfficiency > 0)", shipName))
+        return true
+    else
+        print(string.format("[UISample] Ship '%s' - Fighter is NOT a miner", shipName))
+        return false
     end
-    
-    return false
 end
 
 -- Helper function to release a fighter back to mothership
