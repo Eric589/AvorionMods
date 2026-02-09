@@ -1,13 +1,17 @@
 -- Fast Exploration Controller
 package.path = package.path .. ";data/scripts/lib/?.lua"
+package.path = package.path .. ";data/scripts/?.lua"
 include("utility")
 include("callable")
+local SectorSpecifics = include("sectorspecifics")
 
 -- namespace FastExplorationController
 FastExplorationController = {}
 
-local DRONE_LIFETIME = 20 -- seconds before drone is destroyed
-local trackedDrones = {} -- {name = string, elapsed = number}
+local DRONE_LIFETIME = 3 -- seconds before drone self-destructs
+local SCAN_RANGE = 8 -- sectors to scan around current position
+local pendingTargets = {} -- queued sectors to send drones to
+local dispatchTimer = 0
 
 function FastExplorationController.getIcon()
     return "data/scripts/icon/icon.png"
@@ -50,103 +54,101 @@ function FastExplorationController.initUI()
     window.moveable = 1
     menu:registerWindow(window, "Fast Exploration")
 
-    -- Single button to create drone
-    window:createButton(Rect(10, 10, 290, 50), "Create Drone", "onCreateDrone")
+    -- Single button to dispatch drones
+    window:createButton(Rect(10, 10, 290, 50), "Dispatch Drones", "onDispatchDrones")
 end
 
 -- Button clicked
-function FastExplorationController.onCreateDrone()
-    invokeServerFunction("createDrone")
+function FastExplorationController.onDispatchDrones()
+    invokeServerFunction("dispatchDrones")
 end
 
--- Server: Create the drone
-function FastExplorationController.createDrone()
+-- Server: Queue unknown sectors for drone dispatch (one per tick)
+function FastExplorationController.dispatchDrones()
     if not onServer() then return end
-    
+
+    if #pendingTargets > 0 then
+        print("[FastExploration] Already dispatching drones")
+        return
+    end
+
     local player = Player()
     local entity = Entity()
     local sector = Sector()
+    local cx, cy = sector:getCoordinates()
+    local serverSeed = Server().seed
+    local specs = SectorSpecifics()
 
-    -- Create a simple BlockPlan with one block
-    local plan = BlockPlan()
-    local material = Material(MaterialType.Iron)
-    local color = Color(0.5, 0.5, 0.5, 1.0)
+    local range = SCAN_RANGE
+    local jumpReach = entity.hyperspaceJumpReach
+    if jumpReach and jumpReach > 0 then
+        range = math.floor(jumpReach)
+        print("[FastExploration] Using hyperspaceJumpReach = " .. range)
+    end
 
-    plan:addBlock(
-        vec3(0, 0, 0),      -- position
-        vec3(1, 1, 1),      -- size
-        -1,                 -- parentIndex (root)
-        1,                  -- block type (hull)
-        color,
-        material,
-        Matrix(),           -- orientation
-        0,                  -- blockIndex
-        nil                 -- secondaryColor
-    )
+    local DEEP_SCAN_RANGE = 8
+    local yellowCount = 0
+    local greenCount = 0
 
-    -- Position near mothership
-    local pos = entity.translationf
-    local droneMatrix = Matrix()
-    droneMatrix.translation = pos + vec3(50, 0, 0)
+    local rangeSq = range * range
+    local deepSq = DEEP_SCAN_RANGE * DEEP_SCAN_RANGE
 
-    -- Create as player-owned ship
-    local drone = sector:createShip(player, "Scout Drone", plan, droneMatrix)
-
-    if valid(drone) then
-        print("[FastExploration] Drone created: " .. tostring(drone.id))
-
-        -- Find a random unknown sector within range
-        local cx, cy = sector:getCoordinates()
-        local range = 5
-        local candidates = {}
-
-        for dx = -range, range do
-            for dy = -range, range do
-                if dx ~= 0 or dy ~= 0 then
-                    local tx, ty = cx + dx, cy + dy
-                    if not player:knowsSector(tx, ty) then
-                        table.insert(candidates, {x = tx, y = ty})
+    for dx = -range, range do
+        for dy = -range, range do
+            local distSq = dx * dx + dy * dy
+            if distSq > 0 and distSq <= rangeSq then
+                local tx, ty = cx + dx, cy + dy
+                if not player:knowsSector(tx, ty) then
+                    local regular, offgrid = specs:determineContent(tx, ty, serverSeed)
+                    if offgrid and distSq <= deepSq then
+                        yellowCount = yellowCount + 1
+                        table.insert(pendingTargets, {x = tx, y = ty})
+                    elseif regular then
+                        greenCount = greenCount + 1
+                        table.insert(pendingTargets, {x = tx, y = ty})
                     end
                 end
             end
         end
-
-        if #candidates > 0 then
-            local target = candidates[math.random(#candidates)]
-            print("[FastExploration] Jumping drone to sector " .. target.x .. ":" .. target.y)
-            sector:transferEntity(drone, target.x, target.y, SectorChangeType.Jump)
-            table.insert(trackedDrones, {name = drone.name, elapsed = 0})
-        else
-            print("[FastExploration] No unknown sectors within range, destroying drone")
-            sector:deleteEntity(drone)
-            player:setShipDestroyed(drone.name, true)
-            player:removeDestroyedShipInfo(drone.name)
-        end
-    else
-        print("[FastExploration] Failed to create drone")
     end
+
+    print("[FastExploration] Queued " .. #pendingTargets .. " sectors (yellow: " .. yellowCount .. " in range " .. DEEP_SCAN_RANGE .. ", green: " .. greenCount .. " in range " .. range .. ")")
 end
-callable(FastExplorationController, "createDrone")
+callable(FastExplorationController, "dispatchDrones")
 
 function FastExplorationController.getUpdateInterval()
-    return 1
+    return 0
 end
 
 function FastExplorationController.updateServer(timeStep)
-    for i = #trackedDrones, 1, -1 do
-        local entry = trackedDrones[i]
-        entry.elapsed = entry.elapsed + timeStep
+    -- Dispatch one drone every 0.2 seconds
+    dispatchTimer = dispatchTimer + timeStep
+    if dispatchTimer >= 0.2 and #pendingTargets > 0 then
+        dispatchTimer = 0
+        local target = table.remove(pendingTargets, 1)
+        local player = Player()
+        local entity = Entity()
+        local sector = Sector()
 
-        if entry.elapsed >= DRONE_LIFETIME then
-            print("[FastExploration] Cleaning up drone: " .. entry.name)
-            -- Drone is in another sector, can't delete the entity directly
-            -- Just remove it from the player's ship list
-            local owner = Player(Entity().factionIndex)
-            if owner then
-                owner:setShipDestroyed(entry.name, true)
-                owner:removeDestroyedShipInfo(entry.name)
-            end
-            table.remove(trackedDrones, i)
+        local dronePlan = BlockPlan()
+        local material = Material(MaterialType.Iron)
+        local color = Color(0.5, 0.5, 0.5, 1.0)
+        dronePlan:addBlock(
+            vec3(0, 0, 0), vec3(1, 1, 1), -1, 1,
+            color, material, Matrix(), 0, nil
+        )
+
+        local droneMatrix = Matrix()
+        droneMatrix.translation = entity.translationf + vec3(50, 0, 0)
+
+        local droneName = "Scout Drone " .. target.x .. "_" .. target.y
+        local drone = sector:createShip(player, droneName, dronePlan, droneMatrix)
+
+        if valid(drone) then
+            drone.crew = Crew()
+            drone.crew:add(1, CrewMan(CrewProfessionType.None))
+            drone:addScript("data/scripts/entity/droneselfdestruct.lua", DRONE_LIFETIME)
+            sector:transferEntity(drone, target.x, target.y, SectorChangeType.Jump)
         end
     end
 end
