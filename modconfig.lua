@@ -3,5 +3,5 @@ achievementsEnabled = true
 
 enabled =
 {
-    "FastExploration",
+    "AutoTrader",
 }
