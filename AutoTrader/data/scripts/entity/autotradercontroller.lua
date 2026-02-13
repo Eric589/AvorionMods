@@ -54,6 +54,8 @@ local sectorsReceived = {}
 local totalExpectedSectors = 0
 local pendingDrones = {}
 local dispatchTimer = 0
+local scanElapsed = 0
+local SCAN_TIMEOUT = 15 -- seconds after last drone dispatched before marking missing sectors as empty
 local homeSector = nil
 local bestRoute = nil
 
@@ -365,6 +367,7 @@ function AutoTraderController.startNearbyScan()
     pendingDrones = {}
     bestRoute = nil
     dispatchTimer = 0
+    scanElapsed = 0
 
     for dx = -range, range do
         for dy = -range, range do
@@ -750,6 +753,24 @@ function AutoTraderController.updateServer(timeStep)
 
         local receivedCount = 0
         for _ in pairs(sectorsReceived) do receivedCount = receivedCount + 1 end
+
+        -- Timeout: if all drones dispatched and we've waited long enough, mark missing sectors as empty (drone was likely destroyed)
+        if #pendingDrones == 0 then
+            scanElapsed = scanElapsed + timeStep
+            if scanElapsed >= SCAN_TIMEOUT and receivedCount < totalExpectedSectors then
+                local timedOut = 0
+                for _, sc in pairs(scannedSectors) do
+                    local key = sc.x .. "_" .. sc.y
+                    if not sectorsReceived[key] then
+                        Server():setValue("autotrade_" .. key, "EMPTY")
+                        sectorsReceived[key] = true
+                        timedOut = timedOut + 1
+                    end
+                end
+                receivedCount = receivedCount + timedOut
+                print("[AutoTrader] " .. timedOut .. " sectors timed out (drone destroyed?), marked empty")
+            end
+        end
 
         broadcastInvokeClientFunction("updateStatus", "Scanning " .. receivedCount .. "/" .. totalExpectedSectors .. "...")
 
