@@ -1,8 +1,10 @@
 -- Resource Buyer Controller
 package.path = package.path .. ";data/scripts/lib/?.lua"
+package.path = package.path .. ";data/scripts/?.lua"
 include("utility")
 include("callable")
 include("goodsindex")
+local FactoryMap = include("factorymap")
 
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
 -- namespace ResourceBuyerController
@@ -11,6 +13,9 @@ ResourceBuyerController = {}
 -- Shopping list: array of {name = "Good Name", quantity = 10}
 local shoppingList = {}
 
+-- Set of good names available for purchase nearby (server-side)
+local availableGoods = {}
+
 -- UI elements
 local statusLabel = nil
 local goodsCombo = nil
@@ -18,6 +23,11 @@ local quantityBox = nil
 local listBox = nil
 local startButton = nil
 local stopButton = nil
+local scanButton = nil
+
+-- Client-side: parsed shopping list and availability for coloring
+local clientItems = {}
+local clientAvailable = {}
 
 function ResourceBuyerController.getIcon()
     return "data/textures/icons/cargo-bay.png"
@@ -52,7 +62,7 @@ end
 
 function ResourceBuyerController.initUI()
     local res = getResolution()
-    local size = vec2(500, 400)
+    local size = vec2(500, 440)
     local menu = ScriptUI()
     local window = menu:createWindow(Rect(res * 0.5 - size * 0.5, res * 0.5 + size * 0.5))
     window.caption = "Resource Buyer"
@@ -84,9 +94,10 @@ function ResourceBuyerController.initUI()
 
     window:createButton(Rect(450, y, 490, y + 30), "Add", "onAddGood")
 
-    -- Row 2: Shopping list
+    -- Row 2: Shopping list header + buttons
     y = 50
     window:createLabel(vec2(10, y), "Shopping List:", 14)
+    scanButton = window:createButton(Rect(270, y - 5, 370, y + 20), "Scan", "onScan")
     window:createButton(Rect(380, y - 5, 490, y + 20), "Remove", "onRemoveGood")
 
     y = 75
@@ -130,6 +141,11 @@ function ResourceBuyerController.onRemoveGood()
     invokeServerFunction("removeGood", selected)
 end
 
+function ResourceBuyerController.onScan()
+    if not onClient() then return end
+    invokeServerFunction("scanNearbyGoods")
+end
+
 function ResourceBuyerController.onStart()
     if not onClient() then return end
     invokeServerFunction("startBuyRun")
@@ -151,13 +167,13 @@ function ResourceBuyerController.addGood(name, quantity)
     for _, item in pairs(shoppingList) do
         if item.name == name then
             item.quantity = item.quantity + quantity
-            broadcastInvokeClientFunction("syncList", ResourceBuyerController.serializeList())
+            ResourceBuyerController.sendSyncToClients()
             return
         end
     end
 
     table.insert(shoppingList, {name = name, quantity = quantity})
-    broadcastInvokeClientFunction("syncList", ResourceBuyerController.serializeList())
+    ResourceBuyerController.sendSyncToClients()
 end
 callable(ResourceBuyerController, "addGood")
 
@@ -167,9 +183,123 @@ function ResourceBuyerController.removeGood(index)
     if luaIndex >= 1 and luaIndex <= #shoppingList then
         table.remove(shoppingList, luaIndex)
     end
-    broadcastInvokeClientFunction("syncList", ResourceBuyerController.serializeList())
+    ResourceBuyerController.sendSyncToClients()
 end
 callable(ResourceBuyerController, "removeGood")
+
+function ResourceBuyerController.scanNearbyGoods()
+    if not onServer() then return end
+
+    local entity = Entity()
+    if not valid(entity) then return end
+
+    local jumpRange = entity.hyperspaceJumpReach or 0
+    if jumpRange <= 0 then
+        broadcastInvokeClientFunction("updateStatus", "No hyperspace drive installed")
+        return
+    end
+
+    broadcastInvokeClientFunction("updateStatus", "Scanning nearby sectors...")
+
+    local sx, sy = Sector():getCoordinates()
+    local scanRadius = math.ceil(jumpRange)
+
+    local map = FactoryMap()
+    local from = {x = sx - scanRadius, y = sy - scanRadius}
+    local to = {x = sx + scanRadius, y = sy + scanRadius}
+    local productions = map:getProductionsMap(from, to)
+
+    -- Build set of goods available for purchase nearby
+    availableGoods = {}
+
+    -- Also scan current sector for actual station goods
+    ResourceBuyerController.scanCurrentSectorGoods()
+
+    -- Extract goods from FactoryMap predictions
+    local rangeSq = jumpRange * jumpRange
+    for _, entry in pairs(productions) do
+        local coords = entry.coordinates
+        local dx = coords.x - sx
+        local dy = coords.y - sy
+        if dx * dx + dy * dy <= rangeSq then
+            local data = entry.data
+
+            -- Factory results = goods produced and sold by factories
+            if data.productions then
+                for _, production in pairs(data.productions) do
+                    if production.results then
+                        for _, good in pairs(production.results) do
+                            availableGoods[good.name] = 1
+                        end
+                    end
+                    -- Garbage/byproducts are also sold
+                    if production.garbages then
+                        for _, good in pairs(production.garbages) do
+                            availableGoods[good.name] = 1
+                        end
+                    end
+                end
+            end
+
+            -- Consumer/seller goods that are sold
+            if data.sold then
+                for _, sold in pairs(data.sold) do
+                    if sold.goods then
+                        for _, name in pairs(sold.goods) do
+                            availableGoods[name] = 1
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    -- Count available goods from shopping list
+    local found = 0
+    for _, item in pairs(shoppingList) do
+        if availableGoods[item.name] then
+            found = found + 1
+        end
+    end
+
+    ResourceBuyerController.sendSyncToClients()
+    broadcastInvokeClientFunction("updateStatus", "Scan complete: " .. found .. "/" .. #shoppingList .. " goods found nearby")
+end
+callable(ResourceBuyerController, "scanNearbyGoods")
+
+function ResourceBuyerController.scanCurrentSectorGoods()
+    -- Check actual stations in current sector for buyable goods
+    local sector = Sector()
+    if not sector then return end
+
+    local stations = {sector:getEntitiesByType(EntityType.Station)}
+    for _, station in pairs(stations) do
+        if valid(station) then
+            -- Try factory script
+            local ok, production = station:invokeFunction("data/scripts/entity/merchants/factory.lua", "getProduction")
+            if ok == 0 and production then
+                if production.results then
+                    for _, good in pairs(production.results) do
+                        availableGoods[good.name] = 1
+                    end
+                end
+                if production.garbages then
+                    for _, good in pairs(production.garbages) do
+                        availableGoods[good.name] = 1
+                    end
+                end
+            end
+
+            -- Try seller script
+            local ok2, soldGoods = station:invokeFunction("data/scripts/entity/merchants/seller.lua", "getSellableGoods")
+            if ok2 == 0 and soldGoods then
+                for _, name in pairs(soldGoods) do
+                    availableGoods[name] = 1
+                end
+            end
+        end
+    end
+end
 
 function ResourceBuyerController.startBuyRun()
     if not onServer() then return end
@@ -189,10 +319,16 @@ callable(ResourceBuyerController, "stopBuyRun")
 
 function ResourceBuyerController.requestUIUpdate()
     if not onServer() then return end
-    broadcastInvokeClientFunction("syncList", ResourceBuyerController.serializeList())
+    ResourceBuyerController.sendSyncToClients()
     broadcastInvokeClientFunction("updateStatus", "Idle")
 end
 callable(ResourceBuyerController, "requestUIUpdate")
+
+function ResourceBuyerController.sendSyncToClients()
+    local listData = ResourceBuyerController.serializeList()
+    local availData = ResourceBuyerController.serializeAvailable()
+    broadcastInvokeClientFunction("syncListAndAvailability", listData, availData)
+end
 
 -- ============================================================
 -- SERIALIZATION
@@ -206,33 +342,72 @@ function ResourceBuyerController.serializeList()
     return table.concat(lines, "\n")
 end
 
+function ResourceBuyerController.serializeAvailable()
+    local names = {}
+    for name, _ in pairs(availableGoods) do
+        table.insert(names, name)
+    end
+    return table.concat(names, "\n")
+end
+
 -- ============================================================
 -- CLIENT FUNCTIONS
 -- ============================================================
 
-function ResourceBuyerController.syncList(data)
+function ResourceBuyerController.syncListAndAvailability(listData, availData)
     if not onClient() then return end
 
-    local items = {}
-    if data and data ~= "" then
-        for line in string.gmatch(data, "[^\n]+") do
+    -- Parse shopping list
+    clientItems = {}
+    if listData and listData ~= "" then
+        for line in string.gmatch(listData, "[^\n]+") do
             local parts = {}
             for part in string.gmatch(line, "[^|]+") do
                 table.insert(parts, part)
             end
             if #parts >= 2 then
-                table.insert(items, {name = parts[1], quantity = tonumber(parts[2]) or 0})
+                table.insert(clientItems, {name = parts[1], quantity = tonumber(parts[2]) or 0})
             end
         end
     end
 
+    -- Parse available goods
+    clientAvailable = {}
+    if availData and availData ~= "" then
+        for name in string.gmatch(availData, "[^\n]+") do
+            clientAvailable[name] = 1
+        end
+    end
+
+    ResourceBuyerController.renderList()
+end
+callable(ResourceBuyerController, "syncListAndAvailability")
+
+function ResourceBuyerController.renderList()
+    if not onClient() then return end
     if not listBox then return end
+
     listBox:clear()
-    for _, item in pairs(items) do
-        listBox:addEntry(item.name .. "  x" .. tostring(item.quantity))
+
+    local hasAvailData = false
+    for _ in pairs(clientAvailable) do
+        hasAvailData = true
+        break
+    end
+
+    for i, item in ipairs(clientItems) do
+        local text = item.name .. "  x" .. tostring(item.quantity)
+        if hasAvailData and not clientAvailable[item.name] then
+            text = text .. "  [NOT FOUND]"
+        end
+        listBox:addEntry(text)
+
+        -- Color the entry red if not available
+        if hasAvailData and not clientAvailable[item.name] then
+            listBox:setEntry(i - 1, text, false, false, ColorRGB(0.8, 0.2, 0.2))
+        end
     end
 end
-callable(ResourceBuyerController, "syncList")
 
 function ResourceBuyerController.updateStatus(msg)
     if not onClient() then return end
@@ -253,13 +428,16 @@ end
 function ResourceBuyerController.secure()
     return {
         shoppingList = shoppingList,
+        availableGoods = availableGoods,
     }
 end
 
 function ResourceBuyerController.restore(data)
     if data then
         shoppingList = data.shoppingList or {}
+        availableGoods = data.availableGoods or {}
     else
         shoppingList = {}
+        availableGoods = {}
     end
 end

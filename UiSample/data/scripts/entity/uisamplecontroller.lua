@@ -3,27 +3,10 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 include("utility")
 include("callable")
 
--- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
--- namespace UiSampleController
-
 UiSampleController = {}
 
--- Client state (use numbers instead of booleans - booleans don't serialize over Avorion RPC)
-local enabled = 0
-local minResourceLimit = "1000"
-local resPerFighter = "1000"
-local fighterCount = 0
-local distributedFighters = 0
-local targetedAsteroids = 0
-
--- Server state
-local assignedFighters = {}
-local serverEnabled = 0
-local serverMinResource = 1000
-local serverResPerFighter = 1000
-local settingsChanged = false
-
-function UiSampleController.getIcon()
+-- Module-level functions for Avorion
+function getIcon()
     return "data/icon/icon.png"
 end
 
