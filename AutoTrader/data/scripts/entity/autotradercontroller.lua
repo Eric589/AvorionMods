@@ -55,7 +55,7 @@ local totalExpectedSectors = 0
 local pendingDrones = {}
 local dispatchTimer = 0
 local scanElapsed = 0
-local SCAN_TIMEOUT = 15 -- seconds after last drone dispatched before marking missing sectors as empty
+local SCAN_TIMEOUT = 60 -- seconds after last drone dispatched before marking missing sectors as empty
 local homeSector = nil
 local bestRoute = nil
 
@@ -257,14 +257,20 @@ function AutoTraderController.executeCrossSectorRoute()
             DockAI.reset()
             broadcastInvokeClientFunction("updateStatus", "Docking to sell...")
         else
-            trade.sellWaypoints = AutoTraderController.calculateJumpPath(cx, cy, trade.sellSectorX, trade.sellSectorY, jumpRange)
+            trade.sellWaypoints = AutoTraderController.buildSellWaypoints(entity, cx, cy, trade.sellSectorX, trade.sellSectorY, jumpRange)
+            if not trade.sellWaypoints or #trade.sellWaypoints == 0 then
+                print("[AutoTrader] Cannot reach sell sector (rift/blocked)")
+                broadcastInvokeClientFunction("updateStatus", "Sell sector unreachable")
+                AutoTraderController.stopTrade()
+                return
+            end
             trade.waypointIndex = 1
             state = STATE_JUMP_TO_SELL
             local wp = trade.sellWaypoints[1]
             ShipAI():setJump(wp.x, wp.y)
             local totalJumps = #trade.sellWaypoints
             if totalJumps > 1 then
-                broadcastInvokeClientFunction("updateStatus", "Jumping to sell 1/" .. totalJumps .. "...")
+                broadcastInvokeClientFunction("updateStatus", "Jumping to sell 1/" .. totalJumps .. " (via home)...")
             else
                 broadcastInvokeClientFunction("updateStatus", "Jumping to sell (" .. trade.sellSectorX .. ":" .. trade.sellSectorY .. ")...")
             end
@@ -550,6 +556,32 @@ function AutoTraderController.findBestCrossSectorRoute(allBuyable, allSellable, 
     return best
 end
 
+-- Build sell waypoints from current position, routing via home sector if not reachable in 1 jump
+-- Returns list of {x,y} waypoints
+function AutoTraderController.buildSellWaypoints(entity, cx, cy, sellX, sellY, jumpRange)
+    local dx = sellX - cx
+    local dy = sellY - cy
+    local distSq = dx * dx + dy * dy
+
+    -- Can we jump directly?
+    if distSq <= jumpRange * jumpRange then
+        return {{x = sellX, y = sellY}}
+    end
+
+    -- Not reachable in 1 jump — route via home sector if available
+    if homeSector then
+        local waypoints = {}
+        if cx ~= homeSector.x or cy ~= homeSector.y then
+            table.insert(waypoints, {x = homeSector.x, y = homeSector.y})
+        end
+        table.insert(waypoints, {x = sellX, y = sellY})
+        return waypoints
+    end
+
+    -- No home sector, try straight-line path
+    return AutoTraderController.calculateJumpPath(cx, cy, sellX, sellY, jumpRange)
+end
+
 -- Calculate a multi-jump path from (fromX,fromY) to (toX,toY) within jumpRange per hop
 -- Returns list of {x,y} waypoints (empty if already at destination)
 function AutoTraderController.calculateJumpPath(fromX, fromY, toX, toY, jumpRange)
@@ -717,7 +749,7 @@ function AutoTraderController.updateServer(timeStep)
     -- SCANNING: dispatch drones from queue, poll for results
     if state == STATE_SCANNING then
         dispatchTimer = dispatchTimer + timeStep
-        if dispatchTimer >= 0.2 and #pendingDrones > 0 then
+        if dispatchTimer >= 1.0 and #pendingDrones > 0 then
             dispatchTimer = 0
             local target = table.remove(pendingDrones, 1)
             local player = Player()
@@ -914,14 +946,20 @@ function AutoTraderController.updateServer(timeStep)
                     else
                         local ent = Entity()
                         local jumpRange = getJumpRange(ent)
-                        trade.sellWaypoints = AutoTraderController.calculateJumpPath(cx, cy, trade.sellSectorX, trade.sellSectorY, jumpRange)
+                        trade.sellWaypoints = AutoTraderController.buildSellWaypoints(ent, cx, cy, trade.sellSectorX, trade.sellSectorY, jumpRange)
+                        if not trade.sellWaypoints or #trade.sellWaypoints == 0 then
+                            print("[AutoTrader] Cannot reach sell sector (rift/blocked)")
+                            broadcastInvokeClientFunction("updateStatus", "Sell sector unreachable")
+                            AutoTraderController.stopTrade()
+                            return
+                        end
                         trade.waypointIndex = 1
                         state = STATE_JUMP_TO_SELL
                         local wp = trade.sellWaypoints[1]
                         ShipAI():setJump(wp.x, wp.y)
                         local totalJumps = #trade.sellWaypoints
                         if totalJumps > 1 then
-                            broadcastInvokeClientFunction("updateStatus", "Jumping to sell 1/" .. totalJumps .. "...")
+                            broadcastInvokeClientFunction("updateStatus", "Jumping to sell 1/" .. totalJumps .. " (via home)...")
                         else
                             broadcastInvokeClientFunction("updateStatus", "Jumping to sell (" .. trade.sellSectorX .. ":" .. trade.sellSectorY .. ")...")
                         end
@@ -1069,6 +1107,7 @@ function AutoTraderController.secure()
         state = state,
         trade = securedTrade,
         bestRoute = bestRoute,
+        homeSector = homeSector,
     }
 end
 
@@ -1077,9 +1116,11 @@ function AutoTraderController.restore(data)
         state = data.state or STATE_IDLE
         trade = data.trade
         bestRoute = data.bestRoute
+        homeSector = data.homeSector
     else
         state = STATE_IDLE
         trade = nil
         bestRoute = nil
+        homeSector = nil
     end
 end

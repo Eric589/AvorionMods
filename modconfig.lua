@@ -4,4 +4,5 @@ achievementsEnabled = true
 enabled =
 {
     "AutoTrader",
+    "ResourceBuyer",
 }
