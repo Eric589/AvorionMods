@@ -5,6 +5,8 @@ include("utility")
 include("callable")
 local TradingUtility = include("tradingutility")
 local DockAI = include("ai/dock")
+local FactoryMap = include("factorymap")
+local SectorSpecifics = include("sectorspecifics")
 
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
 -- namespace AutoTraderController
@@ -352,6 +354,16 @@ end
 -- NEARBY SCAN (cross-sector with drones)
 -- ============================================================
 
+local function sectorHasAnyStation(x, y, serverSeed)
+    local specs = SectorSpecifics()
+    specs:initialize(x, y, serverSeed)
+    if not specs.generationTemplate then return false end
+    if not specs.generationTemplate.contents then return false end
+    local ok, contents = pcall(specs.generationTemplate.contents, x, y)
+    if not ok or not contents then return false end
+    return (contents.stations or 0) > 0
+end
+
 function AutoTraderController.startNearbyScan()
     if not onServer() then return end
     if state ~= STATE_IDLE then
@@ -388,12 +400,13 @@ function AutoTraderController.startNearbyScan()
     table.insert(scannedSectors, {x = cx, y = cy})
     sectorsReceived[cx .. "_" .. cy] = true
 
+    local serverSeed = Server().seed
     for dx = -range, range do
         for dy = -range, range do
             local distSq = dx * dx + dy * dy
             if distSq > 0 and distSq <= rangeSq then
                 local tx, ty = cx + dx, cy + dy
-                if player:knowsSector(tx, ty) then
+                if player:knowsSector(tx, ty) and sectorHasAnyStation(tx, ty, serverSeed) then
                     table.insert(pendingDrones, {x = tx, y = ty})
                     table.insert(scannedSectors, {x = tx, y = ty})
                 end
@@ -404,7 +417,7 @@ function AutoTraderController.startNearbyScan()
     totalExpectedSectors = #scannedSectors
     state = STATE_SCANNING
 
-    print("[AutoTrader] Range " .. range .. ", queued " .. #pendingDrones .. " drones + current sector")
+    print("[AutoTrader] Range " .. range .. ", queued " .. #pendingDrones .. " drones (trading post sectors only) + current sector")
     broadcastInvokeClientFunction("updateStatus", "Scanning 1/" .. totalExpectedSectors .. "...")
     broadcastInvokeClientFunction("updateInfo", "", "")
 end

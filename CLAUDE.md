@@ -123,6 +123,8 @@ The `Documentation/` directory contains YAML-formatted Avorion API docs:
 - Individual class files (`FighterAI.yaml`, `Entity.yaml`, `Sector [Server].yaml`, etc.)
 - Callback docs (`Entity Callbacks.yaml`, `Sector Callbacks.yaml`)
 
+**Vanilla Avorion Scripts:** `E:\SteamLibrary\steamapps\common\Avorion\data\scripts` contains all built-in game scripts. Use these as reference for available includes, utility libraries (`tradingutility.lua`, `factorymap.lua`, `sectorspecifics.lua`, etc.), and vanilla patterns.
+
 ## Version Convention
 
 Mods in this repository use **1.0.x** patch versioning during development. Update the patch number in `modinfo.lua` for each release.
