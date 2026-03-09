@@ -59,4 +59,5 @@ meta =
 
     -- Contact info for other users to reach you in case they have questions
     contact = "",
+    thumbnail = "r-salvaging-laser.png",
 }

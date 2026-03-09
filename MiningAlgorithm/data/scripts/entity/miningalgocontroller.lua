@@ -24,7 +24,7 @@ local serverResPerFighter = 1000
 local settingsChanged = false
 
 function MiningAlgoController.getIcon()
-    return "data/icon/icon2.png"
+    return "r-mining-laser.png"
 end
 
 function MiningAlgoController.interactionPossible(playerIndex)

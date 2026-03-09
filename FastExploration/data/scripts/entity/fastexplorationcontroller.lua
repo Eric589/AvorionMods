@@ -14,7 +14,7 @@ local pendingTargets = {} -- queued sectors to send drones to
 local dispatchTimer = 0
 
 function FastExplorationController.getIcon()
-    return "data/scripts/icon/icon.png"
+    return "expedition-command.png"
 end
 
 function FastExplorationController.interactionPossible(playerIndex)

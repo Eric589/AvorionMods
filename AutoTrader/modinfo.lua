@@ -15,4 +15,5 @@ meta =
     clientSideOnly = false,
     saveGameAltering = false,
     contact = "",
+    thumbnail = "chart.png",
 }

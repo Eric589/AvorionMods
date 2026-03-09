@@ -6,6 +6,7 @@ enabled =
     "3610252115",
     "3610475144",
     "AutoTrader",
+    "CrewCommand",
     "FastExploration",
     "InventorySeller",
     "ResourceBuyer",

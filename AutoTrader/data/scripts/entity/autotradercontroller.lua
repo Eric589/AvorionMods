@@ -68,7 +68,7 @@ local infoLabel2 = nil
 local tradeButton = nil
 
 function AutoTraderController.getIcon()
-    return "data/textures/icons/cash.png"
+    return "chart.png"
 end
 
 function AutoTraderController.interactionPossible(playerIndex)

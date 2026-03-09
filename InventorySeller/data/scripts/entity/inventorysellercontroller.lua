@@ -147,7 +147,7 @@ local clientCargo = {}        -- {name -> amount} current cargo
 -- ============================================================
 
 function InventorySellerController.getIcon()
-    return "data/textures/icons/exchange.png"
+    return "supply-chain.png"
 end
 
 function InventorySellerController.interactionPossible(playerIndex)
@@ -765,11 +765,18 @@ function InventorySellerController.updateServer(timeStep)
         end
 
         -- Skip goods with nothing to sell
-        while currentGoodIndex <= #stop.goods and (sellQuantities[stop.goods[currentGoodIndex].name] or 0) <= 0 do
-            local gn = stop.goods[currentGoodIndex].name
-            print("[InventorySeller] Skipping " .. gn .. " (none in cargo)")
-            table.insert(sellResults, gn .. ": skipped (empty)")
-            currentGoodIndex = currentGoodIndex + 1
+        while currentGoodIndex <= #stop.goods do
+            local entry = stop.goods[currentGoodIndex]
+            local gn = entry and entry.name
+            if not gn then
+                currentGoodIndex = currentGoodIndex + 1
+            elseif (sellQuantities[gn] or 0) <= 0 then
+                print("[InventorySeller] Skipping " .. gn .. " (none in cargo)")
+                table.insert(sellResults, gn .. ": skipped (empty)")
+                currentGoodIndex = currentGoodIndex + 1
+            else
+                break
+            end
         end
 
         if currentGoodIndex > #stop.goods then

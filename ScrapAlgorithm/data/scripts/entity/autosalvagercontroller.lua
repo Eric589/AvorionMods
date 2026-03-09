@@ -24,7 +24,7 @@ local serverResPerFighter = 1000
 local settingsChanged = false
 
 function AutoSalvagerController.getIcon()
-    return "data/icon/icon.png"
+    return "r-salvaging-laser.png"
 end
 
 function AutoSalvagerController.interactionPossible(playerIndex)

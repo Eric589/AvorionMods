@@ -151,7 +151,7 @@ local clientInventory = {} -- {goodName = amount} from cargo hold
 local comboGoodNames = {}
 
 function ResourceBuyerController.getIcon()
-    return "data/textures/icons/cargo-bay.png"
+    return "cargo-bay.png"
 end
 
 function ResourceBuyerController.interactionPossible(playerIndex)
