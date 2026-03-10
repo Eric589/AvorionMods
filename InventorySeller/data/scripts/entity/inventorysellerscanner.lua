@@ -76,13 +76,15 @@ function doScan()
     end
 
     -- sellable = goods player can SELL to stations (populated from getBoughtGoods by TradingUtility)
-    -- Sum free space across all stations per good so route planner knows total capacity
+    -- Track max single-station capacity per good so the route planner plans stops that can be
+    -- fulfilled in one docking. Summing across stations caused partial sells when a stop's
+    -- planned qty exceeded what any individual station could absorb.
     local capacities = {}
     for _, offer in pairs(sellable) do
         local name = offer.good.name
         local freeSpace = (offer.maxStock or 0) - (offer.stock or 0)
-        if freeSpace > 0 then
-            capacities[name] = (capacities[name] or 0) + freeSpace
+        if freeSpace > 0 and freeSpace > (capacities[name] or 0) then
+            capacities[name] = freeSpace
         end
     end
 

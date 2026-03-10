@@ -10,4 +10,5 @@ enabled =
     "FastExploration",
     "InventorySeller",
     "ResourceBuyer",
+    "SectorSelector",
 }

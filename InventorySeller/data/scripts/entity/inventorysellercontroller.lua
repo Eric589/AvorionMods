@@ -197,11 +197,12 @@ function InventorySellerController.initUI()
     window:createButton(Rect(340, y, 415, y + 30), "Add", "onAddItem")
     window:createButton(Rect(420, y, 490, y + 30), "All", "onSellAll")
 
-    -- Row 2: Sell list header + Scan + Remove
+    -- Row 2: Sell list header + Scan + Remove + Remove All
     y = 50
     window:createLabel(vec2(10, y), "Sell List:", 14)
-    window:createButton(Rect(110, y - 5, 210, y + 20), "Scan", "onScan")
-    window:createButton(Rect(220, y - 5, 340, y + 20), "Remove", "onRemoveItem")
+    window:createButton(Rect(110, y - 5, 200, y + 20), "Scan", "onScan")
+    window:createButton(Rect(205, y - 5, 340, y + 20), "Remove", "onRemoveItem")
+    window:createButton(Rect(345, y - 5, 490, y + 20), "Remove All", "onRemoveAllItems")
 
     y = 75
     listBox = window:createListBox(Rect(10, y, 490, y + 230))
@@ -248,6 +249,11 @@ function InventorySellerController.onRemoveItem()
     invokeServerFunction("removeItem", selected)
 end
 
+function InventorySellerController.onRemoveAllItems()
+    if not onClient() then return end
+    invokeServerFunction("removeAllItems")
+end
+
 function InventorySellerController.onScan()
     if not onClient() then return end
     invokeServerFunction("scanNearbyGoods")
@@ -287,6 +293,13 @@ function InventorySellerController.removeItem(index)
     InventorySellerController.sendSyncToClients()
 end
 callable(InventorySellerController, "removeItem")
+
+function InventorySellerController.removeAllItems()
+    if not onServer() then return end
+    sellList = {}
+    InventorySellerController.sendSyncToClients()
+end
+callable(InventorySellerController, "removeAllItems")
 
 function InventorySellerController.addAllCargo()
     if not onServer() then return end
@@ -468,13 +481,15 @@ function InventorySellerController.startSellRun()
     resolvedScript = nil
     sellResults = {}
 
-    -- Scan current sector directly into sectorGoods (capacity map)
+    -- Scan current sector directly into sectorGoods (max single-station capacity per good)
     local sellable, _ = TradingUtility.detectBuyableAndSellableGoods()
     local currentGoods = {}
     for _, offer in pairs(sellable) do
         local name = offer.good.name
         local freeSpace = (offer.maxStock or 0) - (offer.stock or 0)
-        currentGoods[name] = (currentGoods[name] or 0) + freeSpace
+        if freeSpace > (currentGoods[name] or 0) then
+            currentGoods[name] = freeSpace
+        end
     end
     if next(currentGoods) ~= nil then
         sectorGoods[sx .. "_" .. sy] = currentGoods
@@ -652,8 +667,11 @@ function InventorySellerController.updateServer(timeStep)
                         for line in string.gmatch(data, "[^\n]+") do
                             local name, cap = string.match(line, "^(.+)|(%d+)$")
                             if name and cap then
+                                local capNum = tonumber(cap)
                                 sellableGoods[name] = 1
-                                goodsMap[name] = (goodsMap[name] or 0) + tonumber(cap)
+                                if capNum > (goodsMap[name] or 0) then
+                                    goodsMap[name] = capNum
+                                end
                             end
                         end
                         if next(goodsMap) ~= nil then

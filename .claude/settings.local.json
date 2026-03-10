@@ -15,7 +15,8 @@
       "WebFetch(domain:steamcommunity.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:avorion-modding.fandom.com)",
-      "Bash(powershell.exe -Command \"Get-ChildItem -Path ''C:\\\\'',''D:\\\\'',''E:\\\\'' -Recurse -Filter ''radarbooster.lua'' -ErrorAction SilentlyContinue | Select-Object -First 3 -ExpandProperty FullName\")"
+      "Bash(powershell.exe -Command \"Get-ChildItem -Path ''C:\\\\'',''D:\\\\'',''E:\\\\'' -Recurse -Filter ''radarbooster.lua'' -ErrorAction SilentlyContinue | Select-Object -First 3 -ExpandProperty FullName\")",
+      "Read(//e/SteamLibrary/steamapps/common/Avorion/data/**)"
     ]
   }
 }
