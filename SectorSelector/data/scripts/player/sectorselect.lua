@@ -42,6 +42,10 @@ local assignedList    = nil
 
 local selectedShips  = {}
 local factionSectors = nil  -- non-nil = faction mode, use setHighlightedSectors
+local hostileSectors = {}   -- set of "x,y" keys with hostile activity
+local scanTimer      = 0
+local SCAN_INTERVAL  = 10   -- seconds between hostile scans
+local patrolActive   = false -- highlights and scan only run when icon is toggled on
 
 -- ─── Lifecycle ────────────────────────────────────────────────────────────────
 
@@ -166,9 +170,15 @@ end
 
 function SectorSelector.onIconPressed()
     if isSelecting then
+        -- Second press cancels ongoing selection; restore previous highlights if any
         isSelecting = false
-        GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
+        if patrolActive then
+            SectorSelector.refreshHighlight()
+        else
+            GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
+        end
     else
+        -- Enter selection mode to pick a new area (keeps patrol running in background)
         isSelecting = true
         configWindow:hide()
     end
@@ -409,10 +419,39 @@ end
 
 function SectorSelector.onWinConfirm()
     configWindow:hide()
+    patrolActive = true
+
+    -- In grid mode factionSectors is nil; build it from the rectangle now
+    if not factionSectors then
+        local pm      = PassageMap(Seed(GameSettings().seed))
+        local sectors = {}
+        local lx = centerX - expandLeft
+        local ly = centerY - expandUp
+        local rx = centerX + expandRight
+        local ry = centerY + expandDown
+        for x = lx, rx do
+            for y = ly, ry do
+                if pm:passable(x, y) then
+                    sectors[#sectors + 1] = {x = x, y = y, color = "4800cc77"}
+                end
+            end
+        end
+        factionSectors = sectors
+        SectorSelector.refreshHighlight()
+    end
+
+    local shipList = {}
+    for name in pairs(selectedShips) do shipList[#shipList + 1] = name end
+    print("[SectorSelector] Confirmed. Sectors: " .. #factionSectors
+        .. ", Assigned ships: " .. table.concat(shipList, ", "))
 end
 
 function SectorSelector.onWinCancel()
+    patrolActive   = false
+    factionSectors = nil
+    hostileSectors = {}
     GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
+    GalaxyMap():setHighlightedSectors({}, HIGHLIGHT_KEY)
     configWindow:hide()
 end
 
@@ -446,12 +485,258 @@ function SectorSelector.onAssignedSelected()
     SectorSelector.refreshShipLists()
 end
 
+-- ─── Hostile scan ─────────────────────────────────────────────────────────────
+
+function SectorSelector.getUpdateInterval()
+    return 1
+end
+
+function SectorSelector.updateClient(timeStep)
+    if not patrolActive then return end
+    if not factionSectors or #factionSectors == 0 then return end
+    scanTimer = scanTimer + timeStep
+    if scanTimer < SCAN_INTERVAL then return end
+    scanTimer = 0
+
+    local playerFi   = Player().index
+    local newHostile = {}
+    local changed    = false
+
+    for _, s in ipairs(factionSectors) do
+        local sv = Player():getKnownSector(s.x, s.y)
+        if sv then
+            local crafts = sv:getCraftsByFaction()
+            for factionIdx, count in pairs(crafts) do
+                if factionIdx ~= playerFi and count > 0 then
+                    local f = Faction(factionIdx)
+                    if f and f:getRelationStatus(playerFi) == RelationStatus.War then
+                        local key = s.x .. "," .. s.y
+                        newHostile[key] = {x = s.x, y = s.y}
+                        if not hostileSectors[key] then changed = true end
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    for key in pairs(hostileSectors) do
+        if not newHostile[key] then changed = true end
+    end
+
+    -- Notify about newly appeared hostiles
+    for key, pos in pairs(newHostile) do
+        if not hostileSectors[key] then
+            Player():sendChatMessage("Patrol", ChatMessageType.Warning,
+                "Hostile activity detected at %1%:%2%!", pos.x, pos.y)
+        end
+    end
+
+    hostileSectors = newHostile
+    if changed then SectorSelector.refreshHighlight() end
+
+    -- Every cycle: reassign ships to their closest hostile sector
+    local shipNames = {}
+    for name in pairs(selectedShips) do shipNames[#shipNames + 1] = name end
+
+    if #shipNames > 0 and next(hostileSectors) then
+        local hostileList = {}
+        for _, pos in pairs(hostileSectors) do
+            hostileList[#hostileList + 1] = pos
+        end
+        invokeServerFunction("dispatchToSectors", shipNames, hostileList)
+    end
+end
+
+local TRAVEL_CMD        = "bbcf8ba1-a1e0-4a34-8174-15caebd11fed"
+local SIMULATION_SCRIPT = "data/scripts/player/background/simulation/simulation.lua"
+
+-- BFS shortest path (fewest jumps) through passable sectors.
+-- jumpRange is floored to an integer sector radius (minimum 1).
+-- Returns ordered {x,y} list from origin to destination, or nil if unreachable.
+local function bfsRoute(ox, oy, tx, ty, jumpRange)
+    if ox == tx and oy == ty then return {{x = ox, y = oy}} end
+    local maxDist = math.max(1, math.floor(jumpRange))
+    local pm      = PassageMap(Seed(GameSettings().seed))
+
+    local visited = {}
+    local parent  = {}
+    local queue   = {{x = ox, y = oy}}
+    visited[ox .. "," .. oy] = true
+
+    local found = false
+    local head  = 1
+    while head <= #queue and not found do
+        local cur = queue[head]; head = head + 1
+        for dx = -maxDist, maxDist do
+            for dy = -maxDist, maxDist do
+                if dx * dx + dy * dy <= maxDist * maxDist and (dx ~= 0 or dy ~= 0) then
+                    local nx, ny = cur.x + dx, cur.y + dy
+                    local nk = nx .. "," .. ny
+                    if not visited[nk] and pm:passable(nx, ny) then
+                        visited[nk] = true
+                        parent[nk]  = cur
+                        if nx == tx and ny == ty then found = true; break end
+                        queue[#queue + 1] = {x = nx, y = ny}
+                    end
+                end
+            end
+            if found then break end
+        end
+    end
+
+    if not found then return nil end
+
+    local path = {}
+    local node = {x = tx, y = ty}
+    while node do
+        table.insert(path, 1, node)
+        node = parent[node.x .. "," .. node.y]
+    end
+    return path
+end
+
+-- Issue "Attack Enemies" to a ship via its order chain — identical to the galaxy map button.
+local function setShipAggressive(factionIndex, shipName, ox, oy)
+    local descriptor = {faction = factionIndex, name = shipName}
+    local script     = "data/scripts/entity/orderchain.lua"
+    invokeEntityFunction(ox, oy, nil, descriptor, script, "addAggressiveOrder", true, true)
+    invokeEntityFunction(ox, oy, nil, descriptor, script, "runOrders")
+    print("[SectorSelector] " .. shipName .. " set to attack enemies at " .. ox .. "," .. oy)
+end
+
+-- Dispatch one ship to (tx, ty) via TravelCommand, using BFS for the shortest route.
+-- If the ship is already at the destination, activates Attack Enemies instead.
+local function dispatchShipTo(faction, shipName, tx, ty)
+    local entry = ShipDatabaseEntry(faction.index, shipName)
+    if not entry then
+        print("[SectorSelector] no entry for " .. shipName); return
+    end
+
+    local ox, oy                  = entry:getCoordinates()
+    local jumpRange, canPassRifts = entry:getHyperspaceProperties()
+
+    local route = bfsRoute(ox, oy, tx, ty, jumpRange)
+
+    if not route then
+        print("[SectorSelector] no route for " .. shipName
+            .. " (" .. ox .. "," .. oy .. ") -> " .. tx .. "," .. ty)
+        return
+    end
+
+    if #route == 1 then
+        -- Ship is already in the hostile sector — switch to Attack Enemies
+        setShipAggressive(faction.index, shipName, ox, oy)
+        return
+    end
+
+    if #route == 2 then
+        -- Single hop: use the order chain jump (same as the galaxy map "Jump" button)
+        local descriptor = {faction = faction.index, name = shipName}
+        local script     = "data/scripts/entity/orderchain.lua"
+        invokeEntityFunction(ox, oy, nil, descriptor, script, "clearAllOrders")
+        invokeEntityFunction(ox, oy, nil, descriptor, script, "addJumpOrder", tx, ty)
+        invokeEntityFunction(ox, oy, nil, descriptor, script, "runOrders")
+        print("[SectorSelector] dispatched " .. shipName .. " (1 jump) -> " .. tx .. "," .. ty)
+        return
+    end
+
+    -- Multi-hop: use TravelCommand via the simulation framework
+    -- Build per-step arrays and reachableCoordinates (needs faction field for simulationutility)
+    local attackProbs     = {}
+    local timeFactors     = {}
+    local reachableCoords = {}
+    for i = 1, #route do
+        attackProbs[i]     = 0.5
+        timeFactors[i]     = 1.0
+        reachableCoords[i] = {x = route[i].x, y = route[i].y, faction = 0}
+    end
+
+    local area    = {lower = {x = tx, y = ty}, upper = {x = tx, y = ty}}
+    local results = {
+        route                = route,
+        values               = {jumpRange = jumpRange, canPassRifts = canPassRifts},
+        origin               = {x = ox, y = oy},
+        destination          = {x = tx, y = ty},
+        reachableCoordinates = reachableCoords,
+        sectors              = #route,
+        unreachable          = 0,
+        reachable            = #route,
+        sectorsByFaction     = {},
+        attackProbabilities  = attackProbs,
+        travelTimeFactors    = timeFactors,
+    }
+    local config = {swiftness = 2, escorts = {}}
+
+    faction:invokeFunction(SIMULATION_SCRIPT, "areaAnalysisFinished",
+        shipName, TRAVEL_CMD, area, results, callingPlayer)
+    faction:invokeFunction(SIMULATION_SCRIPT, "startCommand",
+        shipName, TRAVEL_CMD, config)
+
+    print("[SectorSelector] dispatched " .. shipName
+        .. " (" .. (#route - 1) .. " jumps) -> " .. tx .. "," .. ty)
+end
+
+local shipTargets = {}  -- server-side: shipName -> {x, y} of current assignment
+
+-- Called every scan cycle: assign each ship to its closest hostile sector.
+-- Skips ships already traveling to a sector that is still hostile.
+-- Redirects ships whose current target has been cleared.
+function SectorSelector.dispatchToSectors(shipNames, hostileList)
+    if not onServer() then return end
+    if not shipNames or #shipNames == 0 then return end
+    if not hostileList or #hostileList == 0 then return end
+
+    local faction = Player(callingPlayer)
+    if not valid(faction) then return end
+
+    -- Quick lookup: which sectors are currently hostile
+    local hostileSet = {}
+    for _, h in ipairs(hostileList) do
+        hostileSet[h.x .. "," .. h.y] = true
+    end
+
+    for _, shipName in ipairs(shipNames) do
+        local entry = ShipDatabaseEntry(faction.index, shipName)
+        if entry then
+            local ox, oy      = entry:getCoordinates()
+            local available   = entry:getAvailability() == ShipAvailability.Available
+            local cur         = shipTargets[shipName]
+            local targetStillHostile = cur and hostileSet[cur.x .. "," .. cur.y]
+
+            -- Don't interrupt a ship that is still traveling to an active hostile sector
+            if not available and targetStillHostile then
+                -- already on a valid mission
+            else
+                -- Find closest hostile sector by Euclidean² distance
+                local best, bestD = hostileList[1], math.huge
+                for _, h in ipairs(hostileList) do
+                    local d = (h.x - ox) ^ 2 + (h.y - oy) ^ 2
+                    if d < bestD then bestD = d; best = h end
+                end
+                dispatchShipTo(faction, shipName, best.x, best.y)
+                shipTargets[shipName] = {x = best.x, y = best.y}
+            end
+        end
+    end
+end
+callable(SectorSelector, "dispatchToSectors")
+
 -- ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function SectorSelector.refreshHighlight()
+    if not patrolActive then return end
     local map = GalaxyMap()
     if factionSectors then
-        map:setHighlightedSectors(factionSectors, HIGHLIGHT_KEY)
+        local colored = {}
+        for _, s in ipairs(factionSectors) do
+            colored[#colored + 1] = {
+                x     = s.x,
+                y     = s.y,
+                color = hostileSectors[s.x .. "," .. s.y] and "48cc2200" or "4800cc77"
+            }
+        end
+        map:setHighlightedSectors(colored, HIGHLIGHT_KEY)
     else
         local lx = centerX - expandLeft
         local ly = centerY - expandUp

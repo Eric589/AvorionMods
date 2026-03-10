@@ -16,7 +16,11 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:avorion-modding.fandom.com)",
       "Bash(powershell.exe -Command \"Get-ChildItem -Path ''C:\\\\'',''D:\\\\'',''E:\\\\'' -Recurse -Filter ''radarbooster.lua'' -ErrorAction SilentlyContinue | Select-Object -First 3 -ExpandProperty FullName\")",
-      "Read(//e/SteamLibrary/steamapps/common/Avorion/data/**)"
+      "Read(//e/SteamLibrary/steamapps/common/Avorion/data/**)",
+      "Bash(find \"E:/SteamLibrary/steamapps/common/Avorion/data/scripts\" -type f -name \"*.lua\" -exec grep -l \"ShipDatabaseEntry\" {} \\\\; 2>/dev/null | head -10)",
+      "Bash(find \"E:\\\\SteamLibrary\\\\steamapps\\\\common\\\\Avorion\\\\data\\\\scripts\\\\player\" -name \"*attack*\" -o -name \"*combat*\" 2>/dev/null | head -20)",
+      "Bash(find \"E:\\\\SteamLibrary\\\\steamapps\\\\common\\\\Avorion\\\\data\\\\scripts\\\\player\\\\background\\\\simulation\" -type f -name \"*.lua\" 2>/dev/null | head -30)",
+      "Bash(find \"E:\\\\SteamLibrary\\\\steamapps\\\\common\\\\Avorion\\\\data\\\\scripts\\\\player\" -name \"*galaxymap*\" -o -name \"*map*\" 2>/dev/null | grep -i lua)"
     ]
   }
 }
