@@ -36,16 +36,19 @@ local winUpLabel      = nil
 local winDownLabel    = nil
 local winFromLabel    = nil
 local winToLabel      = nil
-local winFactionBtn   = nil
-local availableList   = nil
-local assignedList    = nil
+local winFactionBtn      = nil
+local winSectorCountLbl  = nil
+local availableList      = nil
+local assignedList       = nil
 
 local selectedShips  = {}
 local factionSectors = nil  -- non-nil = faction mode, use setHighlightedSectors
 local hostileSectors = {}   -- set of "x,y" keys with hostile activity
 local scanTimer      = 0
 local SCAN_INTERVAL  = 10   -- seconds between hostile scans
-local patrolActive   = false -- highlights and scan only run when icon is toggled on
+local patrolActive      = false -- scan/dispatch runs when an area is configured
+local wasWindowVisible  = false -- tracks window state to sync highlights
+local updateSectorCount         -- forward declaration; defined near refreshWindowLabels
 
 -- ─── Lifecycle ────────────────────────────────────────────────────────────────
 
@@ -79,7 +82,7 @@ function SectorSelector.initUI()
         "expedition-command.png", "onIconPressed")
     iconButton.tooltip = "Select Sector Area"
 
-    local ww, wh = 290, 430
+    local ww, wh = 290, 466
     configWindow = GalaxyMap():createWindow(Rect(vec2(ww, wh)))
     configWindow.caption             = "Area Selection"
     configWindow.showCloseButton     = true
@@ -91,8 +94,12 @@ function SectorSelector.initUI()
     local p = 10
 
     winCenterLabel = configWindow:createLabel(
-        Rect(vec2(p, p), vec2(ww - p, p + 20)),
+        Rect(vec2(p, p), vec2(ww * 2 / 3, p + 20)),
         "Center: --, --", 13)
+    winSectorCountLbl = configWindow:createLabel(
+        Rect(vec2(ww * 2 / 3, p), vec2(ww - p, p + 20)),
+        "0 sectors", 11)
+    winSectorCountLbl.centered = true
 
     local lblW, btnW, valW = 52, 28, 44
     local function dirRow(y, caption, minusCb, plusCb)
@@ -138,7 +145,15 @@ function SectorSelector.initUI()
         Rect(vec2(ww / 2 + 6, btnY), vec2(ww - p, btnY + 30)),
         "Cancel", "onWinCancel")
 
-    local sectY = btnY + 42
+    local mgmtY = btnY + 36
+    configWindow:createButton(
+        Rect(vec2(p, mgmtY), vec2(ww / 2 - 6, mgmtY + 30)),
+        "Update Area", "onUpdateAreaPressed")
+    configWindow:createButton(
+        Rect(vec2(ww / 2 + 6, mgmtY), vec2(ww - p, mgmtY + 30)),
+        "Delete Area", "onDeleteAreaPressed")
+
+    local sectY = mgmtY + 42
     local half  = math.floor((ww - 3 * p) / 2)
     configWindow:createLabel(
         Rect(vec2(p, sectY), vec2(p + half, sectY + 16)), "Available", 11)
@@ -169,19 +184,33 @@ function SectorSelector.onHideGalaxyMap()
 end
 
 function SectorSelector.onIconPressed()
-    if isSelecting then
-        -- Second press cancels ongoing selection; restore previous highlights if any
-        isSelecting = false
-        if patrolActive then
-            SectorSelector.refreshHighlight()
-        else
-            GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
-        end
-    else
-        -- Enter selection mode to pick a new area (keeps patrol running in background)
-        isSelecting = true
+    if configWindow.visible then
         configWindow:hide()
+        -- highlights cleared automatically by the wasWindowVisible poll in updateClient
+    else
+        SectorSelector.refreshShipLists()
+        updateSectorCount()
+        configWindow:show()
+        SectorSelector.refreshHighlight()
     end
+end
+
+-- Enter selection mode so the user can pick a new area on the map.
+function SectorSelector.onUpdateAreaPressed()
+    isSelecting = true
+    configWindow:hide()
+end
+
+-- Clear the current area and stop patrol entirely.
+function SectorSelector.onDeleteAreaPressed()
+    patrolActive   = false
+    factionSectors = nil
+    hostileSectors = {}
+    isSelecting    = false
+    updateSectorCount()
+    GalaxyMap():setHighlightedSectors({}, HIGHLIGHT_KEY)
+    GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
+    configWindow:hide()
 end
 
 function SectorSelector.onGalaxyMapUpdate(timeStep)
@@ -412,6 +441,7 @@ function SectorSelector.onFactionAreaPressed()
 
     factionSectors = result
     winFactionBtn.caption = string.format("Faction (%d sectors)", #result)
+    updateSectorCount()
     SectorSelector.refreshHighlight()
 end
 
@@ -437,6 +467,7 @@ function SectorSelector.onWinConfirm()
             end
         end
         factionSectors = sectors
+        updateSectorCount()
         SectorSelector.refreshHighlight()
     end
 
@@ -492,6 +523,14 @@ function SectorSelector.getUpdateInterval()
 end
 
 function SectorSelector.updateClient(timeStep)
+    -- Hide highlights when the window is closed (handles X button and Escape)
+    local windowVisible = configWindow.visible
+    if wasWindowVisible and not windowVisible then
+        GalaxyMap():setHighlightedSectors({}, HIGHLIGHT_KEY)
+        GalaxyMap():removeHighlightedArea(HIGHLIGHT_KEY)
+    end
+    wasWindowVisible = windowVisible
+
     if not patrolActive then return end
     if not factionSectors or #factionSectors == 0 then return end
     scanTimer = scanTimer + timeStep
@@ -725,7 +764,6 @@ callable(SectorSelector, "dispatchToSectors")
 -- ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function SectorSelector.refreshHighlight()
-    if not patrolActive then return end
     local map = GalaxyMap()
     if factionSectors then
         local colored = {}
@@ -746,6 +784,11 @@ function SectorSelector.refreshHighlight()
             ColorARGB(0.30, 0.0, 0.88, 0.35),
             HIGHLIGHT_KEY)
     end
+end
+
+updateSectorCount = function()
+    local count = factionSectors and #factionSectors or 0
+    winSectorCountLbl.caption = count > 0 and (count .. " sectors") or "No area"
 end
 
 function SectorSelector.refreshWindowLabels()
